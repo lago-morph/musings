@@ -45,6 +45,18 @@ cd site/scripts
 node clean-site.js
 ```
 
+#### Deploy to GitHub Pages
+```powershell
+cd site/scripts
+node deploy-to-github-pages.js
+```
+
+#### Force Deploy (with uncommitted changes)
+```powershell
+cd site/scripts
+node deploy-to-github-pages.js --force
+```
+
 ## Project Structure
 
 ```
@@ -87,7 +99,34 @@ node clean-site.js
 ## Site URLs
 
 - **Development**: http://localhost:1313/musings/
-- **Production**: https://lago-morph.github.io/musings/
+- **Production**: https://lago-morph.github.io/musings/ (after deployment)
+
+## GitHub Pages Deployment
+
+### Prerequisites
+- Git repository with clean working directory (or use `--force` flag)
+- Hugo site built (public/ directory exists)
+- GitHub repository with push access
+
+### Deployment Process
+1. **Build and Deploy**: `node deploy-to-github-pages.js`
+2. **Configure GitHub Pages** (one-time setup):
+   - Go to repository Settings → Pages
+   - Set source to "Deploy from a branch"
+   - Select "gh-pages" branch and "/ (root)" folder
+   - Save settings
+3. **Wait**: Changes appear in 2-5 minutes
+
+### Deployment Options
+- **Standard**: `node deploy-to-github-pages.js` (requires clean git status)
+- **Force**: `node deploy-to-github-pages.js --force` (deploys with uncommitted changes)
+
+### What the Script Does
+1. Validates prerequisites (git repo, remote origin, clean status)
+2. Builds Hugo site with `hugo --minify`
+3. Creates/updates `gh-pages` branch with site content
+4. Pushes to GitHub with deployment commit message
+5. Adds `.nojekyll` file to disable Jekyll processing
 
 ## Document Processing Pipeline
 
@@ -140,6 +179,19 @@ cd site/scripts
 node clean-site.js
 node regenerate-site.js
 ```
+
+### Deployment fails
+Check git status and try force deploy:
+```powershell
+git status
+cd site/scripts
+node deploy-to-github-pages.js --force
+```
+
+### Site not updating on GitHub Pages
+- Wait 2-5 minutes for GitHub Pages to update
+- Check GitHub repository Settings → Pages for configuration
+- Verify gh-pages branch was created and pushed
 
 ## Important Notes
 

@@ -230,7 +230,8 @@ This implementation plan converts the Hugo documentation site design into a seri
     - Validate search functionality and performance
     - _Requirements: All_
 
-  - [ ] 11.2 Create deployment preparation
+  - [-] 11.2 Create deployment preparation
+
     - Ensure site is ready for manual deployment to GitHub Pages
     - Test site functionality in production-like environment
     - Validate all assets and links work correctly
