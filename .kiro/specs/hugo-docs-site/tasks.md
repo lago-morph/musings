@@ -236,7 +236,7 @@ This implementation plan converts the Hugo documentation site design into a seri
     - **Validates: Requirements 5.1, 5.2, 5.3, 6.1, 6.2, 6.3**
 
 - [ ] 11. Final integration and testing
-  - 🔄 11.1 Perform end-to-end testing
+  - [x] 11.1 Perform end-to-end testing
     - Test complete pipeline from raw documents to generated site
     - Verify all navigation features work correctly
     - Test Mermaid diagram rendering across different browsers
@@ -252,7 +252,7 @@ This implementation plan converts the Hugo documentation site design into a seri
     - Validate all assets and links work correctly
     - _Requirements: 4.4_
 
-  - [ ] 11.3 Write integration tests for sorting functionality
+  - 🔄 11.3 Write integration tests for sorting functionality
     - **Property 3: Sorting Functionality Completeness**
     - **Validates: Requirements 1.5**
 
