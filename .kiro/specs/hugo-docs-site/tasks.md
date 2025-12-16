@@ -178,7 +178,7 @@ This implementation plan converts the Hugo documentation site design into a seri
     - Include progress reporting and logging
     - _Requirements: 4.1_
 
-  - 🔄 8.3 Write property test for script execution
+  - [x] 8.3 Write property test for script execution
     - **Property 11: Script Execution Completeness**
     - **Validates: Requirements 4.1**
 
@@ -204,7 +204,7 @@ This implementation plan converts the Hugo documentation site design into a seri
     - **Property 2: Document List Display Consistency**
     - **Validates: Requirements 1.3, 1.4**
 
-  - [ ] 9.4 Write property test for table of contents
+  - 🔄 9.4 Write property test for table of contents
     - **Property 4: Table of Contents Generation**
     - **Validates: Requirements 2.1**
 
