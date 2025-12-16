@@ -260,11 +260,12 @@ This implementation plan converts the Hugo documentation site design into a seri
     - **Property 9: Mermaid Rendering**
     - **Validates: Requirements 2.3**
 
-  - 🔄 11.5 Write integration tests for title usage
+  - [ ] 11.5 Write integration tests for title usage
     - **Property 5: Title Usage Consistency**
     - **Validates: Requirements 2.2**
+    - **NOTE**: Test created but has overly strict validation logic. 98% of HTML files use proper titles, but test fails because both titles and filenames appear in HTML (expected behavior). May need user input to adjust test criteria.
 
-- [ ] 12. Final Checkpoint - Make sure all tests are passing
+- 🔄 12. Final Checkpoint - Make sure all tests are passing
   - Ensure all tests pass, ask the user if questions arise.
 
 ## Notes
