@@ -1,6 +1,6 @@
 ---
 title: "Kiro IDE: Comprehensive Analysis, Comparisons & Optimal Workflows"
-summary: "Kiro is AWS's new AI-powered IDE (launched July 2025, public preview) that introduces spec-driven development as an alternative to traditional \"vibe coding. \" Unlike competitors that focus on speed and autocomplete, Kiro emphasizes structure, planning, and production-ready code through a three-phase workflow: Requirements → Design → Implementation. Key Finding: The consensus across reviews is that Kiro trades raw speed for maintainability, documentation quality, and long-term project coherence."
+summary: "Kiro is AWS's new AI-powered IDE that introduces spec-driven development as an alternative to traditional coding approaches. Unlike competitors focused on speed, Kiro emphasizes structure and production-ready code through Requirements → Design → Implementation workflow."
 keywords:
   - "workflow"
   - "aws"
