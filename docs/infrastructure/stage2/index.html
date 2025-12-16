@@ -1,0 +1,365 @@
+<!doctype html><html lang=en dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Complexity Gradient: - Simplest Structure: vCluster (fewest resources per workload) - Most Transparent: Direct MRs (every resource visible) - Most Abstracted: Opinionated (user sees almost nothing) - Most Hybrid: ECS Control Plane (mixing orchestrators) Resource Count Comparison: —. Covers Stage 2: Architecture Design, Reference Network Architecture, Management Cluster VPC Layout."><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://lago-morph.github.io/musings/docs/infrastructure/stage2/"><meta property="og:site_name" content="Technology Documentation Hub"><meta property="og:title" content="Management Cluster VPC Layout"><meta property="og:description" content="Complexity Gradient: - Simplest Structure: vCluster (fewest resources per workload) - Most Transparent: Direct MRs (every resource visible) - Most Abstracted: Opinionated (user sees almost nothing) - Most Hybrid: ECS Control Plane (mixing orchestrators) Resource Count Comparison: —. Covers Stage 2: Architecture Design, Reference Network Architecture, Management Cluster VPC Layout."><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta property="article:published_time" content="2025-12-16T00:00:00+00:00"><meta property="article:modified_time" content="2025-12-16T00:00:00+00:00"><meta itemprop=name content="Management Cluster VPC Layout"><meta itemprop=description content="Complexity Gradient: - Simplest Structure: vCluster (fewest resources per workload) - Most Transparent: Direct MRs (every resource visible) - Most Abstracted: Opinionated (user sees almost nothing) - Most Hybrid: ECS Control Plane (mixing orchestrators) Resource Count Comparison: —. Covers Stage 2: Architecture Design, Reference Network Architecture, Management Cluster VPC Layout."><meta itemprop=datePublished content="2025-12-16T00:00:00+00:00"><meta itemprop=dateModified content="2025-12-16T00:00:00+00:00"><meta itemprop=wordCount content="1701"><meta itemprop=keywords content="eks,aws,cloud,infrastructure,crossplane,security,mermaid,azure"><title>Management Cluster VPC Layout | Technology Documentation Hub</title><link rel=icon href=/musings/favicon.png><link rel=manifest href=/musings/manifest.json><link rel=canonical href=https://lago-morph.github.io/musings/docs/infrastructure/stage2/><link rel=stylesheet href=/musings/book.min.6970156cec683193d93c9c4edaf0d56574e4361df2e0c1be4f697ae81c3ba55f.css integrity="sha256-aXAVbOxoMZPZPJxO2vDVZXTkNh3y4MG+T2l66Bw7pV8=" crossorigin=anonymous><script defer src=/musings/fuse.min.js></script><script defer src=/musings/en.search.min.5cc9128683126c7cda9fef74044c10c013f6d8935e1e3e719e3f562033e9ef44.js integrity="sha256-XMkShoMSbHzan+90BEwQwBP22JNeHj5xnj9WIDPp70Q=" crossorigin=anonymous></script></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/musings/><span>Technology Documentation Hub</span></a></h2><div class="book-search hidden"><input id=book-search-input type=text placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><script>document.querySelector(".book-search").classList.remove("hidden")</script><ul><li><a href=/musings/docs/ai-ml/>AI & Machine Learning</a><ul><li><a href=/musings/docs/ai-ml/agentic-computing-overview-and-tools/>Agentic Computing Overview And Tools</a></li><li><a href=/musings/docs/ai-ml/agno-vs-langchain/>Agno Vs Langchain</a></li><li><a href=/musings/docs/ai-ml/flowwise-vs-langflow/>Flowise vs Langflow: Detailed Comparison</a></li><li><a href=/musings/docs/ai-ml/one-model-multiple-diagrams/>Generate all views</a></li><li><a href=/musings/docs/ai-ml/verification-architecture/>Is This a Reasonable Architecture?</a></li><li><a href=/musings/docs/ai-ml/kiro-ide-comparison-tools/>Kiro IDE: Comprehensive Analysis, Comparisons & Optimal Workflows</a></li><li><a href=/musings/docs/ai-ml/langchain-architecture/>LangChain: The Foundation Library</a></li><li><a href=/musings/docs/ai-ml/llm-tracing-metrics-comparison/>Llm Tracing Metrics Comparison</a></li><li><a href=/musings/docs/ai-ml/kubernetes-based/>Open Source Workflow Orchestration on Kubernetes</a></li><li><a href=/musings/docs/ai-ml/tools-overview-and-getting-started/>Self-Hosted Open Source Agent Tools</a></li><li><a href=/musings/docs/ai-ml/serverless-function-workflow-tools-for-kubernetes/>Serverless/Function Workflows on Kubernetes</a></li><li><a href=/musings/docs/ai-ml/n8n-overview/>What Problems Does n8n Solve?</a></li></ul></li><li><a href=/musings/docs/devplatform/>Development Platforms</a><ul><li><a href=/musings/docs/devplatform/backstage-techdocs-pros-cons/>Backstage Techdocs Pros Cons</a></li><li><a href=/musings/docs/devplatform/cross-diagram-reuse-guide/>Cross-Diagram Domain Model Reuse in PlantUML</a></li><li><a href=/musings/docs/devplatform/prompt/>Crossplane EKS Management Cluster Implementation - Project Brief</a></li><li><a href=/musings/docs/devplatform/comprehensive-guide/>Driven vs Event: Comparison</a></li><li><a href=/musings/docs/devplatform/gitops-platform-safety/>GitOps Safety Architecture for Platform Evolution</a></li><li><a href=/musings/docs/devplatform/kargo-intro/>How Kargo Works with ArgoCD to Manage Deployments</a></li><li><a href=/musings/docs/devplatform/backstage-kratix-crossplane-argocd-blueprint/>Implementation Blueprint: Crossplane + Kratix + Backstage + ArgoCD</a></li><li><a href=/musings/docs/devplatform/kargo-git-tags/>In subsequent stages, you can read this metadata</a></li><li><a href=/musings/docs/devplatform/in-browser-editing-tools/>In-Browser Editing Documentation Solutions</a></li><li><a href=/musings/docs/devplatform/initial-comparison/>Initial Comparison</a></li><li><a href=/musings/docs/devplatform/kargo-argocd-interaction/>Kargo promotion step</a></li><li><a href=/musings/docs/devplatform/presentation/>Kargo: GitOps Promotion for ArgoCD</a></li><li><a href=/musings/docs/devplatform/notion-overview/>Notion: A Comprehensive Overview</a></li><li><a href=/musings/docs/devplatform/oss-portal-platform-orchestration-tools/>Oss Portal Platform Orchestration Tools</a></li><li><a href=/musings/docs/devplatform/oss-vs-closed-portal/>Oss Vs Closed Portal</a></li><li><a href=/musings/docs/devplatform/recommendations/>Overview of Text-Based UML Domain Modeling Tools</a></li><li><a href=/musings/docs/devplatform/export-conversion/>PlantUML Export & Embedding Options</a></li><li><a href=/musings/docs/devplatform/crossplane-solution/>Pseudocode for composition function</a></li><li><a href=/musings/docs/devplatform/kargo-polyrepo/>Response</a></li><li><a href=/musings/docs/devplatform/job-configmap-crossplane-abstraction/>Shell script helper for Option 3</a></li><li><a href=/musings/docs/devplatform/tasks/>Stage 1: Approach Overview & Comparison ✅ COMPLETE</a></li><li><a href=/musings/docs/devplatform/stage3-outline/>Stage 3: Implementation Patterns - Outline (Crossplane 2.1)</a></li></ul></li><li><a href=/musings/docs/infrastructure/>Infrastructure</a><ul><li><a href=/musings/docs/infrastructure/runbooks/>1. Mental Model Shift (Important Framing)</a></li><li><a href=/musings/docs/infrastructure/argocd-layered-values/>ArgoCD and Helm Schema Validation</a></li><li><a href=/musings/docs/infrastructure/prompt-guide/>Contents</a></li><li><a href=/musings/docs/infrastructure/overview/>Core Strategy: Progressive Delivery with Blast Radius Containment</a></li><li><a href=/musings/docs/infrastructure/stage1/>Crossplane EKS Management Cluster - Approach Overview & Comparison</a></li><li><a href=/musings/docs/infrastructure/getting-started-concise/>Getting Started Concise</a></li><li><a href=/musings/docs/infrastructure/ci-cd-templates/>GitHub Actions Example</a></li><li><a href=/musings/docs/infrastructure/k8s-mcp-servers/>K8s Mcp Servers</a></li><li><a href=/musings/docs/infrastructure/stage2/ class=active>Management Cluster VPC Layout</a></li><li><a href=/musings/docs/infrastructure/non-helm-schema-validation/>Non Helm Schema Validation</a></li><li><a href=/musings/docs/infrastructure/production-readiness-overview/>Production Readiness Guide: From Docker Compose to Kubernetes</a></li><li><a href=/musings/docs/infrastructure/schema-testing/>Quick Start: Generate Schema from Existing values.yaml</a></li><li><a href=/musings/docs/infrastructure/job-plus-configmap-annotation/>Read current state AND capture resourceVersion</a></li><li><a href=/musings/docs/infrastructure/layered-schema/>Schema Validation with Layered Values Files</a></li><li><a href=/musings/docs/infrastructure/helm-layered-abstraction/>Solution 2: Kustomize with Helm</a></li><li><a href=/musings/docs/infrastructure/starting-helm-testing/>Understanding What You're Testing</a></li><li><a href=/musings/docs/infrastructure/executive-summary/>What You're Building</a></li><li><a href=/musings/docs/infrastructure/devops-domain-model-guide/>Why This Approach Works for DevOps</a></li></ul></li><li><a href=/musings/docs/workflows/>Workflows</a><ul><li><a href=/musings/docs/workflows/imperitive-in-declarative/>Imperitive In Declarative</a></li></ul></li><li><a href=/musings/docs/mermaid-test/>Mermaid Diagram Test</a></li><li><a href=/musings/docs/misc/>Miscellaneous</a><ul></ul></li><li><a href=/musings/docs/test-document/>Test Document</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=/musings/icons/menu.svg class=book-icon alt=Menu></label><h3>Management Cluster VPC Layout</h3><label for=toc-control><img src=/musings/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#stage-2-architecture-design>Stage 2: Architecture Design</a><ul><li><a href=#reference-network-architecture>Reference Network Architecture</a><ul><li><a href=#management-cluster-vpc-layout>Management Cluster VPC Layout</a></li></ul></li><li><a href=#management-cluster-resource-stack>Management Cluster Resource Stack</a><ul><li><a href=#infrastructure-resources-all-approaches-need-these>Infrastructure Resources (All Approaches Need These)</a></li><li><a href=#crossplane-specific-resources>Crossplane-Specific Resources</a></li></ul></li><li><a href=#workload-cluster-template-structure>Workload Cluster Template Structure</a></li><li><a href=#approach-specific-architectural-differences>Approach-Specific Architectural Differences</a></li><li><a href=#resource-dependency-diagrams>Resource Dependency Diagrams</a><ul><li><a href=#approach-1-direct-managed-resources>Approach 1: Direct Managed Resources</a></li><li><a href=#approach-2-composite-resources-xrds>Approach 2: Composite Resources (XRDs)</a></li><li><a href=#approach-3a-opinionated-platform>Approach 3a: Opinionated Platform</a></li><li><a href=#approach-3b-multi-cloud-abstraction>Approach 3b: Multi-Cloud Abstraction</a></li><li><a href=#approach-3c-fargate-first-architecture>Approach 3c: Fargate-First Architecture</a></li><li><a href=#approach-3d-vcluster-based-multi-tenancy>Approach 3d: vCluster-Based Multi-Tenancy</a></li><li><a href=#approach-3e-kubernetes-native-tooling>Approach 3e: Kubernetes-Native Tooling</a></li><li><a href=#approach-3f-ecs-control-plane-alternative>Approach 3f: ECS Control Plane Alternative</a></li></ul></li><li><a href=#diagram-comparison-summary>Diagram Comparison Summary</a></li><li><a href=#stage-2-complete>Stage 2 Complete</a></li></ul></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=stage-2-architecture-design>Stage 2: Architecture Design<a class=anchor href=#stage-2-architecture-design>#</a></h1><h2 id=reference-network-architecture>Reference Network Architecture<a class=anchor href=#reference-network-architecture>#</a></h2><h3 id=management-cluster-vpc-layout>Management Cluster VPC Layout<a class=anchor href=#management-cluster-vpc-layout>#</a></h3><p><strong>VPC CIDR:</strong> <code>10.0.0.0/16</code> (65,536 IPs)</p><p><strong>Subnet Allocation:</strong></p><ul><li><strong>Public Subnet:</strong> <code>10.0.0.0/22</code> (1,024 IPs) - Internet Gateway, NAT Gateway</li><li><strong>Management Cluster Private Subnet:</strong> <code>10.0.4.0/22</code> (1,024 IPs) - EKS control plane, worker nodes</li><li><strong>Workload Cluster 1 Private Subnet:</strong> <code>10.0.8.0/22</code> (1,024 IPs)</li><li><strong>Workload Cluster 2 Private Subnet:</strong> <code>10.0.12.0/22</code> (1,024 IPs)</li><li><strong>Workload Cluster N&mldr;</strong> continues in /22 blocks</li></ul><p><strong>Key Components:</strong></p><ul><li>Single Internet Gateway for public subnet</li><li>Single NAT Gateway in public subnet (for private subnet internet access)</li><li>Route tables: public (IGW route), private (NAT route)</li><li>Single AZ deployment (us-east-1a as default)</li></ul><p><strong>Template Parameters:</strong></p><ul><li><code>vpc_cidr</code> (default: 10.0.0.0/16)</li><li><code>cluster_name</code> (for resource naming)</li><li><code>aws_region</code> (default: us-east-1)</li><li><code>availability_zone</code> (default: us-east-1a)</li><li><code>node_instance_type</code> (default: t3.medium)</li><li><code>node_count</code> (default: 2)</li></ul><hr><h2 id=management-cluster-resource-stack>Management Cluster Resource Stack<a class=anchor href=#management-cluster-resource-stack>#</a></h2><h3 id=infrastructure-resources-all-approaches-need-these>Infrastructure Resources (All Approaches Need These)<a class=anchor href=#infrastructure-resources-all-approaches-need-these>#</a></h3><ol><li><strong>VPC</strong> - Virtual network</li><li><strong>Internet Gateway</strong> - Public internet access</li><li><strong>Public Subnet</strong> - /22 for NAT and public resources</li><li><strong>Private Subnet</strong> - /22 for management cluster</li><li><strong>NAT Gateway</strong> - Private subnet internet egress</li><li><strong>Route Tables</strong> (2) - Public and private routing</li><li><strong>Route Table Associations</strong> - Link subnets to route tables</li><li><strong>Security Group</strong> - EKS cluster communication</li><li><strong>IAM Role (Cluster)</strong> - EKS control plane permissions</li><li><strong>IAM Role (NodeGroup)</strong> - Worker node permissions</li><li><strong>IAM Role Policy Attachments</strong> - Required AWS managed policies</li><li><strong>EKS Cluster</strong> - Kubernetes control plane</li><li><strong>EKS NodeGroup</strong> - Managed worker nodes</li></ol><h3 id=crossplane-specific-resources>Crossplane-Specific Resources<a class=anchor href=#crossplane-specific-resources>#</a></h3><ol start=14><li><strong>ProviderConfig</strong> - AWS credentials configuration</li><li><strong>Namespace</strong> - Organization (e.g., <code>crossplane-system</code>, <code>platform</code>)</li></ol><p><strong>Total Base Resources:</strong> ~15 distinct AWS resources</p><hr><h2 id=workload-cluster-template-structure>Workload Cluster Template Structure<a class=anchor href=#workload-cluster-template-structure>#</a></h2><p>Each workload cluster follows a similar pattern but in its own /22 subnet:</p><p><strong>Required Template Parameters:</strong></p><ul><li><code>workload_cluster_name</code> - Unique cluster identifier</li><li><code>workload_subnet_cidr</code> - The /22 block to use (e.g., 10.0.8.0/22)</li><li><code>node_instance_type</code> - Instance type (default: t3.medium)</li><li><code>node_count</code> - Number of nodes (default: 2)</li></ul><p><strong>Resources Per Workload Cluster:</strong></p><ol><li>Private Subnet (in management VPC)</li><li>Route Table Association (to existing private route table)</li><li>Security Group</li><li>IAM Role (Cluster)</li><li>IAM Role (NodeGroup)</li><li>IAM Role Policy Attachments</li><li>EKS Cluster</li><li>EKS NodeGroup</li></ol><p><strong>Total Per Workload:</strong> ~8 resources (reuses VPC, IGW, NAT from management)</p><hr><h2 id=approach-specific-architectural-differences>Approach-Specific Architectural Differences<a class=anchor href=#approach-specific-architectural-differences>#</a></h2><p><strong>Direct MRs:</strong></p><ul><li>All 15 resources defined as individual manifests</li><li>Manual dependency management via resource references</li><li>Explicit configuration of every property</li></ul><p><strong>XRDs:</strong></p><ul><li>Single <code>EKSCluster</code> custom resource</li><li>Composition maps to underlying 15 resources</li><li>Parameters expose only: cluster name, node count, instance type</li></ul><p><strong>Opinionated:</strong></p><ul><li>Pre-built composition with hardcoded best practices</li><li>Minimal parameters (often just cluster name)</li><li>May include additional resources (monitoring, logging)</li></ul><p><strong>Multi-Cloud:</strong></p><ul><li>Cloud-agnostic <code>KubernetesCluster</code> resource</li><li>AWS-specific composition underneath</li><li>Same interface could work with GCP/Azure compositions</li></ul><p><strong>Fargate:</strong></p><ul><li>Replaces NodeGroup resources with Fargate Profile</li><li>Removes IAM NodeGroup role</li><li>Adds Fargate Pod Execution Role</li></ul><p><strong>vCluster:</strong></p><ul><li>Management cluster is standard EKS</li><li>Workload &ldquo;clusters&rdquo; become vCluster CRDs, not EKS clusters</li><li>Dramatically simplified workload template (no VPC/IAM resources)</li></ul><p><strong>K8s-Native:</strong></p><ul><li>Standard EKS infrastructure</li><li>Adds: Harbor deployment, Vault deployment, cert-manager, NGINX Ingress controller</li><li>Removes dependencies on ECR, Secrets Manager, ACM, ALB</li></ul><p><strong>ECS Control Plane:</strong></p><ul><li>ECS Cluster instead of EKS for management plane</li><li>ECS Task Definition for Crossplane controller</li><li>ECS Service to run Crossplane</li><li>Still provisions EKS for workload clusters</li></ul><hr><h2 id=resource-dependency-diagrams>Resource Dependency Diagrams<a class=anchor href=#resource-dependency-diagrams>#</a></h2><h3 id=approach-1-direct-managed-resources>Approach 1: Direct Managed Resources<a class=anchor href=#approach-1-direct-managed-resources>#</a></h3><pre class=mermaid>graph TD
+    subgraph &#34;Management Cluster - Direct MRs&#34;
+        VPC[VPC 10.0.0.0/16]
+        IGW[Internet Gateway]
+        PubSub[Public Subnet 10.0.0.0/22]
+        PrivSub[Private Subnet 10.0.4.0/22]
+        NAT[NAT Gateway]
+        PubRT[Public Route Table]
+        PrivRT[Private Route Table]
+        SG[Security Group]
+        ClusterRole[IAM Role - Cluster]
+        ClusterPolicies[Policy Attachments x3]
+        NodeRole[IAM Role - NodeGroup]
+        NodePolicies[Policy Attachments x3]
+        EKS[EKS Cluster]
+        NodeGroup[Managed NodeGroup]
+        
+        VPC --&gt; IGW
+        VPC --&gt; PubSub
+        VPC --&gt; PrivSub
+        IGW --&gt; PubSub
+        PubSub --&gt; NAT
+        PubSub --&gt; PubRT
+        PrivSub --&gt; PrivRT
+        PrivRT --&gt; NAT
+        PrivSub --&gt; SG
+        SG --&gt; ClusterRole
+        ClusterRole --&gt; ClusterPolicies
+        ClusterRole --&gt; EKS
+        EKS --&gt; NodeRole
+        NodeRole --&gt; NodePolicies
+        NodeRole --&gt; NodeGroup
+        EKS --&gt; NodeGroup
+    end
+    
+    subgraph &#34;Crossplane Layer&#34;
+        PC[ProviderConfig]
+        MR1[VPC Manifest]
+        MR2[IGW Manifest]
+        MR3[Subnet Manifests]
+        MR4[Route Table Manifests]
+        MR5[Security Group Manifest]
+        MR6[IAM Role Manifests]
+        MR7[EKS Cluster Manifest]
+        MR8[NodeGroup Manifest]
+        
+        PC -.-&gt; MR1
+        PC -.-&gt; MR2
+        PC -.-&gt; MR3
+        PC -.-&gt; MR4
+        PC -.-&gt; MR5
+        PC -.-&gt; MR6
+        PC -.-&gt; MR7
+        PC -.-&gt; MR8
+    end
+    
+    style VPC fill:#e1f5ff
+    style EKS fill:#ff9999
+    style PC fill:#ffffcc</pre><script src=/musings/mermaid.min.js></script><script>mermaid.initialize({flowchart:{useMaxWidth:!0},theme:"default"})</script><p><strong>Key Characteristics:</strong></p><ul><li>15+ individual manifest files</li><li>Each manifest represents one AWS resource</li><li>Dependencies managed through resource references (e.g., <code>subnetIdRef</code>)</li><li>Complete visibility into every resource property</li></ul><hr><h3 id=approach-2-composite-resources-xrds>Approach 2: Composite Resources (XRDs)<a class=anchor href=#approach-2-composite-resources-xrds>#</a></h3><pre class=mermaid>graph TD
+    subgraph &#34;User Interface&#34;
+        XR[EKSCluster Custom Resource]
+        Params[Parameters: name, nodeCount, instanceType]
+        Params --&gt; XR
+    end
+    
+    subgraph &#34;Platform Layer&#34;
+        XRD[EKSCluster XRD Definition]
+        Comp[Composition]
+        
+        XR --&gt; XRD
+        XRD --&gt; Comp
+    end
+    
+    subgraph &#34;Generated Managed Resources&#34;
+        VPC[VPC]
+        IGW[Internet Gateway]
+        Subnets[Subnets]
+        NAT[NAT Gateway]
+        RT[Route Tables]
+        SG[Security Groups]
+        IAM[IAM Roles + Policies]
+        EKS[EKS Cluster]
+        NG[NodeGroup]
+        
+        Comp --&gt; VPC
+        Comp --&gt; IGW
+        Comp --&gt; Subnets
+        Comp --&gt; NAT
+        Comp --&gt; RT
+        Comp --&gt; SG
+        Comp --&gt; IAM
+        Comp --&gt; EKS
+        Comp --&gt; NG
+    end
+    
+    subgraph &#34;AWS Infrastructure&#34;
+        AWSVPC[AWS VPC]
+        AWSEKS[AWS EKS]
+        
+        VPC -.-&gt; AWSVPC
+        EKS -.-&gt; AWSEKS
+    end
+    
+    style XR fill:#90EE90
+    style Comp fill:#FFB6C1
+    style EKS fill:#ff9999</pre><p><strong>Key Characteristics:</strong></p><ul><li>Single custom resource exposes simplified API</li><li>Composition template generates all 15 resources</li><li>Platform team owns the Composition</li><li>Users only see abstracted interface</li></ul><hr><h3 id=approach-3a-opinionated-platform>Approach 3a: Opinionated Platform<a class=anchor href=#approach-3a-opinionated-platform>#</a></h3><pre class=mermaid>graph TD
+    subgraph &#34;User Interface&#34;
+        XR[PlatformCluster Resource]
+        MinParams[Minimal Parameters: name only]
+        MinParams --&gt; XR
+    end
+    
+    subgraph &#34;Opinionated Platform Layer&#34;
+        PreBuilt[Pre-built Composition]
+        Defaults[Hardcoded Best Practices]
+        Security[Security Policies]
+        Monitoring[Observability Stack]
+        
+        XR --&gt; PreBuilt
+        PreBuilt --&gt; Defaults
+        PreBuilt --&gt; Security
+        PreBuilt --&gt; Monitoring
+    end
+    
+    subgraph &#34;Generated Resources&#34;
+        Infra[All AWS Infrastructure]
+        CloudWatch[CloudWatch Logs]
+        MetricsServer[Metrics Server]
+        PSP[Pod Security Policies]
+        
+        PreBuilt --&gt; Infra
+        PreBuilt --&gt; CloudWatch
+        PreBuilt --&gt; MetricsServer
+        PreBuilt --&gt; PSP
+    end
+    
+    style XR fill:#90EE90
+    style PreBuilt fill:#DDA0DD
+    style Defaults fill:#F0E68C</pre><p><strong>Key Characteristics:</strong></p><ul><li>Minimal user input required</li><li>Opinionated defaults baked in</li><li>Additional resources beyond basic infrastructure</li><li>Limited flexibility, maximum convenience</li></ul><hr><h3 id=approach-3b-multi-cloud-abstraction>Approach 3b: Multi-Cloud Abstraction<a class=anchor href=#approach-3b-multi-cloud-abstraction>#</a></h3><pre class=mermaid>graph TD
+    subgraph &#34;Cloud-Agnostic Layer&#34;
+        Generic[KubernetesCluster Resource]
+        CloudParam[Parameter: cloudProvider=aws]
+        CloudParam --&gt; Generic
+    end
+    
+    subgraph &#34;Provider Router&#34;
+        Router[Cloud Provider Router]
+        Generic --&gt; Router
+    end
+    
+    subgraph &#34;AWS Implementation&#34;
+        AWSComp[AWS-Specific Composition]
+        Router --&gt;|provider=aws| AWSComp
+        
+        VPC[VPC]
+        EKS[EKS]
+        Others[Other AWS Resources]
+        
+        AWSComp --&gt; VPC
+        AWSComp --&gt; EKS
+        AWSComp --&gt; Others
+    end
+    
+    subgraph &#34;GCP Implementation (Not Used)&#34;
+        GCPComp[GCP-Specific Composition]
+        Router -.-&gt;|provider=gcp| GCPComp
+        GKE[GKE]
+        GCPComp -.-&gt; GKE
+    end
+    
+    subgraph &#34;Azure Implementation (Not Used)&#34;
+        AzureComp[Azure-Specific Composition]
+        Router -.-&gt;|provider=azure| AzureComp
+        AKS[AKS]
+        AzureComp -.-&gt; AKS
+    end
+    
+    style Generic fill:#98FB98
+    style Router fill:#FFD700
+    style EKS fill:#ff9999</pre><p><strong>Key Characteristics:</strong></p><ul><li>Cloud-agnostic API definition</li><li>Multiple provider-specific implementations</li><li>Same interface across clouds</li><li>Lowest common denominator constraints</li></ul><hr><h3 id=approach-3c-fargate-first-architecture>Approach 3c: Fargate-First Architecture<a class=anchor href=#approach-3c-fargate-first-architecture>#</a></h3><pre class=mermaid>graph TD
+    subgraph &#34;Management Cluster - Fargate&#34;
+        VPC[VPC 10.0.0.0/16]
+        IGW[Internet Gateway]
+        PubSub[Public Subnet]
+        PrivSub[Private Subnet]
+        NAT[NAT Gateway]
+        RT[Route Tables]
+        SG[Security Groups]
+        ClusterRole[IAM Role - Cluster]
+        FargateRole[IAM Role - Fargate Pod Execution]
+        EKS[EKS Cluster]
+        FargateProfile[Fargate Profile]
+        
+        VPC --&gt; IGW
+        VPC --&gt; PubSub
+        VPC --&gt; PrivSub
+        PubSub --&gt; NAT
+        PrivSub --&gt; RT
+        RT --&gt; NAT
+        PrivSub --&gt; SG
+        SG --&gt; ClusterRole
+        ClusterRole --&gt; EKS
+        EKS --&gt; FargateRole
+        FargateRole --&gt; FargateProfile
+        EKS --&gt; FargateProfile
+    end
+    
+    subgraph &#34;Key Differences from Standard&#34;
+        NoNodes[❌ No NodeGroup]
+        NoNodeRole[❌ No NodeGroup IAM Role]
+        AddFargate[✅ Fargate Profile]
+        AddFargateRole[✅ Fargate Execution Role]
+    end
+    
+    style FargateProfile fill:#9370DB
+    style NoNodes fill:#FFB6C1
+    style AddFargate fill:#90EE90</pre><p><strong>Key Characteristics:</strong></p><ul><li>No EC2 node management</li><li>Fargate Profile replaces NodeGroup</li><li>Different IAM role (Pod Execution vs Node)</li><li>Serverless compute model</li></ul><hr><h3 id=approach-3d-vcluster-based-multi-tenancy>Approach 3d: vCluster-Based Multi-Tenancy<a class=anchor href=#approach-3d-vcluster-based-multi-tenancy>#</a></h3><pre class=mermaid>graph TD
+    subgraph &#34;Management Cluster (Standard EKS)&#34;
+        VPC[VPC]
+        EKS[EKS Cluster]
+        NodeGroup[NodeGroup]
+        
+        VPC --&gt; EKS
+        EKS --&gt; NodeGroup
+    end
+    
+    subgraph &#34;vCluster Operator&#34;
+        VCOperator[vCluster Controller]
+        NodeGroup --&gt; VCOperator
+    end
+    
+    subgraph &#34;Virtual Clusters (Not Real EKS)&#34;
+        VC1[vCluster 1]
+        VC2[vCluster 2]
+        VC3[vCluster 3]
+        VCN[vCluster N...]
+        
+        VCOperator --&gt; VC1
+        VCOperator --&gt; VC2
+        VCOperator --&gt; VC3
+        VCOperator --&gt; VCN
+    end
+    
+    subgraph &#34;Shared Infrastructure&#34;
+        SharedNodes[Shared Worker Nodes]
+        SharedNetwork[Shared Networking]
+        SharedStorage[Shared Storage]
+        
+        NodeGroup -.-&gt; SharedNodes
+        VPC -.-&gt; SharedNetwork
+        SharedNodes -.-&gt; SharedStorage
+        
+        VC1 -.-&gt; SharedNodes
+        VC2 -.-&gt; SharedNodes
+        VC3 -.-&gt; SharedNodes
+    end
+    
+    style EKS fill:#ff9999
+    style VC1 fill:#87CEEB
+    style VC2 fill:#87CEEB
+    style VC3 fill:#87CEEB
+    style VCN fill:#87CEEB</pre><p><strong>Key Characteristics:</strong></p><ul><li>One real EKS cluster (management)</li><li>Multiple virtual clusters running as pods</li><li>Workload &ldquo;clusters&rdquo; are not separate EKS clusters</li><li>Massive cost savings, shared infrastructure</li></ul><p><strong>Workload Cluster Comparison:</strong></p><pre class=mermaid>graph LR
+    subgraph &#34;Standard Approach&#34;
+        S1[Workload needs 8 AWS resources]
+        S2[Full EKS cluster]
+        S3[Dedicated infrastructure]
+        S1 --&gt; S2 --&gt; S3
+    end
+    
+    subgraph &#34;vCluster Approach&#34;
+        V1[Workload needs 1 resource]
+        V2[vCluster CRD]
+        V3[Runs as pods in host]
+        V1 --&gt; V2 --&gt; V3
+    end
+    
+    style S2 fill:#FFB6C1
+    style V2 fill:#90EE90</pre><hr><h3 id=approach-3e-kubernetes-native-tooling>Approach 3e: Kubernetes-Native Tooling<a class=anchor href=#approach-3e-kubernetes-native-tooling>#</a></h3><pre class=mermaid>graph TD
+    subgraph &#34;Standard EKS Infrastructure&#34;
+        VPC[VPC]
+        EKS[EKS Cluster]
+        NodeGroup[NodeGroup]
+        
+        VPC --&gt; EKS
+        EKS --&gt; NodeGroup
+    end
+    
+    subgraph &#34;K8s-Native Services (Instead of AWS)&#34;
+        Vault[Vault - Secrets]
+        Harbor[Harbor - Container Registry]
+        CertManager[cert-manager - Certificates]
+        Nginx[NGINX Ingress - Load Balancing]
+        ExternalDNS[external-dns - DNS]
+        
+        NodeGroup --&gt; Vault
+        NodeGroup --&gt; Harbor
+        NodeGroup --&gt; CertManager
+        NodeGroup --&gt; Nginx
+        NodeGroup --&gt; ExternalDNS
+    end
+    
+    subgraph &#34;Minimal AWS Services&#34;
+        Route53[Route53 - DNS only]
+        S3[S3 - Harbor backend]
+        
+        ExternalDNS -.-&gt; Route53
+        Harbor -.-&gt; S3
+    end
+    
+    subgraph &#34;Replaced AWS Services&#34;
+        NoASM[❌ Secrets Manager]
+        NoECR[❌ ECR]
+        NoACM[❌ Certificate Manager]
+        NoALB[❌ ALB Controller]
+    end
+    
+    style Vault fill:#90EE90
+    style Harbor fill:#90EE90
+    style CertManager fill:#90EE90
+    style Nginx fill:#90EE90
+    style NoASM fill:#FFB6C1
+    style NoECR fill:#FFB6C1</pre><p><strong>Key Characteristics:</strong></p><ul><li>Standard EKS infrastructure</li><li>Cloud-agnostic tooling for services</li><li>Additional operational complexity</li><li>Higher resource requirements</li><li>Better cloud portability</li></ul><hr><h3 id=approach-3f-ecs-control-plane-alternative>Approach 3f: ECS Control Plane Alternative<a class=anchor href=#approach-3f-ecs-control-plane-alternative>#</a></h3><pre class=mermaid>graph TD
+    subgraph &#34;Management Control Plane (ECS)&#34;
+        VPC[VPC]
+        ECSCluster[ECS Cluster]
+        TaskDef[Task Definition - Crossplane]
+        ECSService[ECS Service]
+        FargateTask[Fargate Task - Running Crossplane]
+        
+        VPC --&gt; ECSCluster
+        ECSCluster --&gt; TaskDef
+        TaskDef --&gt; ECSService
+        ECSService --&gt; FargateTask
+    end
+    
+    subgraph &#34;Crossplane in ECS&#34;
+        XPController[Crossplane Controller]
+        Providers[AWS Providers]
+        
+        FargateTask --&gt; XPController
+        XPController --&gt; Providers
+    end
+    
+    subgraph &#34;Provisioned Workload Clusters (EKS)&#34;
+        WL1[EKS Workload Cluster 1]
+        WL2[EKS Workload Cluster 2]
+        
+        Providers --&gt; WL1
+        Providers --&gt; WL2
+    end
+    
+    subgraph &#34;Hybrid Model&#34;
+        ManagementECS[Management = ECS]
+        WorkloadEKS[Workloads = EKS]
+    end
+    
+    style ECSCluster fill:#FFA500
+    style WL1 fill:#ff9999
+    style WL2 fill:#ff9999
+    style ManagementECS fill:#FFD700
+    style WorkloadEKS fill:#87CEEB</pre><p><strong>Key Characteristics:</strong></p><ul><li>Management plane on ECS (not Kubernetes)</li><li>Crossplane runs as ECS task</li><li>Provisions standard EKS workload clusters</li><li>Unusual architecture, limited community patterns</li></ul><hr><h2 id=diagram-comparison-summary>Diagram Comparison Summary<a class=anchor href=#diagram-comparison-summary>#</a></h2><p><strong>Complexity Gradient:</strong></p><ul><li><strong>Simplest Structure:</strong> vCluster (fewest resources per workload)</li><li><strong>Most Transparent:</strong> Direct MRs (every resource visible)</li><li><strong>Most Abstracted:</strong> Opinionated (user sees almost nothing)</li><li><strong>Most Hybrid:</strong> ECS Control Plane (mixing orchestrators)</li></ul><p><strong>Resource Count Comparison:</strong></p><table><thead><tr><th>Approach</th><th>Mgmt Cluster Resources</th><th>Per Workload Resources</th></tr></thead><tbody><tr><td>Direct MRs</td><td>15 individual MRs</td><td>8 MRs</td></tr><tr><td>XRDs</td><td>1 XR + 1 Composition</td><td>1 XR</td></tr><tr><td>Opinionated</td><td>1 XR</td><td>1 XR</td></tr><tr><td>Multi-Cloud</td><td>1 Generic XR</td><td>1 Generic XR</td></tr><tr><td>Fargate</td><td>14 MRs (no NodeGroup)</td><td>7 MRs</td></tr><tr><td>vCluster</td><td>15 MRs + vCluster Op</td><td>1 vCluster CRD</td></tr><tr><td>K8s-Native</td><td>15 MRs + 5 apps</td><td>8 MRs</td></tr><tr><td>ECS Control</td><td>ECS Task + resources</td><td>8 EKS MRs</td></tr></tbody></table><hr><h2 id=stage-2-complete>Stage 2 Complete<a class=anchor href=#stage-2-complete>#</a></h2><p>This architecture design provides the foundation for understanding how each approach structures and organizes resources. The diagrams illustrate the fundamental differences in complexity, abstraction levels, and architectural patterns across all approaches.</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=/musings/docs/infrastructure/k8s-mcp-servers/ class="flex align-center"><img src=/musings/icons/backward.svg class=book-icon alt=Backward>
+<span>K8s Mcp Servers</span>
+</a></span><span><a href=/musings/docs/infrastructure/non-helm-schema-validation/ class="flex align-center"><span>Non Helm Schema Validation</span>
+<img src=/musings/icons/forward.svg class=book-icon alt=Forward></a></span></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#stage-2-architecture-design>Stage 2: Architecture Design</a><ul><li><a href=#reference-network-architecture>Reference Network Architecture</a><ul><li><a href=#management-cluster-vpc-layout>Management Cluster VPC Layout</a></li></ul></li><li><a href=#management-cluster-resource-stack>Management Cluster Resource Stack</a><ul><li><a href=#infrastructure-resources-all-approaches-need-these>Infrastructure Resources (All Approaches Need These)</a></li><li><a href=#crossplane-specific-resources>Crossplane-Specific Resources</a></li></ul></li><li><a href=#workload-cluster-template-structure>Workload Cluster Template Structure</a></li><li><a href=#approach-specific-architectural-differences>Approach-Specific Architectural Differences</a></li><li><a href=#resource-dependency-diagrams>Resource Dependency Diagrams</a><ul><li><a href=#approach-1-direct-managed-resources>Approach 1: Direct Managed Resources</a></li><li><a href=#approach-2-composite-resources-xrds>Approach 2: Composite Resources (XRDs)</a></li><li><a href=#approach-3a-opinionated-platform>Approach 3a: Opinionated Platform</a></li><li><a href=#approach-3b-multi-cloud-abstraction>Approach 3b: Multi-Cloud Abstraction</a></li><li><a href=#approach-3c-fargate-first-architecture>Approach 3c: Fargate-First Architecture</a></li><li><a href=#approach-3d-vcluster-based-multi-tenancy>Approach 3d: vCluster-Based Multi-Tenancy</a></li><li><a href=#approach-3e-kubernetes-native-tooling>Approach 3e: Kubernetes-Native Tooling</a></li><li><a href=#approach-3f-ecs-control-plane-alternative>Approach 3f: ECS Control Plane Alternative</a></li></ul></li><li><a href=#diagram-comparison-summary>Diagram Comparison Summary</a></li><li><a href=#stage-2-complete>Stage 2 Complete</a></li></ul></li></ul></nav></div></aside></main></body></html>

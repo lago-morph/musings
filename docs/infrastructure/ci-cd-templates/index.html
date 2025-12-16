@@ -1,0 +1,404 @@
+<!doctype html><html lang=en dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="GitHub Actions Example is a infrastructure document covering CI/CD Pipeline Template with Metadata Injection and GitHub Actions Example. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details."><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://lago-morph.github.io/musings/docs/infrastructure/ci-cd-templates/"><meta property="og:site_name" content="Technology Documentation Hub"><meta property="og:title" content="GitHub Actions Example"><meta property="og:description" content="GitHub Actions Example is a infrastructure document covering CI/CD Pipeline Template with Metadata Injection and GitHub Actions Example. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details."><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta property="article:published_time" content="2025-12-16T00:00:00+00:00"><meta property="article:modified_time" content="2025-12-16T00:00:00+00:00"><meta itemprop=name content="GitHub Actions Example"><meta itemprop=description content="GitHub Actions Example is a infrastructure document covering CI/CD Pipeline Template with Metadata Injection and GitHub Actions Example. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details."><meta itemprop=datePublished content="2025-12-16T00:00:00+00:00"><meta itemprop=dateModified content="2025-12-16T00:00:00+00:00"><meta itemprop=wordCount content="1147"><meta itemprop=keywords content="deployment,docker,production,platform,yaml,container,k8s,security"><title>GitHub Actions Example | Technology Documentation Hub</title><link rel=icon href=/musings/favicon.png><link rel=manifest href=/musings/manifest.json><link rel=canonical href=https://lago-morph.github.io/musings/docs/infrastructure/ci-cd-templates/><link rel=stylesheet href=/musings/book.min.6970156cec683193d93c9c4edaf0d56574e4361df2e0c1be4f697ae81c3ba55f.css integrity="sha256-aXAVbOxoMZPZPJxO2vDVZXTkNh3y4MG+T2l66Bw7pV8=" crossorigin=anonymous><script defer src=/musings/fuse.min.js></script><script defer src=/musings/en.search.min.5cc9128683126c7cda9fef74044c10c013f6d8935e1e3e719e3f562033e9ef44.js integrity="sha256-XMkShoMSbHzan+90BEwQwBP22JNeHj5xnj9WIDPp70Q=" crossorigin=anonymous></script></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/musings/><span>Technology Documentation Hub</span></a></h2><div class="book-search hidden"><input id=book-search-input type=text placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><script>document.querySelector(".book-search").classList.remove("hidden")</script><ul><li><a href=/musings/docs/ai-ml/>AI & Machine Learning</a><ul><li><a href=/musings/docs/ai-ml/agentic-computing-overview-and-tools/>Agentic Computing Overview And Tools</a></li><li><a href=/musings/docs/ai-ml/agno-vs-langchain/>Agno Vs Langchain</a></li><li><a href=/musings/docs/ai-ml/flowwise-vs-langflow/>Flowise vs Langflow: Detailed Comparison</a></li><li><a href=/musings/docs/ai-ml/one-model-multiple-diagrams/>Generate all views</a></li><li><a href=/musings/docs/ai-ml/verification-architecture/>Is This a Reasonable Architecture?</a></li><li><a href=/musings/docs/ai-ml/kiro-ide-comparison-tools/>Kiro IDE: Comprehensive Analysis, Comparisons & Optimal Workflows</a></li><li><a href=/musings/docs/ai-ml/langchain-architecture/>LangChain: The Foundation Library</a></li><li><a href=/musings/docs/ai-ml/llm-tracing-metrics-comparison/>Llm Tracing Metrics Comparison</a></li><li><a href=/musings/docs/ai-ml/kubernetes-based/>Open Source Workflow Orchestration on Kubernetes</a></li><li><a href=/musings/docs/ai-ml/tools-overview-and-getting-started/>Self-Hosted Open Source Agent Tools</a></li><li><a href=/musings/docs/ai-ml/serverless-function-workflow-tools-for-kubernetes/>Serverless/Function Workflows on Kubernetes</a></li><li><a href=/musings/docs/ai-ml/n8n-overview/>What Problems Does n8n Solve?</a></li></ul></li><li><a href=/musings/docs/devplatform/>Development Platforms</a><ul><li><a href=/musings/docs/devplatform/backstage-techdocs-pros-cons/>Backstage Techdocs Pros Cons</a></li><li><a href=/musings/docs/devplatform/cross-diagram-reuse-guide/>Cross-Diagram Domain Model Reuse in PlantUML</a></li><li><a href=/musings/docs/devplatform/prompt/>Crossplane EKS Management Cluster Implementation - Project Brief</a></li><li><a href=/musings/docs/devplatform/comprehensive-guide/>Driven vs Event: Comparison</a></li><li><a href=/musings/docs/devplatform/gitops-platform-safety/>GitOps Safety Architecture for Platform Evolution</a></li><li><a href=/musings/docs/devplatform/kargo-intro/>How Kargo Works with ArgoCD to Manage Deployments</a></li><li><a href=/musings/docs/devplatform/backstage-kratix-crossplane-argocd-blueprint/>Implementation Blueprint: Crossplane + Kratix + Backstage + ArgoCD</a></li><li><a href=/musings/docs/devplatform/kargo-git-tags/>In subsequent stages, you can read this metadata</a></li><li><a href=/musings/docs/devplatform/in-browser-editing-tools/>In-Browser Editing Documentation Solutions</a></li><li><a href=/musings/docs/devplatform/initial-comparison/>Initial Comparison</a></li><li><a href=/musings/docs/devplatform/kargo-argocd-interaction/>Kargo promotion step</a></li><li><a href=/musings/docs/devplatform/presentation/>Kargo: GitOps Promotion for ArgoCD</a></li><li><a href=/musings/docs/devplatform/notion-overview/>Notion: A Comprehensive Overview</a></li><li><a href=/musings/docs/devplatform/oss-portal-platform-orchestration-tools/>Oss Portal Platform Orchestration Tools</a></li><li><a href=/musings/docs/devplatform/oss-vs-closed-portal/>Oss Vs Closed Portal</a></li><li><a href=/musings/docs/devplatform/recommendations/>Overview of Text-Based UML Domain Modeling Tools</a></li><li><a href=/musings/docs/devplatform/export-conversion/>PlantUML Export & Embedding Options</a></li><li><a href=/musings/docs/devplatform/crossplane-solution/>Pseudocode for composition function</a></li><li><a href=/musings/docs/devplatform/kargo-polyrepo/>Response</a></li><li><a href=/musings/docs/devplatform/job-configmap-crossplane-abstraction/>Shell script helper for Option 3</a></li><li><a href=/musings/docs/devplatform/tasks/>Stage 1: Approach Overview & Comparison ✅ COMPLETE</a></li><li><a href=/musings/docs/devplatform/stage3-outline/>Stage 3: Implementation Patterns - Outline (Crossplane 2.1)</a></li></ul></li><li><a href=/musings/docs/infrastructure/>Infrastructure</a><ul><li><a href=/musings/docs/infrastructure/runbooks/>1. Mental Model Shift (Important Framing)</a></li><li><a href=/musings/docs/infrastructure/argocd-layered-values/>ArgoCD and Helm Schema Validation</a></li><li><a href=/musings/docs/infrastructure/prompt-guide/>Contents</a></li><li><a href=/musings/docs/infrastructure/overview/>Core Strategy: Progressive Delivery with Blast Radius Containment</a></li><li><a href=/musings/docs/infrastructure/stage1/>Crossplane EKS Management Cluster - Approach Overview & Comparison</a></li><li><a href=/musings/docs/infrastructure/getting-started-concise/>Getting Started Concise</a></li><li><a href=/musings/docs/infrastructure/ci-cd-templates/ class=active>GitHub Actions Example</a></li><li><a href=/musings/docs/infrastructure/k8s-mcp-servers/>K8s Mcp Servers</a></li><li><a href=/musings/docs/infrastructure/stage2/>Management Cluster VPC Layout</a></li><li><a href=/musings/docs/infrastructure/non-helm-schema-validation/>Non Helm Schema Validation</a></li><li><a href=/musings/docs/infrastructure/production-readiness-overview/>Production Readiness Guide: From Docker Compose to Kubernetes</a></li><li><a href=/musings/docs/infrastructure/schema-testing/>Quick Start: Generate Schema from Existing values.yaml</a></li><li><a href=/musings/docs/infrastructure/job-plus-configmap-annotation/>Read current state AND capture resourceVersion</a></li><li><a href=/musings/docs/infrastructure/layered-schema/>Schema Validation with Layered Values Files</a></li><li><a href=/musings/docs/infrastructure/helm-layered-abstraction/>Solution 2: Kustomize with Helm</a></li><li><a href=/musings/docs/infrastructure/starting-helm-testing/>Understanding What You're Testing</a></li><li><a href=/musings/docs/infrastructure/executive-summary/>What You're Building</a></li><li><a href=/musings/docs/infrastructure/devops-domain-model-guide/>Why This Approach Works for DevOps</a></li></ul></li><li><a href=/musings/docs/workflows/>Workflows</a><ul><li><a href=/musings/docs/workflows/imperitive-in-declarative/>Imperitive In Declarative</a></li></ul></li><li><a href=/musings/docs/mermaid-test/>Mermaid Diagram Test</a></li><li><a href=/musings/docs/misc/>Miscellaneous</a><ul></ul></li><li><a href=/musings/docs/test-document/>Test Document</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=/musings/icons/menu.svg class=book-icon alt=Menu></label><h3>GitHub Actions Example</h3><label for=toc-control><img src=/musings/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#cicd-pipeline-template-with-metadata-injection>CI/CD Pipeline Template with Metadata Injection</a><ul><li><a href=#github-actions-example>GitHub Actions Example</a></li><li><a href=#gitlab-ci-example>GitLab CI Example</a></li><li><a href=#kubernetes-deployment-template>Kubernetes Deployment Template</a></li><li><a href=#dockerfile-with-metadata>Dockerfile with Metadata</a></li></ul></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=cicd-pipeline-template-with-metadata-injection>CI/CD Pipeline Template with Metadata Injection<a class=anchor href=#cicd-pipeline-template-with-metadata-injection>#</a></h1><h2 id=github-actions-example>GitHub Actions Example<a class=anchor href=#github-actions-example>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>name</span>: <span style=color:#ae81ff>Build and Deploy</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>on</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>push</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>branches</span>: [<span style=color:#ae81ff>main]</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>env</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>REGISTRY</span>: <span style=color:#ae81ff>myregistry.io</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>IMAGE_NAME</span>: <span style=color:#ae81ff>myapp</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>jobs</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>build</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>runs-on</span>: <span style=color:#ae81ff>ubuntu-latest</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>outputs</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>image_digest</span>: <span style=color:#ae81ff>${{ steps.build.outputs.digest }}</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>build_id</span>: <span style=color:#ae81ff>${{ steps.metadata.outputs.build_id }}</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#f92672>steps</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Checkout code</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/checkout@v3</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>with</span>:
+</span></span><span style=display:flex><span>          <span style=color:#f92672>fetch-depth</span>: <span style=color:#ae81ff>0</span>  <span style=color:#75715e># Full history for traceability</span>
+</span></span><span style=display:flex><span>      
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Generate build metadata</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>id</span>: <span style=color:#ae81ff>metadata</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          echo &#34;build_id=build-$(date +%Y%m%d)-${{ github.run_number }}&#34; &gt;&gt; $GITHUB_OUTPUT
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          echo &#34;build_timestamp=$(date -u +%Y-%m-%dT%H:%M:%SZ)&#34; &gt;&gt; $GITHUB_OUTPUT
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          echo &#34;git_commit=${{ github.sha }}&#34; &gt;&gt; $GITHUB_OUTPUT
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          echo &#34;git_short_commit=${GITHUB_SHA:0:7}&#34; &gt;&gt; $GITHUB_OUTPUT
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          echo &#34;git_branch=${GITHUB_REF##*/}&#34; &gt;&gt; $GITHUB_OUTPUT</span>
+</span></span><span style=display:flex><span>      
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Build Docker image with metadata</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>id</span>: <span style=color:#ae81ff>build</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          docker build \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            --label &#34;org.opencontainers.image.source=${{ github.repositoryUrl }}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            --label &#34;org.opencontainers.image.revision=${{ steps.metadata.outputs.git_commit }}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            --label &#34;org.opencontainers.image.version=${{ github.ref_name }}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            --label &#34;org.opencontainers.image.created=${{ steps.metadata.outputs.build_timestamp }}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            --label &#34;com.myorg.build.id=${{ steps.metadata.outputs.build_id }}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            --label &#34;com.myorg.build.number=${{ github.run_number }}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            --label &#34;com.myorg.build.url=${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            --label &#34;com.myorg.build.branch=${{ steps.metadata.outputs.git_branch }}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            --label &#34;com.myorg.git.commit.short=${{ steps.metadata.outputs.git_short_commit }}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            --label &#34;com.myorg.git.author=${{ github.actor }}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.metadata.outputs.git_short_commit }} \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            .
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          # Get image digest
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          IMAGE_ID=$(docker images -q ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest)
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          DIGEST=$(docker inspect $IMAGE_ID --format=&#39;{{index .RepoDigests 0}}&#39; | cut -d&#39;@&#39; -f2)
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          echo &#34;digest=$DIGEST&#34; &gt;&gt; $GITHUB_OUTPUT</span>
+</span></span><span style=display:flex><span>      
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Run tests</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          docker run --rm ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest npm test</span>
+</span></span><span style=display:flex><span>      
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Security scan</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>id</span>: <span style=color:#ae81ff>scan</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          # Example with Trivy
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            aquasec/trivy image --severity HIGH,CRITICAL \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          SCAN_ID=&#34;scan-$(date +%Y%m%d%H%M%S)&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          echo &#34;scan_id=$SCAN_ID&#34; &gt;&gt; $GITHUB_OUTPUT
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          # Add scan result as label (in real world, push updated image)
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          echo &#34;Security scan completed: $SCAN_ID&#34;</span>
+</span></span><span style=display:flex><span>      
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Tag image with scan metadata</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          # Re-tag with scan info (or use registry API to update labels)
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          docker tag \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:scanned-${{ steps.metadata.outputs.git_short_commit }}</span>
+</span></span><span style=display:flex><span>      
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Push to registry</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          echo &#34;${{ secrets.REGISTRY_PASSWORD }}&#34; | docker login ${{ env.REGISTRY }} -u ${{ secrets.REGISTRY_USERNAME }} --password-stdin
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.metadata.outputs.git_short_commit }}
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest</span>
+</span></span><span style=display:flex><span>      
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Create git tag for build</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          git config user.name &#34;GitHub Actions&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          git config user.email &#34;actions@github.com&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          git tag -a &#34;${{ steps.metadata.outputs.build_id }}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            -m &#34;Build: ${{ steps.metadata.outputs.build_id }}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            -m &#34;Run: ${{ github.run_number }}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            -m &#34;Commit: ${{ steps.metadata.outputs.git_commit }}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            -m &#34;Image: ${{ steps.build.outputs.digest }}&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          git push origin &#34;${{ steps.metadata.outputs.build_id }}&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>deploy</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>needs</span>: <span style=color:#ae81ff>build</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>runs-on</span>: <span style=color:#ae81ff>ubuntu-latest</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: <span style=color:#ae81ff>production</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#f92672>steps</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Checkout K8s manifests</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/checkout@v3</span>
+</span></span><span style=display:flex><span>      
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Generate deployment metadata</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>id</span>: <span style=color:#ae81ff>deploy_metadata</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          echo &#34;deployment_id=deploy-prod-$(date +%Y%m%d%H%M%S)&#34; &gt;&gt; $GITHUB_OUTPUT
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          echo &#34;deployment_timestamp=$(date -u +%Y-%m-%dT%H:%M:%SZ)&#34; &gt;&gt; $GITHUB_OUTPUT</span>
+</span></span><span style=display:flex><span>      
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Update K8s deployment with metadata</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          # Update deployment YAML with annotations
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          kubectl set image deployment/myapp \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            myapp=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@${{ needs.build.outputs.image_digest }} \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            --record
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          kubectl annotate deployment/myapp \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            git.commit=&#34;${{ github.sha }}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            git.branch=&#34;${GITHUB_REF##*/}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            git.repo=&#34;${{ github.repositoryUrl }}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            build.id=&#34;${{ needs.build.outputs.build_id }}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            build.number=&#34;${{ github.run_number }}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            build.url=&#34;${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            build.timestamp=&#34;$(date -u +%Y-%m-%dT%H:%M:%SZ)&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            deployment.id=&#34;${{ steps.deploy_metadata.outputs.deployment_id }}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            deployment.timestamp=&#34;${{ steps.deploy_metadata.outputs.deployment_timestamp }}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            deployment.operator=&#34;${{ github.actor }}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            deployment.run-id=&#34;${{ github.run_id }}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            image.digest=&#34;${{ needs.build.outputs.image_digest }}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            --overwrite</span>
+</span></span><span style=display:flex><span>      
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Wait for rollout</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          kubectl rollout status deployment/myapp --timeout=5m</span>
+</span></span><span style=display:flex><span>      
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Create deployment tag in git</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          git config user.name &#34;GitHub Actions&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          git config user.email &#34;actions@github.com&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          git tag -a &#34;${{ steps.deploy_metadata.outputs.deployment_id }}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            -m &#34;Deployment to production&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            -m &#34;Timestamp: ${{ steps.deploy_metadata.outputs.deployment_timestamp }}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            -m &#34;Operator: ${{ github.actor }}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            -m &#34;Build: ${{ needs.build.outputs.build_id }}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            -m &#34;Image: ${{ needs.build.outputs.image_digest }}&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          git push origin &#34;${{ steps.deploy_metadata.outputs.deployment_id }}&#34;</span>
+</span></span><span style=display:flex><span>      
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Create deployment record</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          # Write deployment record for correlation
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          cat &gt; deployment-record.json &lt;&lt; EOF
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          {
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            &#34;deploymentId&#34;: &#34;${{ steps.deploy_metadata.outputs.deployment_id }}&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            &#34;timestamp&#34;: &#34;${{ steps.deploy_metadata.outputs.deployment_timestamp }}&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            &#34;environment&#34;: &#34;production&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            &#34;gitCommit&#34;: &#34;${{ github.sha }}&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            &#34;buildId&#34;: &#34;${{ needs.build.outputs.build_id }}&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            &#34;imageDigest&#34;: &#34;${{ needs.build.outputs.image_digest }}&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            &#34;operator&#34;: &#34;${{ github.actor }}&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            &#34;runId&#34;: &#34;${{ github.run_id }}&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            &#34;runUrl&#34;: &#34;${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          }
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          EOF
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          # Store in artifact or S3/database
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          cat deployment-record.json</span></span></span></code></pre></div><h2 id=gitlab-ci-example>GitLab CI Example<a class=anchor href=#gitlab-ci-example>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># .gitlab-ci.yml</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>variables</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>REGISTRY</span>: <span style=color:#ae81ff>myregistry.io</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>IMAGE_NAME</span>: <span style=color:#ae81ff>myapp</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>DOCKER_DRIVER</span>: <span style=color:#ae81ff>overlay2</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>stages</span>:
+</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>build</span>
+</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>test</span>
+</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>scan</span>
+</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>deploy</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>before_script</span>:
+</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>export BUILD_ID=&#34;build-$(date +%Y%m%d)-${CI_PIPELINE_ID}&#34;</span>
+</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>export BUILD_TIMESTAMP=$(date -u +%Y-%m-%dT%H:%M:%SZ)</span>
+</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>export GIT_SHORT_COMMIT=${CI_COMMIT_SHORT_SHA}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>build</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>stage</span>: <span style=color:#ae81ff>build</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>script</span>:
+</span></span><span style=display:flex><span>    - |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>      docker build \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        --label &#34;org.opencontainers.image.source=${CI_PROJECT_URL}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        --label &#34;org.opencontainers.image.revision=${CI_COMMIT_SHA}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        --label &#34;org.opencontainers.image.version=${CI_COMMIT_REF_NAME}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        --label &#34;org.opencontainers.image.created=${BUILD_TIMESTAMP}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        --label &#34;com.myorg.build.id=${BUILD_ID}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        --label &#34;com.myorg.build.number=${CI_PIPELINE_ID}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        --label &#34;com.myorg.build.url=${CI_PIPELINE_URL}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        --label &#34;com.myorg.build.branch=${CI_COMMIT_REF_NAME}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        --label &#34;com.myorg.git.commit.short=${GIT_SHORT_COMMIT}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        --label &#34;com.myorg.git.author=${GITLAB_USER_NAME}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        -t ${REGISTRY}/${IMAGE_NAME}:${GIT_SHORT_COMMIT} \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        -t ${REGISTRY}/${IMAGE_NAME}:latest \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        .</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    - <span style=color:#ae81ff>docker push ${REGISTRY}/${IMAGE_NAME}:${GIT_SHORT_COMMIT}</span>
+</span></span><span style=display:flex><span>    - <span style=color:#ae81ff>docker push ${REGISTRY}/${IMAGE_NAME}:latest</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e># Get digest and save for later stages</span>
+</span></span><span style=display:flex><span>    - <span style=color:#ae81ff>IMAGE_DIGEST=$(docker inspect ${REGISTRY}/${IMAGE_NAME}:latest --format=&#39;{{index .RepoDigests 0}}&#39; | cut -d&#39;@&#39; -f2)</span>
+</span></span><span style=display:flex><span>    - <span style=color:#ae81ff>echo &#34;IMAGE_DIGEST=${IMAGE_DIGEST}&#34; &gt; build.env</span>
+</span></span><span style=display:flex><span>    - <span style=color:#ae81ff>echo &#34;BUILD_ID=${BUILD_ID}&#34; &gt;&gt; build.env</span>
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#f92672>artifacts</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>reports</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>dotenv</span>: <span style=color:#ae81ff>build.env</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>deploy</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>stage</span>: <span style=color:#ae81ff>deploy</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>environment</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>name</span>: <span style=color:#ae81ff>production</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>dependencies</span>:
+</span></span><span style=display:flex><span>    - <span style=color:#ae81ff>build</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>script</span>:
+</span></span><span style=display:flex><span>    - <span style=color:#ae81ff>export DEPLOYMENT_ID=&#34;deploy-prod-$(date +%Y%m%d%H%M%S)&#34;</span>
+</span></span><span style=display:flex><span>    - <span style=color:#ae81ff>export DEPLOYMENT_TIMESTAMP=$(date -u +%Y-%m-%dT%H:%M:%SZ)</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    - |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>      kubectl set image deployment/myapp \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        myapp=${REGISTRY}/${IMAGE_NAME}@${IMAGE_DIGEST}
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>      
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>      kubectl annotate deployment/myapp \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        git.commit=&#34;${CI_COMMIT_SHA}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        git.branch=&#34;${CI_COMMIT_REF_NAME}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        git.repo=&#34;${CI_PROJECT_URL}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        build.id=&#34;${BUILD_ID}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        build.number=&#34;${CI_PIPELINE_ID}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        build.url=&#34;${CI_PIPELINE_URL}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        deployment.id=&#34;${DEPLOYMENT_ID}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        deployment.timestamp=&#34;${DEPLOYMENT_TIMESTAMP}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        deployment.operator=&#34;${GITLAB_USER_NAME}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        image.digest=&#34;${IMAGE_DIGEST}&#34; \
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        --overwrite</span></span></span></code></pre></div><h2 id=kubernetes-deployment-template>Kubernetes Deployment Template<a class=anchor href=#kubernetes-deployment-template>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># k8s/deployment.yaml</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>apps/v1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Deployment</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>myapp</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>production</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>labels</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>app</span>: <span style=color:#ae81ff>myapp</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>version</span>: <span style=color:#e6db74>&#34;1.0.0&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: <span style=color:#ae81ff>production</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>team</span>: <span style=color:#ae81ff>platform</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>annotations</span>:
+</span></span><span style=display:flex><span>    <span style=color:#75715e># These will be populated by CI/CD</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>git.commit</span>: <span style=color:#e6db74>&#34;placeholder&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>git.branch</span>: <span style=color:#e6db74>&#34;placeholder&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>git.repo</span>: <span style=color:#e6db74>&#34;https://github.com/myorg/myrepo&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>build.id</span>: <span style=color:#e6db74>&#34;placeholder&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>build.number</span>: <span style=color:#e6db74>&#34;placeholder&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>build.url</span>: <span style=color:#e6db74>&#34;placeholder&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>deployment.id</span>: <span style=color:#e6db74>&#34;placeholder&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>deployment.timestamp</span>: <span style=color:#e6db74>&#34;placeholder&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>deployment.operator</span>: <span style=color:#e6db74>&#34;placeholder&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>image.digest</span>: <span style=color:#e6db74>&#34;placeholder&#34;</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e># Documentation</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>docs.url</span>: <span style=color:#e6db74>&#34;https://docs.myorg.com/myapp&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>oncall.team</span>: <span style=color:#e6db74>&#34;platform-team&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>oncall.slack</span>: <span style=color:#e6db74>&#34;#platform-oncall&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>replicas</span>: <span style=color:#ae81ff>3</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>selector</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>matchLabels</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>app</span>: <span style=color:#ae81ff>myapp</span>
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#f92672>template</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>labels</span>:
+</span></span><span style=display:flex><span>        <span style=color:#f92672>app</span>: <span style=color:#ae81ff>myapp</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>version</span>: <span style=color:#e6db74>&#34;1.0.0&#34;</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>environment</span>: <span style=color:#ae81ff>production</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>annotations</span>:
+</span></span><span style=display:flex><span>        <span style=color:#75715e># Propagate to pods</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>git.commit</span>: <span style=color:#e6db74>&#34;placeholder&#34;</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>deployment.id</span>: <span style=color:#e6db74>&#34;placeholder&#34;</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>prometheus.io/scrape</span>: <span style=color:#e6db74>&#34;true&#34;</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>prometheus.io/port</span>: <span style=color:#e6db74>&#34;9090&#34;</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>containers</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>myapp</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>image</span>: <span style=color:#ae81ff>myregistry.io/myapp:latest </span> <span style=color:#75715e># Will be overridden by digest</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>imagePullPolicy</span>: <span style=color:#ae81ff>Always</span>
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e># Inject correlation IDs as environment variables</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>env</span>:
+</span></span><span style=display:flex><span>        - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>GIT_COMMIT</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>value</span>: <span style=color:#e6db74>&#34;placeholder&#34;</span>  <span style=color:#75715e># Set by CI/CD</span>
+</span></span><span style=display:flex><span>        - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>BUILD_ID</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>value</span>: <span style=color:#e6db74>&#34;placeholder&#34;</span>
+</span></span><span style=display:flex><span>        - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>DEPLOYMENT_ID</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>value</span>: <span style=color:#e6db74>&#34;placeholder&#34;</span>
+</span></span><span style=display:flex><span>        - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>POD_NAME</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>valueFrom</span>:
+</span></span><span style=display:flex><span>            <span style=color:#f92672>fieldRef</span>:
+</span></span><span style=display:flex><span>              <span style=color:#f92672>fieldPath</span>: <span style=color:#ae81ff>metadata.name</span>
+</span></span><span style=display:flex><span>        - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>POD_NAMESPACE</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>valueFrom</span>:
+</span></span><span style=display:flex><span>            <span style=color:#f92672>fieldRef</span>:
+</span></span><span style=display:flex><span>              <span style=color:#f92672>fieldPath</span>: <span style=color:#ae81ff>metadata.namespace</span>
+</span></span><span style=display:flex><span>        - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>POD_IP</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>valueFrom</span>:
+</span></span><span style=display:flex><span>            <span style=color:#f92672>fieldRef</span>:
+</span></span><span style=display:flex><span>              <span style=color:#f92672>fieldPath</span>: <span style=color:#ae81ff>status.podIP</span>
+</span></span><span style=display:flex><span>        - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>NODE_NAME</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>valueFrom</span>:
+</span></span><span style=display:flex><span>            <span style=color:#f92672>fieldRef</span>:
+</span></span><span style=display:flex><span>              <span style=color:#f92672>fieldPath</span>: <span style=color:#ae81ff>spec.nodeName</span>
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#f92672>ports</span>:
+</span></span><span style=display:flex><span>        - <span style=color:#f92672>containerPort</span>: <span style=color:#ae81ff>8080</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>name</span>: <span style=color:#ae81ff>http</span>
+</span></span><span style=display:flex><span>        - <span style=color:#f92672>containerPort</span>: <span style=color:#ae81ff>9090</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>name</span>: <span style=color:#ae81ff>metrics</span>
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#f92672>resources</span>:
+</span></span><span style=display:flex><span>          <span style=color:#f92672>requests</span>:
+</span></span><span style=display:flex><span>            <span style=color:#f92672>memory</span>: <span style=color:#e6db74>&#34;256Mi&#34;</span>
+</span></span><span style=display:flex><span>            <span style=color:#f92672>cpu</span>: <span style=color:#e6db74>&#34;100m&#34;</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>limits</span>:
+</span></span><span style=display:flex><span>            <span style=color:#f92672>memory</span>: <span style=color:#e6db74>&#34;512Mi&#34;</span>
+</span></span><span style=display:flex><span>            <span style=color:#f92672>cpu</span>: <span style=color:#e6db74>&#34;500m&#34;</span>
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#f92672>livenessProbe</span>:
+</span></span><span style=display:flex><span>          <span style=color:#f92672>httpGet</span>:
+</span></span><span style=display:flex><span>            <span style=color:#f92672>path</span>: <span style=color:#ae81ff>/health</span>
+</span></span><span style=display:flex><span>            <span style=color:#f92672>port</span>: <span style=color:#ae81ff>8080</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>initialDelaySeconds</span>: <span style=color:#ae81ff>30</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>periodSeconds</span>: <span style=color:#ae81ff>10</span>
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#f92672>readinessProbe</span>:
+</span></span><span style=display:flex><span>          <span style=color:#f92672>httpGet</span>:
+</span></span><span style=display:flex><span>            <span style=color:#f92672>path</span>: <span style=color:#ae81ff>/ready</span>
+</span></span><span style=display:flex><span>            <span style=color:#f92672>port</span>: <span style=color:#ae81ff>8080</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>initialDelaySeconds</span>: <span style=color:#ae81ff>5</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>periodSeconds</span>: <span style=color:#ae81ff>5</span></span></span></code></pre></div><h2 id=dockerfile-with-metadata>Dockerfile with Metadata<a class=anchor href=#dockerfile-with-metadata>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-dockerfile data-lang=dockerfile><span style=display:flex><span><span style=color:#75715e># Dockerfile</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>FROM</span> <span style=color:#e6db74>node:18-alpine</span> <span style=color:#66d9ef>AS</span> <span style=color:#e6db74>builder</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#75715e># Build args for metadata</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>ARG</span> GIT_COMMIT<span style=color:#f92672>=</span>unknown
+</span></span><span style=display:flex><span><span style=color:#66d9ef>ARG</span> BUILD_ID<span style=color:#f92672>=</span>unknown
+</span></span><span style=display:flex><span><span style=color:#66d9ef>ARG</span> BUILD_NUMBER<span style=color:#f92672>=</span>unknown
+</span></span><span style=display:flex><span><span style=color:#66d9ef>ARG</span> BUILD_TIMESTAMP<span style=color:#f92672>=</span>unknown
+</span></span><span style=display:flex><span><span style=color:#66d9ef>ARG</span> BUILD_URL<span style=color:#f92672>=</span>unknown
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>WORKDIR</span> <span style=color:#e6db74>/app</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>COPY</span> package*.json ./<span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>RUN</span> npm ci --only<span style=color:#f92672>=</span>production<span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>COPY</span> . .<span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>RUN</span> npm run build<span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#75715e># Production image</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>FROM</span> <span style=color:#e6db74>node:18-alpine</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#75715e># Inject metadata as OCI labels</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>LABEL</span> org.opencontainers.image.source<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://github.com/myorg/myrepo&#34;</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>LABEL</span> org.opencontainers.image.revision<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>${</span>GIT_COMMIT<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>LABEL</span> org.opencontainers.image.created<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>${</span>BUILD_TIMESTAMP<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>LABEL</span> org.opencontainers.image.version<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;1.0.0&#34;</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>LABEL</span> org.opencontainers.image.title<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;MyApp&#34;</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>LABEL</span> org.opencontainers.image.description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;My application&#34;</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#75715e># Custom labels for our domain model</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>LABEL</span> com.myorg.build.id<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>${</span>BUILD_ID<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>LABEL</span> com.myorg.build.number<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>${</span>BUILD_NUMBER<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>LABEL</span> com.myorg.build.url<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>${</span>BUILD_URL<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>LABEL</span> com.myorg.build.timestamp<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>${</span>BUILD_TIMESTAMP<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>LABEL</span> com.myorg.git.commit<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>${</span>GIT_COMMIT<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>LABEL</span> com.myorg.team<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;platform&#34;</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>LABEL</span> com.myorg.oncall<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;platform-team&#34;</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#75715e># Also available as environment variables in running container</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>ENV</span> GIT_COMMIT<span style=color:#f92672>=</span><span style=color:#e6db74>${</span>GIT_COMMIT<span style=color:#e6db74>}</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    BUILD_ID<span style=color:#f92672>=</span><span style=color:#e6db74>${</span>BUILD_ID<span style=color:#e6db74>}</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    BUILD_NUMBER<span style=color:#f92672>=</span><span style=color:#e6db74>${</span>BUILD_NUMBER<span style=color:#e6db74>}</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>WORKDIR</span> <span style=color:#e6db74>/app</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>COPY</span> --from<span style=color:#f92672>=</span>builder /app/node_modules ./node_modules<span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>COPY</span> --from<span style=color:#f92672>=</span>builder /app/dist ./dist<span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>COPY</span> package.json ./<span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>EXPOSE</span> <span style=color:#e6db74>8080</span> <span style=color:#ae81ff>9090</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>CMD</span> [<span style=color:#e6db74>&#34;node&#34;</span>, <span style=color:#e6db74>&#34;dist/index.js&#34;</span>]</span></span></code></pre></div><p>These templates provide complete traceability from code to runtime!</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=/musings/docs/infrastructure/getting-started-concise/ class="flex align-center"><img src=/musings/icons/backward.svg class=book-icon alt=Backward>
+<span>Getting Started Concise</span>
+</a></span><span><a href=/musings/docs/infrastructure/k8s-mcp-servers/ class="flex align-center"><span>K8s Mcp Servers</span>
+<img src=/musings/icons/forward.svg class=book-icon alt=Forward></a></span></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#cicd-pipeline-template-with-metadata-injection>CI/CD Pipeline Template with Metadata Injection</a><ul><li><a href=#github-actions-example>GitHub Actions Example</a></li><li><a href=#gitlab-ci-example>GitLab CI Example</a></li><li><a href=#kubernetes-deployment-template>Kubernetes Deployment Template</a></li><li><a href=#dockerfile-with-metadata>Dockerfile with Metadata</a></li></ul></li></ul></nav></div></aside></main></body></html>

@@ -1,0 +1,714 @@
+<!doctype html><html lang=en dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Creating a Helm Values Schema: Complete Guide is a infrastructure document covering Creating a Helm Values Schema: Complete Guide and Quick Start: Generate Schema from Existing values.yaml. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details."><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://lago-morph.github.io/musings/docs/infrastructure/schema-testing/"><meta property="og:site_name" content="Technology Documentation Hub"><meta property="og:title" content="Quick Start: Generate Schema from Existing values.yaml"><meta property="og:description" content="Creating a Helm Values Schema: Complete Guide is a infrastructure document covering Creating a Helm Values Schema: Complete Guide and Quick Start: Generate Schema from Existing values.yaml. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details."><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta property="article:published_time" content="2025-12-16T00:00:00+00:00"><meta property="article:modified_time" content="2025-12-16T00:00:00+00:00"><meta itemprop=name content="Quick Start: Generate Schema from Existing values.yaml"><meta itemprop=description content="Creating a Helm Values Schema: Complete Guide is a infrastructure document covering Creating a Helm Values Schema: Complete Guide and Quick Start: Generate Schema from Existing values.yaml. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details."><meta itemprop=datePublished content="2025-12-16T00:00:00+00:00"><meta itemprop=dateModified content="2025-12-16T00:00:00+00:00"><meta itemprop=wordCount content="1919"><meta itemprop=keywords content="helm,json,yaml,container,production,deployment,kubernetes,database"><title>Quick Start: Generate Schema from Existing values.yaml | Technology Documentation Hub</title><link rel=icon href=/musings/favicon.png><link rel=manifest href=/musings/manifest.json><link rel=canonical href=https://lago-morph.github.io/musings/docs/infrastructure/schema-testing/><link rel=stylesheet href=/musings/book.min.6970156cec683193d93c9c4edaf0d56574e4361df2e0c1be4f697ae81c3ba55f.css integrity="sha256-aXAVbOxoMZPZPJxO2vDVZXTkNh3y4MG+T2l66Bw7pV8=" crossorigin=anonymous><script defer src=/musings/fuse.min.js></script><script defer src=/musings/en.search.min.5cc9128683126c7cda9fef74044c10c013f6d8935e1e3e719e3f562033e9ef44.js integrity="sha256-XMkShoMSbHzan+90BEwQwBP22JNeHj5xnj9WIDPp70Q=" crossorigin=anonymous></script></head><body dir=ltr class="book-kind-page book-type-docs"><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/musings/><span>Technology Documentation Hub</span></a></h2><div class="book-search hidden"><input id=book-search-input type=text placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><script>document.querySelector(".book-search").classList.remove("hidden")</script><ul><li><a href=/musings/docs/ai-ml/>AI & Machine Learning</a><ul><li><a href=/musings/docs/ai-ml/agentic-computing-overview-and-tools/>Agentic Computing Overview And Tools</a></li><li><a href=/musings/docs/ai-ml/agno-vs-langchain/>Agno Vs Langchain</a></li><li><a href=/musings/docs/ai-ml/flowwise-vs-langflow/>Flowise vs Langflow: Detailed Comparison</a></li><li><a href=/musings/docs/ai-ml/one-model-multiple-diagrams/>Generate all views</a></li><li><a href=/musings/docs/ai-ml/verification-architecture/>Is This a Reasonable Architecture?</a></li><li><a href=/musings/docs/ai-ml/kiro-ide-comparison-tools/>Kiro IDE: Comprehensive Analysis, Comparisons & Optimal Workflows</a></li><li><a href=/musings/docs/ai-ml/langchain-architecture/>LangChain: The Foundation Library</a></li><li><a href=/musings/docs/ai-ml/llm-tracing-metrics-comparison/>Llm Tracing Metrics Comparison</a></li><li><a href=/musings/docs/ai-ml/kubernetes-based/>Open Source Workflow Orchestration on Kubernetes</a></li><li><a href=/musings/docs/ai-ml/tools-overview-and-getting-started/>Self-Hosted Open Source Agent Tools</a></li><li><a href=/musings/docs/ai-ml/serverless-function-workflow-tools-for-kubernetes/>Serverless/Function Workflows on Kubernetes</a></li><li><a href=/musings/docs/ai-ml/n8n-overview/>What Problems Does n8n Solve?</a></li></ul></li><li><a href=/musings/docs/devplatform/>Development Platforms</a><ul><li><a href=/musings/docs/devplatform/backstage-techdocs-pros-cons/>Backstage Techdocs Pros Cons</a></li><li><a href=/musings/docs/devplatform/cross-diagram-reuse-guide/>Cross-Diagram Domain Model Reuse in PlantUML</a></li><li><a href=/musings/docs/devplatform/prompt/>Crossplane EKS Management Cluster Implementation - Project Brief</a></li><li><a href=/musings/docs/devplatform/comprehensive-guide/>Driven vs Event: Comparison</a></li><li><a href=/musings/docs/devplatform/gitops-platform-safety/>GitOps Safety Architecture for Platform Evolution</a></li><li><a href=/musings/docs/devplatform/kargo-intro/>How Kargo Works with ArgoCD to Manage Deployments</a></li><li><a href=/musings/docs/devplatform/backstage-kratix-crossplane-argocd-blueprint/>Implementation Blueprint: Crossplane + Kratix + Backstage + ArgoCD</a></li><li><a href=/musings/docs/devplatform/kargo-git-tags/>In subsequent stages, you can read this metadata</a></li><li><a href=/musings/docs/devplatform/in-browser-editing-tools/>In-Browser Editing Documentation Solutions</a></li><li><a href=/musings/docs/devplatform/initial-comparison/>Initial Comparison</a></li><li><a href=/musings/docs/devplatform/kargo-argocd-interaction/>Kargo promotion step</a></li><li><a href=/musings/docs/devplatform/presentation/>Kargo: GitOps Promotion for ArgoCD</a></li><li><a href=/musings/docs/devplatform/notion-overview/>Notion: A Comprehensive Overview</a></li><li><a href=/musings/docs/devplatform/oss-portal-platform-orchestration-tools/>Oss Portal Platform Orchestration Tools</a></li><li><a href=/musings/docs/devplatform/oss-vs-closed-portal/>Oss Vs Closed Portal</a></li><li><a href=/musings/docs/devplatform/recommendations/>Overview of Text-Based UML Domain Modeling Tools</a></li><li><a href=/musings/docs/devplatform/export-conversion/>PlantUML Export & Embedding Options</a></li><li><a href=/musings/docs/devplatform/crossplane-solution/>Pseudocode for composition function</a></li><li><a href=/musings/docs/devplatform/kargo-polyrepo/>Response</a></li><li><a href=/musings/docs/devplatform/job-configmap-crossplane-abstraction/>Shell script helper for Option 3</a></li><li><a href=/musings/docs/devplatform/tasks/>Stage 1: Approach Overview & Comparison ✅ COMPLETE</a></li><li><a href=/musings/docs/devplatform/stage3-outline/>Stage 3: Implementation Patterns - Outline (Crossplane 2.1)</a></li></ul></li><li><a href=/musings/docs/infrastructure/>Infrastructure</a><ul><li><a href=/musings/docs/infrastructure/runbooks/>1. Mental Model Shift (Important Framing)</a></li><li><a href=/musings/docs/infrastructure/argocd-layered-values/>ArgoCD and Helm Schema Validation</a></li><li><a href=/musings/docs/infrastructure/prompt-guide/>Contents</a></li><li><a href=/musings/docs/infrastructure/overview/>Core Strategy: Progressive Delivery with Blast Radius Containment</a></li><li><a href=/musings/docs/infrastructure/stage1/>Crossplane EKS Management Cluster - Approach Overview & Comparison</a></li><li><a href=/musings/docs/infrastructure/getting-started-concise/>Getting Started Concise</a></li><li><a href=/musings/docs/infrastructure/ci-cd-templates/>GitHub Actions Example</a></li><li><a href=/musings/docs/infrastructure/k8s-mcp-servers/>K8s Mcp Servers</a></li><li><a href=/musings/docs/infrastructure/stage2/>Management Cluster VPC Layout</a></li><li><a href=/musings/docs/infrastructure/non-helm-schema-validation/>Non Helm Schema Validation</a></li><li><a href=/musings/docs/infrastructure/production-readiness-overview/>Production Readiness Guide: From Docker Compose to Kubernetes</a></li><li><a href=/musings/docs/infrastructure/schema-testing/ class=active>Quick Start: Generate Schema from Existing values.yaml</a></li><li><a href=/musings/docs/infrastructure/job-plus-configmap-annotation/>Read current state AND capture resourceVersion</a></li><li><a href=/musings/docs/infrastructure/layered-schema/>Schema Validation with Layered Values Files</a></li><li><a href=/musings/docs/infrastructure/helm-layered-abstraction/>Solution 2: Kustomize with Helm</a></li><li><a href=/musings/docs/infrastructure/starting-helm-testing/>Understanding What You're Testing</a></li><li><a href=/musings/docs/infrastructure/executive-summary/>What You're Building</a></li><li><a href=/musings/docs/infrastructure/devops-domain-model-guide/>Why This Approach Works for DevOps</a></li></ul></li><li><a href=/musings/docs/workflows/>Workflows</a><ul><li><a href=/musings/docs/workflows/imperitive-in-declarative/>Imperitive In Declarative</a></li></ul></li><li><a href=/musings/docs/mermaid-test/>Mermaid Diagram Test</a></li><li><a href=/musings/docs/misc/>Miscellaneous</a><ul></ul></li><li><a href=/musings/docs/test-document/>Test Document</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class="book-header hidden"><div class="flex align-center justify-between"><label for=menu-control><img src=/musings/icons/menu.svg class=book-icon alt=Menu></label><h3>Quick Start: Generate Schema from Existing values.yaml</h3><label for=toc-control><img src=/musings/icons/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class=hidden><nav id=TableOfContents><ul><li><a href=#creating-a-helm-values-schema-complete-guide>Creating a Helm Values Schema: Complete Guide</a><ul><li><a href=#quick-start-generate-schema-from-existing-valuesyaml><strong>Quick Start: Generate Schema from Existing values.yaml</strong></a><ul><li><a href=#method-1-using-helm-schema-fastest>Method 1: Using <code>helm-schema</code> (Fastest)</a></li><li><a href=#method-2-manual-creation-full-control>Method 2: Manual Creation (Full Control)</a></li></ul></li><li><a href=#building-the-schema-step-by-step><strong>Building the Schema Step-by-Step</strong></a><ul><li><a href=#step-1-basic-structure>Step 1: Basic Structure</a></li><li><a href=#step-2-simple-properties-primitives>Step 2: Simple Properties (Primitives)</a></li><li><a href=#step-3-nested-objects>Step 3: Nested Objects</a></li><li><a href=#step-4-arrays>Step 4: Arrays</a></li><li><a href=#step-5-conditional-validation-advanced>Step 5: Conditional Validation (Advanced)</a></li><li><a href=#step-6-cross-field-validation>Step 6: Cross-Field Validation</a></li></ul></li><li><a href=#complete-real-world-example><strong>Complete Real-World Example</strong></a></li><li><a href=#advanced-patterns><strong>Advanced Patterns</strong></a><ul><li><a href=#pattern-1-oneof-mutually-exclusive-options>Pattern 1: OneOf (Mutually Exclusive Options)</a></li><li><a href=#pattern-2-anyof-at-least-one-required>Pattern 2: AnyOf (At Least One Required)</a></li><li><a href=#pattern-3-allof-multiple-constraints>Pattern 3: AllOf (Multiple Constraints)</a></li></ul></li><li><a href=#testing-your-schema><strong>Testing Your Schema</strong></a><ul><li><a href=#manual-testing>Manual Testing</a></li><li><a href=#automated-testing>Automated Testing</a></li></ul></li><li><a href=#common-gotchas><strong>Common Gotchas</strong></a><ul><li><a href=#1-json-vs-yaml-types>1. <strong>JSON vs YAML Types</strong></a></li><li><a href=#2-pattern-anchoring>2. <strong>Pattern Anchoring</strong></a></li><li><a href=#3-resource-quantity-validation>3. <strong>Resource Quantity Validation</strong></a></li><li><a href=#4-empty-arrays>4. <strong>Empty Arrays</strong></a></li></ul></li><li><a href=#quick-reference-common-validations><strong>Quick Reference: Common Validations</strong></a></li><li><a href=#your-action-plan><strong>Your Action Plan</strong></a></li></ul></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=creating-a-helm-values-schema-complete-guide>Creating a Helm Values Schema: Complete Guide<a class=anchor href=#creating-a-helm-values-schema-complete-guide>#</a></h1><p>The values schema (<code>values.schema.json</code>) is a <strong>JSON Schema</strong> that validates your <code>values.yaml</code>. It catches mistakes <strong>before</strong> deployment.</p><hr><h2 id=quick-start-generate-schema-from-existing-valuesyaml><strong>Quick Start: Generate Schema from Existing values.yaml</strong><a class=anchor href=#quick-start-generate-schema-from-existing-valuesyaml>#</a></h2><h3 id=method-1-using-helm-schema-fastest>Method 1: Using <code>helm-schema</code> (Fastest)<a class=anchor href=#method-1-using-helm-schema-fastest>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Install</span>
+</span></span><span style=display:flex><span>npm install -g @bitnami/helm-schema
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Generate schema</span>
+</span></span><span style=display:flex><span>helm-schema generate values.yaml &gt; values.schema.json
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Or for Go users</span>
+</span></span><span style=display:flex><span>go install github.com/dadav/helm-schema/cmd/helm-schema@latest
+</span></span><span style=display:flex><span>helm-schema -input values.yaml -output values.schema.json</span></span></code></pre></div><p><strong>This gives you 80% of what you need immediately.</strong> Then you refine it.</p><hr><h3 id=method-2-manual-creation-full-control>Method 2: Manual Creation (Full Control)<a class=anchor href=#method-2-manual-creation-full-control>#</a></h3><p>Let&rsquo;s say your <code>values.yaml</code> looks like this:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># values.yaml</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>replicaCount</span>: <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>image</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>repository</span>: <span style=color:#ae81ff>nginx</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>tag</span>: <span style=color:#e6db74>&#34;1.21&#34;</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>pullPolicy</span>: <span style=color:#ae81ff>IfNotPresent</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>service</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>type</span>: <span style=color:#ae81ff>ClusterIP</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>port</span>: <span style=color:#ae81ff>80</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>ingress</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>enabled</span>: <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>className</span>: <span style=color:#ae81ff>nginx</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>hosts</span>:
+</span></span><span style=display:flex><span>    - <span style=color:#f92672>host</span>: <span style=color:#ae81ff>chart-example.local</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>paths</span>:
+</span></span><span style=display:flex><span>        - <span style=color:#f92672>path</span>: <span style=color:#ae81ff>/</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>pathType</span>: <span style=color:#ae81ff>Prefix</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>resources</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>limits</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>cpu</span>: <span style=color:#ae81ff>100m</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>memory</span>: <span style=color:#ae81ff>128Mi</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>requests</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>cpu</span>: <span style=color:#ae81ff>100m</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>memory</span>: <span style=color:#ae81ff>128Mi</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>autoscaling</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>enabled</span>: <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>minReplicas</span>: <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>maxReplicas</span>: <span style=color:#ae81ff>100</span></span></span></code></pre></div><hr><h2 id=building-the-schema-step-by-step><strong>Building the Schema Step-by-Step</strong><a class=anchor href=#building-the-schema-step-by-step>#</a></h2><h3 id=step-1-basic-structure>Step 1: Basic Structure<a class=anchor href=#step-1-basic-structure>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;$schema&#34;</span>: <span style=color:#e6db74>&#34;http://json-schema.org/draft-07/schema#&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;title&#34;</span>: <span style=color:#e6db74>&#34;My App Helm Chart Values&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;object&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}</span></span></code></pre></div><hr><h3 id=step-2-simple-properties-primitives>Step 2: Simple Properties (Primitives)<a class=anchor href=#step-2-simple-properties-primitives>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;$schema&#34;</span>: <span style=color:#e6db74>&#34;http://json-schema.org/draft-07/schema#&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;object&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;replicaCount&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;integer&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;minimum&#34;</span>: <span style=color:#ae81ff>1</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;maximum&#34;</span>: <span style=color:#ae81ff>100</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;Number of replicas to deploy&#34;</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}</span></span></code></pre></div><p><strong>What this validates:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># ✅ Valid</span>
+</span></span><span style=display:flex><span>helm install my-app . --set replicaCount<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># ❌ Invalid - not an integer</span>
+</span></span><span style=display:flex><span>helm install my-app . --set replicaCount<span style=color:#f92672>=</span>1.5
+</span></span><span style=display:flex><span><span style=color:#75715e># Error: values don&#39;t meet the specifications of the schema</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># ❌ Invalid - out of range</span>
+</span></span><span style=display:flex><span>helm install my-app . --set replicaCount<span style=color:#f92672>=</span><span style=color:#ae81ff>200</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Error: replicaCount must be &lt;= 100</span></span></span></code></pre></div><hr><h3 id=step-3-nested-objects>Step 3: Nested Objects<a class=anchor href=#step-3-nested-objects>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;image&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;object&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;required&#34;</span>: [<span style=color:#e6db74>&#34;repository&#34;</span>, <span style=color:#e6db74>&#34;tag&#34;</span>],
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;repository&#34;</span>: {
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;minLength&#34;</span>: <span style=color:#ae81ff>1</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;Container image repository&#34;</span>
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;tag&#34;</span>: {
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;pattern&#34;</span>: <span style=color:#e6db74>&#34;^[a-zA-Z0-9._-]+$&#34;</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;Container image tag&#34;</span>
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;pullPolicy&#34;</span>: {
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;enum&#34;</span>: [<span style=color:#e6db74>&#34;Always&#34;</span>, <span style=color:#e6db74>&#34;IfNotPresent&#34;</span>, <span style=color:#e6db74>&#34;Never&#34;</span>],
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;Image pull policy&#34;</span>
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>      }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}</span></span></code></pre></div><p><strong>What this validates:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># ✅ Valid</span>
+</span></span><span style=display:flex><span>helm install my-app . <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>  --set image.repository<span style=color:#f92672>=</span>myapp <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>  --set image.tag<span style=color:#f92672>=</span>v1.0.0
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># ❌ Invalid - missing required field</span>
+</span></span><span style=display:flex><span>helm install my-app . --set image.repository<span style=color:#f92672>=</span>myapp
+</span></span><span style=display:flex><span><span style=color:#75715e># Error: image requires property &#34;tag&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># ❌ Invalid - invalid enum value</span>
+</span></span><span style=display:flex><span>helm install my-app . --set image.pullPolicy<span style=color:#f92672>=</span>Sometimes
+</span></span><span style=display:flex><span><span style=color:#75715e># Error: image.pullPolicy must be one of: Always, IfNotPresent, Never</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># ❌ Invalid - invalid tag format</span>
+</span></span><span style=display:flex><span>helm install my-app . --set image.tag<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;1.0.0 beta&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Error: image.tag must match pattern ^[a-zA-Z0-9._-]+$</span></span></span></code></pre></div><hr><h3 id=step-4-arrays>Step 4: Arrays<a class=anchor href=#step-4-arrays>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;ingress&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;object&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;hosts&#34;</span>: {
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;array&#34;</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;items&#34;</span>: {
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;object&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&#34;required&#34;</span>: [<span style=color:#e6db74>&#34;host&#34;</span>],
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>              <span style=color:#f92672>&#34;host&#34;</span>: {
+</span></span><span style=display:flex><span>                <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>                <span style=color:#f92672>&#34;format&#34;</span>: <span style=color:#e6db74>&#34;hostname&#34;</span>,
+</span></span><span style=display:flex><span>                <span style=color:#f92672>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;Hostname for ingress&#34;</span>
+</span></span><span style=display:flex><span>              },
+</span></span><span style=display:flex><span>              <span style=color:#f92672>&#34;paths&#34;</span>: {
+</span></span><span style=display:flex><span>                <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;array&#34;</span>,
+</span></span><span style=display:flex><span>                <span style=color:#f92672>&#34;minItems&#34;</span>: <span style=color:#ae81ff>1</span>,
+</span></span><span style=display:flex><span>                <span style=color:#f92672>&#34;items&#34;</span>: {
+</span></span><span style=display:flex><span>                  <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;object&#34;</span>,
+</span></span><span style=display:flex><span>                  <span style=color:#f92672>&#34;required&#34;</span>: [<span style=color:#e6db74>&#34;path&#34;</span>, <span style=color:#e6db74>&#34;pathType&#34;</span>],
+</span></span><span style=display:flex><span>                  <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>                    <span style=color:#f92672>&#34;path&#34;</span>: {
+</span></span><span style=display:flex><span>                      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>                      <span style=color:#f92672>&#34;pattern&#34;</span>: <span style=color:#e6db74>&#34;^/&#34;</span>,
+</span></span><span style=display:flex><span>                      <span style=color:#f92672>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;URL path (must start with /)&#34;</span>
+</span></span><span style=display:flex><span>                    },
+</span></span><span style=display:flex><span>                    <span style=color:#f92672>&#34;pathType&#34;</span>: {
+</span></span><span style=display:flex><span>                      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>                      <span style=color:#f92672>&#34;enum&#34;</span>: [<span style=color:#e6db74>&#34;Exact&#34;</span>, <span style=color:#e6db74>&#34;Prefix&#34;</span>, <span style=color:#e6db74>&#34;ImplementationSpecific&#34;</span>]
+</span></span><span style=display:flex><span>                    }
+</span></span><span style=display:flex><span>                  }
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>              }
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>          }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>      }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}</span></span></code></pre></div><p><strong>What this validates:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># ✅ Valid</span>
+</span></span><span style=display:flex><span>helm install my-app . <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>  --set <span style=color:#e6db74>&#39;ingress.hosts[0].host=example.com&#39;</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>  --set <span style=color:#e6db74>&#39;ingress.hosts[0].paths[0].path=/&#39;</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>  --set <span style=color:#e6db74>&#39;ingress.hosts[0].paths[0].pathType=Prefix&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># ❌ Invalid - path doesn&#39;t start with /</span>
+</span></span><span style=display:flex><span>helm install my-app . <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>  --set <span style=color:#e6db74>&#39;ingress.hosts[0].paths[0].path=api&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Error: path must match pattern ^/</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># ❌ Invalid - invalid pathType</span>
+</span></span><span style=display:flex><span>helm install my-app . <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>  --set <span style=color:#e6db74>&#39;ingress.hosts[0].paths[0].pathType=Wildcard&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Error: pathType must be one of: Exact, Prefix, ImplementationSpecific</span></span></span></code></pre></div><hr><h3 id=step-5-conditional-validation-advanced>Step 5: Conditional Validation (Advanced)<a class=anchor href=#step-5-conditional-validation-advanced>#</a></h3><p><strong>Problem:</strong> When autoscaling is enabled, <code>minReplicas</code> and <code>maxReplicas</code> should be required.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;autoscaling&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;object&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;enabled&#34;</span>: {
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;boolean&#34;</span>
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;minReplicas&#34;</span>: {
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;integer&#34;</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;minimum&#34;</span>: <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;maxReplicas&#34;</span>: {
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;integer&#34;</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;minimum&#34;</span>: <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>      },
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;if&#34;</span>: {
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;enabled&#34;</span>: { <span style=color:#f92672>&#34;const&#34;</span>: <span style=color:#66d9ef>true</span> }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>      },
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;then&#34;</span>: {
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;required&#34;</span>: [<span style=color:#e6db74>&#34;minReplicas&#34;</span>, <span style=color:#e6db74>&#34;maxReplicas&#34;</span>],
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;maxReplicas&#34;</span>: {
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;integer&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&#34;minimum&#34;</span>: { <span style=color:#f92672>&#34;$data&#34;</span>: <span style=color:#e6db74>&#34;1/minReplicas&#34;</span> }
+</span></span><span style=display:flex><span>          }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>      }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}</span></span></code></pre></div><p><strong>What this validates:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># ✅ Valid - autoscaling disabled, no replicas needed</span>
+</span></span><span style=display:flex><span>helm install my-app . --set autoscaling.enabled<span style=color:#f92672>=</span>false
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># ❌ Invalid - enabled but missing minReplicas</span>
+</span></span><span style=display:flex><span>helm install my-app . <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>  --set autoscaling.enabled<span style=color:#f92672>=</span>true <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>  --set autoscaling.maxReplicas<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Error: when autoscaling.enabled=true, minReplicas is required</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># ❌ Invalid - maxReplicas &lt; minReplicas</span>
+</span></span><span style=display:flex><span>helm install my-app . <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>  --set autoscaling.enabled<span style=color:#f92672>=</span>true <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>  --set autoscaling.minReplicas<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>  --set autoscaling.maxReplicas<span style=color:#f92672>=</span><span style=color:#ae81ff>5</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Error: maxReplicas must be &gt;= minReplicas</span></span></span></code></pre></div><hr><h3 id=step-6-cross-field-validation>Step 6: Cross-Field Validation<a class=anchor href=#step-6-cross-field-validation>#</a></h3><p><strong>Problem:</strong> When <code>ingress.enabled=true</code>, you must set <code>service.type=ClusterIP</code></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;ingress&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;object&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;enabled&#34;</span>: { <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;boolean&#34;</span> }
+</span></span><span style=display:flex><span>      }
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;service&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;object&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;type&#34;</span>: {
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;enum&#34;</span>: [<span style=color:#e6db74>&#34;ClusterIP&#34;</span>, <span style=color:#e6db74>&#34;NodePort&#34;</span>, <span style=color:#e6db74>&#34;LoadBalancer&#34;</span>]
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>      }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;if&#34;</span>: {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;ingress&#34;</span>: {
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;properties&#34;</span>: { <span style=color:#f92672>&#34;enabled&#34;</span>: { <span style=color:#f92672>&#34;const&#34;</span>: <span style=color:#66d9ef>true</span> } }
+</span></span><span style=display:flex><span>      }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;then&#34;</span>: {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;service&#34;</span>: {
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;type&#34;</span>: {
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&#34;const&#34;</span>: <span style=color:#e6db74>&#34;ClusterIP&#34;</span>
+</span></span><span style=display:flex><span>          }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>      }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}</span></span></code></pre></div><hr><h2 id=complete-real-world-example><strong>Complete Real-World Example</strong><a class=anchor href=#complete-real-world-example>#</a></h2><p>Here&rsquo;s a production-ready schema:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;$schema&#34;</span>: <span style=color:#e6db74>&#34;http://json-schema.org/draft-07/schema#&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;title&#34;</span>: <span style=color:#e6db74>&#34;My Application Helm Chart Values&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;object&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;required&#34;</span>: [<span style=color:#e6db74>&#34;image&#34;</span>],
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;replicaCount&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;integer&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;minimum&#34;</span>: <span style=color:#ae81ff>1</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;maximum&#34;</span>: <span style=color:#ae81ff>100</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;default&#34;</span>: <span style=color:#ae81ff>1</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;Number of pod replicas&#34;</span>
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;image&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;object&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;required&#34;</span>: [<span style=color:#e6db74>&#34;repository&#34;</span>, <span style=color:#e6db74>&#34;tag&#34;</span>],
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;repository&#34;</span>: {
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;minLength&#34;</span>: <span style=color:#ae81ff>1</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;Container image repository&#34;</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;examples&#34;</span>: [<span style=color:#e6db74>&#34;nginx&#34;</span>, <span style=color:#e6db74>&#34;myregistry.io/myapp&#34;</span>]
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;tag&#34;</span>: {
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;pattern&#34;</span>: <span style=color:#e6db74>&#34;^[a-zA-Z0-9._-]+$&#34;</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;Container image tag (no spaces allowed)&#34;</span>
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;pullPolicy&#34;</span>: {
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;enum&#34;</span>: [<span style=color:#e6db74>&#34;Always&#34;</span>, <span style=color:#e6db74>&#34;IfNotPresent&#34;</span>, <span style=color:#e6db74>&#34;Never&#34;</span>],
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;default&#34;</span>: <span style=color:#e6db74>&#34;IfNotPresent&#34;</span>
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>      },
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;additionalProperties&#34;</span>: <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;service&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;object&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;type&#34;</span>: {
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;enum&#34;</span>: [<span style=color:#e6db74>&#34;ClusterIP&#34;</span>, <span style=color:#e6db74>&#34;NodePort&#34;</span>, <span style=color:#e6db74>&#34;LoadBalancer&#34;</span>, <span style=color:#e6db74>&#34;ExternalName&#34;</span>],
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;default&#34;</span>: <span style=color:#e6db74>&#34;ClusterIP&#34;</span>
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;port&#34;</span>: {
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;integer&#34;</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;minimum&#34;</span>: <span style=color:#ae81ff>1</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;maximum&#34;</span>: <span style=color:#ae81ff>65535</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;default&#34;</span>: <span style=color:#ae81ff>80</span>
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>      }
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;ingress&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;object&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;enabled&#34;</span>: {
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;boolean&#34;</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;default&#34;</span>: <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;className&#34;</span>: {
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;Ingress class name&#34;</span>
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;annotations&#34;</span>: {
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;object&#34;</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;additionalProperties&#34;</span>: {
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+</span></span><span style=display:flex><span>          }
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;hosts&#34;</span>: {
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;array&#34;</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;minItems&#34;</span>: <span style=color:#ae81ff>1</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;items&#34;</span>: {
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;object&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&#34;required&#34;</span>: [<span style=color:#e6db74>&#34;host&#34;</span>],
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>              <span style=color:#f92672>&#34;host&#34;</span>: {
+</span></span><span style=display:flex><span>                <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>                <span style=color:#f92672>&#34;format&#34;</span>: <span style=color:#e6db74>&#34;hostname&#34;</span>
+</span></span><span style=display:flex><span>              },
+</span></span><span style=display:flex><span>              <span style=color:#f92672>&#34;paths&#34;</span>: {
+</span></span><span style=display:flex><span>                <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;array&#34;</span>,
+</span></span><span style=display:flex><span>                <span style=color:#f92672>&#34;minItems&#34;</span>: <span style=color:#ae81ff>1</span>,
+</span></span><span style=display:flex><span>                <span style=color:#f92672>&#34;items&#34;</span>: {
+</span></span><span style=display:flex><span>                  <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;object&#34;</span>,
+</span></span><span style=display:flex><span>                  <span style=color:#f92672>&#34;required&#34;</span>: [<span style=color:#e6db74>&#34;path&#34;</span>, <span style=color:#e6db74>&#34;pathType&#34;</span>],
+</span></span><span style=display:flex><span>                  <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>                    <span style=color:#f92672>&#34;path&#34;</span>: {
+</span></span><span style=display:flex><span>                      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>                      <span style=color:#f92672>&#34;pattern&#34;</span>: <span style=color:#e6db74>&#34;^/&#34;</span>
+</span></span><span style=display:flex><span>                    },
+</span></span><span style=display:flex><span>                    <span style=color:#f92672>&#34;pathType&#34;</span>: {
+</span></span><span style=display:flex><span>                      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>                      <span style=color:#f92672>&#34;enum&#34;</span>: [<span style=color:#e6db74>&#34;Exact&#34;</span>, <span style=color:#e6db74>&#34;Prefix&#34;</span>, <span style=color:#e6db74>&#34;ImplementationSpecific&#34;</span>]
+</span></span><span style=display:flex><span>                    }
+</span></span><span style=display:flex><span>                  }
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>              }
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>          }
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;tls&#34;</span>: {
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;array&#34;</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;items&#34;</span>: {
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;object&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&#34;required&#34;</span>: [<span style=color:#e6db74>&#34;secretName&#34;</span>],
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>              <span style=color:#f92672>&#34;secretName&#34;</span>: {
+</span></span><span style=display:flex><span>                <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>                <span style=color:#f92672>&#34;minLength&#34;</span>: <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>              },
+</span></span><span style=display:flex><span>              <span style=color:#f92672>&#34;hosts&#34;</span>: {
+</span></span><span style=display:flex><span>                <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;array&#34;</span>,
+</span></span><span style=display:flex><span>                <span style=color:#f92672>&#34;items&#34;</span>: {
+</span></span><span style=display:flex><span>                  <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>                  <span style=color:#f92672>&#34;format&#34;</span>: <span style=color:#e6db74>&#34;hostname&#34;</span>
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>              }
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>          }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>      },
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;if&#34;</span>: {
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;properties&#34;</span>: { <span style=color:#f92672>&#34;enabled&#34;</span>: { <span style=color:#f92672>&#34;const&#34;</span>: <span style=color:#66d9ef>true</span> } }
+</span></span><span style=display:flex><span>      },
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;then&#34;</span>: {
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;required&#34;</span>: [<span style=color:#e6db74>&#34;hosts&#34;</span>]
+</span></span><span style=display:flex><span>      }
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;resources&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;object&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;limits&#34;</span>: {
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;object&#34;</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&#34;cpu&#34;</span>: {
+</span></span><span style=display:flex><span>              <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>              <span style=color:#f92672>&#34;pattern&#34;</span>: <span style=color:#e6db74>&#34;^[0-9]+(m|[0-9])*$&#34;</span>,
+</span></span><span style=display:flex><span>              <span style=color:#f92672>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;CPU limit (e.g., 100m, 1, 2)&#34;</span>
+</span></span><span style=display:flex><span>            },
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&#34;memory&#34;</span>: {
+</span></span><span style=display:flex><span>              <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>              <span style=color:#f92672>&#34;pattern&#34;</span>: <span style=color:#e6db74>&#34;^[0-9]+(Mi|Gi|M|G)$&#34;</span>,
+</span></span><span style=display:flex><span>              <span style=color:#f92672>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;Memory limit (e.g., 128Mi, 1Gi)&#34;</span>
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>          }
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;requests&#34;</span>: {
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;object&#34;</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&#34;cpu&#34;</span>: {
+</span></span><span style=display:flex><span>              <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>              <span style=color:#f92672>&#34;pattern&#34;</span>: <span style=color:#e6db74>&#34;^[0-9]+(m|[0-9])*$&#34;</span>
+</span></span><span style=display:flex><span>            },
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&#34;memory&#34;</span>: {
+</span></span><span style=display:flex><span>              <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>              <span style=color:#f92672>&#34;pattern&#34;</span>: <span style=color:#e6db74>&#34;^[0-9]+(Mi|Gi|M|G)$&#34;</span>
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>          }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>      }
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;autoscaling&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;object&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;enabled&#34;</span>: {
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;boolean&#34;</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;default&#34;</span>: <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;minReplicas&#34;</span>: {
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;integer&#34;</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;minimum&#34;</span>: <span style=color:#ae81ff>1</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;maximum&#34;</span>: <span style=color:#ae81ff>100</span>
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;maxReplicas&#34;</span>: {
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;integer&#34;</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;minimum&#34;</span>: <span style=color:#ae81ff>1</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;maximum&#34;</span>: <span style=color:#ae81ff>1000</span>
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;targetCPUUtilizationPercentage&#34;</span>: {
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;integer&#34;</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;minimum&#34;</span>: <span style=color:#ae81ff>1</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;maximum&#34;</span>: <span style=color:#ae81ff>100</span>
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>      },
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;if&#34;</span>: {
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;properties&#34;</span>: { <span style=color:#f92672>&#34;enabled&#34;</span>: { <span style=color:#f92672>&#34;const&#34;</span>: <span style=color:#66d9ef>true</span> } }
+</span></span><span style=display:flex><span>      },
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;then&#34;</span>: {
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;required&#34;</span>: [<span style=color:#e6db74>&#34;minReplicas&#34;</span>, <span style=color:#e6db74>&#34;maxReplicas&#34;</span>]
+</span></span><span style=display:flex><span>      }
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;nodeSelector&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;object&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;additionalProperties&#34;</span>: {
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+</span></span><span style=display:flex><span>      }
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;tolerations&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;array&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;items&#34;</span>: {
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;object&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;key&#34;</span>: { <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span> },
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;operator&#34;</span>: {
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&#34;enum&#34;</span>: [<span style=color:#e6db74>&#34;Exists&#34;</span>, <span style=color:#e6db74>&#34;Equal&#34;</span>]
+</span></span><span style=display:flex><span>          },
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;value&#34;</span>: { <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span> },
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;effect&#34;</span>: {
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&#34;enum&#34;</span>: [<span style=color:#e6db74>&#34;NoSchedule&#34;</span>, <span style=color:#e6db74>&#34;PreferNoSchedule&#34;</span>, <span style=color:#e6db74>&#34;NoExecute&#34;</span>]
+</span></span><span style=display:flex><span>          }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>      }
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;affinity&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;object&#34;</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;additionalProperties&#34;</span>: <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span>}</span></span></code></pre></div><hr><h2 id=advanced-patterns><strong>Advanced Patterns</strong><a class=anchor href=#advanced-patterns>#</a></h2><h3 id=pattern-1-oneof-mutually-exclusive-options>Pattern 1: OneOf (Mutually Exclusive Options)<a class=anchor href=#pattern-1-oneof-mutually-exclusive-options>#</a></h3><p><strong>Use case:</strong> Either use <code>existingSecret</code> OR provide <code>username</code>/<code>password</code>, but not both.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;database&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;object&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;oneOf&#34;</span>: [
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;required&#34;</span>: [<span style=color:#e6db74>&#34;existingSecret&#34;</span>],
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&#34;existingSecret&#34;</span>: {
+</span></span><span style=display:flex><span>              <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>              <span style=color:#f92672>&#34;minLength&#34;</span>: <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>          }
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;required&#34;</span>: [<span style=color:#e6db74>&#34;username&#34;</span>, <span style=color:#e6db74>&#34;password&#34;</span>],
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&#34;username&#34;</span>: {
+</span></span><span style=display:flex><span>              <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>              <span style=color:#f92672>&#34;minLength&#34;</span>: <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>            },
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&#34;password&#34;</span>: {
+</span></span><span style=display:flex><span>              <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>              <span style=color:#f92672>&#34;minLength&#34;</span>: <span style=color:#ae81ff>8</span>
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>          }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>      ]
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}</span></span></code></pre></div><h3 id=pattern-2-anyof-at-least-one-required>Pattern 2: AnyOf (At Least One Required)<a class=anchor href=#pattern-2-anyof-at-least-one-required>#</a></h3><p><strong>Use case:</strong> Must specify at least one of: <code>httpGet</code>, <code>exec</code>, or <code>tcpSocket</code> for liveness probe.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;livenessProbe&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;object&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;anyOf&#34;</span>: [
+</span></span><span style=display:flex><span>        { <span style=color:#f92672>&#34;required&#34;</span>: [<span style=color:#e6db74>&#34;httpGet&#34;</span>] },
+</span></span><span style=display:flex><span>        { <span style=color:#f92672>&#34;required&#34;</span>: [<span style=color:#e6db74>&#34;exec&#34;</span>] },
+</span></span><span style=display:flex><span>        { <span style=color:#f92672>&#34;required&#34;</span>: [<span style=color:#e6db74>&#34;tcpSocket&#34;</span>] }
+</span></span><span style=display:flex><span>      ],
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;httpGet&#34;</span>: {
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;object&#34;</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;required&#34;</span>: [<span style=color:#e6db74>&#34;path&#34;</span>, <span style=color:#e6db74>&#34;port&#34;</span>],
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&#34;path&#34;</span>: { <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span> },
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&#34;port&#34;</span>: { <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;integer&#34;</span> }
+</span></span><span style=display:flex><span>          }
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;exec&#34;</span>: {
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;object&#34;</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;required&#34;</span>: [<span style=color:#e6db74>&#34;command&#34;</span>],
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&#34;command&#34;</span>: {
+</span></span><span style=display:flex><span>              <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;array&#34;</span>,
+</span></span><span style=display:flex><span>              <span style=color:#f92672>&#34;items&#34;</span>: { <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span> }
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>          }
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;tcpSocket&#34;</span>: {
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;object&#34;</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;required&#34;</span>: [<span style=color:#e6db74>&#34;port&#34;</span>],
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&#34;port&#34;</span>: { <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;integer&#34;</span> }
+</span></span><span style=display:flex><span>          }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>      }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}</span></span></code></pre></div><h3 id=pattern-3-allof-multiple-constraints>Pattern 3: AllOf (Multiple Constraints)<a class=anchor href=#pattern-3-allof-multiple-constraints>#</a></h3><p><strong>Use case:</strong> Production deployments must have both resource limits AND pod disruption budget.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;environment&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;enum&#34;</span>: [<span style=color:#e6db74>&#34;dev&#34;</span>, <span style=color:#e6db74>&#34;staging&#34;</span>, <span style=color:#e6db74>&#34;production&#34;</span>]
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;allOf&#34;</span>: [
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;if&#34;</span>: {
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;properties&#34;</span>: { <span style=color:#f92672>&#34;environment&#34;</span>: { <span style=color:#f92672>&#34;const&#34;</span>: <span style=color:#e6db74>&#34;production&#34;</span> } }
+</span></span><span style=display:flex><span>      },
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;then&#34;</span>: {
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;required&#34;</span>: [<span style=color:#e6db74>&#34;resources&#34;</span>],
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;resources&#34;</span>: {
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&#34;required&#34;</span>: [<span style=color:#e6db74>&#34;limits&#34;</span>, <span style=color:#e6db74>&#34;requests&#34;</span>]
+</span></span><span style=display:flex><span>          },
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;podDisruptionBudget&#34;</span>: {
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&#34;required&#34;</span>: [<span style=color:#e6db74>&#34;enabled&#34;</span>],
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>              <span style=color:#f92672>&#34;enabled&#34;</span>: { <span style=color:#f92672>&#34;const&#34;</span>: <span style=color:#66d9ef>true</span> }
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>          }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>      }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  ]
+</span></span><span style=display:flex><span>}</span></span></code></pre></div><hr><h2 id=testing-your-schema><strong>Testing Your Schema</strong><a class=anchor href=#testing-your-schema>#</a></h2><h3 id=manual-testing>Manual Testing<a class=anchor href=#manual-testing>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Test with valid values</span>
+</span></span><span style=display:flex><span>helm install my-app . --dry-run
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Test with invalid values</span>
+</span></span><span style=display:flex><span>helm install my-app . <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>  --set replicaCount<span style=color:#f92672>=</span><span style=color:#ae81ff>1000</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>  --dry-run
+</span></span><span style=display:flex><span><span style=color:#75715e># Expected: Error about replicaCount max value</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Test missing required fields</span>
+</span></span><span style=display:flex><span>helm install my-app . <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>  --set image.repository<span style=color:#f92672>=</span>nginx <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>  --dry-run  <span style=color:#75715e># Missing image.tag</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Expected: Error about required field</span></span></span></code></pre></div><h3 id=automated-testing>Automated Testing<a class=anchor href=#automated-testing>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Create test values files</span>
+</span></span><span style=display:flex><span>cat &gt; test-values/valid.yaml <span style=color:#e6db74>&lt;&lt;EOF
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>image:
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>  repository: nginx
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>  tag: &#34;1.21&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>replicaCount: 3
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>EOF</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>cat &gt; test-values/invalid-replicas.yaml <span style=color:#e6db74>&lt;&lt;EOF
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>image:
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>  repository: nginx
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>  tag: &#34;1.21&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>replicaCount: 200  # Exceeds maximum
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>EOF</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>cat &gt; test-values/invalid-missing-tag.yaml <span style=color:#e6db74>&lt;&lt;EOF
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>image:
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>  repository: nginx
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>  # Missing required tag field
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>EOF</span></span></span></code></pre></div><p><strong>Test script:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>#!/bin/bash
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>set -e
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;Testing valid values...&#34;</span>
+</span></span><span style=display:flex><span>helm template my-app . -f test-values/valid.yaml &gt; /dev/null
+</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;✓ Valid values passed&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;Testing invalid replica count...&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> helm template my-app . -f test-values/invalid-replicas.yaml 2&gt;&amp;<span style=color:#ae81ff>1</span> | grep -q <span style=color:#e6db74>&#34;values don&#39;t meet&#34;</span>; <span style=color:#66d9ef>then</span>
+</span></span><span style=display:flex><span>  echo <span style=color:#e6db74>&#34;✓ Invalid replicas correctly rejected&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>else</span>
+</span></span><span style=display:flex><span>  echo <span style=color:#e6db74>&#34;✗ Invalid replicas should have been rejected&#34;</span>
+</span></span><span style=display:flex><span>  exit <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>fi</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;Testing missing required field...&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> helm template my-app . -f test-values/invalid-missing-tag.yaml 2&gt;&amp;<span style=color:#ae81ff>1</span> | grep -q <span style=color:#e6db74>&#34;required&#34;</span>; <span style=color:#66d9ef>then</span>
+</span></span><span style=display:flex><span>  echo <span style=color:#e6db74>&#34;✓ Missing tag correctly rejected&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>else</span>
+</span></span><span style=display:flex><span>  echo <span style=color:#e6db74>&#34;✗ Missing tag should have been rejected&#34;</span>
+</span></span><span style=display:flex><span>  exit <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>fi</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;All schema tests passed!&#34;</span></span></span></code></pre></div><hr><h2 id=common-gotchas><strong>Common Gotchas</strong><a class=anchor href=#common-gotchas>#</a></h2><h3 id=1-json-vs-yaml-types>1. <strong>JSON vs YAML Types</strong><a class=anchor href=#1-json-vs-yaml-types>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span><span style=color:#75715e>// ❌ WRONG - This is YAML null, not JSON null
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;default&#34;</span>: <span style=color:#66d9ef>null</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// ✅ CORRECT - Omit the default or use a valid value
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;object&#34;</span>
+</span></span><span style=display:flex><span>}</span></span></code></pre></div><h3 id=2-pattern-anchoring>2. <strong>Pattern Anchoring</strong><a class=anchor href=#2-pattern-anchoring>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span><span style=color:#75715e>// ❌ WRONG - Matches &#34;abc123def&#34;
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;pattern&#34;</span>: <span style=color:#e6db74>&#34;[0-9]+&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// ✅ CORRECT - Only matches pure numbers
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;pattern&#34;</span>: <span style=color:#e6db74>&#34;^[0-9]+$&#34;</span>
+</span></span><span style=display:flex><span>}</span></span></code></pre></div><h3 id=3-resource-quantity-validation>3. <strong>Resource Quantity Validation</strong><a class=anchor href=#3-resource-quantity-validation>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span><span style=color:#75715e>// ❌ WRONG - &#34;500&#34; is valid, &#34;500m&#34; is not
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;integer&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// ✅ CORRECT - Accepts both &#34;500m&#34; and &#34;1&#34;
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;pattern&#34;</span>: <span style=color:#e6db74>&#34;^[0-9]+(m|[0-9])*$&#34;</span>
+</span></span><span style=display:flex><span>}</span></span></code></pre></div><h3 id=4-empty-arrays>4. <strong>Empty Arrays</strong><a class=anchor href=#4-empty-arrays>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span><span style=color:#75715e>// ❌ Allows empty array
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;array&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// ✅ Requires at least one item
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;array&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;minItems&#34;</span>: <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>}</span></span></code></pre></div><hr><h2 id=quick-reference-common-validations><strong>Quick Reference: Common Validations</strong><a class=anchor href=#quick-reference-common-validations>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// String with length constraints
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#f92672>&#34;name&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;minLength&#34;</span>: <span style=color:#ae81ff>1</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;maxLength&#34;</span>: <span style=color:#ae81ff>63</span>
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// Email format
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#f92672>&#34;email&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;format&#34;</span>: <span style=color:#e6db74>&#34;email&#34;</span>
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// Hostname format
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#f92672>&#34;host&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;format&#34;</span>: <span style=color:#e6db74>&#34;hostname&#34;</span>
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// Integer with range
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#f92672>&#34;port&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;integer&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;minimum&#34;</span>: <span style=color:#ae81ff>1</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;maximum&#34;</span>: <span style=color:#ae81ff>65535</span>
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// Enum (limited choices)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#f92672>&#34;logLevel&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;enum&#34;</span>: [<span style=color:#e6db74>&#34;debug&#34;</span>, <span style=color:#e6db74>&#34;info&#34;</span>, <span style=color:#e6db74>&#34;warn&#34;</span>, <span style=color:#e6db74>&#34;error&#34;</span>]
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// Boolean
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#f92672>&#34;enabled&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;boolean&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;default&#34;</span>: <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// URL
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#f92672>&#34;webhookUrl&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;format&#34;</span>: <span style=color:#e6db74>&#34;uri&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;pattern&#34;</span>: <span style=color:#e6db74>&#34;^https://&#34;</span>
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// Kubernetes resource quantity
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#f92672>&#34;memory&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;pattern&#34;</span>: <span style=color:#e6db74>&#34;^[0-9]+(Mi|Gi|M|G|Ki|K|Ti|T|Pi|P|Ei|E)$&#34;</span>
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// Duration
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#f92672>&#34;timeout&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;pattern&#34;</span>: <span style=color:#e6db74>&#34;^[0-9]+(s|m|h)$&#34;</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}</span></span></code></pre></div><hr><h2 id=your-action-plan><strong>Your Action Plan</strong><a class=anchor href=#your-action-plan>#</a></h2><ol><li><strong>Today:</strong> Generate initial schema with <code>helm-schema</code></li><li><strong>This week:</strong> Add validation for top 5 most critical values</li><li><strong>This month:</strong> Add conditional validation and cross-field rules</li><li><strong>Ongoing:</strong> Update schema whenever you change <code>values.yaml</code></li></ol><p>Start simple, iterate based on real bugs you find!</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div></div><div></div></div><div class="flex flex-wrap justify-between"><span><a href=/musings/docs/infrastructure/production-readiness-overview/ class="flex align-center"><img src=/musings/icons/backward.svg class=book-icon alt=Backward>
+<span>Production Readiness Guide: From Docker Compose to Kubernetes</span>
+</a></span><span><a href=/musings/docs/infrastructure/job-plus-configmap-annotation/ class="flex align-center"><span>Read current state AND capture resourceVersion</span>
+<img src=/musings/icons/forward.svg class=book-icon alt=Forward></a></span></div><script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#creating-a-helm-values-schema-complete-guide>Creating a Helm Values Schema: Complete Guide</a><ul><li><a href=#quick-start-generate-schema-from-existing-valuesyaml><strong>Quick Start: Generate Schema from Existing values.yaml</strong></a><ul><li><a href=#method-1-using-helm-schema-fastest>Method 1: Using <code>helm-schema</code> (Fastest)</a></li><li><a href=#method-2-manual-creation-full-control>Method 2: Manual Creation (Full Control)</a></li></ul></li><li><a href=#building-the-schema-step-by-step><strong>Building the Schema Step-by-Step</strong></a><ul><li><a href=#step-1-basic-structure>Step 1: Basic Structure</a></li><li><a href=#step-2-simple-properties-primitives>Step 2: Simple Properties (Primitives)</a></li><li><a href=#step-3-nested-objects>Step 3: Nested Objects</a></li><li><a href=#step-4-arrays>Step 4: Arrays</a></li><li><a href=#step-5-conditional-validation-advanced>Step 5: Conditional Validation (Advanced)</a></li><li><a href=#step-6-cross-field-validation>Step 6: Cross-Field Validation</a></li></ul></li><li><a href=#complete-real-world-example><strong>Complete Real-World Example</strong></a></li><li><a href=#advanced-patterns><strong>Advanced Patterns</strong></a><ul><li><a href=#pattern-1-oneof-mutually-exclusive-options>Pattern 1: OneOf (Mutually Exclusive Options)</a></li><li><a href=#pattern-2-anyof-at-least-one-required>Pattern 2: AnyOf (At Least One Required)</a></li><li><a href=#pattern-3-allof-multiple-constraints>Pattern 3: AllOf (Multiple Constraints)</a></li></ul></li><li><a href=#testing-your-schema><strong>Testing Your Schema</strong></a><ul><li><a href=#manual-testing>Manual Testing</a></li><li><a href=#automated-testing>Automated Testing</a></li></ul></li><li><a href=#common-gotchas><strong>Common Gotchas</strong></a><ul><li><a href=#1-json-vs-yaml-types>1. <strong>JSON vs YAML Types</strong></a></li><li><a href=#2-pattern-anchoring>2. <strong>Pattern Anchoring</strong></a></li><li><a href=#3-resource-quantity-validation>3. <strong>Resource Quantity Validation</strong></a></li><li><a href=#4-empty-arrays>4. <strong>Empty Arrays</strong></a></li></ul></li><li><a href=#quick-reference-common-validations><strong>Quick Reference: Common Validations</strong></a></li><li><a href=#your-action-plan><strong>Your Action Plan</strong></a></li></ul></li></ul></nav></div></aside></main></body></html>
