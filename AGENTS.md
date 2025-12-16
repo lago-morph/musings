@@ -15,6 +15,26 @@ This project creates a Hugo static site using the Books theme to present technol
 - `PROJECT_STATUS.md` - Detailed project status (redundant with tasks.md)
 - `CONTENT_ANALYSIS.md` - Working file with document analysis notes
 
+## Context Management Guidelines
+
+**CRITICAL: Avoid reading large files unnecessarily to prevent context window overflow:**
+
+### Files to AVOID reading unless specifically needed:
+- Log files (`.log`, console outputs)
+- Generated files (`site/public/`, build outputs)
+- Large data files (`analysis-results.json`, processed content)
+- Node modules or dependency files
+- Binary files or assets
+- Hugo theme files unless modifying theme
+- Large markdown content files unless analyzing specific content
+
+### Best practices:
+- Only read files directly related to your current task
+- Use `listDirectory` to explore structure before reading files
+- Read files selectively using line ranges when possible
+- Avoid reading multiple large files simultaneously
+- Check file sizes before reading when uncertain
+
 ## Core Requirements
 
 ### File Organization
