@@ -231,12 +231,12 @@ This implementation plan converts the Hugo documentation site design into a seri
     - Ensure all user preferences and constraints are documented
     - _Requirements: 5.1, 5.2, 5.3, 5.4_
 
-  - 🔄 10.3 Write property test for documentation completeness
+  - [x] 10.3 Write property test for documentation completeness
     - **Property 12: Documentation Completeness**
     - **Validates: Requirements 5.1, 5.2, 5.3, 6.1, 6.2, 6.3**
 
 - [ ] 11. Final integration and testing
-  - [ ] 11.1 Perform end-to-end testing
+  - 🔄 11.1 Perform end-to-end testing
     - Test complete pipeline from raw documents to generated site
     - Verify all navigation features work correctly
     - Test Mermaid diagram rendering across different browsers
