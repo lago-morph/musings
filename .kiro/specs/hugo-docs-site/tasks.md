@@ -204,7 +204,7 @@ This implementation plan converts the Hugo documentation site design into a seri
     - **Property 2: Document List Display Consistency**
     - **Validates: Requirements 1.3, 1.4**
 
-  - 🔄 9.4 Write property test for table of contents
+  - [x] 9.4 Write property test for table of contents
     - **Property 4: Table of Contents Generation**
     - **Validates: Requirements 2.1**
 
@@ -231,7 +231,7 @@ This implementation plan converts the Hugo documentation site design into a seri
     - Ensure all user preferences and constraints are documented
     - _Requirements: 5.1, 5.2, 5.3, 5.4_
 
-  - [ ] 10.3 Write property test for documentation completeness
+  - 🔄 10.3 Write property test for documentation completeness
     - **Property 12: Documentation Completeness**
     - **Validates: Requirements 5.1, 5.2, 5.3, 6.1, 6.2, 6.3**
 
