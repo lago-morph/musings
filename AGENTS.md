@@ -7,11 +7,13 @@ This project creates a Hugo static site using the Books theme to present technol
 ## Essential Context Files
 
 **Read these files before starting work in a new session:**
-- `PROJECT_STATUS.md` - Current progress, completed tasks, and next priorities
-- `CONTENT_ANALYSIS.md` - Document inventory, categories, and processing rules
 - `.kiro/specs/hugo-docs-site/requirements.md` - Complete requirements specification
 - `.kiro/specs/hugo-docs-site/design.md` - System design and architecture
-- `.kiro/specs/hugo-docs-site/tasks.md` - Implementation task list with current status
+- `.kiro/specs/hugo-docs-site/tasks.md` - Implementation task list with current status and progress
+
+**Reference files (load as needed):**
+- `PROJECT_STATUS.md` - Detailed project status (redundant with tasks.md)
+- `CONTENT_ANALYSIS.md` - Working file with document analysis notes
 
 ## Core Requirements
 

@@ -1,5 +1,7 @@
 # Content Analysis for Hugo Documentation Site
 
+> **Note**: This is a working file used during content analysis. It contains detailed processing notes and should not be loaded automatically in new sessions.
+
 ## Document Inventory
 
 Based on analysis of existing markdown files, here are the documents to be processed:
