@@ -256,11 +256,11 @@ This implementation plan converts the Hugo documentation site design into a seri
     - **Property 3: Sorting Functionality Completeness**
     - **Validates: Requirements 1.5**
 
-  - 🔄 11.4 Write integration tests for Mermaid rendering
+  - [x] 11.4 Write integration tests for Mermaid rendering
     - **Property 9: Mermaid Rendering**
     - **Validates: Requirements 2.3**
 
-  - [ ] 11.5 Write integration tests for title usage
+  - 🔄 11.5 Write integration tests for title usage
     - **Property 5: Title Usage Consistency**
     - **Validates: Requirements 2.2**
 
