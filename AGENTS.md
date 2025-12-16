@@ -35,6 +35,26 @@ This project creates a Hugo static site using the Books theme to present technol
 - Avoid reading multiple large files simultaneously
 - Check file sizes before reading when uncertain
 
+## Task Execution Process
+
+**CRITICAL: Update task status to prevent work loss during unexpected session termination:**
+
+### Task Status Tracking:
+1. **Before starting a task**: Update tasks.md to mark task as "🔄 IN PROGRESS"
+2. **After completing a task**: Update tasks.md to mark task as "✅ COMPLETE" 
+3. **Commit and push after each task completion** to preserve progress
+4. **Never work on multiple tasks simultaneously** - complete one fully before starting another
+
+### Status Markers:
+- `[ ]` - Not started
+- `🔄` - In progress (currently being worked on)
+- `✅` - Complete
+
+### Recovery Process:
+- If session terminates unexpectedly, the next agent can see exactly which task was in progress
+- Maximum of one task should ever be marked "🔄 IN PROGRESS" at any time
+- All completed work is preserved in git commits after each task
+
 ## Core Requirements
 
 ### File Organization
