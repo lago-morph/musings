@@ -1,3 +1,23 @@
+---
+title: "Core Strategy: Progressive Delivery with Blast Radius Containment"
+summary: "Perfect - I now have a clear picture of your situation. Let me provide a high-level conceptual approach to release management for your platform."
+keywords:
+  - "platform"
+  - "staging"
+  - "argocd"
+  - "production"
+  - "metrics"
+  - "deployment"
+  - "workflow"
+  - "observability"
+category: "infrastructure"
+categoryName: "Infrastructure"
+weight: 3
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 Perfect - I now have a clear picture of your situation. Let me provide a high-level conceptual approach to release management for your platform.
 
 ## Core Strategy: Progressive Delivery with Blast Radius Containment

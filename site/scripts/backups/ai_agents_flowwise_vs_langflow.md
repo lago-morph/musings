@@ -1,3 +1,23 @@
+---
+title: "Flowise vs Langflow: Detailed Comparison"
+summary: "Flowise: More polished UI, easier for beginners, Node. Js-based Langflow: More customizable, Python-native, better for developers."
+keywords:
+  - "python"
+  - "agent"
+  - "langchain"
+  - "typescript"
+  - "ai"
+  - "javascript"
+  - "workflow"
+  - "logging"
+category: "ai-ml"
+categoryName: "AI & Machine Learning"
+weight: 1
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 # Flowise vs Langflow: Detailed Comparison
 
 Both are open-source, self-hosted visual builders for LangChain workflows. They're very similar in concept but have important differences.

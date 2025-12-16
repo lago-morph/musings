@@ -1,3 +1,23 @@
+---
+title: "Backstage Techdocs Pros Cons"
+summary: "Based on my research, here's a comprehensive breakdown:. Covers **TechDocs: Pros and Cons**, **Pros:**, **Cons:**."
+keywords:
+  - "backstage"
+  - "techdocs"
+  - "documentation"
+  - "wiki"
+  - "confluence"
+  - "api"
+  - "markdown"
+  - "workflow"
+category: "devplatform"
+categoryName: "Development Platforms"
+weight: 2
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 Based on my research, here's a comprehensive breakdown:
 
 ## **TechDocs: Pros and Cons**

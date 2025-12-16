@@ -1,3 +1,23 @@
+---
+title: "Overview of Text-Based UML Domain Modeling Tools"
+summary: "I'll help you research tools for documenting domain object models in UML with your specific requirements. Let me search for current options that meet your criteria. Let me search for more specific information about diagram-as-code tools and their capabilities for selective view rendering."
+keywords:
+  - "mermaid"
+  - "json"
+  - "documentation"
+  - "deployment"
+  - "container"
+  - "diagrams"
+  - "recommendations"
+  - "domainmodel"
+category: "devplatform"
+categoryName: "Development Platforms"
+weight: 2
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 I'll help you research tools for documenting domain object models in UML with your specific requirements. Let me search for current options that meet your criteria.Let me search for more specific information about diagram-as-code tools and their capabilities for selective view rendering.Now let me search for more information about how these tools handle multiple views and vector/bitmap export capabilities.Perfect! Now I have enough information to provide a comprehensive overview. Let me compile this for you.
 
 ## Overview of Text-Based UML Domain Modeling Tools

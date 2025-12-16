@@ -1,3 +1,23 @@
+---
+title: "Imperitive In Declarative"
+summary: "This is a great question about bridging declarative GitOps with imperative operational tasks. Here are several approaches to consider:."
+keywords:
+  - "workflow"
+  - "argocd"
+  - "yaml"
+  - "database"
+  - "orchestration"
+  - "kubernetes"
+  - "gitops"
+  - "react"
+category: "workflows"
+categoryName: "Workflows"
+weight: 4
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 This is a great question about bridging declarative GitOps with imperative operational tasks. Here are several approaches to consider:
 
 ## 1. Custom Kubernetes Operator

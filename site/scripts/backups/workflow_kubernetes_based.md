@@ -1,3 +1,23 @@
+---
+title: "Open Source Workflow Orchestration on Kubernetes"
+summary: "Open Source Workflow Orchestration on Kubernetes is a ai & machine learning document covering Open Source Workflow Orchestration on Kubernetes and Categories of Workflow Tools. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details."
+keywords:
+  - "workflow"
+  - "agent"
+  - "python"
+  - "prefect"
+  - "k8s"
+  - "yaml"
+  - "temporal"
+  - "ai"
+category: "ai-ml"
+categoryName: "AI & Machine Learning"
+weight: 1
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 # Open Source Workflow Orchestration on Kubernetes
 
 You're in luck - there's a rich ecosystem of workflow tools built for K8s. Let me break down the landscape based on different workflow needs.

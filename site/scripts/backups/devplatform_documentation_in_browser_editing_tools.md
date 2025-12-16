@@ -1,3 +1,23 @@
+---
+title: "In-Browser Editing Documentation Solutions"
+summary: "Based on my research, here's a comprehensive breakdown of open-source options for in-browser editing documentation sites: ---. Covers **In-Browser Editing Documentation Solutions**, **Category 1: Wiki-Like Solutions (Instant Browser Editing)**, **Top Open-Source Wiki Options:**."
+keywords:
+  - "wiki"
+  - "documentation"
+  - "database"
+  - "markdown"
+  - "workflow"
+  - "java"
+  - "sql"
+  - "platform"
+category: "devplatform"
+categoryName: "Development Platforms"
+weight: 2
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 Based on my research, here's a comprehensive breakdown of open-source options for in-browser editing documentation sites:
 
 ---

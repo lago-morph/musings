@@ -1,3 +1,21 @@
+---
+title: "Getting Started Concise"
+summary: "Here's a concise strategy: 1. Schema Validation First (Quickest Win) - Run helm template to generate manifests - Validate with kubeconform or kubeval against Kubernetes schemas - Automate in CI/CD 2. Unit Tests (Template Logic) - Use helm-unittest plugin - Start with critical templates (deployments, services, configmaps) - Test: default values render correctly, conditional logic works, value overrides produce expected output - Focus on areas with complex templating (if/else, loops, merges) 3."
+keywords:
+  - "deployment"
+  - "helm"
+  - "kubernetes"
+  - "production"
+  - "testing"
+  - "getting-started-concise"
+category: "infrastructure"
+categoryName: "Infrastructure"
+weight: 3
+date: "2025-12-16"
+draft: false
+toc: false
+---
+
 Here's a concise strategy:
 
 **1. Schema Validation First (Quickest Win)**

@@ -1,3 +1,23 @@
+---
+title: "Contents"
+summary: "Production Readiness Deep-Dive Prompt Guide is a infrastructure document covering Production Readiness Deep-Dive Prompt Guide and How to Use This Guide. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details."
+keywords:
+  - "kubernetes"
+  - "production"
+  - "database"
+  - "deployment"
+  - "monitoring"
+  - "observability"
+  - "metrics"
+  - "logging"
+category: "infrastructure"
+categoryName: "Infrastructure"
+weight: 3
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 # Production Readiness Deep-Dive Prompt Guide
 
 ## How to Use This Guide

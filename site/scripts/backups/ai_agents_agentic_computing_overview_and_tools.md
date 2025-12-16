@@ -1,3 +1,23 @@
+---
+title: "Agentic Computing Overview And Tools"
+summary: "Great question - this is a rapidly evolving space. Let me break down the concepts and tooling landscape."
+keywords:
+  - "agent"
+  - "ai"
+  - "llm"
+  - "workflow"
+  - "agentic"
+  - "observability"
+  - "langgraph"
+  - "langchain"
+category: "ai-ml"
+categoryName: "AI & Machine Learning"
+weight: 1
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 Great question - this is a rapidly evolving space. Let me break down the concepts and tooling landscape.
 
 ## What "Agentic Computing" Means

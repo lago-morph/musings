@@ -5,7 +5,7 @@
       "path": "ai\\agents\\agentic_computing_overview_and_tools.md",
       "title": "Agentic Computing Overview And Tools",
       "frontMatterLength": 401,
-      "originalLength": 6747,
+      "originalLength": 7148,
       "enhancedLength": 7148
     },
     {
@@ -13,7 +13,7 @@
       "path": "ai\\agents\\agno_vs_langchain.md",
       "title": "Agno Vs Langchain",
       "frontMatterLength": 483,
-      "originalLength": 2464,
+      "originalLength": 2947,
       "enhancedLength": 2947
     },
     {
@@ -21,7 +21,7 @@
       "path": "ai\\agents\\flowwise_vs_langflow.md",
       "title": "Flowise vs Langflow: Detailed Comparison",
       "frontMatterLength": 432,
-      "originalLength": 9329,
+      "originalLength": 9761,
       "enhancedLength": 9761
     },
     {
@@ -29,7 +29,7 @@
       "path": "ai\\agents\\langchain_architecture.md",
       "title": "Langchain Architecture",
       "frontMatterLength": 584,
-      "originalLength": 6261,
+      "originalLength": 6856,
       "enhancedLength": 6845
     },
     {
@@ -37,7 +37,7 @@
       "path": "ai\\agents\\tools_overview_and_getting_started.md",
       "title": "Self-Hosted Open Source Agent Tools",
       "frontMatterLength": 588,
-      "originalLength": 7738,
+      "originalLength": 8326,
       "enhancedLength": 8326
     },
     {
@@ -45,7 +45,7 @@
       "path": "ai\\mcp\\k8s_mcp_servers.md",
       "title": "K8s Mcp Servers",
       "frontMatterLength": 436,
-      "originalLength": 5048,
+      "originalLength": 5484,
       "enhancedLength": 5484
     },
     {
@@ -53,7 +53,7 @@
       "path": "ai\\observability\\llm_tracing_metrics_comparison.md",
       "title": "Llm Tracing Metrics Comparison",
       "frontMatterLength": 574,
-      "originalLength": 13607,
+      "originalLength": 14181,
       "enhancedLength": 14181
     },
     {
@@ -61,7 +61,7 @@
       "path": "ai\\orchestration\\n8n_overview.md",
       "title": "n8n Overview",
       "frontMatterLength": 516,
-      "originalLength": 5908,
+      "originalLength": 6441,
       "enhancedLength": 6424
     },
     {
@@ -69,15 +69,15 @@
       "path": "ai\\tools\\kiro_ide_comparison_tools.md",
       "title": "Kiro IDE: Comprehensive Analysis, Comparisons & Optimal Workflows",
       "frontMatterLength": 823,
-      "originalLength": 31092,
-      "enhancedLength": 31915
+      "originalLength": 31704,
+      "enhancedLength": 32527
     },
     {
       "success": true,
       "path": "devplatform\\documentation\\backstage_techdocs_pros_cons.md",
       "title": "Backstage Techdocs Pros Cons",
       "frontMatterLength": 416,
-      "originalLength": 3262,
+      "originalLength": 3678,
       "enhancedLength": 3678
     },
     {
@@ -85,7 +85,7 @@
       "path": "devplatform\\documentation\\in_browser_editing_tools.md",
       "title": "In-Browser Editing Documentation Solutions",
       "frontMatterLength": 588,
-      "originalLength": 8278,
+      "originalLength": 8866,
       "enhancedLength": 8866
     },
     {
@@ -93,7 +93,7 @@
       "path": "devplatform\\documentation\\notion_overview.md",
       "title": "Notion: A Comprehensive Overview",
       "frontMatterLength": 474,
-      "originalLength": 6422,
+      "originalLength": 6896,
       "enhancedLength": 6896
     },
     {
@@ -101,7 +101,7 @@
       "path": "devplatform\\gitops\\crossplane_solution.md",
       "title": "Pseudocode for composition function",
       "frontMatterLength": 424,
-      "originalLength": 9721,
+      "originalLength": 10145,
       "enhancedLength": 10145
     },
     {
@@ -109,7 +109,7 @@
       "path": "devplatform\\gitops\\imperitive_in_declarative.md",
       "title": "Imperitive In Declarative",
       "frontMatterLength": 417,
-      "originalLength": 4945,
+      "originalLength": 5362,
       "enhancedLength": 5362
     },
     {
@@ -117,7 +117,7 @@
       "path": "devplatform\\gitops\\job_configmap_crossplane_abstraction.md",
       "title": "Shell script helper for Option 3",
       "frontMatterLength": 434,
-      "originalLength": 11159,
+      "originalLength": 11593,
       "enhancedLength": 11593
     },
     {
@@ -125,7 +125,7 @@
       "path": "devplatform\\gitops\\job_plus_configmap_annotation.md",
       "title": "Read current state AND capture resourceVersion",
       "frontMatterLength": 412,
-      "originalLength": 7947,
+      "originalLength": 8359,
       "enhancedLength": 8359
     },
     {
@@ -133,7 +133,7 @@
       "path": "devplatform\\kargo_argocd\\comprehensive_guide.md",
       "title": "Kargo and ArgoCD: A Comprehensive Guide",
       "frontMatterLength": 743,
-      "originalLength": 58281,
+      "originalLength": 59012,
       "enhancedLength": 59024
     },
     {
@@ -141,7 +141,7 @@
       "path": "devplatform\\kargo_argocd\\kargo_argocd_interaction.md",
       "title": "Kargo promotion step",
       "frontMatterLength": 388,
-      "originalLength": 12527,
+      "originalLength": 12915,
       "enhancedLength": 12915
     },
     {
@@ -149,7 +149,7 @@
       "path": "devplatform\\kargo_argocd\\kargo_git_tags.md",
       "title": "In subsequent stages, you can read this metadata",
       "frontMatterLength": 512,
-      "originalLength": 15448,
+      "originalLength": 15960,
       "enhancedLength": 15960
     },
     {
@@ -157,7 +157,7 @@
       "path": "devplatform\\kargo_argocd\\kargo_intro.md",
       "title": "Example Stage configuration",
       "frontMatterLength": 662,
-      "originalLength": 5485,
+      "originalLength": 6169,
       "enhancedLength": 6147
     },
     {
@@ -165,7 +165,7 @@
       "path": "devplatform\\kargo_argocd\\kargo_polyrepo.md",
       "title": "Fast-moving image Warehouse",
       "frontMatterLength": 1035,
-      "originalLength": 11198,
+      "originalLength": 12214,
       "enhancedLength": 12233
     },
     {
@@ -173,7 +173,7 @@
       "path": "devplatform\\kargo_argocd\\presentation.md",
       "title": "Kargo: GitOps Promotion for ArgoCD",
       "frontMatterLength": 588,
-      "originalLength": 38516,
+      "originalLength": 39104,
       "enhancedLength": 39104
     },
     {
@@ -181,7 +181,7 @@
       "path": "devplatform\\osscomparison\\backstage_kratix_crossplane_argocd_blueprint.md",
       "title": "Implementation Blueprint: Crossplane + Kratix + Backstage + ArgoCD",
       "frontMatterLength": 668,
-      "originalLength": 11919,
+      "originalLength": 12587,
       "enhancedLength": 12587
     },
     {
@@ -189,7 +189,7 @@
       "path": "devplatform\\osscomparison\\gitops_platform_safety.md",
       "title": "GitOps Safety Architecture for Platform Evolution",
       "frontMatterLength": 627,
-      "originalLength": 20844,
+      "originalLength": 21471,
       "enhancedLength": 21471
     },
     {
@@ -197,7 +197,7 @@
       "path": "devplatform\\osscomparison\\initial_comparison.md",
       "title": "Initial Comparison",
       "frontMatterLength": 544,
-      "originalLength": 8472,
+      "originalLength": 9016,
       "enhancedLength": 9016
     },
     {
@@ -205,7 +205,7 @@
       "path": "devplatform\\osscomparison\\oss_portal_platform_orchestration_tools.md",
       "title": "Oss Portal Platform Orchestration Tools",
       "frontMatterLength": 535,
-      "originalLength": 1529,
+      "originalLength": 2064,
       "enhancedLength": 2064
     },
     {
@@ -213,7 +213,7 @@
       "path": "devplatform\\osscomparison\\oss_vs_closed_portal.md",
       "title": "Oss Vs Closed Portal",
       "frontMatterLength": 812,
-      "originalLength": 926,
+      "originalLength": 1738,
       "enhancedLength": 1738
     },
     {
@@ -221,7 +221,7 @@
       "path": "devplatform\\platform_dev\\overview.md",
       "title": "Overview",
       "frontMatterLength": 428,
-      "originalLength": 6062,
+      "originalLength": 6547,
       "enhancedLength": 6490
     },
     {
@@ -229,7 +229,7 @@
       "path": "domainmodel\\initial_with_correlation\\CI-CD-TEMPLATES.md",
       "title": "GitHub Actions Example",
       "frontMatterLength": 560,
-      "originalLength": 14594,
+      "originalLength": 15154,
       "enhancedLength": 15154
     },
     {
@@ -237,7 +237,7 @@
       "path": "domainmodel\\initial_with_correlation\\DEVOPS-DOMAIN-MODEL-GUIDE.md",
       "title": "DevOps Domain Model: Implementation Guide",
       "frontMatterLength": 586,
-      "originalLength": 27432,
+      "originalLength": 28011,
       "enhancedLength": 28018
     },
     {
@@ -245,7 +245,7 @@
       "path": "domainmodel\\initial_with_correlation\\diagrams\\cross_diagram_reuse_guide.md",
       "title": "Cross-Diagram Domain Model Reuse in PlantUML",
       "frontMatterLength": 550,
-      "originalLength": 7817,
+      "originalLength": 8367,
       "enhancedLength": 8367
     },
     {
@@ -253,7 +253,7 @@
       "path": "domainmodel\\initial_with_correlation\\diagrams\\export_conversion.md",
       "title": "Export Conversion",
       "frontMatterLength": 464,
-      "originalLength": 6304,
+      "originalLength": 6786,
       "enhancedLength": 6768
     },
     {
@@ -261,7 +261,7 @@
       "path": "domainmodel\\initial_with_correlation\\diagrams\\one_model_multiple_diagrams.md",
       "title": "Generate all views",
       "frontMatterLength": 517,
-      "originalLength": 30059,
+      "originalLength": 30576,
       "enhancedLength": 30576
     },
     {
@@ -269,7 +269,7 @@
       "path": "domainmodel\\initial_with_correlation\\diagrams\\recommendations.md",
       "title": "Recommendations",
       "frontMatterLength": 592,
-      "originalLength": 5392,
+      "originalLength": 6017,
       "enhancedLength": 5984
     },
     {
@@ -277,7 +277,7 @@
       "path": "domainmodel\\initial_with_correlation\\EXECUTIVE-SUMMARY.md",
       "title": "DevOps Domain Model: Executive Summary",
       "frontMatterLength": 577,
-      "originalLength": 6988,
+      "originalLength": 7547,
       "enhancedLength": 7565
     },
     {
@@ -285,7 +285,7 @@
       "path": "domainmodel\\initial_with_correlation\\verification_architecture.md",
       "title": "Is This a Reasonable Architecture?",
       "frontMatterLength": 574,
-      "originalLength": 11123,
+      "originalLength": 11697,
       "enhancedLength": 11697
     },
     {
@@ -293,7 +293,7 @@
       "path": "eks_crossplane\\initial\\prompt.md",
       "title": "Crossplane EKS Management Cluster Implementation - Project Brief",
       "frontMatterLength": 667,
-      "originalLength": 4307,
+      "originalLength": 4974,
       "enhancedLength": 4974
     },
     {
@@ -301,7 +301,7 @@
       "path": "eks_crossplane\\initial\\stage1.md",
       "title": "Crossplane EKS Management Cluster - Approach Overview & Comparison",
       "frontMatterLength": 674,
-      "originalLength": 10270,
+      "originalLength": 10944,
       "enhancedLength": 10944
     },
     {
@@ -309,7 +309,7 @@
       "path": "eks_crossplane\\initial\\stage2.md",
       "title": "Stage 2: Architecture Design",
       "frontMatterLength": 689,
-      "originalLength": 17417,
+      "originalLength": 18107,
       "enhancedLength": 18106
     },
     {
@@ -317,7 +317,7 @@
       "path": "eks_crossplane\\initial\\stage3_outline.md",
       "title": "Stage 3: Implementation Patterns - Outline (Crossplane 2.1)",
       "frontMatterLength": 642,
-      "originalLength": 7314,
+      "originalLength": 7956,
       "enhancedLength": 7956
     },
     {
@@ -325,7 +325,7 @@
       "path": "eks_crossplane\\initial\\tasks.md",
       "title": "High-Level Plan: Crossplane EKS Management Cluster Implementation",
       "frontMatterLength": 636,
-      "originalLength": 7419,
+      "originalLength": 8040,
       "enhancedLength": 8055
     },
     {
@@ -333,7 +333,7 @@
       "path": "helm\\helm_layered_abstraction.md",
       "title": "Solution 2: Kustomize with Helm",
       "frontMatterLength": 437,
-      "originalLength": 18319,
+      "originalLength": 18756,
       "enhancedLength": 18756
     },
     {
@@ -341,7 +341,7 @@
       "path": "helm\\testing\\argocd_layered_values.md",
       "title": "ArgoCD and Helm Schema Validation",
       "frontMatterLength": 582,
-      "originalLength": 9625,
+      "originalLength": 10207,
       "enhancedLength": 10207
     },
     {
@@ -349,7 +349,7 @@
       "path": "helm\\testing\\getting_started_concise.md",
       "title": "Getting Started Concise",
       "frontMatterLength": 778,
-      "originalLength": 1240,
+      "originalLength": 2018,
       "enhancedLength": 2018
     },
     {
@@ -357,7 +357,7 @@
       "path": "helm\\testing\\layered_schema.md",
       "title": "Schema Validation with Layered Values Files",
       "frontMatterLength": 591,
-      "originalLength": 14407,
+      "originalLength": 14998,
       "enhancedLength": 14998
     },
     {
@@ -365,7 +365,7 @@
       "path": "helm\\testing\\non_helm_schema_validation.md",
       "title": "Non Helm Schema Validation",
       "frontMatterLength": 550,
-      "originalLength": 1386,
+      "originalLength": 1936,
       "enhancedLength": 1936
     },
     {
@@ -373,7 +373,7 @@
       "path": "helm\\testing\\schema_testing.md",
       "title": "Creating a Helm Values Schema: Complete Guide",
       "frontMatterLength": 641,
-      "originalLength": 20078,
+      "originalLength": 20728,
       "enhancedLength": 20719
     },
     {
@@ -381,7 +381,7 @@
       "path": "helm\\testing\\starting_helm_testing.md",
       "title": "Testing Complex Helm Charts: A Practical Guide",
       "frontMatterLength": 620,
-      "originalLength": 17535,
+      "originalLength": 18142,
       "enhancedLength": 18155
     },
     {
@@ -389,7 +389,7 @@
       "path": "production\\production-readiness-overview.md",
       "title": "Production Readiness Guide: From Docker Compose to Kubernetes",
       "frontMatterLength": 929,
-      "originalLength": 51226,
+      "originalLength": 52155,
       "enhancedLength": 52155
     },
     {
@@ -397,7 +397,7 @@
       "path": "production\\prompt-guide.md",
       "title": "Production Readiness Deep-Dive Prompt Guide",
       "frontMatterLength": 614,
-      "originalLength": 23454,
+      "originalLength": 24033,
       "enhancedLength": 24068
     },
     {
@@ -405,15 +405,15 @@
       "path": "production\\runbooks.md",
       "title": "Runbooks",
       "frontMatterLength": 582,
-      "originalLength": 8694,
-      "enhancedLength": 9276
+      "originalLength": 9296,
+      "enhancedLength": 9878
     },
     {
       "success": true,
       "path": "workflow\\kubernetes_based.md",
       "title": "Open Source Workflow Orchestration on Kubernetes",
       "frontMatterLength": 609,
-      "originalLength": 13319,
+      "originalLength": 13928,
       "enhancedLength": 13928
     },
     {
@@ -421,7 +421,7 @@
       "path": "workflow\\serverless_function_workflow_tools_for_kubernetes.md",
       "title": "Core Concepts",
       "frontMatterLength": 528,
-      "originalLength": 16974,
+      "originalLength": 17532,
       "enhancedLength": 17502
     }
   ],

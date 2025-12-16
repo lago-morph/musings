@@ -1,3 +1,23 @@
+---
+title: "In subsequent stages, you can read this metadata"
+summary: "Let me search more specifically for Git tag creation capabilities in Kargo. Based on my research, I can now provide you with a comprehensive answer about creating tags when Freight reaches a stage."
+keywords:
+  - "kargo"
+  - "production"
+  - "yaml"
+  - "gitops"
+  - "helm"
+  - "json"
+  - "deployment"
+  - "orchestration"
+category: "devplatform"
+categoryName: "Development Platforms"
+weight: 2
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 Let me search more specifically for Git tag creation capabilities in Kargo.Based on my research, I can now provide you with a comprehensive answer about creating tags when Freight reaches a stage.
 
 ## Can Kargo Create Tags for All Components When Freight Reaches a Stage?

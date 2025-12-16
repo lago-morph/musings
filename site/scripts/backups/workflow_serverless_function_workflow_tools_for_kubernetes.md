@@ -1,3 +1,23 @@
+---
+title: "Serverless/Function Workflows on Kubernetes"
+summary: "Core Concepts is a ai & machine learning document covering Serverless/Function Workflows on Kubernetes and Core Concepts. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details."
+keywords:
+  - "agent"
+  - "function"
+  - "api"
+  - "workflow"
+  - "yaml"
+  - "serverless"
+  - "python"
+  - "temporal"
+category: "ai-ml"
+categoryName: "AI & Machine Learning"
+weight: 1
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 # Serverless/Function Workflows on Kubernetes
 
 This is about running **event-driven, scale-to-zero workloads** where functions are triggered by events and orchestrated into workflows. Great for cost efficiency and dynamic scaling.

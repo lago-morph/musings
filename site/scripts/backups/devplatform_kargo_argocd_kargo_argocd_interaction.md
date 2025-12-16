@@ -1,3 +1,23 @@
+---
+title: "Kargo promotion step"
+summary: "Now I have comprehensive information. Let me provide a detailed answer about how Kargo interacts with ArgoCD."
+keywords:
+  - "kargo"
+  - "argocd"
+  - "api"
+  - "kubernetes"
+  - "yaml"
+  - "production"
+  - "gitops"
+  - "helm"
+category: "devplatform"
+categoryName: "Development Platforms"
+weight: 2
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 Perfect! Now I have comprehensive information. Let me provide a detailed answer about how Kargo interacts with ArgoCD.
 
 ## How Kargo Interacts with ArgoCD

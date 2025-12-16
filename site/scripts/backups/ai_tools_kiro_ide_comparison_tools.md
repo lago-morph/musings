@@ -1,3 +1,23 @@
+---
+title: "Kiro IDE: Comprehensive Analysis, Comparisons & Optimal Workflows"
+summary: "Kiro is AWS's new AI-powered IDE that introduces spec-driven development as an alternative to traditional coding approaches. Unlike competitors focused on speed, Kiro emphasizes structure and production-ready code through Requirements → Design → Implementation workflow."
+keywords:
+  - "workflow"
+  - "aws"
+  - "ai"
+  - "agent"
+  - "documentation"
+  - "production"
+  - "security"
+  - "api"
+category: "ai-ml"
+categoryName: "AI & Machine Learning"
+weight: 1
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 # Kiro IDE: Comprehensive Analysis, Comparisons & Optimal Workflows
 *Research compiled December 2025*
 

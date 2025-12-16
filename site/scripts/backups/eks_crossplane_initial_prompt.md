@@ -1,3 +1,23 @@
+---
+title: "Crossplane EKS Management Cluster Implementation - Project Brief"
+summary: "Crossplane EKS Management Cluster Implementation - Project Brief is a development platform document covering Crossplane EKS Management Cluster Implementation - Project Brief and AI Agent Persona. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details."
+keywords:
+  - "crossplane"
+  - "aws"
+  - "eks"
+  - "infrastructure"
+  - "argocd"
+  - "terraform"
+  - "kubernetes"
+  - "agent"
+category: "devplatform"
+categoryName: "Development Platforms"
+weight: 2
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 # Crossplane EKS Management Cluster Implementation - Project Brief
 
 ## AI Agent Persona

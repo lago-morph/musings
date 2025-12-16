@@ -1,5 +1,5 @@
 ---
-title: "Quick Start: Generate Schema from Existing values.yaml"
+title: "Creating a Helm Values Schema: Complete Guide"
 summary: "Creating a Helm Values Schema: Complete Guide is a infrastructure document covering Creating a Helm Values Schema: Complete Guide and **Quick Start: Generate Schema from Existing values.yaml**. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details."
 keywords:
   - "helm"

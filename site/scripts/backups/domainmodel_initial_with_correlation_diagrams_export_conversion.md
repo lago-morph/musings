@@ -1,3 +1,23 @@
+---
+title: "PlantUML Export & Embedding Options"
+summary: "Excellent question. This is a critical consideration for enterprise adoption. Let me give you a comprehensive answer about PlantUML's export and embedding capabilities."
+keywords:
+  - "mermaid"
+  - "confluence"
+  - "documentation"
+  - "diagrams"
+  - "workflow"
+  - "platform"
+  - "wiki"
+  - "javascript"
+category: "devplatform"
+categoryName: "Development Platforms"
+weight: 2
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 Excellent question! This is a critical consideration for enterprise adoption. Let me give you a comprehensive answer about PlantUML's export and embedding capabilities.
 
 ## PlantUML Export & Embedding Options

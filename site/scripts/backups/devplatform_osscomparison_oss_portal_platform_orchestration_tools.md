@@ -1,3 +1,23 @@
+---
+title: "Oss Portal Platform Orchestration Tools"
+summary: "Based on my search, here's what I found for open-source tools in these two specific categories:. Covers **Open Source Developer Portals:**, **Open Source Platform Orchestrators:**."
+keywords:
+  - "platform"
+  - "backstage"
+  - "crossplane"
+  - "kubernetes"
+  - "cloud"
+  - "devplatform"
+  - "osscomparison"
+  - "oss-portal-platform-orchestration-tools"
+category: "devplatform"
+categoryName: "Development Platforms"
+weight: 2
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 Based on my search, here's what I found for **open-source tools** in these two specific categories:
 
 ## **Open Source Developer Portals:**

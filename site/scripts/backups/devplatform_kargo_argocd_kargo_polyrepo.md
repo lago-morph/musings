@@ -1,3 +1,23 @@
+---
+title: "Response"
+summary: "How Kargo Keeps Things in Sync: - Warehouses watch multiple repositories - When changes are detected, Freight bundles are created - Each Freight contains specific versions (commits, tags, digests) of all subscribed artifacts - This bundle is promoted as an atomic unit Key Difference from Unified Versioning: - Unified tags: Everything shares one version → simple but inflexible - Kargo Freight: Each artifact has its own version, bundled together → flexible but more complex My Recommendation: For your scenario (Helm charts, Dockerfiles, and code in separate repos), I'd suggest: 1. Start with unified tagging + Kargo (hybrid approach) to get the best of both 2. Use Freight creation criteria to ensure compatible combinations 3."
+keywords:
+  - "kargo"
+  - "helm"
+  - "yaml"
+  - "container"
+  - "deployment"
+  - "orchestration"
+  - "microservices"
+  - "workflow"
+category: "devplatform"
+categoryName: "Development Platforms"
+weight: 2
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 ## Prompt
 
 If I have helm charts in one repository, dockerfiles in another, and application code spread across multiple repositories how does kargo keep them all in sync?  How does this differ from tagging all artifacts with a common release version?

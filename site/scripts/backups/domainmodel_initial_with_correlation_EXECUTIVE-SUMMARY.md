@@ -1,3 +1,23 @@
+---
+title: "What You're Building"
+summary: "DevOps Domain Model: Executive Summary is a infrastructure document covering DevOps Domain Model: Executive Summary and What You're Building. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details."
+keywords:
+  - "deployment"
+  - "docker"
+  - "k8s"
+  - "devops"
+  - "production"
+  - "container"
+  - "python"
+  - "json"
+category: "infrastructure"
+categoryName: "Infrastructure"
+weight: 3
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 # DevOps Domain Model: Executive Summary
 
 ## What You're Building

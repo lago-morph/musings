@@ -1,5 +1,5 @@
 ---
-title: "Understanding What You're Testing"
+title: "Testing Complex Helm Charts: A Practical Guide"
 summary: "Testing Complex Helm Charts: A Practical Guide is a infrastructure document covering Testing Complex Helm Charts: A Practical Guide and **Understanding What You're Testing**. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details."
 keywords:
   - "yaml"

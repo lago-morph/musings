@@ -1,5 +1,5 @@
 ---
-title: "How Kargo Works with ArgoCD to Manage Deployments"
+title: "Example Stage configuration"
 summary: "I'd be happy to explain how Kargo works with ArgoCD to manage deployments, but I want to make sure I provide you with the most accurate and current information since this involves specific tooling that may have evolved. Let me search for the latest information about Kargo and its integration with ArgoCD. Now I have comprehensive information about Kargo and ArgoCD."
 keywords:
   - "kargo"

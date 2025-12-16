@@ -1,3 +1,24 @@
+---
+title: "Production Readiness Guide: From Docker Compose to Kubernetes"
+summary: "This guide bridges the gap between traditional single-server deployments and cloud-native Kubernetes environments. If you've spent years deploying applications on Unix servers or PC hardware, where each service runs as a single process on a known machine, the shift to distributed systems represents both an operational paradigm change and an architectural evolution. The fundamental difference is deceptively simple: instead of one copy of your service running on one machine, you now have N copies running across M nodes, managed by an orchestrator you don't directly control."
+keywords:
+  - "production"
+  - "deployment"
+  - "database"
+  - "kubernetes"
+  - "rest"
+  - "metrics"
+  - "staging"
+  - "observability"
+category: "infrastructure"
+categoryName: "Infrastructure"
+weight: 3
+date: "2025-12-16"
+draft: false
+toc: true
+mermaid: true
+---
+
 # Production Readiness Guide: From Docker Compose to Kubernetes
 
 ## Introduction

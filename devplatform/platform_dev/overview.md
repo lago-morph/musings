@@ -1,5 +1,5 @@
 ---
-title: "Core Strategy: Progressive Delivery with Blast Radius Containment"
+title: "Overview"
 summary: "Perfect - I now have a clear picture of your situation. Let me provide a high-level conceptual approach to release management for your platform."
 keywords:
   - "platform"

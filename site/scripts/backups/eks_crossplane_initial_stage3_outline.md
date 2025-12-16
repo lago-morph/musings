@@ -1,3 +1,23 @@
+---
+title: "Stage 3: Implementation Patterns - Outline (Crossplane 2.1)"
+summary: "Stage 3: Implementation Patterns - Outline (Crossplane 2.1) is a development platform document covering Stage 3: Implementation Patterns - Outline (Crossplane 2.1) and Purpose. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details."
+keywords:
+  - "function"
+  - "crossplane"
+  - "helm"
+  - "deployment"
+  - "platform"
+  - "api"
+  - "aws"
+  - "observability"
+category: "devplatform"
+categoryName: "Development Platforms"
+weight: 2
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 # Stage 3: Implementation Patterns - Outline (Crossplane 2.1)
 
 ## Purpose

@@ -1,5 +1,5 @@
 ---
-title: "Management Cluster VPC Layout"
+title: "Stage 2: Architecture Design"
 summary: "Complexity Gradient: - Simplest Structure: vCluster (fewest resources per workload) - Most Transparent: Direct MRs (every resource visible) - Most Abstracted: Opinionated (user sees almost nothing) - Most Hybrid: ECS Control Plane (mixing orchestrators) Resource Count Comparison: ---. Covers Stage 2: Architecture Design, Reference Network Architecture, Management Cluster VPC Layout."
 keywords:
   - "eks"

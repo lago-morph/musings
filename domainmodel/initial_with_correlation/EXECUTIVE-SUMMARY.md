@@ -1,5 +1,5 @@
 ---
-title: "What You're Building"
+title: "DevOps Domain Model: Executive Summary"
 summary: "DevOps Domain Model: Executive Summary is a infrastructure document covering DevOps Domain Model: Executive Summary and What You're Building. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details."
 keywords:
   - "deployment"

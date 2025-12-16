@@ -1,5 +1,5 @@
 ---
-title: "Overview of Text-Based UML Domain Modeling Tools"
+title: "Recommendations"
 summary: "I'll help you research tools for documenting domain object models in UML with your specific requirements. Let me search for current options that meet your criteria. Let me search for more specific information about diagram-as-code tools and their capabilities for selective view rendering."
 keywords:
   - "mermaid"

@@ -1,5 +1,5 @@
 ---
-title: "Serverless/Function Workflows on Kubernetes"
+title: "Core Concepts"
 summary: "Core Concepts is a ai & machine learning document covering Serverless/Function Workflows on Kubernetes and Core Concepts. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details."
 keywords:
   - "agent"

@@ -1,3 +1,23 @@
+---
+title: "Llm Tracing Metrics Comparison"
+summary: "Llm Tracing Metrics Comparison is a ai & machine learning document covering LLM-Focused Observability Platforms and **Open Source Options**. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details."
+keywords:
+  - "llm"
+  - "agent"
+  - "observability"
+  - "production"
+  - "monitoring"
+  - "cloud"
+  - "metrics"
+  - "langchain"
+category: "ai-ml"
+categoryName: "AI & Machine Learning"
+weight: 1
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 ## LLM-Focused Observability Platforms
 
 You're absolutely right - generic APM tools miss the critical LLM-specific challenges: prompt debugging, chain-of-thought analysis, token costs, model behavior, and agentic decision-making visibility.

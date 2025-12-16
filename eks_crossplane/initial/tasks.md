@@ -1,5 +1,5 @@
 ---
-title: "Stage 1: Approach Overview & Comparison ✅ COMPLETE"
+title: "High-Level Plan: Crossplane EKS Management Cluster Implementation"
 summary: "This project explores different approaches to creating a Kubernetes management cluster using AWS EKS with Crossplane 2. The management cluster will be configured to provision and manage workload clusters. The primary goal is educational - to understand and compare different implementation approaches."
 keywords:
   - "crossplane"

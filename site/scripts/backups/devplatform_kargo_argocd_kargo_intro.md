@@ -1,3 +1,23 @@
+---
+title: "How Kargo Works with ArgoCD to Manage Deployments"
+summary: "I'd be happy to explain how Kargo works with ArgoCD to manage deployments, but I want to make sure I provide you with the most accurate and current information since this involves specific tooling that may have evolved. Let me search for the latest information about Kargo and its integration with ArgoCD. Now I have comprehensive information about Kargo and ArgoCD."
+keywords:
+  - "kargo"
+  - "argocd"
+  - "deployment"
+  - "container"
+  - "gitops"
+  - "helm"
+  - "kubernetes"
+  - "workflow"
+category: "devplatform"
+categoryName: "Development Platforms"
+weight: 2
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 I'd be happy to explain how Kargo works with ArgoCD to manage deployments, but I want to make sure I provide you with the most accurate and current information since this involves specific tooling that may have evolved.
 
 Let me search for the latest information about Kargo and its integration with ArgoCD.Great! Now I have comprehensive information about Kargo and ArgoCD. Let me explain how they work together.

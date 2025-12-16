@@ -1,5 +1,5 @@
 ---
-title: "LangChain: The Foundation Library"
+title: "Langchain Architecture"
 summary: "Langchain Architecture is a ai & machine learning document covering LangChain and LangGraph: Architectural Overview and **LangChain: The Foundation Library**. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details."
 keywords:
   - "langchain"

@@ -1,5 +1,5 @@
 ---
-title: "Driven vs Event: Comparison"
+title: "Kargo and ArgoCD: A Comprehensive Guide"
 summary: "This document provides a comprehensive overview of Kargo and ArgoCD, two complementary tools in the GitOps ecosystem. While ArgoCD excels at continuous deployment by syncing Kubernetes clusters to desired states stored in Git repositories, it lacks built-in promotion workflows between environments. Kargo fills this gap by orchestrating progressive rollouts across multiple stages (dev, staging, production) while maintaining GitOps principles."
 keywords:
   - "kargo"

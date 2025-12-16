@@ -1,3 +1,23 @@
+---
+title: "Cross-Diagram Domain Model Reuse in PlantUML"
+summary: "This document demonstrates how to reuse your centralized domain model across multiple UML diagram types in PlantUML. Covers Cross-Diagram Domain Model Reuse in PlantUML, Overview, What We've Created."
+keywords:
+  - "diagrams"
+  - "deployment"
+  - "documentation"
+  - "infrastructure"
+  - "function"
+  - "markdown"
+  - "domainmodel"
+  - "initial-with-correlation"
+category: "devplatform"
+categoryName: "Development Platforms"
+weight: 2
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 # Cross-Diagram Domain Model Reuse in PlantUML
 
 ## Overview

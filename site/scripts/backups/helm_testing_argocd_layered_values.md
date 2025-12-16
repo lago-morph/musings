@@ -1,3 +1,23 @@
+---
+title: "ArgoCD and Helm Schema Validation"
+summary: "ArgoCD and Helm Schema Validation is a infrastructure document covering ArgoCD and Helm Schema Validation and **How ArgoCD Uses Helm Schema Validation**. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details."
+keywords:
+  - "yaml"
+  - "argocd"
+  - "helm"
+  - "platform"
+  - "api"
+  - "production"
+  - "kubernetes"
+  - "staging"
+category: "infrastructure"
+categoryName: "Infrastructure"
+weight: 3
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 # ArgoCD and Helm Schema Validation
 
 **Short answer:** Yes, but with important caveats about **when** and **how**.

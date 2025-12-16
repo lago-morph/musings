@@ -1,3 +1,23 @@
+---
+title: "Implementation Blueprint: Crossplane + Kratix + Backstage + ArgoCD"
+summary: "Implementation Blueprint: Crossplane + Kratix + Backstage + ArgoCD is a development platform document covering Implementation Blueprint: Crossplane + Kratix + Backstage + ArgoCD and Your Current State. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details."
+keywords:
+  - "crossplane"
+  - "backstage"
+  - "yaml"
+  - "argocd"
+  - "api"
+  - "platform"
+  - "kubernetes"
+  - "aws"
+category: "devplatform"
+categoryName: "Development Platforms"
+weight: 2
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 # Implementation Blueprint: Crossplane + Kratix + Backstage + ArgoCD
 
 ## Your Current State

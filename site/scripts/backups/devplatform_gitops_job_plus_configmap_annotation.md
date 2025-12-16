@@ -1,3 +1,23 @@
+---
+title: "Read current state AND capture resourceVersion"
+summary: "Good choice - Option 3 is pragmatic and you can iterate quickly. Let me expand on it."
+keywords:
+  - "deployment"
+  - "yaml"
+  - "observability"
+  - "workflow"
+  - "argocd"
+  - "orchestration"
+  - "kubernetes"
+  - "monitoring"
+category: "infrastructure"
+categoryName: "Infrastructure"
+weight: 3
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 Good choice - Option 3 is pragmatic and you can iterate quickly. Let me expand on it.
 
 ## How Option 3 Works in Practice

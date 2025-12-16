@@ -1,3 +1,23 @@
+---
+title: "Pseudocode for composition function"
+summary: "Crossplane v2 opens up some very elegant solutions for this use case. Let me explain the key differences and how they apply."
+keywords:
+  - "function"
+  - "crossplane"
+  - "yaml"
+  - "kubernetes"
+  - "helm"
+  - "python"
+  - "argocd"
+  - "gitops"
+category: "devplatform"
+categoryName: "Development Platforms"
+weight: 2
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 Yes! Crossplane v2 opens up some very elegant solutions for this use case. Let me explain the key differences and how they apply.
 
 ## Key Crossplane v2 Improvements Relevant Here

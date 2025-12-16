@@ -1,3 +1,23 @@
+---
+title: "GitHub Actions Example"
+summary: "GitHub Actions Example is a infrastructure document covering CI/CD Pipeline Template with Metadata Injection and GitHub Actions Example. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details."
+keywords:
+  - "deployment"
+  - "docker"
+  - "production"
+  - "platform"
+  - "yaml"
+  - "container"
+  - "k8s"
+  - "security"
+category: "infrastructure"
+categoryName: "Infrastructure"
+weight: 3
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 # CI/CD Pipeline Template with Metadata Injection
 
 ## GitHub Actions Example

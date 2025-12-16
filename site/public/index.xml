@@ -48,7 +48,7 @@
       <link>http://localhost:1313/musings/docs/ai-ml/kiro-ide-comparison-tools/</link>
       <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/musings/docs/ai-ml/kiro-ide-comparison-tools/</guid>
-      <description>Kiro is AWS&amp;rsquo;s new AI-powered IDE (launched July 2025, public preview) that introduces spec-driven development as an alternative to traditional &amp;ldquo;vibe coding. &amp;quot; Unlike competitors that focus on speed and autocomplete, Kiro emphasizes structure, planning, and production-ready code through a three-phase workflow: Requirements → Design → Implementation. Key Finding: The consensus across reviews is that Kiro trades raw speed for maintainability, documentation quality, and long-term project coherence.</description>
+      <description>Kiro is AWS&amp;rsquo;s new AI-powered IDE that introduces spec-driven development as an alternative to traditional coding approaches. Unlike competitors focused on speed, Kiro emphasizes structure and production-ready code through Requirements → Design → Implementation workflow.</description>
     </item>
     <item>
       <title>LangChain: The Foundation Library</title>
@@ -247,13 +247,6 @@
       <description>Stage 3: Implementation Patterns - Outline (Crossplane 2.1) is a development platform document covering Stage 3: Implementation Patterns - Outline (Crossplane 2.1) and Purpose. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details.</description>
     </item>
     <item>
-      <title>1. Mental Model Shift (Important Framing)</title>
-      <link>http://localhost:1313/musings/docs/infrastructure/runbooks/</link>
-      <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/musings/docs/infrastructure/runbooks/</guid>
-      <description>Below is a practical, ops-first guide written for an experienced Unix/PC server architect who is new to operating distributed systems at scale. It assumes you understand the theory—but want concrete, repeatable practices that keep Tier 3 asleep and let Tier 2 resolve the majority of incidents safely.</description>
-    </item>
-    <item>
       <title>ArgoCD and Helm Schema Validation</title>
       <link>http://localhost:1313/musings/docs/infrastructure/argocd-layered-values/</link>
       <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
@@ -336,6 +329,13 @@
       <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/musings/docs/infrastructure/job-plus-configmap-annotation/</guid>
       <description>Good choice - Option 3 is pragmatic and you can iterate quickly. Let me expand on it.</description>
+    </item>
+    <item>
+      <title>Runbooks</title>
+      <link>http://localhost:1313/musings/docs/infrastructure/runbooks/</link>
+      <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/musings/docs/infrastructure/runbooks/</guid>
+      <description>Below is a practical, ops-first guide written for an experienced Unix/PC server architect who is new to operating distributed systems at scale. It assumes you understand the theory—but want concrete, repeatable practices that keep Tier 3 asleep and let Tier 2 resolve the majority of incidents safely.</description>
     </item>
     <item>
       <title>Schema Validation with Layered Values Files</title>

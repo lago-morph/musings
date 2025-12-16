@@ -1,3 +1,23 @@
+---
+title: "Understanding What You're Testing"
+summary: "Testing Complex Helm Charts: A Practical Guide is a infrastructure document covering Testing Complex Helm Charts: A Practical Guide and **Understanding What You're Testing**. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details."
+keywords:
+  - "yaml"
+  - "helm"
+  - "deployment"
+  - "testing"
+  - "security"
+  - "production"
+  - "kubernetes"
+  - "k8s"
+category: "infrastructure"
+categoryName: "Infrastructure"
+weight: 3
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 # Testing Complex Helm Charts: A Practical Guide
 
 You're asking the right question. Most Helm charts in production have **zero tests**, and teams discover bugs when they blow up in staging (or worse, production). Let me walk you through this systematically.

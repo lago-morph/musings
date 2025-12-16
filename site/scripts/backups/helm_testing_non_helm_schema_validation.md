@@ -1,3 +1,22 @@
+---
+title: "Non Helm Schema Validation"
+summary: "Yes, there are several tools that can validate Kubernetes manifests independently of Helm: kubeval - Validates Kubernetes configuration files against the expected schema. Works with individual files or directories. It's standalone and doesn't require a cluster."
+keywords:
+  - "kubernetes"
+  - "helm"
+  - "yaml"
+  - "api"
+  - "security"
+  - "non-helm-schema-validation"
+  - "testing"
+category: "infrastructure"
+categoryName: "Infrastructure"
+weight: 3
+date: "2025-12-16"
+draft: false
+toc: false
+---
+
 Yes, there are several tools that can validate Kubernetes manifests independently of Helm:
 
 **kubeval** - Validates Kubernetes configuration files against the expected schema. Works with individual files or directories. It's standalone and doesn't require a cluster.

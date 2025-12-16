@@ -1,3 +1,20 @@
+---
+title: "Generate all views"
+summary: "Now I have comprehensive information to give you a complete answer with practical examples. Covers Complete Solution: Central Model with Selective Views in PlantUML, **File Structure** 📁, **Method 1: Include + Hide/Remove** ⭐ *Recommended*."
+keywords:
+  - "java"
+  - "diagrams"
+  - "domainmodel"
+  - "initial-with-correlation"
+  - "one-model-multiple-diagrams"
+category: "ai-ml"
+categoryName: "AI & Machine Learning"
+weight: 1
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 Perfect! Now I have comprehensive information to give you a complete answer with practical examples.
 
 ## Complete Solution: Central Model with Selective Views in PlantUML

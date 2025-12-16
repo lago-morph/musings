@@ -1,3 +1,23 @@
+---
+title: "K8s Mcp Servers"
+summary: "I'll search for information about open source Kubernetes MCP servers for you. Based on my research, here's what I found about open source Kubernetes MCP servers:."
+keywords:
+  - "kubernetes"
+  - "mcp"
+  - "container"
+  - "production"
+  - "helm"
+  - "eks"
+  - "aws"
+  - "deployment"
+category: "infrastructure"
+categoryName: "Infrastructure"
+weight: 3
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 I'll search for information about open source Kubernetes MCP servers for you.Based on my research, here's what I found about open source Kubernetes MCP servers:
 
 ## Available Open Source Kubernetes MCP Servers

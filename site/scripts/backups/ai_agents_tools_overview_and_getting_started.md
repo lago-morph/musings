@@ -1,3 +1,23 @@
+---
+title: "Self-Hosted Open Source Agent Tools"
+summary: "Self-Hosted Open Source Agent Tools is a ai & machine learning document covering Self-Hosted Open Source Agent Tools and Agent Frameworks (Code-First). This resource provides information and guidance on the topic. See the full document for detailed information and implementation details."
+keywords:
+  - "agent"
+  - "docker"
+  - "python"
+  - "k8s"
+  - "langchain"
+  - "observability"
+  - "deployment"
+  - "workflow"
+category: "ai-ml"
+categoryName: "AI & Machine Learning"
+weight: 1
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 # Self-Hosted Open Source Agent Tools
 
 Here's the landscape of tools you can fully control and run on your own infrastructure.

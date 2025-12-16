@@ -1,5 +1,5 @@
 ---
-title: "Why This Approach Works for DevOps"
+title: "DevOps Domain Model: Implementation Guide"
 summary: "This guide shows how to impose a unified domain model on distributed DevOps infrastructure (Git, Docker, Kubernetes, CI/CD, logs) for consolidated visibility and consistency checking. Covers DevOps Domain Model: Implementation Guide, Overview, Why This Approach Works for DevOps."
 keywords:
   - "deployment"

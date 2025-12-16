@@ -1,3 +1,23 @@
+---
+title: "Schema Validation with Layered Values Files"
+summary: "Schema Validation with Layered Values Files is a infrastructure document covering Schema Validation with Layered Values Files and **The Core Challenge**. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details."
+keywords:
+  - "yaml"
+  - "platform"
+  - "database"
+  - "helm"
+  - "json"
+  - "deployment"
+  - "production"
+  - "api"
+category: "infrastructure"
+categoryName: "Infrastructure"
+weight: 3
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 # Schema Validation with Layered Values Files
 
 Great question! This is a **real-world pattern** that many organizations use, and it fundamentally changes how you approach schema validation.

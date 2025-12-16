@@ -1,3 +1,23 @@
+---
+title: "Why This Approach Works for DevOps"
+summary: "This guide shows how to impose a unified domain model on distributed DevOps infrastructure (Git, Docker, Kubernetes, CI/CD, logs) for consolidated visibility and consistency checking. Covers DevOps Domain Model: Implementation Guide, Overview, Why This Approach Works for DevOps."
+keywords:
+  - "deployment"
+  - "docker"
+  - "json"
+  - "container"
+  - "k8s"
+  - "production"
+  - "kubernetes"
+  - "logging"
+category: "infrastructure"
+categoryName: "Infrastructure"
+weight: 3
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 # DevOps Domain Model: Implementation Guide
 
 ## Overview

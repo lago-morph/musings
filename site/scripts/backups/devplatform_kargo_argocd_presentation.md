@@ -1,3 +1,24 @@
+---
+title: "Kargo: GitOps Promotion for ArgoCD"
+summary: "Kargo: GitOps Promotion for ArgoCD is a development platform document covering Kargo: GitOps Promotion for ArgoCD and What ArgoCD Doesn't Do. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details."
+keywords:
+  - "kargo"
+  - "argocd"
+  - "production"
+  - "gitops"
+  - "staging"
+  - "api"
+  - "yaml"
+  - "kubernetes"
+category: "devplatform"
+categoryName: "Development Platforms"
+weight: 2
+date: "2025-12-16"
+draft: false
+toc: true
+mermaid: true
+---
+
 # Kargo: GitOps Promotion for ArgoCD
 
 **Solving the Multi-Environment Deployment Gap**

@@ -1,3 +1,23 @@
+---
+title: "Initial Comparison"
+summary: "Based on my extensive experience integrating these tools, here's how each solves distinct problems and creates multiplicative value when combined:. Covers **Open Source Developer Portals**, **Backstage** (Apache 2.0, CNCF), **Kratix** (Apache 2.0)."
+keywords:
+  - "crossplane"
+  - "platform"
+  - "backstage"
+  - "infrastructure"
+  - "cloud"
+  - "api"
+  - "kubernetes"
+  - "database"
+category: "devplatform"
+categoryName: "Development Platforms"
+weight: 2
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 Based on my extensive experience integrating these tools, here's how each solves distinct problems and creates multiplicative value when combined:
 
 ## **Open Source Developer Portals**

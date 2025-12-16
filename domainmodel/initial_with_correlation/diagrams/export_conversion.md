@@ -1,5 +1,5 @@
 ---
-title: "PlantUML Export & Embedding Options"
+title: "Export Conversion"
 summary: "Excellent question. This is a critical consideration for enterprise adoption. Let me give you a comprehensive answer about PlantUML's export and embedding capabilities."
 keywords:
   - "mermaid"

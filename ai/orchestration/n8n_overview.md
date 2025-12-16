@@ -1,5 +1,5 @@
 ---
-title: "What Problems Does n8n Solve?"
+title: "n8n Overview"
 summary: "N8n is a workflow automation platform that lets you connect different apps and services together to automate repetitive tasks. Think of it as a visual programming tool where you create workflows by connecting nodes in a flowchart-like interface."
 keywords:
   - "ai"

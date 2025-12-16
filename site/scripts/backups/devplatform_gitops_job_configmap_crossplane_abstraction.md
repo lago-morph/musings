@@ -1,3 +1,23 @@
+---
+title: "Shell script helper for Option 3"
+summary: "Great question - this is smart architectural thinking. You want to avoid painting yourself into a corner. Here's how to abstract it:."
+keywords:
+  - "crossplane"
+  - "database"
+  - "api"
+  - "yaml"
+  - "function"
+  - "deployment"
+  - "container"
+  - "python"
+category: "devplatform"
+categoryName: "Development Platforms"
+weight: 2
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 Great question - this is smart architectural thinking. You want to avoid painting yourself into a corner. Here's how to abstract it:
 
 ## The Key Abstraction: Separate Intent from Implementation

@@ -1,3 +1,23 @@
+---
+title: "GitOps Safety Architecture for Platform Evolution"
+summary: "GitOps Safety Architecture for Platform Evolution is a development platform document covering GitOps Safety Architecture for Platform Evolution and **The Core Problem**. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details."
+keywords:
+  - "platform"
+  - "yaml"
+  - "crossplane"
+  - "argocd"
+  - "production"
+  - "database"
+  - "backstage"
+  - "gitops"
+category: "devplatform"
+categoryName: "Development Platforms"
+weight: 2
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 # GitOps Safety Architecture for Platform Evolution
 
 This is the **#1 problem** that kills platform adoption. You're absolutely right—one bad XRD or Promise can destroy trust instantly. Here's the battle-tested approach:

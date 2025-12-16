@@ -1,3 +1,23 @@
+---
+title: "Runbooks"
+summary: "Below is a practical, ops-first guide written for an experienced Unix/PC server architect who is new to operating distributed systems at scale. It assumes you understand the theory—but want concrete, repeatable practices that keep Tier 3 asleep and let Tier 2 resolve the majority of incidents safely."
+keywords:
+  - "deployment"
+  - "runbooks"
+  - "kubernetes"
+  - "platform"
+  - "database"
+  - "markdown"
+  - "scaling"
+  - "staging"
+category: "infrastructure"
+categoryName: "Infrastructure"
+weight: 3
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 Below is a **practical, ops-first guide** written for an experienced Unix/PC server architect who is new to *operating* distributed systems at scale. It assumes you understand the theory—but want concrete, repeatable practices that **keep Tier 3 asleep** and let Tier 2 resolve the majority of incidents safely.
 
 ---

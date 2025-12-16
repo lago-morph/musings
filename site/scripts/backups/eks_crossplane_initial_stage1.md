@@ -1,3 +1,23 @@
+---
+title: "Crossplane EKS Management Cluster - Approach Overview & Comparison"
+summary: "Crossplane EKS Management Cluster - Approach Overview & Comparison is a infrastructure document covering Crossplane EKS Management Cluster - Approach Overview & Comparison and Approach 1: Direct Managed Resources. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details."
+keywords:
+  - "cloud"
+  - "aws"
+  - "crossplane"
+  - "eks"
+  - "kubernetes"
+  - "api"
+  - "infrastructure"
+  - "k8s"
+category: "infrastructure"
+categoryName: "Infrastructure"
+weight: 3
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 # Crossplane EKS Management Cluster - Approach Overview & Comparison
 
 ## Approach 1: Direct Managed Resources

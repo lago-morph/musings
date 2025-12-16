@@ -1,3 +1,23 @@
+---
+title: "Solution 2: Kustomize with Helm"
+summary: "Great question - this is a common challenge with multi-layered architectures. Here are several approaches, from simplest to most sophisticated:."
+keywords:
+  - "yaml"
+  - "helm"
+  - "argocd"
+  - "gitops"
+  - "kubernetes"
+  - "staging"
+  - "security"
+  - "monitoring"
+category: "infrastructure"
+categoryName: "Infrastructure"
+weight: 3
+date: "2025-12-16"
+draft: false
+toc: true
+---
+
 Great question - this is a common challenge with multi-layered architectures. Here are several approaches, from simplest to most sophisticated:
 
 ## Solution 1: Values Repository with ArgoCD valueFiles
