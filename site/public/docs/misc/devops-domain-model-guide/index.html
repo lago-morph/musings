@@ -1,0 +1,2034 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><script src="/musings/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=musings/livereload" data-no-instant defer></script>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="This guide shows how to impose a unified domain model on distributed DevOps infrastructure (Git, Docker, Kubernetes, CI/CD, logs) for consolidated visibility and consistency checking. Covers DevOps Domain Model: Implementation Guide, Overview, Why This Approach Works for DevOps.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/musings/docs/misc/devops-domain-model-guide/">
+  <meta property="og:site_name" content="Technology Documentation Hub">
+  <meta property="og:title" content="DevOps Domain Model: Implementation Guide">
+  <meta property="og:description" content="This guide shows how to impose a unified domain model on distributed DevOps infrastructure (Git, Docker, Kubernetes, CI/CD, logs) for consolidated visibility and consistency checking. Covers DevOps Domain Model: Implementation Guide, Overview, Why This Approach Works for DevOps.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2025-12-16T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-16T00:00:00+00:00">
+
+
+  <meta itemprop="name" content="DevOps Domain Model: Implementation Guide">
+  <meta itemprop="description" content="This guide shows how to impose a unified domain model on distributed DevOps infrastructure (Git, Docker, Kubernetes, CI/CD, logs) for consolidated visibility and consistency checking. Covers DevOps Domain Model: Implementation Guide, Overview, Why This Approach Works for DevOps.">
+  <meta itemprop="datePublished" content="2025-12-16T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-12-16T00:00:00+00:00">
+  <meta itemprop="wordCount" content="2135">
+  <meta itemprop="keywords" content="deployment,docker,json,container,k8s,production,kubernetes,logging">
+
+<title>DevOps Domain Model: Implementation Guide | Technology Documentation Hub</title>
+<link rel="icon" href="/musings/favicon.png" >
+<link rel="manifest" href="/musings/manifest.json">
+<link rel="canonical" href="http://localhost:1313/musings/docs/misc/devops-domain-model-guide/">
+<link rel="stylesheet" href="/musings/book.min.6970156cec683193d93c9c4edaf0d56574e4361df2e0c1be4f697ae81c3ba55f.css" integrity="sha256-aXAVbOxoMZPZPJxO2vDVZXTkNh3y4MG&#43;T2l66Bw7pV8=" crossorigin="anonymous">
+
+
+  <script defer src="/musings/fuse.min.js"></script>
+  <script defer src="/musings/en.search.min.173ca72eaf49c9fc6baf1c2e2e9837cb4f8ae13874ec0dc634ce40c45c8943dc.js" integrity="sha256-FzynLq9JyfxrrxwuLpg3y0&#43;K4Th07A3GNM5AxFyJQ9w=" crossorigin="anonymous"></script>
+
+
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-docs">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/musings/"><span>Technology Documentation Hub</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input id="book-search-input" type="text" 
+    placeholder="Search"
+    aria-label="Search"
+    maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/" class="">
+      AI &amp; Machine Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/" class="">
+      Development Platforms</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/" class="">
+      Infrastructure</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/workflows/" class="">
+      Workflows</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/" class="">
+      Miscellaneous</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/agentic-computing-overview-and-tools/" class="">
+      Agentic Computing Overview And Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/agno-vs-langchain/" class="">
+      Agno Vs Langchain</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/serverless-function-workflow-tools-for-kubernetes/" class="">
+      Core Concepts</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/flowwise-vs-langflow/" class="">
+      Flowise vs Langflow: Detailed Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/one-model-multiple-diagrams/" class="">
+      Generate all views</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/verification-architecture/" class="">
+      Is This a Reasonable Architecture?</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kiro-ide-comparison-tools/" class="">
+      Kiro IDE: Comprehensive Analysis, Comparisons &amp; Optimal Workflows</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/langchain-architecture/" class="">
+      Langchain Architecture</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/llm-tracing-metrics-comparison/" class="">
+      Llm Tracing Metrics Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/n8n-overview/" class="">
+      n8n Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kubernetes-based/" class="">
+      Open Source Workflow Orchestration on Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/tools-overview-and-getting-started/" class="">
+      Self-Hosted Open Source Agent Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/backstage-techdocs-pros-cons/" class="">
+      Backstage Techdocs Pros Cons</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/cross-diagram-reuse-guide/" class="">
+      Cross-Diagram Domain Model Reuse in PlantUML</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/prompt/" class="">
+      Crossplane EKS Management Cluster Implementation - Project Brief</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-intro/" class="">
+      Example Stage configuration</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/export-conversion/" class="">
+      Export Conversion</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-polyrepo/" class="">
+      Fast-moving image Warehouse</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/gitops-platform-safety/" class="">
+      GitOps Safety Architecture for Platform Evolution</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/tasks/" class="">
+      High-Level Plan: Crossplane EKS Management Cluster Implementation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/backstage-kratix-crossplane-argocd-blueprint/" class="">
+      Implementation Blueprint: Crossplane &#43; Kratix &#43; Backstage &#43; ArgoCD</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-git-tags/" class="">
+      In subsequent stages, you can read this metadata</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/in-browser-editing-tools/" class="">
+      In-Browser Editing Documentation Solutions</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/initial-comparison/" class="">
+      Initial Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/comprehensive-guide/" class="">
+      Kargo and ArgoCD: A Comprehensive Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-argocd-interaction/" class="">
+      Kargo promotion step</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/presentation/" class="">
+      Kargo: GitOps Promotion for ArgoCD</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/notion-overview/" class="">
+      Notion: A Comprehensive Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/oss-portal-platform-orchestration-tools/" class="">
+      Oss Portal Platform Orchestration Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/oss-vs-closed-portal/" class="">
+      Oss Vs Closed Portal</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/crossplane-solution/" class="">
+      Pseudocode for composition function</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/recommendations/" class="">
+      Recommendations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/job-configmap-crossplane-abstraction/" class="">
+      Shell script helper for Option 3</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/stage3-outline/" class="">
+      Stage 3: Implementation Patterns - Outline (Crossplane 2.1)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/argocd-layered-values/" class="">
+      ArgoCD and Helm Schema Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/schema-testing/" class="">
+      Creating a Helm Values Schema: Complete Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/stage1/" class="">
+      Crossplane EKS Management Cluster - Approach Overview &amp; Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/executive-summary/" class="">
+      DevOps Domain Model: Executive Summary</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/devops-domain-model-guide/" class="active">
+      DevOps Domain Model: Implementation Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/getting-started-concise/" class="">
+      Getting Started Concise</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/ci-cd-templates/" class="">
+      GitHub Actions Example</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/k8s-mcp-servers/" class="">
+      K8s Mcp Servers</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/non-helm-schema-validation/" class="">
+      Non Helm Schema Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/overview/" class="">
+      Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/prompt-guide/" class="">
+      Production Readiness Deep-Dive Prompt Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/production-readiness-overview/" class="">
+      Production Readiness Guide: From Docker Compose to Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/job-plus-configmap-annotation/" class="">
+      Read current state AND capture resourceVersion</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/runbooks/" class="">
+      Runbooks</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/layered-schema/" class="">
+      Schema Validation with Layered Values Files</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/helm-layered-abstraction/" class="">
+      Solution 2: Kustomize with Helm</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/stage2/" class="">
+      Stage 2: Architecture Design</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/starting-helm-testing/" class="">
+      Testing Complex Helm Charts: A Practical Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/imperitive-in-declarative/" class="">
+      Imperitive In Declarative</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/mermaid-test/" class="">
+      Mermaid Diagram Test</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/test-document/" class="">
+      Test Document</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/musings/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>DevOps Domain Model: Implementation Guide</h3>
+
+  <label for="toc-control">
+    
+    <img src="/musings/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#devops-domain-model-implementation-guide">DevOps Domain Model: Implementation Guide</a>
+      <ul>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#why-this-approach-works-for-devops">Why This Approach Works for DevOps</a></li>
+        <li><a href="#step-1-define-correlation-identifiers">Step 1: Define Correlation Identifiers</a>
+          <ul>
+            <li><a href="#primary-correlation-keys">Primary Correlation Keys</a></li>
+            <li><a href="#secondary-correlation-keys">Secondary Correlation Keys</a></li>
+          </ul>
+        </li>
+        <li><a href="#step-2-metadata-injection-strategy">Step 2: Metadata Injection Strategy</a>
+          <ul>
+            <li><a href="#git-source-of-truth">Git (Source of Truth)</a></li>
+            <li><a href="#docker-images-container-layer">Docker Images (Container Layer)</a></li>
+            <li><a href="#kubernetes-runtime-layer">Kubernetes (Runtime Layer)</a></li>
+            <li><a href="#application-logs-observability-layer">Application Logs (Observability Layer)</a></li>
+          </ul>
+        </li>
+        <li><a href="#step-3-data-collection-strategy">Step 3: Data Collection Strategy</a>
+          <ul>
+            <li><a href="#collection-architecture">Collection Architecture</a></li>
+            <li><a href="#simple-collector-pattern">Simple Collector Pattern</a></li>
+          </ul>
+        </li>
+        <li><a href="#step-4-correlation-engine">Step 4: Correlation Engine</a></li>
+        <li><a href="#step-5-consistency-checks">Step 5: Consistency Checks</a></li>
+        <li><a href="#step-6-practical-implementation-roadmap">Step 6: Practical Implementation Roadmap</a>
+          <ul>
+            <li><a href="#phase-1-foundation-week-1-2">Phase 1: Foundation (Week 1-2)</a></li>
+            <li><a href="#phase-2-metadata-injection-week-3-4">Phase 2: Metadata Injection (Week 3-4)</a></li>
+            <li><a href="#phase-3-correlation-week-5-6">Phase 3: Correlation (Week 5-6)</a></li>
+            <li><a href="#phase-4-consistency-checking-week-7-8">Phase 4: Consistency Checking (Week 7-8)</a></li>
+            <li><a href="#phase-5-visualization-week-9-10">Phase 5: Visualization (Week 9-10)</a></li>
+          </ul>
+        </li>
+        <li><a href="#quick-win-minimum-viable-implementation">Quick Win: Minimum Viable Implementation</a></li>
+        <li><a href="#tools-that-can-help">Tools That Can Help</a></li>
+        <li><a href="#success-metrics">Success Metrics</a></li>
+        <li><a href="#next-steps">Next Steps</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h1 id="devops-domain-model-implementation-guide">DevOps Domain Model: Implementation Guide<a class="anchor" href="#devops-domain-model-implementation-guide">#</a></h1>
+<h2 id="overview">Overview<a class="anchor" href="#overview">#</a></h2>
+<p>This guide shows how to impose a unified domain model on distributed DevOps infrastructure (Git, Docker, Kubernetes, CI/CD, logs) for consolidated visibility and consistency checking.</p>
+<h2 id="why-this-approach-works-for-devops">Why This Approach Works for DevOps<a class="anchor" href="#why-this-approach-works-for-devops">#</a></h2>
+<p>✅ <strong>Distributed by nature</strong> - Git, Docker, K8s should remain independent
+✅ <strong>Read-mostly</strong> - We&rsquo;re correlating, not enforcing
+✅ <strong>Eventual consistency acceptable</strong> - Minutes of lag is fine
+✅ <strong>Post-hoc analysis valuable</strong> - Understanding deployment history is critical
+✅ <strong>No overarching system needed</strong> - Correlation via metadata</p>
+<hr>
+<h2 id="step-1-define-correlation-identifiers">Step 1: Define Correlation Identifiers<a class="anchor" href="#step-1-define-correlation-identifiers">#</a></h2>
+<p>These are your &ldquo;foreign keys&rdquo; across systems:</p>
+<h3 id="primary-correlation-keys">Primary Correlation Keys<a class="anchor" href="#primary-correlation-keys">#</a></h3>
+<table>
+  <thead>
+      <tr>
+          <th>Identifier</th>
+          <th>Format</th>
+          <th>Used In</th>
+          <th>Purpose</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>commitHash</strong></td>
+          <td><code>sha256:abc123...</code></td>
+          <td>Git, CI, Docker metadata, K8s annotations</td>
+          <td>Primary traceability key</td>
+      </tr>
+      <tr>
+          <td><strong>imageDigest</strong></td>
+          <td><code>sha256:def456...</code></td>
+          <td>Docker registry, K8s pod specs</td>
+          <td>Container identity</td>
+      </tr>
+      <tr>
+          <td><strong>buildId</strong></td>
+          <td><code>build-2024-001</code></td>
+          <td>CI system, Docker labels, K8s annotations</td>
+          <td>Build traceability</td>
+      </tr>
+      <tr>
+          <td><strong>deploymentId</strong></td>
+          <td><code>deploy-prod-2024-001</code></td>
+          <td>K8s deployment, logs, metrics</td>
+          <td>Deployment tracking</td>
+      </tr>
+      <tr>
+          <td><strong>version/tag</strong></td>
+          <td><code>v1.2.3</code> or <code>main-abc123</code></td>
+          <td>Git tags, Docker tags, K8s labels</td>
+          <td>Human-readable reference</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="secondary-correlation-keys">Secondary Correlation Keys<a class="anchor" href="#secondary-correlation-keys">#</a></h3>
+<table>
+  <thead>
+      <tr>
+          <th>Identifier</th>
+          <th>Purpose</th>
+          <th>Example</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>buildNumber</strong></td>
+          <td>CI pipeline tracking</td>
+          <td><code>#1234</code></td>
+      </tr>
+      <tr>
+          <td><strong>prNumber</strong></td>
+          <td>Pull request linking</td>
+          <td><code>PR-456</code></td>
+      </tr>
+      <tr>
+          <td><strong>releaseVersion</strong></td>
+          <td>Semantic versioning</td>
+          <td><code>v2.1.0</code></td>
+      </tr>
+      <tr>
+          <td><strong>environmentName</strong></td>
+          <td>Deployment target</td>
+          <td><code>production</code>, <code>staging</code></td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="step-2-metadata-injection-strategy">Step 2: Metadata Injection Strategy<a class="anchor" href="#step-2-metadata-injection-strategy">#</a></h2>
+<h3 id="git-source-of-truth">Git (Source of Truth)<a class="anchor" href="#git-source-of-truth">#</a></h3>
+<p><strong>Already has:</strong></p>
+<ul>
+<li>✅ commitHash</li>
+<li>✅ author, timestamp, message</li>
+<li>✅ branch name</li>
+</ul>
+<p><strong>Add via git tags:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Tag commit with build info</span>
+</span></span><span style="display:flex;"><span>git tag -a <span style="color:#e6db74">&#34;build-</span><span style="color:#e6db74">${</span>BUILD_ID<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> -m <span style="color:#e6db74">&#34;Build: </span><span style="color:#e6db74">${</span>BUILD_NUMBER<span style="color:#e6db74">}</span><span style="color:#e6db74">, CI: </span><span style="color:#e6db74">${</span>CI_JOB_URL<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tag with deployment info</span>
+</span></span><span style="display:flex;"><span>git tag -a <span style="color:#e6db74">&#34;deploy-prod-</span><span style="color:#e6db74">${</span>DEPLOY_ID<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> -m <span style="color:#e6db74">&#34;Deployed to prod at </span><span style="color:#66d9ef">$(</span>date<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span></span></span></code></pre></div><p><strong>Add via commit messages (structured):</strong></p>
+<pre tabindex="0"><code>feat: Add user authentication
+
+build-id: build-2024-001
+jira: PROJ-123
+reviewed-by: alice@example.com</code></pre><h3 id="docker-images-container-layer">Docker Images (Container Layer)<a class="anchor" href="#docker-images-container-layer">#</a></h3>
+<p><strong>Inject metadata as OCI labels:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#75715e"># In Dockerfile or at build time</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">LABEL</span> org.opencontainers.image.source<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://github.com/myorg/myrepo&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">LABEL</span> org.opencontainers.image.revision<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>GIT_COMMIT<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">LABEL</span> org.opencontainers.image.version<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>VERSION<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">LABEL</span> org.opencontainers.image.created<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BUILD_DATE<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Custom domain labels</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">LABEL</span> com.myorg.build.id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BUILD_ID<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">LABEL</span> com.myorg.build.number<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BUILD_NUMBER<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">LABEL</span> com.myorg.build.url<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>CI_JOB_URL<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">LABEL</span> com.myorg.build.branch<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>GIT_BRANCH<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">LABEL</span> com.myorg.test.passed<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>TEST_STATUS<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">LABEL</span> com.myorg.security.scan<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>SCAN_ID<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span></span></span></code></pre></div><p><strong>At build time:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker build <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --label <span style="color:#e6db74">&#34;org.opencontainers.image.revision=</span><span style="color:#e6db74">${</span>GIT_COMMIT<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --label <span style="color:#e6db74">&#34;com.myorg.build.id=</span><span style="color:#e6db74">${</span>BUILD_ID<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --label <span style="color:#e6db74">&#34;com.myorg.build.timestamp=</span><span style="color:#66d9ef">$(</span>date -u +%Y-%m-%dT%H:%M:%SZ<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -t myapp:<span style="color:#e6db74">${</span>VERSION<span style="color:#e6db74">}</span> .</span></span></code></pre></div><p><strong>Query labels:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker inspect myapp:latest --format<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;{{json .Config.Labels}}&#39;</span></span></span></code></pre></div><h3 id="kubernetes-runtime-layer">Kubernetes (Runtime Layer)<a class="anchor" href="#kubernetes-runtime-layer">#</a></h3>
+<p><strong>Inject metadata as annotations and labels:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">myapp</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">production</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">myapp</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">version</span>: <span style="color:#ae81ff">v1.2.3</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: <span style="color:#ae81ff">production</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Source traceability</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">git.commit</span>: <span style="color:#e6db74">&#34;abc123def456&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">git.branch</span>: <span style="color:#e6db74">&#34;main&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">git.repo</span>: <span style="color:#e6db74">&#34;https://github.com/myorg/myrepo&#34;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Build traceability</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">build.id</span>: <span style="color:#e6db74">&#34;build-2024-001&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">build.number</span>: <span style="color:#e6db74">&#34;1234&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">build.url</span>: <span style="color:#e6db74">&#34;https://ci.example.com/job/1234&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">build.timestamp</span>: <span style="color:#e6db74">&#34;2024-01-15T10:30:00Z&#34;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Deployment traceability</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">deployment.id</span>: <span style="color:#e6db74">&#34;deploy-prod-2024-001&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">deployment.timestamp</span>: <span style="color:#e6db74">&#34;2024-01-15T14:00:00Z&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">deployment.operator</span>: <span style="color:#e6db74">&#34;alice@example.com&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">deployment.change-request</span>: <span style="color:#e6db74">&#34;CHG-5678&#34;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Container traceability</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image.digest</span>: <span style="color:#e6db74">&#34;sha256:def456...&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image.scan.id</span>: <span style="color:#e6db74">&#34;scan-2024-001&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image.scan.status</span>: <span style="color:#e6db74">&#34;passed&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">app</span>: <span style="color:#ae81ff">myapp</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">version</span>: <span style="color:#ae81ff">v1.2.3</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Propagate to pods</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">git.commit</span>: <span style="color:#e6db74">&#34;abc123def456&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">deployment.id</span>: <span style="color:#e6db74">&#34;deploy-prod-2024-001&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">myapp</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">image</span>: <span style="color:#ae81ff">myregistry.io/myapp@sha256:def456... </span> <span style="color:#75715e"># Use digest!</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">env</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">GIT_COMMIT</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">value</span>: <span style="color:#e6db74">&#34;abc123def456&#34;</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">BUILD_ID</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">value</span>: <span style="color:#e6db74">&#34;build-2024-001&#34;</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">DEPLOYMENT_ID</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">value</span>: <span style="color:#e6db74">&#34;deploy-prod-2024-001&#34;</span></span></span></code></pre></div><p><strong>Add to pods at runtime:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kubectl annotate deployment myapp <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  git.commit<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>GIT_COMMIT<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  deployment.id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>DEPLOY_ID<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --overwrite</span></span></code></pre></div><h3 id="application-logs-observability-layer">Application Logs (Observability Layer)<a class="anchor" href="#application-logs-observability-layer">#</a></h3>
+<p><strong>Structure logs with correlation fields:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;timestamp&#34;</span>: <span style="color:#e6db74">&#34;2024-01-15T14:05:23Z&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;level&#34;</span>: <span style="color:#e6db74">&#34;INFO&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;User authentication successful&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;correlation&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;git_commit&#34;</span>: <span style="color:#e6db74">&#34;abc123def456&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;build_id&#34;</span>: <span style="color:#e6db74">&#34;build-2024-001&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;deployment_id&#34;</span>: <span style="color:#e6db74">&#34;deploy-prod-2024-001&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;pod_name&#34;</span>: <span style="color:#e6db74">&#34;myapp-7d8f9-xyz&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;container_id&#34;</span>: <span style="color:#e6db74">&#34;docker://123abc&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;node_name&#34;</span>: <span style="color:#e6db74">&#34;node-01&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;context&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;user_id&#34;</span>: <span style="color:#e6db74">&#34;user-123&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;trace_id&#34;</span>: <span style="color:#e6db74">&#34;trace-abc-def&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;span_id&#34;</span>: <span style="color:#e6db74">&#34;span-123&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><p><strong>In application code:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> logging
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Read correlation IDs from environment</span>
+</span></span><span style="display:flex;"><span>GIT_COMMIT <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;GIT_COMMIT&#39;</span>, <span style="color:#e6db74">&#39;unknown&#39;</span>)
+</span></span><span style="display:flex;"><span>BUILD_ID <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;BUILD_ID&#39;</span>, <span style="color:#e6db74">&#39;unknown&#39;</span>)
+</span></span><span style="display:flex;"><span>DEPLOYMENT_ID <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;DEPLOYMENT_ID&#39;</span>, <span style="color:#e6db74">&#39;unknown&#39;</span>)
+</span></span><span style="display:flex;"><span>POD_NAME <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;HOSTNAME&#39;</span>, <span style="color:#e6db74">&#39;unknown&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Configure structured logging</span>
+</span></span><span style="display:flex;"><span>logging<span style="color:#f92672">.</span>basicConfig(
+</span></span><span style="display:flex;"><span>    format<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%(message)s</span><span style="color:#e6db74">&#39;</span>,
+</span></span><span style="display:flex;"><span>    level<span style="color:#f92672">=</span>logging<span style="color:#f92672">.</span>INFO
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CorrelationLogger</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">info</span>(self, message, <span style="color:#f92672">**</span>context):
+</span></span><span style="display:flex;"><span>        log_entry <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;timestamp&#34;</span>: datetime<span style="color:#f92672">.</span>utcnow()<span style="color:#f92672">.</span>isoformat(),
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;level&#34;</span>: <span style="color:#e6db74">&#34;INFO&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;message&#34;</span>: message,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;correlation&#34;</span>: {
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;git_commit&#34;</span>: GIT_COMMIT,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;build_id&#34;</span>: BUILD_ID,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;deployment_id&#34;</span>: DEPLOYMENT_ID,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;pod_name&#34;</span>: POD_NAME,
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;context&#34;</span>: context
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        logging<span style="color:#f92672">.</span>info(json<span style="color:#f92672">.</span>dumps(log_entry))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>logger <span style="color:#f92672">=</span> CorrelationLogger()
+</span></span><span style="display:flex;"><span>logger<span style="color:#f92672">.</span>info(<span style="color:#e6db74">&#34;Request processed&#34;</span>, user_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;123&#34;</span>, duration_ms<span style="color:#f92672">=</span><span style="color:#ae81ff">45</span>)</span></span></code></pre></div><hr>
+<h2 id="step-3-data-collection-strategy">Step 3: Data Collection Strategy<a class="anchor" href="#step-3-data-collection-strategy">#</a></h2>
+<p>You need to extract metadata from each system without building a monolithic monitor.</p>
+<h3 id="collection-architecture">Collection Architecture<a class="anchor" href="#collection-architecture">#</a></h3>
+<pre tabindex="0"><code>┌─────────────┐
+│   Git API   │ → Collector → JSON files
+└─────────────┘
+
+┌─────────────┐
+│ Docker API  │ → Collector → JSON files
+└─────────────┘
+
+┌─────────────┐
+│ K8s API     │ → Collector → JSON files
+└─────────────┘
+
+┌─────────────┐
+│  Logs API   │ → Collector → JSON files
+└─────────────┘
+
+         ↓
+    [Correlation Engine]
+         ↓
+    [Consistency Checker]
+         ↓
+    [Reports / Dashboards]</code></pre><h3 id="simple-collector-pattern">Simple Collector Pattern<a class="anchor" href="#simple-collector-pattern">#</a></h3>
+<p>Each collector:</p>
+<ol>
+<li>Queries its source system API</li>
+<li>Extracts objects and metadata</li>
+<li>Writes to standardized JSON format</li>
+<li>Stores with timestamp</li>
+</ol>
+<p><strong>Example: Git Collector</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># git_collector.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> git
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> json
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">collect_git_metadata</span>(repo_path, output_dir):
+</span></span><span style="display:flex;"><span>    repo <span style="color:#f92672">=</span> git<span style="color:#f92672">.</span>Repo(repo_path)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    commits <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> commit <span style="color:#f92672">in</span> repo<span style="color:#f92672">.</span>iter_commits(max_count<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>):
+</span></span><span style="display:flex;"><span>        commits<span style="color:#f92672">.</span>append({
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;Commit&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;commitHash&#34;</span>: commit<span style="color:#f92672">.</span>hexsha,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;shortHash&#34;</span>: commit<span style="color:#f92672">.</span>hexsha[:<span style="color:#ae81ff">7</span>],
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;author&#34;</span>: str(commit<span style="color:#f92672">.</span>author),
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;timestamp&#34;</span>: commit<span style="color:#f92672">.</span>committed_datetime<span style="color:#f92672">.</span>isoformat(),
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;message&#34;</span>: commit<span style="color:#f92672">.</span>message<span style="color:#f92672">.</span>strip(),
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;branch&#34;</span>: repo<span style="color:#f92672">.</span>active_branch<span style="color:#f92672">.</span>name,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;tags&#34;</span>: [tag<span style="color:#f92672">.</span>name <span style="color:#66d9ef">for</span> tag <span style="color:#f92672">in</span> repo<span style="color:#f92672">.</span>tags <span style="color:#66d9ef">if</span> tag<span style="color:#f92672">.</span>commit <span style="color:#f92672">==</span> commit],
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;parents&#34;</span>: [p<span style="color:#f92672">.</span>hexsha <span style="color:#66d9ef">for</span> p <span style="color:#f92672">in</span> commit<span style="color:#f92672">.</span>parents]
+</span></span><span style="display:flex;"><span>        })
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    output <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;collectedAt&#34;</span>: datetime<span style="color:#f92672">.</span>utcnow()<span style="color:#f92672">.</span>isoformat(),
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;source&#34;</span>: <span style="color:#e6db74">&#34;git&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;repository&#34;</span>: repo<span style="color:#f92672">.</span>remotes<span style="color:#f92672">.</span>origin<span style="color:#f92672">.</span>url,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;commits&#34;</span>: commits
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>output_dir<span style="color:#e6db74">}</span><span style="color:#e6db74">/git-</span><span style="color:#e6db74">{</span>datetime<span style="color:#f92672">.</span>now()<span style="color:#f92672">.</span>strftime(<span style="color:#e6db74">&#39;%Y%m</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">-%H%M%S&#39;</span>)<span style="color:#e6db74">}</span><span style="color:#e6db74">.json&#34;</span>, <span style="color:#e6db74">&#39;w&#39;</span>) <span style="color:#66d9ef">as</span> f:
+</span></span><span style="display:flex;"><span>        json<span style="color:#f92672">.</span>dump(output, f, indent<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    collect_git_metadata(<span style="color:#e6db74">&#34;/path/to/repo&#34;</span>, <span style="color:#e6db74">&#34;./data/git&#34;</span>)</span></span></code></pre></div><p><strong>Example: Docker Collector</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># docker_collector.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> docker
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> json
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">collect_docker_metadata</span>(registry_url, image_names, output_dir):
+</span></span><span style="display:flex;"><span>    client <span style="color:#f92672">=</span> docker<span style="color:#f92672">.</span>from_env()
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    images <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> image_name <span style="color:#f92672">in</span> image_names:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>            image <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>images<span style="color:#f92672">.</span>get(image_name)
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            images<span style="color:#f92672">.</span>append({
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;ContainerImage&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;imageId&#34;</span>: image<span style="color:#f92672">.</span>id,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;tags&#34;</span>: image<span style="color:#f92672">.</span>tags,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;digest&#34;</span>: image<span style="color:#f92672">.</span>attrs<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;RepoDigests&#39;</span>, [<span style="color:#e6db74">&#39;unknown&#39;</span>])[<span style="color:#ae81ff">0</span>],
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;created&#34;</span>: image<span style="color:#f92672">.</span>attrs[<span style="color:#e6db74">&#39;Created&#39;</span>],
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;size&#34;</span>: image<span style="color:#f92672">.</span>attrs[<span style="color:#e6db74">&#39;Size&#39;</span>],
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;labels&#34;</span>: image<span style="color:#f92672">.</span>labels,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;metadata&#34;</span>: {
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;gitCommit&#34;</span>: image<span style="color:#f92672">.</span>labels<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;org.opencontainers.image.revision&#39;</span>),
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;buildId&#34;</span>: image<span style="color:#f92672">.</span>labels<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;com.myorg.build.id&#39;</span>),
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;buildNumber&#34;</span>: image<span style="color:#f92672">.</span>labels<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;com.myorg.build.number&#39;</span>),
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;version&#34;</span>: image<span style="color:#f92672">.</span>labels<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;org.opencontainers.image.version&#39;</span>),
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            })
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">except</span> docker<span style="color:#f92672">.</span>errors<span style="color:#f92672">.</span>ImageNotFound:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">continue</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    output <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;collectedAt&#34;</span>: datetime<span style="color:#f92672">.</span>utcnow()<span style="color:#f92672">.</span>isoformat(),
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;source&#34;</span>: <span style="color:#e6db74">&#34;docker&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;registry&#34;</span>: registry_url,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;images&#34;</span>: images
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>output_dir<span style="color:#e6db74">}</span><span style="color:#e6db74">/docker-</span><span style="color:#e6db74">{</span>datetime<span style="color:#f92672">.</span>now()<span style="color:#f92672">.</span>strftime(<span style="color:#e6db74">&#39;%Y%m</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">-%H%M%S&#39;</span>)<span style="color:#e6db74">}</span><span style="color:#e6db74">.json&#34;</span>, <span style="color:#e6db74">&#39;w&#39;</span>) <span style="color:#66d9ef">as</span> f:
+</span></span><span style="display:flex;"><span>        json<span style="color:#f92672">.</span>dump(output, f, indent<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    collect_docker_metadata(
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;myregistry.io&#34;</span>,
+</span></span><span style="display:flex;"><span>        [<span style="color:#e6db74">&#34;myapp:latest&#34;</span>, <span style="color:#e6db74">&#34;myapp:v1.2.3&#34;</span>],
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;./data/docker&#34;</span>
+</span></span><span style="display:flex;"><span>    )</span></span></code></pre></div><p><strong>Example: Kubernetes Collector</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># k8s_collector.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> kubernetes <span style="color:#f92672">import</span> client, config
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> json
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">collect_k8s_metadata</span>(namespace, output_dir):
+</span></span><span style="display:flex;"><span>    config<span style="color:#f92672">.</span>load_kube_config()
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    apps_v1 <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>AppsV1Api()
+</span></span><span style="display:flex;"><span>    core_v1 <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>CoreV1Api()
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    deployments <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> deploy <span style="color:#f92672">in</span> apps_v1<span style="color:#f92672">.</span>list_namespaced_deployment(namespace)<span style="color:#f92672">.</span>items:
+</span></span><span style="display:flex;"><span>        deployments<span style="color:#f92672">.</span>append({
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;Deployment&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;deploymentId&#34;</span>: <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>namespace<span style="color:#e6db74">}</span><span style="color:#e6db74">-</span><span style="color:#e6db74">{</span>deploy<span style="color:#f92672">.</span>metadata<span style="color:#f92672">.</span>name<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;name&#34;</span>: deploy<span style="color:#f92672">.</span>metadata<span style="color:#f92672">.</span>name,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;namespace&#34;</span>: deploy<span style="color:#f92672">.</span>metadata<span style="color:#f92672">.</span>namespace,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;labels&#34;</span>: deploy<span style="color:#f92672">.</span>metadata<span style="color:#f92672">.</span>labels,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;annotations&#34;</span>: deploy<span style="color:#f92672">.</span>metadata<span style="color:#f92672">.</span>annotations,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;replicas&#34;</span>: deploy<span style="color:#f92672">.</span>spec<span style="color:#f92672">.</span>replicas,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;image&#34;</span>: deploy<span style="color:#f92672">.</span>spec<span style="color:#f92672">.</span>template<span style="color:#f92672">.</span>spec<span style="color:#f92672">.</span>containers[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>image,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;createdAt&#34;</span>: deploy<span style="color:#f92672">.</span>metadata<span style="color:#f92672">.</span>creation_timestamp<span style="color:#f92672">.</span>isoformat(),
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;metadata&#34;</span>: {
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;gitCommit&#34;</span>: deploy<span style="color:#f92672">.</span>metadata<span style="color:#f92672">.</span>annotations<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;git.commit&#39;</span>) <span style="color:#66d9ef">if</span> deploy<span style="color:#f92672">.</span>metadata<span style="color:#f92672">.</span>annotations <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">None</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;buildId&#34;</span>: deploy<span style="color:#f92672">.</span>metadata<span style="color:#f92672">.</span>annotations<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;build.id&#39;</span>) <span style="color:#66d9ef">if</span> deploy<span style="color:#f92672">.</span>metadata<span style="color:#f92672">.</span>annotations <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">None</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;deploymentId&#34;</span>: deploy<span style="color:#f92672">.</span>metadata<span style="color:#f92672">.</span>annotations<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;deployment.id&#39;</span>) <span style="color:#66d9ef">if</span> deploy<span style="color:#f92672">.</span>metadata<span style="color:#f92672">.</span>annotations <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">None</span>,
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        })
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    pods <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> pod <span style="color:#f92672">in</span> core_v1<span style="color:#f92672">.</span>list_namespaced_pod(namespace)<span style="color:#f92672">.</span>items:
+</span></span><span style="display:flex;"><span>        pods<span style="color:#f92672">.</span>append({
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;Pod&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;podId&#34;</span>: pod<span style="color:#f92672">.</span>metadata<span style="color:#f92672">.</span>name,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;namespace&#34;</span>: pod<span style="color:#f92672">.</span>metadata<span style="color:#f92672">.</span>namespace,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;nodeName&#34;</span>: pod<span style="color:#f92672">.</span>spec<span style="color:#f92672">.</span>node_name,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;status&#34;</span>: pod<span style="color:#f92672">.</span>status<span style="color:#f92672">.</span>phase,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;startedAt&#34;</span>: pod<span style="color:#f92672">.</span>status<span style="color:#f92672">.</span>start_time<span style="color:#f92672">.</span>isoformat() <span style="color:#66d9ef">if</span> pod<span style="color:#f92672">.</span>status<span style="color:#f92672">.</span>start_time <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">None</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;labels&#34;</span>: pod<span style="color:#f92672">.</span>metadata<span style="color:#f92672">.</span>labels,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;annotations&#34;</span>: pod<span style="color:#f92672">.</span>metadata<span style="color:#f92672">.</span>annotations,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;containers&#34;</span>: [
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;name&#34;</span>: c<span style="color:#f92672">.</span>name,
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;image&#34;</span>: c<span style="color:#f92672">.</span>image,
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;imageId&#34;</span>: pod<span style="color:#f92672">.</span>status<span style="color:#f92672">.</span>container_statuses[i]<span style="color:#f92672">.</span>image_id <span style="color:#66d9ef">if</span> pod<span style="color:#f92672">.</span>status<span style="color:#f92672">.</span>container_statuses <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">None</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;restartCount&#34;</span>: pod<span style="color:#f92672">.</span>status<span style="color:#f92672">.</span>container_statuses[i]<span style="color:#f92672">.</span>restart_count <span style="color:#66d9ef">if</span> pod<span style="color:#f92672">.</span>status<span style="color:#f92672">.</span>container_statuses <span style="color:#66d9ef">else</span> <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">for</span> i, c <span style="color:#f92672">in</span> enumerate(pod<span style="color:#f92672">.</span>spec<span style="color:#f92672">.</span>containers)
+</span></span><span style="display:flex;"><span>            ],
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;metadata&#34;</span>: {
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;gitCommit&#34;</span>: pod<span style="color:#f92672">.</span>metadata<span style="color:#f92672">.</span>annotations<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;git.commit&#39;</span>) <span style="color:#66d9ef">if</span> pod<span style="color:#f92672">.</span>metadata<span style="color:#f92672">.</span>annotations <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">None</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;deploymentId&#34;</span>: pod<span style="color:#f92672">.</span>metadata<span style="color:#f92672">.</span>annotations<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;deployment.id&#39;</span>) <span style="color:#66d9ef">if</span> pod<span style="color:#f92672">.</span>metadata<span style="color:#f92672">.</span>annotations <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">None</span>,
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        })
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    output <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;collectedAt&#34;</span>: datetime<span style="color:#f92672">.</span>utcnow()<span style="color:#f92672">.</span>isoformat(),
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;source&#34;</span>: <span style="color:#e6db74">&#34;kubernetes&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;cluster&#34;</span>: <span style="color:#e6db74">&#34;production&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;namespace&#34;</span>: namespace,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;deployments&#34;</span>: deployments,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;pods&#34;</span>: pods
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>output_dir<span style="color:#e6db74">}</span><span style="color:#e6db74">/k8s-</span><span style="color:#e6db74">{</span>datetime<span style="color:#f92672">.</span>now()<span style="color:#f92672">.</span>strftime(<span style="color:#e6db74">&#39;%Y%m</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">-%H%M%S&#39;</span>)<span style="color:#e6db74">}</span><span style="color:#e6db74">.json&#34;</span>, <span style="color:#e6db74">&#39;w&#39;</span>) <span style="color:#66d9ef">as</span> f:
+</span></span><span style="display:flex;"><span>        json<span style="color:#f92672">.</span>dump(output, f, indent<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    collect_k8s_metadata(<span style="color:#e6db74">&#34;production&#34;</span>, <span style="color:#e6db74">&#34;./data/k8s&#34;</span>)</span></span></code></pre></div><hr>
+<h2 id="step-4-correlation-engine">Step 4: Correlation Engine<a class="anchor" href="#step-4-correlation-engine">#</a></h2>
+<p>Now build correlation logic to link objects across systems:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># correlation_engine.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> json
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> glob
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> defaultdict
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CorrelationEngine</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, data_dir):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>data_dir <span style="color:#f92672">=</span> data_dir
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>commits <span style="color:#f92672">=</span> {}
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>builds <span style="color:#f92672">=</span> {}
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>images <span style="color:#f92672">=</span> {}
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>deployments <span style="color:#f92672">=</span> {}
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>pods <span style="color:#f92672">=</span> {}
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">load_all_data</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;Load all collected JSON files&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Load Git data</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> file <span style="color:#f92672">in</span> glob<span style="color:#f92672">.</span>glob(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>data_dir<span style="color:#e6db74">}</span><span style="color:#e6db74">/git/*.json&#34;</span>):
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">with</span> open(file) <span style="color:#66d9ef">as</span> f:
+</span></span><span style="display:flex;"><span>                data <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>load(f)
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">for</span> commit <span style="color:#f92672">in</span> data<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;commits&#39;</span>, []):
+</span></span><span style="display:flex;"><span>                    self<span style="color:#f92672">.</span>commits[commit[<span style="color:#e6db74">&#39;commitHash&#39;</span>]] <span style="color:#f92672">=</span> commit
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Load Docker data</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> file <span style="color:#f92672">in</span> glob<span style="color:#f92672">.</span>glob(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>data_dir<span style="color:#e6db74">}</span><span style="color:#e6db74">/docker/*.json&#34;</span>):
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">with</span> open(file) <span style="color:#66d9ef">as</span> f:
+</span></span><span style="display:flex;"><span>                data <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>load(f)
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">for</span> image <span style="color:#f92672">in</span> data<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;images&#39;</span>, []):
+</span></span><span style="display:flex;"><span>                    digest <span style="color:#f92672">=</span> image<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;digest&#39;</span>, <span style="color:#e6db74">&#39;unknown&#39;</span>)
+</span></span><span style="display:flex;"><span>                    self<span style="color:#f92672">.</span>images[digest] <span style="color:#f92672">=</span> image
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Load K8s data</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> file <span style="color:#f92672">in</span> glob<span style="color:#f92672">.</span>glob(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>data_dir<span style="color:#e6db74">}</span><span style="color:#e6db74">/k8s/*.json&#34;</span>):
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">with</span> open(file) <span style="color:#66d9ef">as</span> f:
+</span></span><span style="display:flex;"><span>                data <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>load(f)
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">for</span> deploy <span style="color:#f92672">in</span> data<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;deployments&#39;</span>, []):
+</span></span><span style="display:flex;"><span>                    self<span style="color:#f92672">.</span>deployments[deploy[<span style="color:#e6db74">&#39;deploymentId&#39;</span>]] <span style="color:#f92672">=</span> deploy
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">for</span> pod <span style="color:#f92672">in</span> data<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;pods&#39;</span>, []):
+</span></span><span style="display:flex;"><span>                    self<span style="color:#f92672">.</span>pods[pod[<span style="color:#e6db74">&#39;podId&#39;</span>]] <span style="color:#f92672">=</span> pod
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">correlate_deployment_to_commit</span>(self, deployment_id):
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;Find the git commit for a deployment&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        deployment <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>deployments<span style="color:#f92672">.</span>get(deployment_id)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> deployment:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Try annotation first</span>
+</span></span><span style="display:flex;"><span>        commit_hash <span style="color:#f92672">=</span> deployment<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;metadata&#39;</span>, {})<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;gitCommit&#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> commit_hash <span style="color:#f92672">and</span> commit_hash <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>commits:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>commits[commit_hash]
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Try image labels</span>
+</span></span><span style="display:flex;"><span>        image <span style="color:#f92672">=</span> deployment<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;image&#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> img_digest, img_data <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>images<span style="color:#f92672">.</span>items():
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> image <span style="color:#f92672">in</span> img_data<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;tags&#39;</span>, []):
+</span></span><span style="display:flex;"><span>                commit_hash <span style="color:#f92672">=</span> img_data<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;metadata&#39;</span>, {})<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;gitCommit&#39;</span>)
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> commit_hash <span style="color:#f92672">and</span> commit_hash <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>commits:
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>commits[commit_hash]
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">correlate_pod_to_commit</span>(self, pod_id):
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;Find the git commit for a running pod&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        pod <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>pods<span style="color:#f92672">.</span>get(pod_id)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> pod:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Try annotation</span>
+</span></span><span style="display:flex;"><span>        commit_hash <span style="color:#f92672">=</span> pod<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;metadata&#39;</span>, {})<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;gitCommit&#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> commit_hash:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>commits<span style="color:#f92672">.</span>get(commit_hash)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Try image digest</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> container <span style="color:#f92672">in</span> pod<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;containers&#39;</span>, []):
+</span></span><span style="display:flex;"><span>            image_id <span style="color:#f92672">=</span> container<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;imageId&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Extract digest from image_id (format: docker-pullable://repo@sha256:...)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#39;@sha256:&#39;</span> <span style="color:#f92672">in</span> image_id:
+</span></span><span style="display:flex;"><span>                digest <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;sha256:&#39;</span> <span style="color:#f92672">+</span> image_id<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;@sha256:&#39;</span>)[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;@&#39;</span>)[<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>                image <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>images<span style="color:#f92672">.</span>get(digest)
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> image:
+</span></span><span style="display:flex;"><span>                    commit_hash <span style="color:#f92672">=</span> image<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;metadata&#39;</span>, {})<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;gitCommit&#39;</span>)
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> commit_hash:
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>commits<span style="color:#f92672">.</span>get(commit_hash)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">build_traceability_chain</span>(self, starting_point, starting_type):
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;Build complete traceability from any starting point&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        chain <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;commit&#34;</span>: <span style="color:#66d9ef">None</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;build&#34;</span>: <span style="color:#66d9ef">None</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;image&#34;</span>: <span style="color:#66d9ef">None</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;deployment&#34;</span>: <span style="color:#66d9ef">None</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;pods&#34;</span>: []
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> starting_type <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;commit&#34;</span>:
+</span></span><span style="display:flex;"><span>            commit_hash <span style="color:#f92672">=</span> starting_point
+</span></span><span style="display:flex;"><span>            chain[<span style="color:#e6db74">&#34;commit&#34;</span>] <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>commits<span style="color:#f92672">.</span>get(commit_hash)
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Find images with this commit</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> digest, image <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>images<span style="color:#f92672">.</span>items():
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> image<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;metadata&#39;</span>, {})<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;gitCommit&#39;</span>) <span style="color:#f92672">==</span> commit_hash:
+</span></span><span style="display:flex;"><span>                    chain[<span style="color:#e6db74">&#34;image&#34;</span>] <span style="color:#f92672">=</span> image
+</span></span><span style="display:flex;"><span>                    
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e"># Find deployments with this image</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">for</span> deploy_id, deploy <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>deployments<span style="color:#f92672">.</span>items():
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">if</span> digest <span style="color:#f92672">in</span> deploy<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;image&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>):
+</span></span><span style="display:flex;"><span>                            chain[<span style="color:#e6db74">&#34;deployment&#34;</span>] <span style="color:#f92672">=</span> deploy
+</span></span><span style="display:flex;"><span>                            
+</span></span><span style="display:flex;"><span>                            <span style="color:#75715e"># Find pods from this deployment</span>
+</span></span><span style="display:flex;"><span>                            deploy_name <span style="color:#f92672">=</span> deploy<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;name&#39;</span>)
+</span></span><span style="display:flex;"><span>                            <span style="color:#66d9ef">for</span> pod_id, pod <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>pods<span style="color:#f92672">.</span>items():
+</span></span><span style="display:flex;"><span>                                <span style="color:#66d9ef">if</span> pod<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;labels&#39;</span>, {})<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;app&#39;</span>) <span style="color:#f92672">==</span> deploy_name:
+</span></span><span style="display:flex;"><span>                                    chain[<span style="color:#e6db74">&#34;pods&#34;</span>]<span style="color:#f92672">.</span>append(pod)
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Similar logic for other starting_types...</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> chain
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">generate_report</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;Generate correlation report&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        report <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;summary&#34;</span>: {
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;total_commits&#34;</span>: len(self<span style="color:#f92672">.</span>commits),
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;total_images&#34;</span>: len(self<span style="color:#f92672">.</span>images),
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;total_deployments&#34;</span>: len(self<span style="color:#f92672">.</span>deployments),
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;total_pods&#34;</span>: len(self<span style="color:#f92672">.</span>pods),
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;correlations&#34;</span>: [],
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;orphans&#34;</span>: {
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;images_without_commit&#34;</span>: [],
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;deployments_without_commit&#34;</span>: [],
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;pods_without_correlation&#34;</span>: []
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Check for orphaned images</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> digest, image <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>images<span style="color:#f92672">.</span>items():
+</span></span><span style="display:flex;"><span>            commit <span style="color:#f92672">=</span> image<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;metadata&#39;</span>, {})<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;gitCommit&#39;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> commit <span style="color:#f92672">or</span> commit <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>commits:
+</span></span><span style="display:flex;"><span>                report[<span style="color:#e6db74">&#34;orphans&#34;</span>][<span style="color:#e6db74">&#34;images_without_commit&#34;</span>]<span style="color:#f92672">.</span>append({
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;digest&#34;</span>: digest,
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;tags&#34;</span>: image<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;tags&#39;</span>, [])
+</span></span><span style="display:flex;"><span>                })
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Check for orphaned deployments</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> deploy_id, deploy <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>deployments<span style="color:#f92672">.</span>items():
+</span></span><span style="display:flex;"><span>            commit <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>correlate_deployment_to_commit(deploy_id)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> commit:
+</span></span><span style="display:flex;"><span>                report[<span style="color:#e6db74">&#34;orphans&#34;</span>][<span style="color:#e6db74">&#34;deployments_without_commit&#34;</span>]<span style="color:#f92672">.</span>append({
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;deploymentId&#34;</span>: deploy_id,
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;name&#34;</span>: deploy<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;name&#39;</span>),
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;image&#34;</span>: deploy<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;image&#39;</span>)
+</span></span><span style="display:flex;"><span>                })
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> report
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    engine <span style="color:#f92672">=</span> CorrelationEngine(<span style="color:#e6db74">&#34;./data&#34;</span>)
+</span></span><span style="display:flex;"><span>    engine<span style="color:#f92672">.</span>load_all_data()
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    report <span style="color:#f92672">=</span> engine<span style="color:#f92672">.</span>generate_report()
+</span></span><span style="display:flex;"><span>    print(json<span style="color:#f92672">.</span>dumps(report, indent<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>))</span></span></code></pre></div><hr>
+<h2 id="step-5-consistency-checks">Step 5: Consistency Checks<a class="anchor" href="#step-5-consistency-checks">#</a></h2>
+<p>Define business rules and check them:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># consistency_checker.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> correlation_engine <span style="color:#f92672">import</span> CorrelationEngine
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ConsistencyChecker</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, engine):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>engine <span style="color:#f92672">=</span> engine
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>violations <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">check_all</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;Run all consistency checks&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>check_all_deployments_have_commit()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>check_all_images_scanned()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>check_all_pods_from_known_images()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>check_deployment_matches_pods()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>violations
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">check_all_deployments_have_commit</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;Rule: Every deployment must be traceable to a git commit&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> deploy_id, deploy <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>engine<span style="color:#f92672">.</span>deployments<span style="color:#f92672">.</span>items():
+</span></span><span style="display:flex;"><span>            commit <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>engine<span style="color:#f92672">.</span>correlate_deployment_to_commit(deploy_id)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> commit:
+</span></span><span style="display:flex;"><span>                self<span style="color:#f92672">.</span>violations<span style="color:#f92672">.</span>append({
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;rule&#34;</span>: <span style="color:#e6db74">&#34;deployment_has_commit&#34;</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;severity&#34;</span>: <span style="color:#e6db74">&#34;HIGH&#34;</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;deploymentId&#34;</span>: deploy_id,
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;deployment&#34;</span>: deploy<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;name&#39;</span>),
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;message&#34;</span>: <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Deployment </span><span style="color:#e6db74">{</span>deploy<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;name&#39;</span>)<span style="color:#e6db74">}</span><span style="color:#e6db74"> has no traceable git commit&#34;</span>
+</span></span><span style="display:flex;"><span>                })
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">check_all_images_scanned</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;Rule: All images must have security scan&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> digest, image <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>engine<span style="color:#f92672">.</span>images<span style="color:#f92672">.</span>items():
+</span></span><span style="display:flex;"><span>            scan_status <span style="color:#f92672">=</span> image<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;labels&#39;</span>, {})<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;com.myorg.security.scan&#39;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> scan_status:
+</span></span><span style="display:flex;"><span>                self<span style="color:#f92672">.</span>violations<span style="color:#f92672">.</span>append({
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;rule&#34;</span>: <span style="color:#e6db74">&#34;image_must_be_scanned&#34;</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;severity&#34;</span>: <span style="color:#e6db74">&#34;CRITICAL&#34;</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;imageDigest&#34;</span>: digest,
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;tags&#34;</span>: image<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;tags&#39;</span>, []),
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;message&#34;</span>: <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Image </span><span style="color:#e6db74">{</span>image<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;tags&#39;</span>, [<span style="color:#e6db74">&#39;unknown&#39;</span>])[<span style="color:#ae81ff">0</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74"> has no security scan&#34;</span>
+</span></span><span style="display:flex;"><span>                })
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">check_all_pods_from_known_images</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;Rule: All running pods must use images from our registry&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> pod_id, pod <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>engine<span style="color:#f92672">.</span>pods<span style="color:#f92672">.</span>items():
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> container <span style="color:#f92672">in</span> pod<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;containers&#39;</span>, []):
+</span></span><span style="display:flex;"><span>                image <span style="color:#f92672">=</span> container<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;image&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>)
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> image<span style="color:#f92672">.</span>startswith(<span style="color:#e6db74">&#39;myregistry.io/&#39;</span>):
+</span></span><span style="display:flex;"><span>                    self<span style="color:#f92672">.</span>violations<span style="color:#f92672">.</span>append({
+</span></span><span style="display:flex;"><span>                        <span style="color:#e6db74">&#34;rule&#34;</span>: <span style="color:#e6db74">&#34;pods_use_approved_registry&#34;</span>,
+</span></span><span style="display:flex;"><span>                        <span style="color:#e6db74">&#34;severity&#34;</span>: <span style="color:#e6db74">&#34;MEDIUM&#34;</span>,
+</span></span><span style="display:flex;"><span>                        <span style="color:#e6db74">&#34;podId&#34;</span>: pod_id,
+</span></span><span style="display:flex;"><span>                        <span style="color:#e6db74">&#34;image&#34;</span>: image,
+</span></span><span style="display:flex;"><span>                        <span style="color:#e6db74">&#34;message&#34;</span>: <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Pod </span><span style="color:#e6db74">{</span>pod_id<span style="color:#e6db74">}</span><span style="color:#e6db74"> uses image from unapproved registry: </span><span style="color:#e6db74">{</span>image<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>                    })
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">check_deployment_matches_pods</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;Rule: Pod count should match deployment replica count&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> deploy_id, deploy <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>engine<span style="color:#f92672">.</span>deployments<span style="color:#f92672">.</span>items():
+</span></span><span style="display:flex;"><span>            expected_replicas <span style="color:#f92672">=</span> deploy<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;replicas&#39;</span>, <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>            deploy_name <span style="color:#f92672">=</span> deploy<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;name&#39;</span>)
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Count running pods for this deployment</span>
+</span></span><span style="display:flex;"><span>            running_pods <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>                pod <span style="color:#66d9ef">for</span> pod <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>engine<span style="color:#f92672">.</span>pods<span style="color:#f92672">.</span>values()
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> pod<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;labels&#39;</span>, {})<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;app&#39;</span>) <span style="color:#f92672">==</span> deploy_name
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">and</span> pod<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;status&#39;</span>) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Running&#39;</span>
+</span></span><span style="display:flex;"><span>            ]
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> len(running_pods) <span style="color:#f92672">!=</span> expected_replicas:
+</span></span><span style="display:flex;"><span>                self<span style="color:#f92672">.</span>violations<span style="color:#f92672">.</span>append({
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;rule&#34;</span>: <span style="color:#e6db74">&#34;deployment_replica_count&#34;</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;severity&#34;</span>: <span style="color:#e6db74">&#34;MEDIUM&#34;</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;deploymentId&#34;</span>: deploy_id,
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;expected&#34;</span>: expected_replicas,
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;actual&#34;</span>: len(running_pods),
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;message&#34;</span>: <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Deployment </span><span style="color:#e6db74">{</span>deploy_name<span style="color:#e6db74">}</span><span style="color:#e6db74"> expects </span><span style="color:#e6db74">{</span>expected_replicas<span style="color:#e6db74">}</span><span style="color:#e6db74"> replicas but has </span><span style="color:#e6db74">{</span>len(running_pods)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>                })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    engine <span style="color:#f92672">=</span> CorrelationEngine(<span style="color:#e6db74">&#34;./data&#34;</span>)
+</span></span><span style="display:flex;"><span>    engine<span style="color:#f92672">.</span>load_all_data()
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    checker <span style="color:#f92672">=</span> ConsistencyChecker(engine)
+</span></span><span style="display:flex;"><span>    violations <span style="color:#f92672">=</span> checker<span style="color:#f92672">.</span>check_all()
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Found </span><span style="color:#e6db74">{</span>len(violations)<span style="color:#e6db74">}</span><span style="color:#e6db74"> violations:&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> v <span style="color:#f92672">in</span> violations:
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;  [</span><span style="color:#e6db74">{</span>v[<span style="color:#e6db74">&#39;severity&#39;</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">] </span><span style="color:#e6db74">{</span>v[<span style="color:#e6db74">&#39;rule&#39;</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">: </span><span style="color:#e6db74">{</span>v[<span style="color:#e6db74">&#39;message&#39;</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)</span></span></code></pre></div><hr>
+<h2 id="step-6-practical-implementation-roadmap">Step 6: Practical Implementation Roadmap<a class="anchor" href="#step-6-practical-implementation-roadmap">#</a></h2>
+<h3 id="phase-1-foundation-week-1-2">Phase 1: Foundation (Week 1-2)<a class="anchor" href="#phase-1-foundation-week-1-2">#</a></h3>
+<ol>
+<li>Define your domain model (adapt the one provided)</li>
+<li>Choose correlation identifiers</li>
+<li>Document metadata schema</li>
+<li>Create simple collectors for Git, Docker, K8s</li>
+</ol>
+<h3 id="phase-2-metadata-injection-week-3-4">Phase 2: Metadata Injection (Week 3-4)<a class="anchor" href="#phase-2-metadata-injection-week-3-4">#</a></h3>
+<ol>
+<li>Update CI/CD pipelines to add labels to Docker images</li>
+<li>Update K8s deployment templates with annotations</li>
+<li>Instrument application logging with correlation IDs</li>
+<li>Test end-to-end traceability</li>
+</ol>
+<h3 id="phase-3-correlation-week-5-6">Phase 3: Correlation (Week 5-6)<a class="anchor" href="#phase-3-correlation-week-5-6">#</a></h3>
+<ol>
+<li>Build correlation engine</li>
+<li>Test correlation logic</li>
+<li>Create initial reports</li>
+</ol>
+<h3 id="phase-4-consistency-checking-week-7-8">Phase 4: Consistency Checking (Week 7-8)<a class="anchor" href="#phase-4-consistency-checking-week-7-8">#</a></h3>
+<ol>
+<li>Define business rules</li>
+<li>Implement consistency checks</li>
+<li>Create violation reports</li>
+<li>Set up alerting</li>
+</ol>
+<h3 id="phase-5-visualization-week-9-10">Phase 5: Visualization (Week 9-10)<a class="anchor" href="#phase-5-visualization-week-9-10">#</a></h3>
+<ol>
+<li>Build dashboards</li>
+<li>Create traceability diagrams</li>
+<li>Automate report generation</li>
+</ol>
+<hr>
+<h2 id="quick-win-minimum-viable-implementation">Quick Win: Minimum Viable Implementation<a class="anchor" href="#quick-win-minimum-viable-implementation">#</a></h2>
+<p>Start here for immediate value:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Step 1: Add to CI/CD pipeline</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">docker build \</span>
+</span></span><span style="display:flex;"><span>  --<span style="color:#ae81ff">label &#34;git.commit=$GIT_COMMIT&#34; \</span>
+</span></span><span style="display:flex;"><span>  --<span style="color:#ae81ff">label &#34;build.id=$CI_JOB_ID&#34; \</span>
+</span></span><span style="display:flex;"><span>  -<span style="color:#ae81ff">t myapp:$VERSION .</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Step 2: Add to K8s deployment</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">kubectl annotate deployment myapp \</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">git.commit=&#34;$GIT_COMMIT&#34; \</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">build.id=&#34;$CI_JOB_ID&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Step 3: Query correlation</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">DEPLOY_COMMIT=$(kubectl get deployment myapp -o jsonpath=&#39;{.metadata.annotations.git\.commit}&#39;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">IMAGE=$(kubectl get deployment myapp -o jsonpath=&#39;{.spec.template.spec.containers[0].image}&#39;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">IMAGE_COMMIT=$(docker inspect $IMAGE --format=&#39;{{.Config.Labels.git\.commit}}&#39;)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">if [ &#34;$DEPLOY_COMMIT&#34; == &#34;$IMAGE_COMMIT&#34; ]; then</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">echo &#34;✓ Deployment matches image&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">else</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">echo &#34;✗ MISMATCH: Deploy=$DEPLOY_COMMIT, Image=$IMAGE_COMMIT&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">fi</span></span></span></code></pre></div><p>This gives you basic traceability in <strong>one day</strong>.</p>
+<hr>
+<h2 id="tools-that-can-help">Tools That Can Help<a class="anchor" href="#tools-that-can-help">#</a></h2>
+<p>You don&rsquo;t need to build everything from scratch:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Tool</th>
+          <th>Purpose</th>
+          <th>Use Case</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>OpenTelemetry</strong></td>
+          <td>Distributed tracing</td>
+          <td>Correlation across services</td>
+      </tr>
+      <tr>
+          <td><strong>Prometheus + Grafana</strong></td>
+          <td>Metrics + visualization</td>
+          <td>Runtime monitoring</td>
+      </tr>
+      <tr>
+          <td><strong>Loki</strong></td>
+          <td>Log aggregation</td>
+          <td>Centralized logs with labels</td>
+      </tr>
+      <tr>
+          <td><strong>Jaeger</strong></td>
+          <td>Distributed tracing</td>
+          <td>Request flow tracking</td>
+      </tr>
+      <tr>
+          <td><strong>Kubernetes Dashboard</strong></td>
+          <td>K8s visualization</td>
+          <td>Deployment state</td>
+      </tr>
+      <tr>
+          <td><strong>Harbor</strong></td>
+          <td>Container registry</td>
+          <td>Image scanning, metadata</td>
+      </tr>
+      <tr>
+          <td><strong>ArgoCD</strong></td>
+          <td>GitOps</td>
+          <td>Git-to-K8s traceability</td>
+      </tr>
+      <tr>
+          <td><strong>Backstage</strong></td>
+          <td>Developer portal</td>
+          <td>Service catalog</td>
+      </tr>
+  </tbody>
+</table>
+<p>Many of these already support metadata propagation!</p>
+<hr>
+<h2 id="success-metrics">Success Metrics<a class="anchor" href="#success-metrics">#</a></h2>
+<p>How do you know this is working?</p>
+<ol>
+<li>
+<p><strong>Traceability Coverage</strong></p>
+<ul>
+<li>% of deployments traceable to commit: Target 95%+</li>
+<li>% of images with build metadata: Target 100%</li>
+<li>% of pods with correlation IDs: Target 90%+</li>
+</ul>
+</li>
+<li>
+<p><strong>Consistency Compliance</strong></p>
+<ul>
+<li>% of deployments passing all checks: Target 95%+</li>
+<li>Mean time to detect violations: Target &lt;5 minutes</li>
+<li>% of violations with known remediation: Target 80%+</li>
+</ul>
+</li>
+<li>
+<p><strong>Operational Impact</strong></p>
+<ul>
+<li>Time to trace production issue to code: Target &lt;5 minutes</li>
+<li>% of incidents with complete audit trail: Target 95%+</li>
+<li>Developer satisfaction with traceability: Survey</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="next-steps">Next Steps<a class="anchor" href="#next-steps">#</a></h2>
+<ol>
+<li>Review and adapt the domain model</li>
+<li>Choose your correlation identifiers</li>
+<li>Implement metadata injection in one CI pipeline (proof of concept)</li>
+<li>Build a simple collector for one system</li>
+<li>Create one correlation query</li>
+<li>Expand gradually</li>
+</ol>
+<p>This is exactly the right approach for your scenario! Start small, prove value, then expand.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+  
+  <div class="flex flex-wrap justify-between">
+    <span>
+    
+      <a href="/musings/docs/misc/executive-summary/" class="flex align-center">
+        <img src="/musings/icons/backward.svg" class="book-icon" alt="Backward" />
+        <span>DevOps Domain Model: Executive Summary</span>
+      </a>
+    
+    </span>
+    <span>
+    
+      <a href="/musings/docs/misc/getting-started-concise/" class="flex align-center">
+        <span>Getting Started Concise</span>
+        <img src="/musings/icons/forward.svg" class="book-icon" alt="Forward" />
+      </a>
+    
+    </span>
+  </div>
+  
+
+
+ 
+        
+  
+ 
+        
+        
+  
+ 
+        
+  
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#devops-domain-model-implementation-guide">DevOps Domain Model: Implementation Guide</a>
+      <ul>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#why-this-approach-works-for-devops">Why This Approach Works for DevOps</a></li>
+        <li><a href="#step-1-define-correlation-identifiers">Step 1: Define Correlation Identifiers</a>
+          <ul>
+            <li><a href="#primary-correlation-keys">Primary Correlation Keys</a></li>
+            <li><a href="#secondary-correlation-keys">Secondary Correlation Keys</a></li>
+          </ul>
+        </li>
+        <li><a href="#step-2-metadata-injection-strategy">Step 2: Metadata Injection Strategy</a>
+          <ul>
+            <li><a href="#git-source-of-truth">Git (Source of Truth)</a></li>
+            <li><a href="#docker-images-container-layer">Docker Images (Container Layer)</a></li>
+            <li><a href="#kubernetes-runtime-layer">Kubernetes (Runtime Layer)</a></li>
+            <li><a href="#application-logs-observability-layer">Application Logs (Observability Layer)</a></li>
+          </ul>
+        </li>
+        <li><a href="#step-3-data-collection-strategy">Step 3: Data Collection Strategy</a>
+          <ul>
+            <li><a href="#collection-architecture">Collection Architecture</a></li>
+            <li><a href="#simple-collector-pattern">Simple Collector Pattern</a></li>
+          </ul>
+        </li>
+        <li><a href="#step-4-correlation-engine">Step 4: Correlation Engine</a></li>
+        <li><a href="#step-5-consistency-checks">Step 5: Consistency Checks</a></li>
+        <li><a href="#step-6-practical-implementation-roadmap">Step 6: Practical Implementation Roadmap</a>
+          <ul>
+            <li><a href="#phase-1-foundation-week-1-2">Phase 1: Foundation (Week 1-2)</a></li>
+            <li><a href="#phase-2-metadata-injection-week-3-4">Phase 2: Metadata Injection (Week 3-4)</a></li>
+            <li><a href="#phase-3-correlation-week-5-6">Phase 3: Correlation (Week 5-6)</a></li>
+            <li><a href="#phase-4-consistency-checking-week-7-8">Phase 4: Consistency Checking (Week 7-8)</a></li>
+            <li><a href="#phase-5-visualization-week-9-10">Phase 5: Visualization (Week 9-10)</a></li>
+          </ul>
+        </li>
+        <li><a href="#quick-win-minimum-viable-implementation">Quick Win: Minimum Viable Implementation</a></li>
+        <li><a href="#tools-that-can-help">Tools That Can Help</a></li>
+        <li><a href="#success-metrics">Success Metrics</a></li>
+        <li><a href="#next-steps">Next Steps</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

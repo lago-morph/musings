@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><script src="/musings/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=musings/livereload" data-no-instant defer></script>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="This is a great question about bridging declarative GitOps with imperative operational tasks. Here are several approaches to consider:.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/musings/docs/misc/imperitive-in-declarative/">
+  <meta property="og:site_name" content="Technology Documentation Hub">
+  <meta property="og:title" content="Imperitive In Declarative">
+  <meta property="og:description" content="This is a great question about bridging declarative GitOps with imperative operational tasks. Here are several approaches to consider:.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2025-12-16T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-16T00:00:00+00:00">
+
+
+  <meta itemprop="name" content="Imperitive In Declarative">
+  <meta itemprop="description" content="This is a great question about bridging declarative GitOps with imperative operational tasks. Here are several approaches to consider:.">
+  <meta itemprop="datePublished" content="2025-12-16T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-12-16T00:00:00+00:00">
+  <meta itemprop="wordCount" content="580">
+  <meta itemprop="keywords" content="workflow,argocd,yaml,database,orchestration,kubernetes,gitops,react">
+
+<title>Imperitive In Declarative | Technology Documentation Hub</title>
+<link rel="icon" href="/musings/favicon.png" >
+<link rel="manifest" href="/musings/manifest.json">
+<link rel="canonical" href="http://localhost:1313/musings/docs/misc/imperitive-in-declarative/">
+<link rel="stylesheet" href="/musings/book.min.6970156cec683193d93c9c4edaf0d56574e4361df2e0c1be4f697ae81c3ba55f.css" integrity="sha256-aXAVbOxoMZPZPJxO2vDVZXTkNh3y4MG&#43;T2l66Bw7pV8=" crossorigin="anonymous">
+
+
+  <script defer src="/musings/fuse.min.js"></script>
+  <script defer src="/musings/en.search.min.173ca72eaf49c9fc6baf1c2e2e9837cb4f8ae13874ec0dc634ce40c45c8943dc.js" integrity="sha256-FzynLq9JyfxrrxwuLpg3y0&#43;K4Th07A3GNM5AxFyJQ9w=" crossorigin="anonymous"></script>
+
+
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-docs">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/musings/"><span>Technology Documentation Hub</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input id="book-search-input" type="text" 
+    placeholder="Search"
+    aria-label="Search"
+    maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/" class="">
+      AI &amp; Machine Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/" class="">
+      Development Platforms</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/" class="">
+      Infrastructure</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/workflows/" class="">
+      Workflows</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/" class="">
+      Miscellaneous</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/agentic-computing-overview-and-tools/" class="">
+      Agentic Computing Overview And Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/agno-vs-langchain/" class="">
+      Agno Vs Langchain</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/serverless-function-workflow-tools-for-kubernetes/" class="">
+      Core Concepts</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/flowwise-vs-langflow/" class="">
+      Flowise vs Langflow: Detailed Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/one-model-multiple-diagrams/" class="">
+      Generate all views</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/verification-architecture/" class="">
+      Is This a Reasonable Architecture?</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kiro-ide-comparison-tools/" class="">
+      Kiro IDE: Comprehensive Analysis, Comparisons &amp; Optimal Workflows</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/langchain-architecture/" class="">
+      Langchain Architecture</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/llm-tracing-metrics-comparison/" class="">
+      Llm Tracing Metrics Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/n8n-overview/" class="">
+      n8n Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kubernetes-based/" class="">
+      Open Source Workflow Orchestration on Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/tools-overview-and-getting-started/" class="">
+      Self-Hosted Open Source Agent Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/backstage-techdocs-pros-cons/" class="">
+      Backstage Techdocs Pros Cons</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/cross-diagram-reuse-guide/" class="">
+      Cross-Diagram Domain Model Reuse in PlantUML</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/prompt/" class="">
+      Crossplane EKS Management Cluster Implementation - Project Brief</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-intro/" class="">
+      Example Stage configuration</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/export-conversion/" class="">
+      Export Conversion</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-polyrepo/" class="">
+      Fast-moving image Warehouse</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/gitops-platform-safety/" class="">
+      GitOps Safety Architecture for Platform Evolution</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/tasks/" class="">
+      High-Level Plan: Crossplane EKS Management Cluster Implementation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/backstage-kratix-crossplane-argocd-blueprint/" class="">
+      Implementation Blueprint: Crossplane &#43; Kratix &#43; Backstage &#43; ArgoCD</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-git-tags/" class="">
+      In subsequent stages, you can read this metadata</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/in-browser-editing-tools/" class="">
+      In-Browser Editing Documentation Solutions</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/initial-comparison/" class="">
+      Initial Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/comprehensive-guide/" class="">
+      Kargo and ArgoCD: A Comprehensive Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-argocd-interaction/" class="">
+      Kargo promotion step</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/presentation/" class="">
+      Kargo: GitOps Promotion for ArgoCD</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/notion-overview/" class="">
+      Notion: A Comprehensive Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/oss-portal-platform-orchestration-tools/" class="">
+      Oss Portal Platform Orchestration Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/oss-vs-closed-portal/" class="">
+      Oss Vs Closed Portal</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/crossplane-solution/" class="">
+      Pseudocode for composition function</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/recommendations/" class="">
+      Recommendations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/job-configmap-crossplane-abstraction/" class="">
+      Shell script helper for Option 3</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/stage3-outline/" class="">
+      Stage 3: Implementation Patterns - Outline (Crossplane 2.1)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/argocd-layered-values/" class="">
+      ArgoCD and Helm Schema Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/schema-testing/" class="">
+      Creating a Helm Values Schema: Complete Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/stage1/" class="">
+      Crossplane EKS Management Cluster - Approach Overview &amp; Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/executive-summary/" class="">
+      DevOps Domain Model: Executive Summary</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/devops-domain-model-guide/" class="">
+      DevOps Domain Model: Implementation Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/getting-started-concise/" class="">
+      Getting Started Concise</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/ci-cd-templates/" class="">
+      GitHub Actions Example</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/k8s-mcp-servers/" class="">
+      K8s Mcp Servers</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/non-helm-schema-validation/" class="">
+      Non Helm Schema Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/overview/" class="">
+      Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/prompt-guide/" class="">
+      Production Readiness Deep-Dive Prompt Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/production-readiness-overview/" class="">
+      Production Readiness Guide: From Docker Compose to Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/job-plus-configmap-annotation/" class="">
+      Read current state AND capture resourceVersion</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/runbooks/" class="">
+      Runbooks</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/layered-schema/" class="">
+      Schema Validation with Layered Values Files</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/helm-layered-abstraction/" class="">
+      Solution 2: Kustomize with Helm</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/stage2/" class="">
+      Stage 2: Architecture Design</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/starting-helm-testing/" class="">
+      Testing Complex Helm Charts: A Practical Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/imperitive-in-declarative/" class="active">
+      Imperitive In Declarative</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/mermaid-test/" class="">
+      Mermaid Diagram Test</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/test-document/" class="">
+      Test Document</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/musings/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>Imperitive In Declarative</h3>
+
+  <label for="toc-control">
+    
+    <img src="/musings/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1-custom-kubernetes-operator">1. Custom Kubernetes Operator</a></li>
+        <li><a href="#2-argo-workflows--applicationset">2. Argo Workflows + ApplicationSet</a></li>
+        <li><a href="#3-job--configmapannotation-pattern">3. Job + ConfigMap/Annotation Pattern</a></li>
+        <li><a href="#4-argo-cd-sync-hooks--postsync-jobs">4. Argo CD Sync Hooks + PostSync Jobs</a></li>
+        <li><a href="#5-hybrid-operator--argo-workflows">5. Hybrid: Operator + Argo Workflows</a></li>
+        <li><a href="#my-recommendation">My Recommendation</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><p>This is a great question about bridging declarative GitOps with imperative operational tasks. Here are several approaches to consider:</p>
+<h2 id="1-custom-kubernetes-operator">1. Custom Kubernetes Operator<a class="anchor" href="#1-custom-kubernetes-operator">#</a></h2>
+<p>Create a CRD like <code>DatabaseRestore</code> that represents the desired state:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">ops.example.com/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">DatabaseRestore</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">production-restore</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">backupTimestamp</span>: <span style="color:#e6db74">&#34;2024-12-10T00:00:00Z&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">database</span>: <span style="color:#ae81ff">postgres-prod</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">preSteps</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">disableIngress</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">scaleDeployments</span>: <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">postSteps</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">scaleDeployments</span>: <span style="color:#ae81ff">auto</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">enableIngress</span>: <span style="color:#66d9ef">true</span></span></span></code></pre></div><p><strong>Pros:</strong></p>
+<ul>
+<li>Most &ldquo;Kubernetes-native&rdquo; approach</li>
+<li>True declarative state - ArgoCD sees it as just another resource</li>
+<li>Built-in reconciliation loop handles idempotency naturally</li>
+<li>Can watch for changes and react automatically</li>
+<li>Status conditions show operation progress</li>
+<li>Perfect integration with GitOps workflows</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Requires writing and maintaining Go code (or using kubebuilder/operator-sdk)</li>
+<li>More complex initial setup</li>
+<li>Need to handle error states, retries, and edge cases</li>
+<li>Learning curve for operator development</li>
+</ul>
+<h2 id="2-argo-workflows--applicationset">2. Argo Workflows + ApplicationSet<a class="anchor" href="#2-argo-workflows--applicationset">#</a></h2>
+<p>Use Argo Workflows with a custom resource that triggers workflow execution:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">ops.example.com/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">RestoreIntent</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">restore-dec-10</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">backupDate</span>: <span style="color:#e6db74">&#34;2024-12-10&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">triggered</span>: <span style="color:#66d9ef">false</span>  <span style="color:#75715e"># Workflow watches this</span></span></span></code></pre></div><p>A controller or the workflow itself updates <code>triggered: true</code> after execution.</p>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Argo Workflows provides powerful orchestration</li>
+<li>DAG-based workflow is easy to visualize and understand</li>
+<li>Can reuse existing workflow templates</li>
+<li>Good retry and error handling built-in</li>
+<li>Workflow history preserved</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Need coordination between workflow and state tracking</li>
+<li>Requires additional component (Argo Workflows)</li>
+<li>Idempotency logic must be built into workflow steps</li>
+<li>State synchronization can be tricky</li>
+</ul>
+<h2 id="3-job--configmapannotation-pattern">3. Job + ConfigMap/Annotation Pattern<a class="anchor" href="#3-job--configmapannotation-pattern">#</a></h2>
+<p>Use a ConfigMap to track desired state and a CronJob or controller to reconcile:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ConfigMap</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">restore-state</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">data</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">desiredBackupTimestamp</span>: <span style="color:#e6db74">&#34;2024-12-10T00:00:00Z&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">lastAppliedTimestamp</span>: <span style="color:#e6db74">&#34;2024-12-01T00:00:00Z&#34;</span></span></span></code></pre></div><p>A Job/CronJob compares these values and executes if different.</p>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Simple to implement - just shell scripts in a Job</li>
+<li>No custom code required</li>
+<li>Easy to understand for operators</li>
+<li>Lightweight solution</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Less robust than operator pattern</li>
+<li>CronJob timing can be wasteful or delayed</li>
+<li>State management is manual</li>
+<li>No built-in reconciliation</li>
+<li>Harder to handle complex orchestration</li>
+<li>Race conditions possible</li>
+</ul>
+<h2 id="4-argo-cd-sync-hooks--postsync-jobs">4. Argo CD Sync Hooks + PostSync Jobs<a class="anchor" href="#4-argo-cd-sync-hooks--postsync-jobs">#</a></h2>
+<p>Use ArgoCD hooks with a resource that changes when restore is needed:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">batch/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Job</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">restore-db-20241210</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">argocd.argoproj.io/hook</span>: <span style="color:#ae81ff">Sync</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">argocd.argoproj.io/hook-delete-policy</span>: <span style="color:#ae81ff">BeforeHookCreation</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">restore</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">image</span>: <span style="color:#ae81ff">restore-tooling</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">env</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">BACKUP_DATE</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">value</span>: <span style="color:#e6db74">&#34;2024-12-10&#34;</span></span></span></code></pre></div><p><strong>Pros:</strong></p>
+<ul>
+<li>Integrates directly with ArgoCD sync process</li>
+<li>No additional controllers needed</li>
+<li>Clear when operation runs (during sync)</li>
+<li>Hook ordering handles sequencing</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Tightly coupled to ArgoCD sync cycle</li>
+<li>Can make syncs slow and fragile</li>
+<li>Not truly idempotent - reruns on every sync unless carefully designed</li>
+<li>Manual sync required to trigger</li>
+<li>Hook failures can block entire sync</li>
+</ul>
+<h2 id="5-hybrid-operator--argo-workflows">5. Hybrid: Operator + Argo Workflows<a class="anchor" href="#5-hybrid-operator--argo-workflows">#</a></h2>
+<p>Combine a lightweight operator that triggers Argo Workflows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">ops.example.com/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">DatabaseRestore</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">restore-dec-10</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">backupTimestamp</span>: <span style="color:#e6db74">&#34;2024-12-10T00:00:00Z&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">status</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">workflowName</span>: <span style="color:#ae81ff">restore-dec-10-abc123</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">phase</span>: <span style="color:#ae81ff">Succeeded</span></span></span></code></pre></div><p><strong>Pros:</strong></p>
+<ul>
+<li>Separates state management (operator) from execution (workflow)</li>
+<li>Best of both worlds for complex operations</li>
+<li>Clean separation of concerns</li>
+<li>Workflow provides detailed execution tracking</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Most complex solution</li>
+<li>Two systems to maintain</li>
+<li>Requires both operator and Argo Workflows</li>
+</ul>
+<h2 id="my-recommendation">My Recommendation<a class="anchor" href="#my-recommendation">#</a></h2>
+<p>For your use case, I&rsquo;d recommend <strong>Option 1 (Custom Operator)</strong> or <strong>Option 5 (Operator + Argo Workflows)</strong> depending on complexity:</p>
+<ul>
+<li><strong>Start with Option 1</strong> if your restore logic is straightforward</li>
+<li><strong>Use Option 5</strong> if you need complex multi-step orchestration with branching logic</li>
+</ul>
+<p>The operator pattern gives you true declarative state that ArgoCD can track, while the reconciliation loop naturally provides idempotency. The status subresource lets you track &ldquo;this is what we wanted&rdquo; vs &ldquo;this is what we&rsquo;ve done&rdquo;, which is exactly what you&rsquo;re looking for.</p>
+<p>Would you like me to sketch out a more detailed example of any of these approaches?</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+  
+  <div class="flex flex-wrap justify-between">
+    <span>
+    
+      <a href="/musings/docs/misc/starting-helm-testing/" class="flex align-center">
+        <img src="/musings/icons/backward.svg" class="book-icon" alt="Backward" />
+        <span>Testing Complex Helm Charts: A Practical Guide</span>
+      </a>
+    
+    </span>
+    <span>
+    
+      <a href="/musings/docs/mermaid-test/" class="flex align-center">
+        <span>Mermaid Diagram Test</span>
+        <img src="/musings/icons/forward.svg" class="book-icon" alt="Forward" />
+      </a>
+    
+    </span>
+  </div>
+  
+
+
+ 
+        
+  
+ 
+        
+        
+  
+ 
+        
+  
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1-custom-kubernetes-operator">1. Custom Kubernetes Operator</a></li>
+        <li><a href="#2-argo-workflows--applicationset">2. Argo Workflows + ApplicationSet</a></li>
+        <li><a href="#3-job--configmapannotation-pattern">3. Job + ConfigMap/Annotation Pattern</a></li>
+        <li><a href="#4-argo-cd-sync-hooks--postsync-jobs">4. Argo CD Sync Hooks + PostSync Jobs</a></li>
+        <li><a href="#5-hybrid-operator--argo-workflows">5. Hybrid: Operator + Argo Workflows</a></li>
+        <li><a href="#my-recommendation">My Recommendation</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

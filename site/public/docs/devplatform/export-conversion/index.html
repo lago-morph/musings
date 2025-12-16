@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><script src="/musings/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=musings/livereload" data-no-instant defer></script>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Excellent question. This is a critical consideration for enterprise adoption. Let me give you a comprehensive answer about PlantUML’s export and embedding capabilities.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/musings/docs/devplatform/export-conversion/">
+  <meta property="og:site_name" content="Technology Documentation Hub">
+  <meta property="og:title" content="PlantUML Export & Embedding Options">
+  <meta property="og:description" content="Excellent question. This is a critical consideration for enterprise adoption. Let me give you a comprehensive answer about PlantUML’s export and embedding capabilities.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2025-12-16T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-16T00:00:00+00:00">
+
+
+  <meta itemprop="name" content="PlantUML Export & Embedding Options">
+  <meta itemprop="description" content="Excellent question. This is a critical consideration for enterprise adoption. Let me give you a comprehensive answer about PlantUML’s export and embedding capabilities.">
+  <meta itemprop="datePublished" content="2025-12-16T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-12-16T00:00:00+00:00">
+  <meta itemprop="wordCount" content="770">
+  <meta itemprop="keywords" content="mermaid,confluence,documentation,diagrams,workflow,platform,wiki,javascript">
+
+<title>PlantUML Export &amp; Embedding Options | Technology Documentation Hub</title>
+<link rel="icon" href="/musings/favicon.png" >
+<link rel="manifest" href="/musings/manifest.json">
+<link rel="canonical" href="http://localhost:1313/musings/docs/devplatform/export-conversion/">
+<link rel="stylesheet" href="/musings/book.min.6970156cec683193d93c9c4edaf0d56574e4361df2e0c1be4f697ae81c3ba55f.css" integrity="sha256-aXAVbOxoMZPZPJxO2vDVZXTkNh3y4MG&#43;T2l66Bw7pV8=" crossorigin="anonymous">
+
+
+  <script defer src="/musings/fuse.min.js"></script>
+  <script defer src="/musings/en.search.min.5cc9128683126c7cda9fef74044c10c013f6d8935e1e3e719e3f562033e9ef44.js" integrity="sha256-XMkShoMSbHzan&#43;90BEwQwBP22JNeHj5xnj9WIDPp70Q=" crossorigin="anonymous"></script>
+
+
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-docs">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/musings/"><span>Technology Documentation Hub</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input id="book-search-input" type="text" 
+    placeholder="Search"
+    aria-label="Search"
+    maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/" class="">
+      AI &amp; Machine Learning</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/agentic-computing-overview-and-tools/" class="">
+      Agentic Computing Overview And Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/agno-vs-langchain/" class="">
+      Agno Vs Langchain</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/flowwise-vs-langflow/" class="">
+      Flowise vs Langflow: Detailed Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/one-model-multiple-diagrams/" class="">
+      Generate all views</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/verification-architecture/" class="">
+      Is This a Reasonable Architecture?</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/kiro-ide-comparison-tools/" class="">
+      Kiro IDE: Comprehensive Analysis, Comparisons &amp; Optimal Workflows</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/langchain-architecture/" class="">
+      LangChain: The Foundation Library</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/llm-tracing-metrics-comparison/" class="">
+      Llm Tracing Metrics Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/kubernetes-based/" class="">
+      Open Source Workflow Orchestration on Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/tools-overview-and-getting-started/" class="">
+      Self-Hosted Open Source Agent Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/serverless-function-workflow-tools-for-kubernetes/" class="">
+      Serverless/Function Workflows on Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/n8n-overview/" class="">
+      What Problems Does n8n Solve?</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/" class="">
+      Development Platforms</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/backstage-techdocs-pros-cons/" class="">
+      Backstage Techdocs Pros Cons</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/cross-diagram-reuse-guide/" class="">
+      Cross-Diagram Domain Model Reuse in PlantUML</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/prompt/" class="">
+      Crossplane EKS Management Cluster Implementation - Project Brief</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/comprehensive-guide/" class="">
+      Driven vs Event: Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/gitops-platform-safety/" class="">
+      GitOps Safety Architecture for Platform Evolution</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/kargo-intro/" class="">
+      How Kargo Works with ArgoCD to Manage Deployments</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/backstage-kratix-crossplane-argocd-blueprint/" class="">
+      Implementation Blueprint: Crossplane &#43; Kratix &#43; Backstage &#43; ArgoCD</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/kargo-git-tags/" class="">
+      In subsequent stages, you can read this metadata</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/in-browser-editing-tools/" class="">
+      In-Browser Editing Documentation Solutions</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/initial-comparison/" class="">
+      Initial Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/kargo-argocd-interaction/" class="">
+      Kargo promotion step</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/presentation/" class="">
+      Kargo: GitOps Promotion for ArgoCD</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/notion-overview/" class="">
+      Notion: A Comprehensive Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/oss-portal-platform-orchestration-tools/" class="">
+      Oss Portal Platform Orchestration Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/oss-vs-closed-portal/" class="">
+      Oss Vs Closed Portal</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/recommendations/" class="">
+      Overview of Text-Based UML Domain Modeling Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/export-conversion/" class="active">
+      PlantUML Export &amp; Embedding Options</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/crossplane-solution/" class="">
+      Pseudocode for composition function</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/kargo-polyrepo/" class="">
+      Response</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/job-configmap-crossplane-abstraction/" class="">
+      Shell script helper for Option 3</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/tasks/" class="">
+      Stage 1: Approach Overview &amp; Comparison ✅ COMPLETE</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/stage3-outline/" class="">
+      Stage 3: Implementation Patterns - Outline (Crossplane 2.1)</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/" class="">
+      Infrastructure</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/runbooks/" class="">
+      1. Mental Model Shift (Important Framing)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/argocd-layered-values/" class="">
+      ArgoCD and Helm Schema Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/prompt-guide/" class="">
+      Contents</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/overview/" class="">
+      Core Strategy: Progressive Delivery with Blast Radius Containment</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/stage1/" class="">
+      Crossplane EKS Management Cluster - Approach Overview &amp; Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/getting-started-concise/" class="">
+      Getting Started Concise</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/ci-cd-templates/" class="">
+      GitHub Actions Example</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/k8s-mcp-servers/" class="">
+      K8s Mcp Servers</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/stage2/" class="">
+      Management Cluster VPC Layout</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/non-helm-schema-validation/" class="">
+      Non Helm Schema Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/production-readiness-overview/" class="">
+      Production Readiness Guide: From Docker Compose to Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/schema-testing/" class="">
+      Quick Start: Generate Schema from Existing values.yaml</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/job-plus-configmap-annotation/" class="">
+      Read current state AND capture resourceVersion</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/layered-schema/" class="">
+      Schema Validation with Layered Values Files</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/helm-layered-abstraction/" class="">
+      Solution 2: Kustomize with Helm</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/starting-helm-testing/" class="">
+      Understanding What You&#39;re Testing</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/executive-summary/" class="">
+      What You&#39;re Building</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/devops-domain-model-guide/" class="">
+      Why This Approach Works for DevOps</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/workflows/" class="">
+      Workflows</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/workflows/imperitive-in-declarative/" class="">
+      Imperitive In Declarative</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/mermaid-test/" class="">
+      Mermaid Diagram Test</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/" class="">
+      Miscellaneous</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/test-document/" class="">
+      Test Document</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/musings/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>PlantUML Export &amp; Embedding Options</h3>
+
+  <label for="toc-control">
+    
+    <img src="/musings/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#plantuml-export--embedding-options">PlantUML Export &amp; Embedding Options</a>
+          <ul>
+            <li><a href="#direct-native-integrations-"><strong>Direct Native Integrations</strong> ✅</a>
+              <ul>
+                <li><a href="#confluence"><strong>Confluence</strong></a></li>
+                <li><a href="#jira"><strong>Jira</strong></a></li>
+                <li><a href="#drawio-diagramsnet"><strong>Draw.io (Diagrams.net)</strong></a></li>
+              </ul>
+            </li>
+            <li><a href="#export-format-support-"><strong>Export Format Support</strong> 🎨</a></li>
+            <li><a href="#conversion-tools-"><strong>Conversion Tools</strong> 🔄</a>
+              <ul>
+                <li><a href="#plantuml--mermaid"><strong>PlantUML → Mermaid</strong></a></li>
+                <li><a href="#plantuml--drawio"><strong>PlantUML → Draw.io</strong></a></li>
+              </ul>
+            </li>
+            <li><a href="#best-practices-for-enterprise-documentation-"><strong>Best Practices for Enterprise Documentation</strong> 💼</a>
+              <ul>
+                <li><a href="#strategy-1-native-image-embedding-recommended"><strong>Strategy 1: Native Image Embedding</strong> (Recommended)</a></li>
+                <li><a href="#strategy-2-direct-plugin-integration"><strong>Strategy 2: Direct Plugin Integration</strong></a></li>
+                <li><a href="#strategy-3-hybrid-approach"><strong>Strategy 3: Hybrid Approach</strong></a></li>
+              </ul>
+            </li>
+            <li><a href="#real-world-workflow-example-"><strong>Real-World Workflow Example</strong> 🔨</a></li>
+            <li><a href="#format-comparison-for-your-use-case"><strong>Format Comparison for Your Use Case</strong></a></li>
+            <li><a href="#my-recommendation-"><strong>My Recommendation</strong> 🎯</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><p>Excellent question! This is a critical consideration for enterprise adoption. Let me give you a comprehensive answer about PlantUML&rsquo;s export and embedding capabilities.</p>
+<h2 id="plantuml-export--embedding-options">PlantUML Export &amp; Embedding Options<a class="anchor" href="#plantuml-export--embedding-options">#</a></h2>
+<h3 id="direct-native-integrations-"><strong>Direct Native Integrations</strong> ✅<a class="anchor" href="#direct-native-integrations-">#</a></h3>
+<h4 id="confluence"><strong>Confluence</strong><a class="anchor" href="#confluence">#</a></h4>
+<p>Multiple PlantUML plugins exist for Confluence that allow embedding UML diagrams directly in wiki pages using PlantUML syntax. You can:</p>
+<ul>
+<li>Embed PlantUML code directly in Confluence pages using macros</li>
+<li>Diagrams render automatically when viewing the page</li>
+<li>Multiple vendors offer plugins (some free, some paid ~$0.50/user/month)</li>
+</ul>
+<p><strong>Important note:</strong> Some plugins support referencing PlantUML code from BitBucket/GitHub repositories using <code>!include</code> with direct URLs, keeping diagrams synchronized with your codebase.</p>
+<h4 id="jira"><strong>Jira</strong><a class="anchor" href="#jira">#</a></h4>
+<p>PlantUML plugins are also available for Jira, though integration is less mature than Confluence.</p>
+<h4 id="drawio-diagramsnet"><strong>Draw.io (Diagrams.net)</strong><a class="anchor" href="#drawio-diagramsnet">#</a></h4>
+<p><strong>CRITICAL UPDATE:</strong> PlantUML support in draw.io is being phased out - it will be removed at the end of 2025 in the online version and in 2028 in Confluence/Jira Cloud apps. This is due to security review challenges.</p>
+<hr>
+<h3 id="export-format-support-"><strong>Export Format Support</strong> 🎨<a class="anchor" href="#export-format-support-">#</a></h3>
+<p>PlantUML natively exports to multiple formats perfect for documentation:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Format</th>
+          <th>Quality</th>
+          <th>Use Case</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>SVG</strong></td>
+          <td>Vector (scalable)</td>
+          <td>Best for wikis, web docs, presentations</td>
+      </tr>
+      <tr>
+          <td><strong>PNG</strong></td>
+          <td>Raster/bitmap</td>
+          <td>Simple embedding, but large files</td>
+      </tr>
+      <tr>
+          <td><strong>PDF</strong></td>
+          <td>Vector (with setup)</td>
+          <td>Formal documents, printing</td>
+      </tr>
+      <tr>
+          <td><strong>EPS</strong></td>
+          <td>Vector</td>
+          <td>LaTeX documents</td>
+      </tr>
+      <tr>
+          <td><strong>ASCII art</strong></td>
+          <td>Text</td>
+          <td>Plain text documentation</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Recommendation:</strong> SVG is the recommended export format as it retains vector graphics with no loss of detail and remains highly editable.</p>
+<hr>
+<h3 id="conversion-tools-"><strong>Conversion Tools</strong> 🔄<a class="anchor" href="#conversion-tools-">#</a></h3>
+<h4 id="plantuml--mermaid"><strong>PlantUML → Mermaid</strong><a class="anchor" href="#plantuml--mermaid">#</a></h4>
+<p>Several tools exist for conversion:</p>
+<ul>
+<li><strong>pu2mm</strong>: Open-source tool that converts simple PlantUML sequence diagrams to Mermaid</li>
+<li><strong>Browser extensions</strong>: Chrome extensions available for sequence and class diagrams</li>
+<li><strong>Manual conversion</strong>: Syntax is similar enough for manual rewrites</li>
+</ul>
+<p><strong>Why Mermaid matters:</strong> Mermaid is widely supported in:</p>
+<ul>
+<li>GitHub/GitLab (native rendering in README.md)</li>
+<li>Confluence (via plugins)</li>
+<li>Notion</li>
+<li>Many wiki systems</li>
+</ul>
+<h4 id="plantuml--drawio"><strong>PlantUML → Draw.io</strong><a class="anchor" href="#plantuml--drawio">#</a></h4>
+<p>Third-party tools like <code>plantuml2drawio</code> and <code>plantuml_to_drawio</code> are available on GitHub for conversion:</p>
+<ul>
+<li><strong>plantuml2drawio</strong>: Converts PlantUML to Draw.io format element by element, currently supporting activity diagrams</li>
+<li><strong>Catalyst</strong>: JavaScript library specifically for converting C4 diagrams from PlantUML to draw.io format</li>
+</ul>
+<p><strong>Process:</strong></p>
+<ol>
+<li>Export PlantUML as SVG</li>
+<li>Import SVG into draw.io (can edit further)</li>
+<li>OR use conversion tools to create native draw.io XML</li>
+</ol>
+<hr>
+<h3 id="best-practices-for-enterprise-documentation-"><strong>Best Practices for Enterprise Documentation</strong> 💼<a class="anchor" href="#best-practices-for-enterprise-documentation-">#</a></h3>
+<h4 id="strategy-1-native-image-embedding-recommended"><strong>Strategy 1: Native Image Embedding</strong> (Recommended)<a class="anchor" href="#strategy-1-native-image-embedding-recommended">#</a></h4>
+<pre tabindex="0"><code>1. Generate SVG from PlantUML
+2. Commit SVG to version control alongside .puml source
+3. Embed SVG images in Confluence/Jira/wikis
+4. CI/CD pipeline regenerates SVGs on .puml changes</code></pre><p><strong>Pros:</strong></p>
+<ul>
+<li>Works everywhere (universal image support)</li>
+<li>Version controlled</li>
+<li>Automated updates possible</li>
+</ul>
+<h4 id="strategy-2-direct-plugin-integration"><strong>Strategy 2: Direct Plugin Integration</strong><a class="anchor" href="#strategy-2-direct-plugin-integration">#</a></h4>
+<pre tabindex="0"><code>1. Install PlantUML plugin in Confluence
+2. Embed PlantUML code directly in pages
+3. Diagrams render on page load</code></pre><p><strong>Pros:</strong></p>
+<ul>
+<li>Single source of truth (the code)</li>
+<li>Easier to update</li>
+<li>No build process needed</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Plugin dependency</li>
+<li>May not work in all contexts (email exports, PDFs)</li>
+</ul>
+<h4 id="strategy-3-hybrid-approach"><strong>Strategy 3: Hybrid Approach</strong><a class="anchor" href="#strategy-3-hybrid-approach">#</a></h4>
+<pre tabindex="0"><code>1. Store master models as PlantUML in Git
+2. Generate both SVG and Mermaid versions
+3. Use Mermaid for GitHub/modern wikis
+4. Use SVG for Confluence and formal docs</code></pre><hr>
+<h3 id="real-world-workflow-example-"><strong>Real-World Workflow Example</strong> 🔨<a class="anchor" href="#real-world-workflow-example-">#</a></h3>
+<p>For <strong>maximum compatibility</strong> across tools:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plaintext" data-lang="plaintext"><span style="display:flex;"><span>Source Control (Git)
+</span></span><span style="display:flex;"><span>├── models/
+</span></span><span style="display:flex;"><span>│   ├── domain-model.puml        # Master PlantUML source
+</span></span><span style="display:flex;"><span>│   ├── view-orders.puml          # View: Order subsystem
+</span></span><span style="display:flex;"><span>│   └── view-inventory.puml       # View: Inventory subsystem
+</span></span><span style="display:flex;"><span>├── exports/
+</span></span><span style="display:flex;"><span>│   ├── svg/                      # For Confluence, docs
+</span></span><span style="display:flex;"><span>│   ├── mermaid/                  # For GitHub, modern wikis
+</span></span><span style="display:flex;"><span>│   └── png/                      # Fallback compatibility
+</span></span><span style="display:flex;"><span>└── .github/workflows/
+</span></span><span style="display:flex;"><span>    └── generate-diagrams.yml     # Auto-regenerate on commit</span></span></code></pre></div><p><strong>CI/CD pipeline:</strong></p>
+<ol>
+<li>Detects changes to <code>.puml</code> files</li>
+<li>Generates SVG, PNG, and Mermaid versions</li>
+<li>Commits exports back to repo</li>
+<li>Updates documentation automatically</li>
+</ol>
+<hr>
+<h3 id="format-comparison-for-your-use-case"><strong>Format Comparison for Your Use Case</strong><a class="anchor" href="#format-comparison-for-your-use-case">#</a></h3>
+<table>
+  <thead>
+      <tr>
+          <th>Tool/Platform</th>
+          <th>Native PlantUML</th>
+          <th>SVG Import</th>
+          <th>PNG Import</th>
+          <th>Mermaid</th>
+          <th>Best Approach</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Confluence</strong></td>
+          <td>✅ Via plugin</td>
+          <td>✅</td>
+          <td>✅</td>
+          <td>✅ Via plugin</td>
+          <td>Plugin or SVG</td>
+      </tr>
+      <tr>
+          <td><strong>Jira</strong></td>
+          <td>⚠️ Limited</td>
+          <td>✅</td>
+          <td>✅</td>
+          <td>⚠️ Limited</td>
+          <td>SVG attachment</td>
+      </tr>
+      <tr>
+          <td><strong>GitHub/GitLab</strong></td>
+          <td>❌</td>
+          <td>✅</td>
+          <td>✅</td>
+          <td>✅ Native</td>
+          <td>Mermaid preferred</td>
+      </tr>
+      <tr>
+          <td><strong>SharePoint</strong></td>
+          <td>❌</td>
+          <td>✅</td>
+          <td>✅</td>
+          <td>❌</td>
+          <td>SVG/PNG embed</td>
+      </tr>
+      <tr>
+          <td><strong>Draw.io</strong></td>
+          <td>⚠️ Until 2025</td>
+          <td>✅</td>
+          <td>✅</td>
+          <td>✅</td>
+          <td>Import SVG</td>
+      </tr>
+      <tr>
+          <td><strong>MediaWiki</strong></td>
+          <td>✅ Via extension</td>
+          <td>✅</td>
+          <td>✅</td>
+          <td>✅ Via extension</td>
+          <td>Extension or SVG</td>
+      </tr>
+      <tr>
+          <td><strong>Notion</strong></td>
+          <td>❌</td>
+          <td>✅</td>
+          <td>✅</td>
+          <td>✅ Via embed</td>
+          <td>Mermaid or image</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h3 id="my-recommendation-"><strong>My Recommendation</strong> 🎯<a class="anchor" href="#my-recommendation-">#</a></h3>
+<p>For an enterprise environment with Confluence, Jira, and various wikis:</p>
+<ol>
+<li><strong>Primary format:</strong> Keep PlantUML as your source of truth</li>
+<li><strong>Build pipeline:</strong> Auto-generate SVG for every diagram</li>
+<li><strong>Confluence integration:</strong> Use PlantUML plugin for living documentation</li>
+<li><strong>Static docs:</strong> Embed SVG images</li>
+<li><strong>GitHub/modern platforms:</strong> Maintain parallel Mermaid versions for key diagrams</li>
+<li><strong>Formal documents:</strong> Export to PDF via SVG</li>
+</ol>
+<p>This gives you:</p>
+<ul>
+<li>✅ Text-based, version-controlled source</li>
+<li>✅ Wide compatibility via SVG</li>
+<li>✅ Living documentation in Confluence</li>
+<li>✅ Modern platform support via Mermaid</li>
+<li>✅ No vendor lock-in</li>
+</ul>
+<p><strong>Would you like me to:</strong></p>
+<ol>
+<li>Show example CI/CD pipeline configurations for auto-generating exports?</li>
+<li>Dive deeper into specific Confluence/Jira plugin options?</li>
+<li>Explore the Mermaid conversion workflow in more detail?</li>
+<li>Compare this approach with Structurizr&rsquo;s embedding capabilities?</li>
+</ol>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+  
+  <div class="flex flex-wrap justify-between">
+    <span>
+    
+      <a href="/musings/docs/devplatform/recommendations/" class="flex align-center">
+        <img src="/musings/icons/backward.svg" class="book-icon" alt="Backward" />
+        <span>Overview of Text-Based UML Domain Modeling Tools</span>
+      </a>
+    
+    </span>
+    <span>
+    
+      <a href="/musings/docs/devplatform/crossplane-solution/" class="flex align-center">
+        <span>Pseudocode for composition function</span>
+        <img src="/musings/icons/forward.svg" class="book-icon" alt="Forward" />
+      </a>
+    
+    </span>
+  </div>
+  
+
+
+ 
+        
+  
+ 
+        
+        
+  
+ 
+        
+  
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#plantuml-export--embedding-options">PlantUML Export &amp; Embedding Options</a>
+          <ul>
+            <li><a href="#direct-native-integrations-"><strong>Direct Native Integrations</strong> ✅</a>
+              <ul>
+                <li><a href="#confluence"><strong>Confluence</strong></a></li>
+                <li><a href="#jira"><strong>Jira</strong></a></li>
+                <li><a href="#drawio-diagramsnet"><strong>Draw.io (Diagrams.net)</strong></a></li>
+              </ul>
+            </li>
+            <li><a href="#export-format-support-"><strong>Export Format Support</strong> 🎨</a></li>
+            <li><a href="#conversion-tools-"><strong>Conversion Tools</strong> 🔄</a>
+              <ul>
+                <li><a href="#plantuml--mermaid"><strong>PlantUML → Mermaid</strong></a></li>
+                <li><a href="#plantuml--drawio"><strong>PlantUML → Draw.io</strong></a></li>
+              </ul>
+            </li>
+            <li><a href="#best-practices-for-enterprise-documentation-"><strong>Best Practices for Enterprise Documentation</strong> 💼</a>
+              <ul>
+                <li><a href="#strategy-1-native-image-embedding-recommended"><strong>Strategy 1: Native Image Embedding</strong> (Recommended)</a></li>
+                <li><a href="#strategy-2-direct-plugin-integration"><strong>Strategy 2: Direct Plugin Integration</strong></a></li>
+                <li><a href="#strategy-3-hybrid-approach"><strong>Strategy 3: Hybrid Approach</strong></a></li>
+              </ul>
+            </li>
+            <li><a href="#real-world-workflow-example-"><strong>Real-World Workflow Example</strong> 🔨</a></li>
+            <li><a href="#format-comparison-for-your-use-case"><strong>Format Comparison for Your Use Case</strong></a></li>
+            <li><a href="#my-recommendation-"><strong>My Recommendation</strong> 🎯</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

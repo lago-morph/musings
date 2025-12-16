@@ -1,0 +1,1807 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><script src="/musings/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=musings/livereload" data-no-instant defer></script>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Great question - this is a common challenge with multi-layered architectures. Here are several approaches, from simplest to most sophisticated:.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/musings/docs/misc/helm-layered-abstraction/">
+  <meta property="og:site_name" content="Technology Documentation Hub">
+  <meta property="og:title" content="Solution 2: Kustomize with Helm">
+  <meta property="og:description" content="Great question - this is a common challenge with multi-layered architectures. Here are several approaches, from simplest to most sophisticated:.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2025-12-16T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-16T00:00:00+00:00">
+
+
+  <meta itemprop="name" content="Solution 2: Kustomize with Helm">
+  <meta itemprop="description" content="Great question - this is a common challenge with multi-layered architectures. Here are several approaches, from simplest to most sophisticated:.">
+  <meta itemprop="datePublished" content="2025-12-16T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-12-16T00:00:00+00:00">
+  <meta itemprop="wordCount" content="1764">
+  <meta itemprop="keywords" content="yaml,helm,argocd,gitops,kubernetes,staging,security,monitoring">
+
+<title>Solution 2: Kustomize with Helm | Technology Documentation Hub</title>
+<link rel="icon" href="/musings/favicon.png" >
+<link rel="manifest" href="/musings/manifest.json">
+<link rel="canonical" href="http://localhost:1313/musings/docs/misc/helm-layered-abstraction/">
+<link rel="stylesheet" href="/musings/book.min.6970156cec683193d93c9c4edaf0d56574e4361df2e0c1be4f697ae81c3ba55f.css" integrity="sha256-aXAVbOxoMZPZPJxO2vDVZXTkNh3y4MG&#43;T2l66Bw7pV8=" crossorigin="anonymous">
+
+
+  <script defer src="/musings/fuse.min.js"></script>
+  <script defer src="/musings/en.search.min.173ca72eaf49c9fc6baf1c2e2e9837cb4f8ae13874ec0dc634ce40c45c8943dc.js" integrity="sha256-FzynLq9JyfxrrxwuLpg3y0&#43;K4Th07A3GNM5AxFyJQ9w=" crossorigin="anonymous"></script>
+
+
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-docs">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/musings/"><span>Technology Documentation Hub</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input id="book-search-input" type="text" 
+    placeholder="Search"
+    aria-label="Search"
+    maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/" class="">
+      AI &amp; Machine Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/" class="">
+      Development Platforms</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/" class="">
+      Infrastructure</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/workflows/" class="">
+      Workflows</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/" class="">
+      Miscellaneous</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/agentic-computing-overview-and-tools/" class="">
+      Agentic Computing Overview And Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/agno-vs-langchain/" class="">
+      Agno Vs Langchain</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/serverless-function-workflow-tools-for-kubernetes/" class="">
+      Core Concepts</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/flowwise-vs-langflow/" class="">
+      Flowise vs Langflow: Detailed Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/one-model-multiple-diagrams/" class="">
+      Generate all views</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/verification-architecture/" class="">
+      Is This a Reasonable Architecture?</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kiro-ide-comparison-tools/" class="">
+      Kiro IDE: Comprehensive Analysis, Comparisons &amp; Optimal Workflows</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/langchain-architecture/" class="">
+      Langchain Architecture</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/llm-tracing-metrics-comparison/" class="">
+      Llm Tracing Metrics Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/n8n-overview/" class="">
+      n8n Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kubernetes-based/" class="">
+      Open Source Workflow Orchestration on Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/tools-overview-and-getting-started/" class="">
+      Self-Hosted Open Source Agent Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/backstage-techdocs-pros-cons/" class="">
+      Backstage Techdocs Pros Cons</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/cross-diagram-reuse-guide/" class="">
+      Cross-Diagram Domain Model Reuse in PlantUML</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/prompt/" class="">
+      Crossplane EKS Management Cluster Implementation - Project Brief</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-intro/" class="">
+      Example Stage configuration</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/export-conversion/" class="">
+      Export Conversion</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-polyrepo/" class="">
+      Fast-moving image Warehouse</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/gitops-platform-safety/" class="">
+      GitOps Safety Architecture for Platform Evolution</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/tasks/" class="">
+      High-Level Plan: Crossplane EKS Management Cluster Implementation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/backstage-kratix-crossplane-argocd-blueprint/" class="">
+      Implementation Blueprint: Crossplane &#43; Kratix &#43; Backstage &#43; ArgoCD</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-git-tags/" class="">
+      In subsequent stages, you can read this metadata</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/in-browser-editing-tools/" class="">
+      In-Browser Editing Documentation Solutions</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/initial-comparison/" class="">
+      Initial Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/comprehensive-guide/" class="">
+      Kargo and ArgoCD: A Comprehensive Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-argocd-interaction/" class="">
+      Kargo promotion step</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/presentation/" class="">
+      Kargo: GitOps Promotion for ArgoCD</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/notion-overview/" class="">
+      Notion: A Comprehensive Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/oss-portal-platform-orchestration-tools/" class="">
+      Oss Portal Platform Orchestration Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/oss-vs-closed-portal/" class="">
+      Oss Vs Closed Portal</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/crossplane-solution/" class="">
+      Pseudocode for composition function</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/recommendations/" class="">
+      Recommendations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/job-configmap-crossplane-abstraction/" class="">
+      Shell script helper for Option 3</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/stage3-outline/" class="">
+      Stage 3: Implementation Patterns - Outline (Crossplane 2.1)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/argocd-layered-values/" class="">
+      ArgoCD and Helm Schema Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/schema-testing/" class="">
+      Creating a Helm Values Schema: Complete Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/stage1/" class="">
+      Crossplane EKS Management Cluster - Approach Overview &amp; Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/executive-summary/" class="">
+      DevOps Domain Model: Executive Summary</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/devops-domain-model-guide/" class="">
+      DevOps Domain Model: Implementation Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/getting-started-concise/" class="">
+      Getting Started Concise</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/ci-cd-templates/" class="">
+      GitHub Actions Example</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/k8s-mcp-servers/" class="">
+      K8s Mcp Servers</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/non-helm-schema-validation/" class="">
+      Non Helm Schema Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/overview/" class="">
+      Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/prompt-guide/" class="">
+      Production Readiness Deep-Dive Prompt Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/production-readiness-overview/" class="">
+      Production Readiness Guide: From Docker Compose to Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/job-plus-configmap-annotation/" class="">
+      Read current state AND capture resourceVersion</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/runbooks/" class="">
+      Runbooks</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/layered-schema/" class="">
+      Schema Validation with Layered Values Files</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/helm-layered-abstraction/" class="active">
+      Solution 2: Kustomize with Helm</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/stage2/" class="">
+      Stage 2: Architecture Design</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/starting-helm-testing/" class="">
+      Testing Complex Helm Charts: A Practical Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/imperitive-in-declarative/" class="">
+      Imperitive In Declarative</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/mermaid-test/" class="">
+      Mermaid Diagram Test</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/test-document/" class="">
+      Test Document</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/musings/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>Solution 2: Kustomize with Helm</h3>
+
+  <label for="toc-control">
+    
+    <img src="/musings/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#solution-1-values-repository-with-argocd-valuefiles">Solution 1: Values Repository with ArgoCD valueFiles</a></li>
+        <li><a href="#solution-2-kustomize-with-helm">Solution 2: Kustomize with Helm</a></li>
+        <li><a href="#solution-3-helm-umbrella-chart-with-dependencies">Solution 3: Helm Umbrella Chart with Dependencies</a></li>
+        <li><a href="#solution-4-configmapsecret-with-external-values">Solution 4: ConfigMap/Secret with External Values</a></li>
+        <li><a href="#my-recommendation-solution-1-values-repository">My Recommendation: Solution 1 (Values Repository)</a>
+          <ul>
+            <li><a href="#detailed-implementation-of-solution-1">Detailed Implementation of Solution 1</a></li>
+            <li><a href="#benefits-of-this-structure">Benefits of This Structure:</a></li>
+            <li><a href="#tips-for-managing-this">Tips for Managing This:</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><p>Great question - this is a common challenge with multi-layered architectures. Here are several approaches, from simplest to most sophisticated:</p>
+<h2 id="solution-1-values-repository-with-argocd-valuefiles">Solution 1: Values Repository with ArgoCD valueFiles<a class="anchor" href="#solution-1-values-repository-with-argocd-valuefiles">#</a></h2>
+<p>This is the cleanest approach for your use case.</p>
+<p><strong>Repository Structure:</strong></p>
+<pre tabindex="0"><code>gitops-repo/
+├── values/
+│   ├── common/
+│   │   ├── global.yaml           # Shared across all layers
+│   │   ├── networking.yaml       # Network configs
+│   │   └── observability.yaml    # Logging, metrics
+│   ├── environments/
+│   │   ├── dev.yaml
+│   │   ├── staging.yaml
+│   │   └── prod.yaml
+│   └── layers/
+│       ├── data-persistence.yaml
+│       ├── platform-services.yaml
+│       ├── application-services.yaml
+│       └── ingress.yaml
+├── applications/
+│   ├── data-persistence-app.yaml
+│   ├── platform-services-app.yaml
+│   ├── application-services-app.yaml
+│   └── ingress-app.yaml
+└── charts/                        # Your actual Helm charts
+    ├── data-persistence/
+    ├── platform-services/
+    ├── application-services/
+    └── ingress/</code></pre><p><strong>ArgoCD Application Example:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># applications/data-persistence-app.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">argoproj.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Application</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">data-persistence</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">argocd</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">project</span>: <span style="color:#ae81ff">default</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">source</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">https://github.com/yourorg/gitops-repo</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">targetRevision</span>: <span style="color:#ae81ff">main</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">path</span>: <span style="color:#ae81ff">charts/data-persistence</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">helm</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">valueFiles</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">../../values/common/global.yaml</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">../../values/common/networking.yaml</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">../../values/environments/prod.yaml</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">../../values/layers/data-persistence.yaml</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">values</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        # Inline overrides if needed
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        specificOverride: value</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">destination</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">server</span>: <span style="color:#ae81ff">https://kubernetes.default.svc</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">data-persistence</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">syncPolicy</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">automated</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">prune</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">selfHeal</span>: <span style="color:#66d9ef">true</span></span></span></code></pre></div><p><strong>Common Values Example:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># values/common/global.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">global</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">environment</span>: <span style="color:#ae81ff">prod</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">region</span>: <span style="color:#ae81ff">us-east-1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">domain</span>: <span style="color:#ae81ff">example.com</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app.kubernetes.io/managed-by</span>: <span style="color:#ae81ff">argocd</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app.kubernetes.io/part-of</span>: <span style="color:#ae81ff">myapp</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">imageRegistry</span>: <span style="color:#ae81ff">registry.example.com</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">imagePullSecrets</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">registry-creds</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">monitoring</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">serviceMonitor</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">security</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">podSecurityStandard</span>: <span style="color:#ae81ff">restricted</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">networkPolicies</span>: <span style="color:#66d9ef">true</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># values/common/networking.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">networking</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">serviceMesh</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">type</span>: <span style="color:#ae81ff">istio</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">dns</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">clusterDomain</span>: <span style="color:#ae81ff">cluster.local</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">loadBalancer</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">class</span>: <span style="color:#ae81ff">nginx</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">service.beta.kubernetes.io/aws-load-balancer-type</span>: <span style="color:#ae81ff">nlb</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># values/layers/data-persistence.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">postgresql</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">replicaCount</span>: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">storage</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">size</span>: <span style="color:#ae81ff">100Gi</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">storageClass</span>: <span style="color:#ae81ff">fast-ssd</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">redis</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">cluster</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">nodes</span>: <span style="color:#ae81ff">6</span></span></span></code></pre></div><p><strong>Pros:</strong></p>
+<ul>
+<li>Simple and obvious - values are in one place</li>
+<li>ArgoCD natively supports multiple valueFiles</li>
+<li>Easy to see which values apply to which layer</li>
+<li>Version controlled with everything else</li>
+<li>No external dependencies</li>
+<li>Works perfectly with GitOps</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Values files can grow large</li>
+<li>Some duplication between layers if they need similar configs</li>
+<li>Need to maintain relative paths in Applications</li>
+</ul>
+<h2 id="solution-2-kustomize-with-helm">Solution 2: Kustomize with Helm<a class="anchor" href="#solution-2-kustomize-with-helm">#</a></h2>
+<p>Use Kustomize as a wrapper to compose values, then render with Helm.</p>
+<p><strong>Repository Structure:</strong></p>
+<pre tabindex="0"><code>gitops-repo/
+├── base/
+│   ├── values/
+│   │   ├── global.yaml
+│   │   └── networking.yaml
+│   └── charts/
+│       ├── data-persistence/
+│       ├── platform-services/
+│       ├── application-services/
+│       └── ingress/
+├── overlays/
+│   ├── prod/
+│   │   ├── kustomization.yaml
+│   │   ├── values/
+│   │   │   └── prod-overrides.yaml
+│   │   └── layers/
+│   │       ├── data-persistence/
+│   │       │   ├── kustomization.yaml
+│   │       │   └── values.yaml
+│   │       ├── platform-services/
+│   │       │   ├── kustomization.yaml
+│   │       │   └── values.yaml
+│   │       └── ...
+│   └── staging/
+│       └── ...
+└── applications/
+    └── app-of-apps.yaml</code></pre><p><strong>Kustomization for a Layer:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># overlays/prod/layers/data-persistence/kustomization.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">kustomize.config.k8s.io/v1beta1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Kustomization</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">helmCharts</span>:
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">data-persistence</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">repo</span>: <span style="color:#ae81ff">oci://registry.example.com/charts</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">version</span>: <span style="color:#ae81ff">1.2.3</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">releaseName</span>: <span style="color:#ae81ff">data-persistence</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">data-persistence</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">valuesFile</span>: <span style="color:#ae81ff">values.yaml</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">valuesInline</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">global</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">environment</span>: <span style="color:#ae81ff">prod</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">valuesMerge</span>: <span style="color:#ae81ff">merge </span> <span style="color:#75715e"># Merge all values files</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">configMapGenerator</span>:
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">shared-values</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">files</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">../../../../base/values/global.yaml</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">../../../../base/values/networking.yaml</span></span></span></code></pre></div><p><strong>Pros:</strong></p>
+<ul>
+<li>Powerful composition with Kustomize overlays</li>
+<li>Can use patches for fine-grained control</li>
+<li>Standard Kubernetes tooling</li>
+<li>Good for complex multi-environment setups</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>More complex than pure Helm</li>
+<li>Kustomize + Helm interaction can be confusing</li>
+<li>Harder to understand for team members unfamiliar with Kustomize</li>
+<li>ArgoCD needs to be configured to use Kustomize with Helm</li>
+</ul>
+<h2 id="solution-3-helm-umbrella-chart-with-dependencies">Solution 3: Helm Umbrella Chart with Dependencies<a class="anchor" href="#solution-3-helm-umbrella-chart-with-dependencies">#</a></h2>
+<p>Create a parent &ldquo;umbrella&rdquo; chart that includes all layers as dependencies.</p>
+<p><strong>Repository Structure:</strong></p>
+<pre tabindex="0"><code>gitops-repo/
+├── umbrella-chart/
+│   ├── Chart.yaml
+│   ├── values.yaml              # Global defaults
+│   ├── values-prod.yaml
+│   ├── values-staging.yaml
+│   └── charts/                  # Subcharts (can be local or remote)
+│       ├── data-persistence/
+│       ├── platform-services/
+│       ├── application-services/
+│       └── ingress/
+└── applications/
+    ├── data-persistence-app.yaml  # Can still deploy independently
+    ├── platform-services-app.yaml
+    └── umbrella-app.yaml          # Or deploy all together</code></pre><p><strong>Umbrella Chart.yaml:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># umbrella-chart/Chart.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v2</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">myapp-stack</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#ae81ff">1.0.0</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">dependencies</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">data-persistence</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;1.x.x&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">repository</span>: <span style="color:#e6db74">&#34;file://./charts/data-persistence&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">condition</span>: <span style="color:#ae81ff">data-persistence.enabled</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">platform-services</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;1.x.x&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">repository</span>: <span style="color:#e6db74">&#34;file://./charts/platform-services&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">condition</span>: <span style="color:#ae81ff">platform-services.enabled</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">application-services</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;1.x.x&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">repository</span>: <span style="color:#e6db74">&#34;file://./charts/application-services&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">condition</span>: <span style="color:#ae81ff">application-services.enabled</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">ingress</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;1.x.x&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">repository</span>: <span style="color:#e6db74">&#34;file://./charts/ingress&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">condition</span>: <span style="color:#ae81ff">ingress.enabled</span></span></span></code></pre></div><p><strong>Umbrella values.yaml:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># umbrella-chart/values.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">global</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">environment</span>: <span style="color:#ae81ff">prod</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">domain</span>: <span style="color:#ae81ff">example.com</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">imageRegistry</span>: <span style="color:#ae81ff">registry.example.com</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Shared values accessible to all subcharts via .Values.global</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">networking</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">serviceMesh</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Per-layer config</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">data-persistence</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">postgresql</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">replicaCount</span>: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">platform-services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">kafka</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">replicaCount</span>: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">application-services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">replicaCount</span>: <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">ingress</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">className</span>: <span style="color:#ae81ff">nginx</span></span></span></code></pre></div><p><strong>Individual ArgoCD Application (for independent deployment):</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">argoproj.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Application</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">data-persistence</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">source</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">https://github.com/yourorg/gitops-repo</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">path</span>: <span style="color:#ae81ff">umbrella-chart/charts/data-persistence</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">helm</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">valueFiles</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">../../values.yaml</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">../../values-prod.yaml</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">parameters</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">global.environment</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">value</span>: <span style="color:#ae81ff">prod</span></span></span></code></pre></div><p><strong>Pros:</strong></p>
+<ul>
+<li>Standard Helm pattern</li>
+<li>Global values automatically shared via <code>.Values.global</code></li>
+<li>Can deploy all together or individually</li>
+<li>Clear parent-child relationship</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Harder to deploy layers truly independently</li>
+<li>Dependency management can be complex</li>
+<li>Version coordination between umbrella and subcharts</li>
+<li>Not as flexible as separate charts</li>
+</ul>
+<h2 id="solution-4-configmapsecret-with-external-values">Solution 4: ConfigMap/Secret with External Values<a class="anchor" href="#solution-4-configmapsecret-with-external-values">#</a></h2>
+<p>Store common values in a ConfigMap, reference from Applications.</p>
+<p><strong>Repository Structure:</strong></p>
+<pre tabindex="0"><code>gitops-repo/
+├── shared-config/
+│   ├── common-values-configmap.yaml
+│   └── prod-values-configmap.yaml
+├── charts/
+│   ├── data-persistence/
+│   ├── platform-services/
+│   ├── application-services/
+│   └── ingress/
+└── applications/
+    ├── common-config-app.yaml    # Deploys ConfigMaps first
+    ├── data-persistence-app.yaml
+    └── ...</code></pre><p><strong>ConfigMap with Common Values:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># shared-config/common-values-configmap.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ConfigMap</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">common-helm-values</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">argocd</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">data</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">global.yaml</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    global:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      environment: prod
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      domain: example.com
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      imageRegistry: registry.example.com</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">networking.yaml</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    networking:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      serviceMesh:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        enabled: true
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      loadBalancer:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        class: nginx</span></span></span></code></pre></div><p><strong>ArgoCD Application referencing ConfigMap:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">argoproj.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Application</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">data-persistence</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">source</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">helm</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">valuesObject</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">global</span>: <span style="color:#ae81ff">$common-helm-values:global.yaml</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">networking</span>: <span style="color:#ae81ff">$common-helm-values:networking.yaml</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">values</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        # Layer-specific values
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        postgresql:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          replicaCount: 3</span></span></span></code></pre></div><p><strong>Pros:</strong></p>
+<ul>
+<li>Values live in cluster as ConfigMaps</li>
+<li>Can update shared values without touching Application manifests</li>
+<li>Supports secrets for sensitive values</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>NOT fully GitOps (values in cluster, not just git)</li>
+<li>Complex syntax in ArgoCD</li>
+<li>Harder to review changes</li>
+<li>Less obvious what values are being used</li>
+<li>Not recommended for most use cases</li>
+</ul>
+<h2 id="my-recommendation-solution-1-values-repository">My Recommendation: Solution 1 (Values Repository)<a class="anchor" href="#my-recommendation-solution-1-values-repository">#</a></h2>
+<p>For your use case (4 layers, GitOps, ArgoCD), <strong>Solution 1</strong> is the cleanest because:</p>
+<ol>
+<li><strong>Truly GitOps</strong> - Everything version controlled in git</li>
+<li><strong>Simple mental model</strong> - Values files are just YAML files</li>
+<li><strong>Native ArgoCD support</strong> - Multiple valueFiles work out of the box</li>
+<li><strong>Easy to review</strong> - PRs show exactly what changed</li>
+<li><strong>Independent deployment</strong> - Each layer has its own Application</li>
+<li><strong>Flexible</strong> - Easy to override at any level</li>
+</ol>
+<h3 id="detailed-implementation-of-solution-1">Detailed Implementation of Solution 1<a class="anchor" href="#detailed-implementation-of-solution-1">#</a></h3>
+<p><strong>Directory Structure:</strong></p>
+<pre tabindex="0"><code>myapp-gitops/
+├── README.md
+├── values/
+│   ├── common/
+│   │   ├── README.md
+│   │   ├── global.yaml           # Cluster-wide settings
+│   │   ├── networking.yaml       # Network policies, service mesh
+│   │   ├── observability.yaml    # Monitoring, logging, tracing
+│   │   ├── security.yaml         # RBAC, pod security, secrets
+│   │   └── storage.yaml          # Storage classes, PV configs
+│   ├── environments/
+│   │   ├── dev.yaml              # Dev-specific overrides
+│   │   ├── staging.yaml
+│   │   └── prod.yaml
+│   └── layers/
+│       ├── data-persistence/
+│       │   ├── base.yaml         # Base config for this layer
+│       │   ├── dev.yaml          # Dev overrides for this layer
+│       │   ├── staging.yaml
+│       │   └── prod.yaml
+│       ├── platform-services/
+│       │   └── ...
+│       ├── application-services/
+│       │   └── ...
+│       └── ingress/
+│           └── ...
+├── charts/
+│   ├── data-persistence/         # Your Helm charts
+│   ├── platform-services/
+│   ├── application-services/
+│   └── ingress/
+└── applications/
+    ├── envs/
+    │   ├── dev/
+    │   │   ├── data-persistence.yaml
+    │   │   ├── platform-services.yaml
+    │   │   ├── application-services.yaml
+    │   │   └── ingress.yaml
+    │   ├── staging/
+    │   │   └── ...
+    │   └── prod/
+    │       └── ...
+    └── app-of-apps/
+        ├── dev.yaml
+        ├── staging.yaml
+        └── prod.yaml</code></pre><p><strong>Loading Order (Prod Data Persistence Example):</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># applications/envs/prod/data-persistence.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">argoproj.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Application</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">data-persistence-prod</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">argocd</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">finalizers</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">resources-finalizer.argocd.argoproj.io</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">project</span>: <span style="color:#ae81ff">default</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">source</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">https://github.com/yourorg/myapp-gitops</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">targetRevision</span>: <span style="color:#ae81ff">main</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">path</span>: <span style="color:#ae81ff">charts/data-persistence</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">helm</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># Values are merged in order - later files override earlier</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">valueFiles</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># 1. Common values (most generic)</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">../../values/common/global.yaml</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">../../values/common/networking.yaml</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">../../values/common/observability.yaml</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">../../values/common/security.yaml</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">../../values/common/storage.yaml</span>
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># 2. Environment-specific (overrides common)</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">../../values/environments/prod.yaml</span>
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># 3. Layer base config (overrides environment)</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">../../values/layers/data-persistence/base.yaml</span>
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># 4. Layer + environment specific (most specific, final override)</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">../../values/layers/data-persistence/prod.yaml</span>
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># 5. Inline values (highest priority)</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">values</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        # Emergency overrides or computed values
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        deploymentTimestamp: &#34;2024-12-11T10:00:00Z&#34;</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">destination</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">server</span>: <span style="color:#ae81ff">https://kubernetes.default.svc</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">data-persistence</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">syncPolicy</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">automated</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">prune</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">selfHeal</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">syncOptions</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">CreateNamespace=true</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Ensure this layer deploys after dependencies</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># info:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">#   - name: &#39;Depends on&#39;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">#     value: &#39;none (this is the base layer)&#39;</span></span></span></code></pre></div><p><strong>Example Values Files:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># values/common/global.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">global</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># These are accessible in charts as .Values.global.*</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">environment</span>: <span style="color:#e6db74">&#34;&#34;</span>  <span style="color:#75715e"># Will be overridden by environment file</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">cluster</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">production-us-east-1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">region</span>: <span style="color:#ae81ff">us-east-1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">provider</span>: <span style="color:#ae81ff">aws</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">domain</span>: <span style="color:#ae81ff">example.com</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">imageRegistry</span>: <span style="color:#ae81ff">registry.example.com</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">imagePullPolicy</span>: <span style="color:#ae81ff">IfNotPresent</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">imagePullSecrets</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">registry-credentials</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app.kubernetes.io/managed-by</span>: <span style="color:#ae81ff">argocd</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app.kubernetes.io/part-of</span>: <span style="color:#ae81ff">myapp</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">compliance</span>: <span style="color:#ae81ff">sox</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">cost-center</span>: <span style="color:#ae81ff">engineering</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app.kubernetes.io/documentation</span>: <span style="color:#e6db74">&#34;https://docs.example.com&#34;</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">monitoring</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">prometheus</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">serviceMonitor</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">interval</span>: <span style="color:#ae81ff">30s</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">grafana</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">dashboards</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">backup</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">schedule</span>: <span style="color:#e6db74">&#34;0 2 * * *&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">retention</span>: <span style="color:#ae81ff">30d</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># values/environments/prod.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">global</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">environment</span>: <span style="color:#ae81ff">production</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span><span style="color:#f92672">resources</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Default resource requests/limits for prod</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">defaults</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">requests</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">cpu</span>: <span style="color:#ae81ff">100m</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">memory</span>: <span style="color:#ae81ff">128Mi</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">limits</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">cpu</span>: <span style="color:#ae81ff">1000m</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">memory</span>: <span style="color:#ae81ff">1Gi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">replicaCount</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Default replica counts for prod</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">minimum</span>: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span><span style="color:#f92672">autoscaling</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">minReplicas</span>: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">maxReplicas</span>: <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">targetCPUUtilizationPercentage</span>: <span style="color:#ae81ff">70</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">persistence</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">storageClass</span>: <span style="color:#ae81ff">gp3-encrypted</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">backup</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span><span style="color:#f92672">security</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">podSecurityPolicy</span>: <span style="color:#ae81ff">restricted</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">networkPolicies</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># values/layers/data-persistence/base.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Base configuration for data persistence layer across all environments</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">postgresql</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">architecture</span>: <span style="color:#ae81ff">replication</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">auth</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">existingSecret</span>: <span style="color:#ae81ff">postgres-credentials</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">primary</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">persistence</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">size</span>: <span style="color:#ae81ff">50Gi</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">readReplicas</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">replicaCount</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">metrics</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">serviceMonitor</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">redis</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">architecture</span>: <span style="color:#ae81ff">replication</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">auth</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">existingSecret</span>: <span style="color:#ae81ff">redis-credentials</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">master</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">persistence</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">size</span>: <span style="color:#ae81ff">10Gi</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">replica</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">replicaCount</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">metrics</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">serviceMonitor</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># values/layers/data-persistence/prod.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Production-specific overrides for data persistence</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">postgresql</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">primary</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">resources</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">requests</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">cpu</span>: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">memory</span>: <span style="color:#ae81ff">4Gi</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">limits</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">cpu</span>: <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">memory</span>: <span style="color:#ae81ff">8Gi</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">persistence</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">size</span>: <span style="color:#ae81ff">500Gi </span> <span style="color:#75715e"># Much larger in prod</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">readReplicas</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">replicaCount</span>: <span style="color:#ae81ff">2</span>  <span style="color:#75715e"># More replicas in prod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">resources</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">requests</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">cpu</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">memory</span>: <span style="color:#ae81ff">2Gi</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">limits</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">cpu</span>: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">memory</span>: <span style="color:#ae81ff">4Gi</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">backup</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">schedule</span>: <span style="color:#e6db74">&#34;0 */6 * * *&#34;</span>  <span style="color:#75715e"># Every 6 hours</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">s3</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">bucket</span>: <span style="color:#ae81ff">myapp-prod-db-backups</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">region</span>: <span style="color:#ae81ff">us-east-1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">redis</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">master</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">resources</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">requests</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">cpu</span>: <span style="color:#ae81ff">500m</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">memory</span>: <span style="color:#ae81ff">1Gi</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">limits</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">cpu</span>: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">memory</span>: <span style="color:#ae81ff">4Gi</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">persistence</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">size</span>: <span style="color:#ae81ff">50Gi</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">replica</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">replicaCount</span>: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">resources</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">requests</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">cpu</span>: <span style="color:#ae81ff">250m</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">memory</span>: <span style="color:#ae81ff">512Mi</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">limits</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">cpu</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">memory</span>: <span style="color:#ae81ff">2Gi</span></span></span></code></pre></div><p><strong>App-of-Apps Pattern:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># applications/app-of-apps/prod.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">argoproj.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Application</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">myapp-prod</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">argocd</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">project</span>: <span style="color:#ae81ff">default</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">source</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">https://github.com/yourorg/myapp-gitops</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">targetRevision</span>: <span style="color:#ae81ff">main</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">path</span>: <span style="color:#ae81ff">applications/envs/prod</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">destination</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">server</span>: <span style="color:#ae81ff">https://kubernetes.default.svc</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">argocd</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">syncPolicy</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">automated</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">prune</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">selfHeal</span>: <span style="color:#66d9ef">true</span></span></span></code></pre></div><h3 id="benefits-of-this-structure">Benefits of This Structure:<a class="anchor" href="#benefits-of-this-structure">#</a></h3>
+<ol>
+<li><strong>Clear precedence</strong>: common → environment → layer base → layer+environment → inline</li>
+<li><strong>DRY principle</strong>: Shared values in one place</li>
+<li><strong>Easy overrides</strong>: Each level can override previous</li>
+<li><strong>Environment isolation</strong>: Easy to see what&rsquo;s different in prod vs dev</li>
+<li><strong>Layer isolation</strong>: Each layer&rsquo;s config is self-contained</li>
+<li><strong>Reviewable</strong>: Git diffs clearly show what changed at which level</li>
+<li><strong>Testable</strong>: Can test individual layers in isolation</li>
+</ol>
+<h3 id="tips-for-managing-this">Tips for Managing This:<a class="anchor" href="#tips-for-managing-this">#</a></h3>
+<ol>
+<li><strong>Document the loading order</strong> in README files</li>
+<li><strong>Use YAML anchors</strong> in common files for reusable snippets</li>
+<li><strong>Validate with helm template</strong> before committing:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm template charts/data-persistence <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -f values/common/global.yaml <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -f values/environments/prod.yaml <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -f values/layers/data-persistence/base.yaml <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -f values/layers/data-persistence/prod.yaml</span></span></code></pre></div></li>
+<li><strong>Use CI to validate</strong> all combinations render correctly</li>
+<li><strong>Keep values files focused</strong> - don&rsquo;t put everything in global.yaml</li>
+</ol>
+<p>Would you like me to elaborate on any specific aspect of this structure?</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+  
+  <div class="flex flex-wrap justify-between">
+    <span>
+    
+      <a href="/musings/docs/misc/layered-schema/" class="flex align-center">
+        <img src="/musings/icons/backward.svg" class="book-icon" alt="Backward" />
+        <span>Schema Validation with Layered Values Files</span>
+      </a>
+    
+    </span>
+    <span>
+    
+      <a href="/musings/docs/misc/stage2/" class="flex align-center">
+        <span>Stage 2: Architecture Design</span>
+        <img src="/musings/icons/forward.svg" class="book-icon" alt="Forward" />
+      </a>
+    
+    </span>
+  </div>
+  
+
+
+ 
+        
+  
+ 
+        
+        
+  
+ 
+        
+  
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#solution-1-values-repository-with-argocd-valuefiles">Solution 1: Values Repository with ArgoCD valueFiles</a></li>
+        <li><a href="#solution-2-kustomize-with-helm">Solution 2: Kustomize with Helm</a></li>
+        <li><a href="#solution-3-helm-umbrella-chart-with-dependencies">Solution 3: Helm Umbrella Chart with Dependencies</a></li>
+        <li><a href="#solution-4-configmapsecret-with-external-values">Solution 4: ConfigMap/Secret with External Values</a></li>
+        <li><a href="#my-recommendation-solution-1-values-repository">My Recommendation: Solution 1 (Values Repository)</a>
+          <ul>
+            <li><a href="#detailed-implementation-of-solution-1">Detailed Implementation of Solution 1</a></li>
+            <li><a href="#benefits-of-this-structure">Benefits of This Structure:</a></li>
+            <li><a href="#tips-for-managing-this">Tips for Managing This:</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,2300 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><script src="/musings/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=musings/livereload" data-no-instant defer></script>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Kargo: GitOps Promotion for ArgoCD is a development platform document covering Kargo: GitOps Promotion for ArgoCD and What ArgoCD Doesn’t Do. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/musings/docs/misc/presentation/">
+  <meta property="og:site_name" content="Technology Documentation Hub">
+  <meta property="og:title" content="Kargo: GitOps Promotion for ArgoCD">
+  <meta property="og:description" content="Kargo: GitOps Promotion for ArgoCD is a development platform document covering Kargo: GitOps Promotion for ArgoCD and What ArgoCD Doesn’t Do. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2025-12-16T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-16T00:00:00+00:00">
+
+
+  <meta itemprop="name" content="Kargo: GitOps Promotion for ArgoCD">
+  <meta itemprop="description" content="Kargo: GitOps Promotion for ArgoCD is a development platform document covering Kargo: GitOps Promotion for ArgoCD and What ArgoCD Doesn’t Do. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details.">
+  <meta itemprop="datePublished" content="2025-12-16T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-12-16T00:00:00+00:00">
+  <meta itemprop="wordCount" content="3725">
+  <meta itemprop="keywords" content="kargo,argocd,production,gitops,staging,api,yaml,kubernetes">
+
+<title>Kargo: GitOps Promotion for ArgoCD | Technology Documentation Hub</title>
+<link rel="icon" href="/musings/favicon.png" >
+<link rel="manifest" href="/musings/manifest.json">
+<link rel="canonical" href="http://localhost:1313/musings/docs/misc/presentation/">
+<link rel="stylesheet" href="/musings/book.min.6970156cec683193d93c9c4edaf0d56574e4361df2e0c1be4f697ae81c3ba55f.css" integrity="sha256-aXAVbOxoMZPZPJxO2vDVZXTkNh3y4MG&#43;T2l66Bw7pV8=" crossorigin="anonymous">
+
+
+  <script defer src="/musings/fuse.min.js"></script>
+  <script defer src="/musings/en.search.min.173ca72eaf49c9fc6baf1c2e2e9837cb4f8ae13874ec0dc634ce40c45c8943dc.js" integrity="sha256-FzynLq9JyfxrrxwuLpg3y0&#43;K4Th07A3GNM5AxFyJQ9w=" crossorigin="anonymous"></script>
+
+
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-docs">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/musings/"><span>Technology Documentation Hub</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input id="book-search-input" type="text" 
+    placeholder="Search"
+    aria-label="Search"
+    maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/" class="">
+      AI &amp; Machine Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/" class="">
+      Development Platforms</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/" class="">
+      Infrastructure</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/workflows/" class="">
+      Workflows</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/" class="">
+      Miscellaneous</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/agentic-computing-overview-and-tools/" class="">
+      Agentic Computing Overview And Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/agno-vs-langchain/" class="">
+      Agno Vs Langchain</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/serverless-function-workflow-tools-for-kubernetes/" class="">
+      Core Concepts</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/flowwise-vs-langflow/" class="">
+      Flowise vs Langflow: Detailed Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/one-model-multiple-diagrams/" class="">
+      Generate all views</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/verification-architecture/" class="">
+      Is This a Reasonable Architecture?</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kiro-ide-comparison-tools/" class="">
+      Kiro IDE: Comprehensive Analysis, Comparisons &amp; Optimal Workflows</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/langchain-architecture/" class="">
+      Langchain Architecture</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/llm-tracing-metrics-comparison/" class="">
+      Llm Tracing Metrics Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/n8n-overview/" class="">
+      n8n Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kubernetes-based/" class="">
+      Open Source Workflow Orchestration on Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/tools-overview-and-getting-started/" class="">
+      Self-Hosted Open Source Agent Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/backstage-techdocs-pros-cons/" class="">
+      Backstage Techdocs Pros Cons</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/cross-diagram-reuse-guide/" class="">
+      Cross-Diagram Domain Model Reuse in PlantUML</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/prompt/" class="">
+      Crossplane EKS Management Cluster Implementation - Project Brief</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-intro/" class="">
+      Example Stage configuration</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/export-conversion/" class="">
+      Export Conversion</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-polyrepo/" class="">
+      Fast-moving image Warehouse</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/gitops-platform-safety/" class="">
+      GitOps Safety Architecture for Platform Evolution</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/tasks/" class="">
+      High-Level Plan: Crossplane EKS Management Cluster Implementation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/backstage-kratix-crossplane-argocd-blueprint/" class="">
+      Implementation Blueprint: Crossplane &#43; Kratix &#43; Backstage &#43; ArgoCD</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-git-tags/" class="">
+      In subsequent stages, you can read this metadata</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/in-browser-editing-tools/" class="">
+      In-Browser Editing Documentation Solutions</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/initial-comparison/" class="">
+      Initial Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/comprehensive-guide/" class="">
+      Kargo and ArgoCD: A Comprehensive Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-argocd-interaction/" class="">
+      Kargo promotion step</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/presentation/" class="active">
+      Kargo: GitOps Promotion for ArgoCD</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/notion-overview/" class="">
+      Notion: A Comprehensive Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/oss-portal-platform-orchestration-tools/" class="">
+      Oss Portal Platform Orchestration Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/oss-vs-closed-portal/" class="">
+      Oss Vs Closed Portal</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/crossplane-solution/" class="">
+      Pseudocode for composition function</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/recommendations/" class="">
+      Recommendations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/job-configmap-crossplane-abstraction/" class="">
+      Shell script helper for Option 3</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/stage3-outline/" class="">
+      Stage 3: Implementation Patterns - Outline (Crossplane 2.1)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/argocd-layered-values/" class="">
+      ArgoCD and Helm Schema Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/schema-testing/" class="">
+      Creating a Helm Values Schema: Complete Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/stage1/" class="">
+      Crossplane EKS Management Cluster - Approach Overview &amp; Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/executive-summary/" class="">
+      DevOps Domain Model: Executive Summary</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/devops-domain-model-guide/" class="">
+      DevOps Domain Model: Implementation Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/getting-started-concise/" class="">
+      Getting Started Concise</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/ci-cd-templates/" class="">
+      GitHub Actions Example</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/k8s-mcp-servers/" class="">
+      K8s Mcp Servers</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/non-helm-schema-validation/" class="">
+      Non Helm Schema Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/overview/" class="">
+      Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/prompt-guide/" class="">
+      Production Readiness Deep-Dive Prompt Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/production-readiness-overview/" class="">
+      Production Readiness Guide: From Docker Compose to Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/job-plus-configmap-annotation/" class="">
+      Read current state AND capture resourceVersion</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/runbooks/" class="">
+      Runbooks</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/layered-schema/" class="">
+      Schema Validation with Layered Values Files</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/helm-layered-abstraction/" class="">
+      Solution 2: Kustomize with Helm</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/stage2/" class="">
+      Stage 2: Architecture Design</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/starting-helm-testing/" class="">
+      Testing Complex Helm Charts: A Practical Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/imperitive-in-declarative/" class="">
+      Imperitive In Declarative</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/mermaid-test/" class="">
+      Mermaid Diagram Test</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/test-document/" class="">
+      Test Document</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/musings/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>Kargo: GitOps Promotion for ArgoCD</h3>
+
+  <label for="toc-control">
+    
+    <img src="/musings/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#kargo-gitops-promotion-for-argocd">Kargo: GitOps Promotion for ArgoCD</a></li>
+    <li><a href="#what-argocd-doesnt-do">What ArgoCD Doesn&rsquo;t Do</a></li>
+    <li><a href="#kargo-promotion-orchestration-layer">Kargo: Promotion Orchestration Layer</a></li>
+    <li><a href="#warehouses-artifact-discovery">Warehouses: Artifact Discovery</a></li>
+    <li><a href="#freight-immutable-artifact-bundles">Freight: Immutable Artifact Bundles</a></li>
+    <li><a href="#stages-promotion-targets">Stages: Promotion Targets</a></li>
+    <li><a href="#kubernetes-native-integration">Kubernetes-Native Integration</a></li>
+    <li><a href="#end-to-end-promotion-flow">End-to-End Promotion Flow</a></li>
+    <li><a href="#coordinating-multiple-artifact-sources">Coordinating Multiple Artifact Sources</a></li>
+    <li><a href="#preventing-incompatible-combinations">Preventing Incompatible Combinations</a></li>
+    <li><a href="#working-with-freight">Working with Freight</a></li>
+    <li><a href="#visibility-beyond-kargo">Visibility Beyond Kargo</a></li>
+    <li><a href="#architectural-trade-offs">Architectural Trade-offs</a></li>
+    <li><a href="#ensuring-safe-promotions">Ensuring Safe Promotions</a></li>
+    <li><a href="#deployment-patterns-with-kargo">Deployment Patterns with Kargo</a></li>
+    <li><a href="#gitops-repository-structure">GitOps Repository Structure</a></li>
+    <li><a href="#production-recommendations">Production Recommendations</a></li>
+    <li><a href="#issues-and-quick-fixes">Issues and Quick Fixes</a></li>
+    <li><a href="#integrating-kargo-into-existing-setup">Integrating Kargo into Existing Setup</a></li>
+    <li><a href="#key-takeaways">Key Takeaways</a></li>
+    <li><a href="#appendix-a1-multi-repository-warehouse-example">Appendix A1: Multi-Repository Warehouse Example</a></li>
+    <li><a href="#appendix-a2-production-stage-example">Appendix A2: Production Stage Example</a></li>
+    <li><a href="#appendix-a3-argocd-application-authorization-example">Appendix A3: ArgoCD Application Authorization Example</a></li>
+    <li><a href="#appendix-a4-freight-creation-criteria-examples">Appendix A4: Freight Creation Criteria Examples</a></li>
+    <li><a href="#appendix-a5-complete-promotion-workflow">Appendix A5: Complete Promotion Workflow</a></li>
+    <li><a href="#appendix-a6-git-tag-creation-for-releases">Appendix A6: Git Tag Creation for Releases</a></li>
+    <li><a href="#appendix-a7-multiple-warehouses-pattern">Appendix A7: Multiple Warehouses Pattern</a></li>
+    <li><a href="#appendix-a8-freight-cloning-for-hotfixes">Appendix A8: Freight Cloning for Hotfixes</a></li>
+    <li><a href="#appendix-a9-verification-with-argo-rollouts">Appendix A9: Verification with Argo Rollouts</a></li>
+    <li><a href="#appendix-a10-troubleshooting-common-issues">Appendix A10: Troubleshooting Common Issues</a></li>
+    <li><a href="#appendix-a11-expression-language-reference">Appendix A11: Expression Language Reference</a></li>
+    <li><a href="#appendix-a12-complete-end-to-end-example">Appendix A12: Complete End-to-End Example</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h1 id="kargo-gitops-promotion-for-argocd">Kargo: GitOps Promotion for ArgoCD<a class="anchor" href="#kargo-gitops-promotion-for-argocd">#</a></h1>
+<p><strong>Solving the Multi-Environment Deployment Gap</strong></p>
+<hr>
+<h1 id="what-argocd-doesnt-do">What ArgoCD Doesn&rsquo;t Do<a class="anchor" href="#what-argocd-doesnt-do">#</a></h1>
+<p>ArgoCD excels at continuous deployment - syncing Git state to Kubernetes clusters. However, there&rsquo;s a critical gap:</p>
+<ul>
+<li>ArgoCD syncs Git to Kubernetes</li>
+<li>Missing: Promotion workflow orchestration</li>
+<li>No dev → staging → prod concept</li>
+<li>No artifact version coordination</li>
+<li>Manual or scripted promotions required</li>
+</ul>
+<pre class="mermaid">graph LR
+    subgraph Development
+        D[ArgoCD]
+    end
+    subgraph Staging
+        S[ArgoCD]
+    end
+    subgraph Production
+        P[ArgoCD]
+    end
+    
+    Development --&gt;|Manual?| Staging
+    Staging --&gt;|Manual?| Production
+    
+    style Development fill:#f5f5f5,stroke:#9e9e9e
+    style Staging fill:#f5f5f5,stroke:#9e9e9e
+    style Production fill:#f5f5f5,stroke:#9e9e9e</pre><script src="/musings/mermaid.min.js"></script><script>mermaid.initialize({"flowchart":{"useMaxWidth":true},"theme":"default"})</script><p><strong>The Problem:</strong> Teams use manual processes, custom scripts, or CI/CD orchestration to promote between environments. This gap is precisely what Kargo addresses.</p>
+<hr>
+<h1 id="kargo-promotion-orchestration-layer">Kargo: Promotion Orchestration Layer<a class="anchor" href="#kargo-promotion-orchestration-layer">#</a></h1>
+<p>Kargo and ArgoCD are complementary tools that work together:</p>
+<ul>
+<li>ArgoCD: Deployment engine (how)</li>
+<li>Kargo: Promotion orchestrator (what, when)</li>
+<li>Declarative promotion workflows</li>
+<li>Multi-stage artifact coordination</li>
+<li>Built by Argo creators</li>
+</ul>
+<pre class="mermaid">graph TB
+    subgraph Kargo Layer
+        K[Promotion Logic]
+    end
+    subgraph ArgoCD Layer
+        A[Deployment Logic]
+    end
+    subgraph Infrastructure
+        I[Kubernetes Cluster]
+    end
+    
+    K --&gt;|Orchestrates| A
+    A --&gt;|Deploys to| I
+    
+    style Kargo Layer fill:#c8e6c9,stroke:#2e7d32
+    style ArgoCD Layer fill:#bbdefb,stroke:#1976d2
+    style Infrastructure fill:#e0e0e0,stroke:#757575</pre><p><strong>Key Insight:</strong> Both tools remain independent and can function separately. Integration is Kubernetes-native through Custom Resources, not API calls.</p>
+<hr>
+<h1 id="warehouses-artifact-discovery">Warehouses: Artifact Discovery<a class="anchor" href="#warehouses-artifact-discovery">#</a></h1>
+<p>Warehouses are the entry point of the Kargo workflow - the artifact discovery mechanism.</p>
+<ul>
+<li>Monitor repositories for new artifacts</li>
+<li>Images, Git commits, Helm charts</li>
+<li>Apply version constraints (semver)</li>
+<li>Automatic discovery with webhooks</li>
+<li>Produce Freight when versions found</li>
+</ul>
+<pre class="mermaid">graph TD
+    Docker[Docker Registry]
+    Git[Git Repository]
+    Helm[Helm Repository]
+    
+    W[Warehouse&lt;br/&gt;Artifact Discovery]
+    
+    F[Freight&lt;br/&gt;Bundle]
+    
+    Docker --&gt;|Watches| W
+    Git --&gt;|Watches| W
+    Helm --&gt;|Watches| W
+    W --&gt;|Produces| F
+    
+    style W fill:#c8e6c9,stroke:#2e7d32
+    style F fill:#bbdefb,stroke:#1976d2
+    style Docker fill:#f5f5f5,stroke:#9e9e9e
+    style Git fill:#f5f5f5,stroke:#9e9e9e
+    style Helm fill:#f5f5f5,stroke:#9e9e9e</pre><p><strong>How it Works:</strong> Pull-based monitoring rather than push-based triggers (GitOps principle). Can subscribe to multiple repository types simultaneously. Warehouses don&rsquo;t deploy - they discover and package into Freight.</p>
+<hr>
+<h1 id="freight-immutable-artifact-bundles">Freight: Immutable Artifact Bundles<a class="anchor" href="#freight-immutable-artifact-bundles">#</a></h1>
+<p>Critical concept: Freight is <strong>NOT</strong> unified versioning across all components.</p>
+<ul>
+<li>Bundle of specific artifact versions</li>
+<li>NOT a single version number</li>
+<li>Contains: digests, SHAs, chart versions</li>
+<li>Immutable and cryptographically identified</li>
+<li>Promoted as atomic unit</li>
+</ul>
+<pre class="mermaid">graph TB
+    subgraph &#34;Freight Bundle: abc123def456 (brave-eagle)&#34;
+        F1[frontend:v2.1.0&lt;br/&gt;@sha256:abc...]
+        F2[backend:v3.0.1&lt;br/&gt;@sha256:def...]
+        F3[chart: myapp:v0.5.2]
+    end
+    
+    style F1 fill:#ffecb3,stroke:#ffa000
+    style F2 fill:#c5e1a5,stroke:#689f38
+    style F3 fill:#b39ddb,stroke:#673ab7</pre><p><strong>Example YAML:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Freight bundle structure</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">kargo.akuity.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Freight</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">abc123def456 </span> <span style="color:#75715e"># SHA-1 hash</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">alias</span>: <span style="color:#ae81ff">brave-eagle </span> <span style="color:#75715e"># Human-friendly</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">artifacts</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">images</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">myregistry.io/frontend</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">tag</span>: <span style="color:#ae81ff">v2.1.0</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">digest</span>: <span style="color:#ae81ff">sha256:abc...</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">myregistry.io/backend</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">tag</span>: <span style="color:#ae81ff">v3.0.1</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">digest</span>: <span style="color:#ae81ff">sha256:def...</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">charts</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">myapp</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">version</span>: <span style="color:#ae81ff">v0.5.2</span></span></span></code></pre></div><p><strong>Key Point:</strong> Each artifact maintains its own version, bundled together as a tested combination. Immutability ensures reproducibility - Freight never changes after creation.</p>
+<hr>
+<h1 id="stages-promotion-targets">Stages: Promotion Targets<a class="anchor" href="#stages-promotion-targets">#</a></h1>
+<p>Stages are promotion targets, though they typically map to environments.</p>
+<ul>
+<li>Represent promotion targets (typically environments)</li>
+<li>Define Freight acceptance rules</li>
+<li>Specify promotion mechanisms</li>
+<li>Track health and verification</li>
+<li>Chain together to form pipelines</li>
+</ul>
+<pre class="mermaid">graph LR
+    Freight[Freight]
+    
+    Dev[dev Stage]
+    Staging[staging Stage]
+    Prod[prod Stage]
+    
+    Freight -.-&gt;|flows through| Dev
+    Dev --&gt;|Auto-promote| Staging
+    Staging --&gt;|Manual gate| Prod
+    
+    style Dev fill:#c8e6c9,stroke:#2e7d32
+    style Staging fill:#fff9c4,stroke:#f9a825
+    style Prod fill:#ffcdd2,stroke:#c62828
+    style Freight fill:#bbdefb,stroke:#1976d2</pre><p><strong>Configuration:</strong> Each Stage defines which Freight it accepts and how promotion executes. Promotion mechanisms are fully declarative via Kubernetes resources. Auto-promotion for lower environments, manual gates for production is the typical pattern.</p>
+<hr>
+<h1 id="kubernetes-native-integration">Kubernetes-Native Integration<a class="anchor" href="#kubernetes-native-integration">#</a></h1>
+<p>Key architectural decision: Kubernetes-native integration, not REST API calls.</p>
+<ul>
+<li>Kargo patches Application Custom Resources</li>
+<li>No REST API calls</li>
+<li>Authorization via annotations</li>
+<li>Status monitoring via K8s watch</li>
+<li>Declarative, not imperative</li>
+</ul>
+<pre class="mermaid">sequenceDiagram
+    participant K as Kargo Controller
+    participant CR as Application CR
+    participant A as ArgoCD Controller
+    
+    K-&gt;&gt;CR: Patch CR (update spec)
+    CR--&gt;&gt;K: Watch Status
+    A--&gt;&gt;CR: Watch for changes
+    A-&gt;&gt;K8s: Sync Cluster
+    
+    Note over K,CR: Via Kubernetes API</pre><p><strong>Example Authorization:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># ArgoCD Application annotation</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">argoproj.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Application</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">kargo.akuity.io/authorized-stage</span>: <span style="color:#e6db74">&#34;myproject:production&#34;</span></span></span></code></pre></div><p><strong>Design Benefits:</strong> Decoupled design with no tight coupling between systems. RBAC-based security model using standard Kubernetes mechanisms. ArgoCD sees standard CR modifications and doesn&rsquo;t need Kargo awareness.</p>
+<hr>
+<h1 id="end-to-end-promotion-flow">End-to-End Promotion Flow<a class="anchor" href="#end-to-end-promotion-flow">#</a></h1>
+<p>Complete picture of one promotion cycle from start to verification.</p>
+<ol>
+<li>Warehouse detects new artifact</li>
+<li>Freight created (immutable bundle)</li>
+<li>Promotion triggered (auto/manual)</li>
+<li>GitOps repo updated</li>
+<li>Application CR patched</li>
+<li>ArgoCD syncs cluster</li>
+<li>Health monitored</li>
+<li>Stage verified for next promotion</li>
+</ol>
+<pre class="mermaid">graph TB
+    W1[1. Warehouse&lt;br/&gt;detects artifact]
+    W2[2. Freight&lt;br/&gt;created]
+    W3[3. Promotion&lt;br/&gt;triggered]
+    W4[4. GitOps Repo&lt;br/&gt;updated]
+    
+    W5[5. Application CR&lt;br/&gt;patched]
+    W6[6. ArgoCD&lt;br/&gt;syncs cluster]
+    W7[7. Health&lt;br/&gt;monitored]
+    W8[8. Stage&lt;br/&gt;verified]
+    
+    W1 --&gt; W2 --&gt; W3 --&gt; W4
+    W4 --&gt; W5 --&gt; W6 --&gt; W7 --&gt; W8
+    
+    style W1 fill:#f5f5f5,stroke:#757575
+    style W2 fill:#f5f5f5,stroke:#757575
+    style W3 fill:#f5f5f5,stroke:#757575
+    style W4 fill:#f5f5f5,stroke:#757575
+    style W5 fill:#f5f5f5,stroke:#757575
+    style W6 fill:#f5f5f5,stroke:#757575
+    style W7 fill:#f5f5f5,stroke:#757575
+    style W8 fill:#f5f5f5,stroke:#757575</pre><p><strong>Workflow Characteristics:</strong> State-driven workflow, not event-driven - continuous reconciliation. Each step is declarative via Kubernetes resources. Failure at any step halts progression - safe by default. Entire workflow visible through kubectl and Kargo UI.</p>
+<hr>
+<h1 id="coordinating-multiple-artifact-sources">Coordinating Multiple Artifact Sources<a class="anchor" href="#coordinating-multiple-artifact-sources">#</a></h1>
+<p>Modern reality: polyrepo architectures are common.</p>
+<ul>
+<li>Challenge: Code, charts, config separate</li>
+<li>Single Warehouse subscribes to all</li>
+<li>Freight bundles specific version each</li>
+<li>Promoted together as unit</li>
+<li>Prevents version mismatches</li>
+</ul>
+<pre class="mermaid">graph TB
+    A[App Repo A&lt;br/&gt;Code]
+    B[App Repo B&lt;br/&gt;Code]
+    H[Helm Repo&lt;br/&gt;Charts]
+    C[Config Repo&lt;br/&gt;Configuration]
+    
+    W[Warehouse&lt;br/&gt;Subscribes to all]
+    
+    F[Freight&lt;br/&gt;Bundle]
+    
+    A --&gt; W
+    B --&gt; W
+    H --&gt; W
+    C --&gt; W
+    
+    W --&gt;|Bundles&lt;br/&gt;versions| F
+    
+    style A fill:#f5f5f5,stroke:#9e9e9e
+    style B fill:#f5f5f5,stroke:#9e9e9e
+    style H fill:#f5f5f5,stroke:#9e9e9e
+    style C fill:#f5f5f5,stroke:#9e9e9e
+    style W fill:#c8e6c9,stroke:#2e7d32
+    style F fill:#bbdefb,stroke:#1976d2</pre><p><strong>Solution:</strong> Application code, infrastructure code, configuration often live in separate repositories. Kargo&rsquo;s solution: Warehouse subscribes to multiple repositories simultaneously and Freight bundles one specific version from each. This is an alternative to unified versioning - independent artifact versions with coordinated promotion.</p>
+<hr>
+<h1 id="preventing-incompatible-combinations">Preventing Incompatible Combinations<a class="anchor" href="#preventing-incompatible-combinations">#</a></h1>
+<p>Real-world problem: timing issues can create incompatible Freight.</p>
+<ul>
+<li>Problem: Race conditions create bad Freight</li>
+<li>Solution 1: Creation criteria (expressions)</li>
+<li>Solution 2: Manual assembly</li>
+<li>Solution 3: Multiple Warehouses</li>
+<li>Solution 4: Gatekeeper Stage</li>
+</ul>
+<p><strong>Example Expression-Based Criteria:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Warehouse with Freight creation criteria</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">kargo.akuity.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Warehouse</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">freightCreationPolicy</span>: <span style="color:#ae81ff">Automatic</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">freightCreationCriteria</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">expression</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      imageFrom(&#39;frontend&#39;).Tag == imageFrom(&#39;backend&#39;).Tag</span></span></span></code></pre></div><p><strong>The Problem:</strong> Frontend v2.0 discovered before backend v2.0 is ready, creates incompatible bundle.</p>
+<p><strong>Solutions:</strong></p>
+<ul>
+<li><strong>Solution 1 (most powerful):</strong> Expression-based creation criteria</li>
+<li><strong>Solution 2:</strong> Manual Freight assembly for complex compatibility rules</li>
+<li><strong>Solution 3:</strong> Separate Warehouses for fast-moving vs slow-moving artifacts</li>
+<li><strong>Solution 4:</strong> Gatekeeper Stage filters bad combinations before important environments</li>
+</ul>
+<p>Choose strategy based on coordination requirements and team workflow.</p>
+<hr>
+<h1 id="working-with-freight">Working with Freight<a class="anchor" href="#working-with-freight">#</a></h1>
+<p>Freight immutability is a feature, not a limitation - it ensures reproducibility.</p>
+<ul>
+<li>Freight is immutable (by design)</li>
+<li>Cannot merge Freight after creation</li>
+<li>Manual assembly: Select compatible versions</li>
+<li>Freight cloning: Template for hotfixes</li>
+<li>Multiple Warehouses: Parallel pipelines</li>
+</ul>
+<p><strong>Strategies:</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>Strategy</th>
+          <th>Use Case</th>
+          <th>Flexibility</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Manual Assembly</td>
+          <td>Complex compatibility</td>
+          <td>High</td>
+      </tr>
+      <tr>
+          <td>Freight Cloning</td>
+          <td>Hotfixes</td>
+          <td>Medium</td>
+      </tr>
+      <tr>
+          <td>Multiple Warehouses</td>
+          <td>Different cadences</td>
+          <td>High</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Design Context:</strong> Cannot merge existing Freight - would break audit trail and create untested combinations. Manual assembly: Warehouse discovers multiple versions, user selects compatible set. Freight cloning use case: Production hotfix - clone prod Freight, replace one buggy component.</p>
+<hr>
+<h1 id="visibility-beyond-kargo">Visibility Beyond Kargo<a class="anchor" href="#visibility-beyond-kargo">#</a></h1>
+<p>Enterprise requirement: tracking releases beyond the Kargo system.</p>
+<ul>
+<li>Kargo tracks internally (Freight, commits)</li>
+<li>External needs: tags, manifests, dashboards</li>
+<li>Promotion steps can create tags</li>
+<li>Release manifest files for automation</li>
+<li>Hybrid approach recommended</li>
+</ul>
+<pre class="mermaid">graph LR
+    subgraph Internal Kargo
+        I1[Freight resources]
+        I2[Git commits]
+        I3[Promotion history]
+        I4[Health status]
+    end
+    
+    subgraph External Git/Tools
+        E1[Git tags]
+        E2[Release manifests]
+        E3[Dashboards]
+        E4[CMDB integration]
+    end
+    
+    Internal Kargo &lt;--&gt;|Promotion&lt;br/&gt;creates both| External Git/Tools
+    
+    style Internal Kargo fill:#e3f2fd,stroke:#1976d2
+    style External Git/Tools fill:#f5f5f5,stroke:#757575</pre><p><strong>Approach:</strong> Kargo provides excellent internal tracking via Freight and Git commits. External visibility needs: Git tags for humans, manifests for automation. The promotion process can create both simultaneously. Hybrid approach: rich internal tracking plus external accessibility.</p>
+<hr>
+<h1 id="architectural-trade-offs">Architectural Trade-offs<a class="anchor" href="#architectural-trade-offs">#</a></h1>
+<p>Both architectural approaches have merit - not one-size-fits-all.</p>
+<ul>
+<li>Traditional: Single version across artifacts</li>
+<li>Kargo: Independent versions, bundled promotion</li>
+<li>Unified: Simple, inflexible</li>
+<li>Freight: Flexible, more complex</li>
+<li>Both valid; context matters</li>
+</ul>
+<pre class="mermaid">graph TB
+    subgraph Traditional Unified
+        T[v1.5.0]
+        T1[Frontend: v1.5.0]
+        T2[Backend: v1.5.0]
+        T3[Config: v1.5.0]
+        T --&gt; T1
+        T --&gt; T2
+        T --&gt; T3
+        TP[✓ Simple]
+        TN[✗ Inflexible]
+    end
+    
+    subgraph Kargo Freight Bundles
+        K1[Frontend: v2.1.0]
+        K2[Backend: v3.0.1]
+        K3[Config: v1.8.2]
+        KB[Freight: abc123def456]
+        K1 --&gt; KB
+        K2 --&gt; KB
+        K3 --&gt; KB
+        KP[✓ Flexible]
+        KN[✗ More complex]
+    end
+    
+    style Traditional Unified fill:#f5f5f5,stroke:#757575
+    style Kargo Freight Bundles fill:#e3f2fd,stroke:#1976d2</pre><p><strong>Unified Versioning:</strong> Single version tag across all components (v1.5.0 everywhere). Simple to communicate, easy mental model. But: tight coupling, requires rebuilding everything for any change.</p>
+<p><strong>Freight Approach:</strong> Each artifact maintains independent version. Flexible, handles independent lifecycles, selective promotion. But: more complex, requires coordination mechanism.</p>
+<p><strong>Migration Path:</strong> Hybrid approaches possible - unified major versions, independent minor/patch. Migration path exists from unified to Freight-based promotion.</p>
+<hr>
+<h1 id="ensuring-safe-promotions">Ensuring Safe Promotions<a class="anchor" href="#ensuring-safe-promotions">#</a></h1>
+<p>Stage health encompasses more than just Application health.</p>
+<ul>
+<li>Stage health ≠ Application health</li>
+<li>Multiple health indicators aggregate</li>
+<li>Argo Rollouts integration</li>
+<li>Custom verification jobs</li>
+<li>Progressive promotion gates</li>
+</ul>
+<p><strong>Health Checks Aggregate:</strong></p>
+<ul>
+<li>✓ Application sync status</li>
+<li>✓ Application health status</li>
+<li>✓ Verification results</li>
+<li>✓ Custom checks</li>
+<li>→ Stage health decision</li>
+</ul>
+<p><strong>Integration:</strong> Works with Argo Rollouts for progressive delivery patterns. Custom verification via Kubernetes Jobs or external systems. Verification gates prevent premature promotion to next Stage. Failed verification stops progression - safe by default.</p>
+<hr>
+<h1 id="deployment-patterns-with-kargo">Deployment Patterns with Kargo<a class="anchor" href="#deployment-patterns-with-kargo">#</a></h1>
+<p>Not one-size-fits-all - pattern selection based on requirements.</p>
+<ul>
+<li>Common: Image + config together</li>
+<li>Grouped: Multiple images as unit</li>
+<li>Independent: Different cadences</li>
+<li>Gatekeeper: Filter bad combinations</li>
+<li>Choose based on coupling</li>
+</ul>
+<p><strong>Pattern Overview:</strong></p>
+<pre tabindex="0"><code>[Common Case]          [Grouped Services]
+Single Warehouse       Multiple images
+     ↓                      ↓
+  Combined              Promoted
+   Freight              together
+
+[Independent]          [Gatekeeper]
+Multiple               Initial filter
+Warehouses             stage first</code></pre><p><strong>Pattern Selection:</strong></p>
+<ul>
+<li><strong>Common case:</strong> Single Warehouse for tightly coupled components (image + config)</li>
+<li><strong>Grouped services:</strong> Microservices with interdependencies promoted together</li>
+<li><strong>Independent pipelines:</strong> Different promotion cadences for different artifact types</li>
+<li><strong>Gatekeeper pattern:</strong> Initial Stage filters invalid combinations before important environments</li>
+</ul>
+<p>Selection criteria: Component coupling, change frequency, risk tolerance. Most teams start with common pattern, evolve to more complex as needs arise.</p>
+<hr>
+<h1 id="gitops-repository-structure">GitOps Repository Structure<a class="anchor" href="#gitops-repository-structure">#</a></h1>
+<p>GitOps repository structure affects the promotion workflow.</p>
+<ul>
+<li>Stage-specific branches (recommended)</li>
+<li>Single branch with paths (alternative)</li>
+<li>Format: stage/dev, stage/staging, stage/prod</li>
+<li>Not Git Flow—independent storage</li>
+<li>Use path filters to prevent loops</li>
+</ul>
+<p><strong>Stage-Specific Branches:</strong></p>
+<pre tabindex="0"><code>main (source)
+├── stage/dev (rendered)
+├── stage/staging (rendered)
+└── stage/prod (rendered)</code></pre><p><strong>Single Branch Alternative:</strong></p>
+<pre tabindex="0"><code>main
+├── builds/dev/
+├── builds/staging/
+└── builds/prod/</code></pre><p><strong>Recommended Approach:</strong> Stage-specific branches for rendered manifests. Clear separation of environment states with independent histories. Easy rollback per environment - checkout previous commit on branch. These are NOT merge-based Git Flow branches - they&rsquo;re independent storage for rendered state.</p>
+<p><strong>Path Filter Requirement:</strong> Prevent Warehouse from triggering on its own promotion outputs. Feedback loop prevention is critical for stability.</p>
+<hr>
+<h1 id="production-recommendations">Production Recommendations<a class="anchor" href="#production-recommendations">#</a></h1>
+<p>Production-tested recommendations from real deployments.</p>
+<ul>
+<li>Separate source from GitOps repos</li>
+<li>Use Freight creation criteria</li>
+<li>Auto-promote lower environments</li>
+<li>Manual gates for production</li>
+<li>Implement verification at each stage</li>
+</ul>
+<p><strong>Checklist:</strong></p>
+<ul>
+<li>✓ Repository structure: Source ≠ GitOps</li>
+<li>✓ Freight creation: Use criteria expressions</li>
+<li>✓ Promotion policy: Auto dev, manual prod</li>
+<li>✓ Verification: Define for each stage</li>
+<li>✓ Access control: RBAC for approvals</li>
+</ul>
+<p><strong>Details:</strong></p>
+<ul>
+<li><strong>Repository separation:</strong> Source code repos separate from GitOps manifest repos. Prevents conflicts, enables different access controls.</li>
+<li><strong>Freight creation criteria:</strong> Prevent incompatible combinations proactively</li>
+<li><strong>Automation strategy:</strong> Auto-promote dev/test, manual approval for production</li>
+<li><strong>Verification:</strong> At each Stage before allowing next promotion</li>
+<li><strong>Security:</strong> RBAC-based access control for production promotion approvals. Least privilege via Kubernetes RBAC.</li>
+</ul>
+<hr>
+<h1 id="issues-and-quick-fixes">Issues and Quick Fixes<a class="anchor" href="#issues-and-quick-fixes">#</a></h1>
+<p>Common issues encountered in real deployments with quick fixes.</p>
+<ul>
+<li>Incompatible Freight → Creation criteria</li>
+<li>Feedback loops → Path filters</li>
+<li>Slow discovery → Webhooks</li>
+<li>App not syncing → Check annotation</li>
+<li>Lost context → External tracking</li>
+</ul>
+<p><strong>Troubleshooting Guide:</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>Issue</th>
+          <th>Symptom</th>
+          <th>Solution</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Bad combos</td>
+          <td>Version mismatch</td>
+          <td>Use criteria</td>
+      </tr>
+      <tr>
+          <td>Loops</td>
+          <td>Infinite triggers</td>
+          <td>Path filters</td>
+      </tr>
+      <tr>
+          <td>Slow</td>
+          <td>Delayed discovery</td>
+          <td>Add webhooks</td>
+      </tr>
+      <tr>
+          <td>No sync</td>
+          <td>CR not updating</td>
+          <td>Check annotation</td>
+      </tr>
+      <tr>
+          <td>No visibility</td>
+          <td>Can&rsquo;t track externally</td>
+          <td>Git tags</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Diagnostic Approach:</strong></p>
+<ul>
+<li>Incompatible Freight: Use creation criteria expressions to prevent</li>
+<li>Feedback loops: Warehouse triggering on own promotion output - use path filters</li>
+<li>Slow artifact discovery: Add webhooks for immediate notification</li>
+<li>Application not syncing: Verify authorization annotation present and correct</li>
+<li>Lost context externally: Implement Git tagging in promotion process</li>
+</ul>
+<p>Most issues are configuration, not bugs. Check Warehouse status, Promotion logs, Application events.</p>
+<hr>
+<h1 id="integrating-kargo-into-existing-setup">Integrating Kargo into Existing Setup<a class="anchor" href="#integrating-kargo-into-existing-setup">#</a></h1>
+<p>Low-risk adoption strategy for existing ArgoCD environments.</p>
+<ul>
+<li>Prerequisites: K8s, ArgoCD, GitOps repo</li>
+<li>Start small: Single app, dev→staging</li>
+<li>Expand gradually: Add stages, apps</li>
+<li>No disruption to existing ArgoCD</li>
+<li>Incremental adoption possible</li>
+</ul>
+<p><strong>Adoption Phases:</strong></p>
+<pre tabindex="0"><code>Phase 1: Install + Single App
+  ↓
+Phase 2: Add Stages
+  ↓
+Phase 3: Multiple Apps
+  ↓
+Phase 4: Advanced Patterns</code></pre><p><strong>Strategy Details:</strong></p>
+<ul>
+<li>Prerequisites already in place for most teams: Kubernetes cluster, ArgoCD, GitOps repositories</li>
+<li>Start with single non-critical application, two stages (dev, staging)</li>
+<li>ArgoCD continues working as-is - no disruption to existing deployments</li>
+<li>Learn Kargo patterns and concepts with low stakes</li>
+<li>Expand gradually: Add production stage, additional applications</li>
+<li>Advanced patterns come later: Multiple Warehouses, verification, complex criteria</li>
+<li>Team can learn incrementally without big-bang migration</li>
+<li>Parallel operation: Some apps via Kargo, others traditional while transitioning</li>
+</ul>
+<hr>
+<h1 id="key-takeaways">Key Takeaways<a class="anchor" href="#key-takeaways">#</a></h1>
+<p>Recap core concepts: Kargo addresses the promotion gap in ArgoCD.</p>
+<ul>
+<li>Kargo solves ArgoCD promotion gap</li>
+<li>Declarative, Kubernetes-native</li>
+<li>Freight bundles coordinate artifacts</li>
+<li>Progressive, verifiable promotions</li>
+<li>Resources: docs.kargo.io</li>
+</ul>
+<p><strong>Key Points:</strong></p>
+<ol>
+<li>ArgoCD deploys, Kargo promotes</li>
+<li>Freight = immutable artifact bundles</li>
+<li>Stages = promotion targets</li>
+<li>Kubernetes-native integration</li>
+<li>Production-ready from Argo team</li>
+</ol>
+<p><strong>Resources:</strong></p>
+<ul>
+<li>Documentation: docs.kargo.io</li>
+<li>GitHub: github.com/akuity/kargo</li>
+<li>Community: Discord, CNCF Slack</li>
+</ul>
+<p><strong>Summary:</strong> Complementary relationship - deployment engine plus promotion orchestration. Freight concept critical: bundled artifacts, not unified versioning. Declarative workflows via Kubernetes resources - GitOps principles maintained.</p>
+<hr>
+<h1 id="appendix-a1-multi-repository-warehouse-example">Appendix A1: Multi-Repository Warehouse Example<a class="anchor" href="#appendix-a1-multi-repository-warehouse-example">#</a></h1>
+<p>Complete Warehouse YAML with subscriptions to image, Git, and Helm repositories.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">kargo.akuity.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Warehouse</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">my-warehouse</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">my-project</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Automatic Freight creation with criteria</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">freightCreationPolicy</span>: <span style="color:#ae81ff">Automatic</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">freightCreationCriteria</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">expression</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      imageFrom(&#39;myapp/frontend&#39;).Tag == imageFrom(&#39;myapp/backend&#39;).Tag</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">subscriptions</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Container image subscription</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">image</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">myregistry.io/myapp/frontend</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">semverConstraint</span>: <span style="color:#ae81ff">^2.0.0</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">discoveryLimit</span>: <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">image</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">myregistry.io/myapp/backend</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">semverConstraint</span>: <span style="color:#ae81ff">^2.0.0</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">discoveryLimit</span>: <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Git repository subscription</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">git</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">https://github.com/myorg/config.git</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">commitSelectionStrategy</span>: <span style="color:#ae81ff">NewestFromBranch</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">branch</span>: <span style="color:#ae81ff">main</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">includePaths</span>:
+</span></span><span style="display:flex;"><span>          - <span style="color:#ae81ff">config/</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">excludePaths</span>:
+</span></span><span style="display:flex;"><span>          - <span style="color:#ae81ff">config/README.md</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Helm chart subscription</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">chart</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">https://charts.example.com</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">name</span>: <span style="color:#ae81ff">myapp</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">semverConstraint</span>: <span style="color:#ae81ff">^1.0.0</span></span></span></code></pre></div><p><strong>Explanation:</strong> This Warehouse subscribes to multiple artifact types. Freight creation criteria ensures frontend and backend versions match before creating Freight. Discovery limits prevent excessive version tracking.</p>
+<hr>
+<h1 id="appendix-a2-production-stage-example">Appendix A2: Production Stage Example<a class="anchor" href="#appendix-a2-production-stage-example">#</a></h1>
+<p>Complete Stage YAML with promotion template and manual approval.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">kargo.akuity.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Stage</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">production</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">my-project</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Request Freight from upstream staging Stage</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">requestedFreight</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">origin</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Warehouse</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">name</span>: <span style="color:#ae81ff">my-warehouse</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">sources</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">stages</span>:
+</span></span><span style="display:flex;"><span>          - <span style="color:#ae81ff">staging</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Promotion template (manual trigger only)</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">promotionTemplate</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">vars</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">gitopsRepo</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">value</span>: <span style="color:#ae81ff">https://github.com/myorg/gitops.git</span>
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">git-clone</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">${{ vars.gitopsRepo }}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">checkout</span>:
+</span></span><span style="display:flex;"><span>              - <span style="color:#f92672">branch</span>: <span style="color:#ae81ff">stage/production</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">create</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./out</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">kustomize-set-image</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./out</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">images</span>:
+</span></span><span style="display:flex;"><span>              - <span style="color:#f92672">image</span>: <span style="color:#ae81ff">myapp/frontend</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">tag</span>: <span style="color:#ae81ff">${{ imageFrom(&#39;myapp/frontend&#39;).Tag }}</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">git-commit</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">as</span>: <span style="color:#ae81ff">commit</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./out</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">message</span>: <span style="color:#e6db74">&#34;Production release&#34;</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">git-push</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./out</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">argocd-update</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">apps</span>:
+</span></span><span style="display:flex;"><span>              - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">myapp-production</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">argocd</span></span></span></code></pre></div><p><strong>Explanation:</strong> Production Stage accepts Freight verified in staging. Manual promotion required (no auto-promotion). Promotion template updates GitOps repo and triggers ArgoCD sync.</p>
+<hr>
+<h1 id="appendix-a3-argocd-application-authorization-example">Appendix A3: ArgoCD Application Authorization Example<a class="anchor" href="#appendix-a3-argocd-application-authorization-example">#</a></h1>
+<p>Complete ArgoCD Application with Kargo authorization annotation.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">argoproj.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Application</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">myapp-production</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">argocd</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Authorize Kargo Stage to manage this Application</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">kargo.akuity.io/authorized-stage</span>: <span style="color:#e6db74">&#34;my-project:production&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">project</span>: <span style="color:#ae81ff">default</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">source</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">https://github.com/myorg/gitops.git</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">targetRevision</span>: <span style="color:#ae81ff">stage/production</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">path</span>: <span style="color:#ae81ff">.</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">destination</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">server</span>: <span style="color:#ae81ff">https://kubernetes.default.svc</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">myapp-production</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">syncPolicy</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">automated</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">prune</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">selfHeal</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">syncOptions</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">CreateNamespace=true</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Optional: ignore differences</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ignoreDifferences</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">group</span>: <span style="color:#ae81ff">apps</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">jsonPointers</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#ae81ff">/spec/replicas</span></span></span></code></pre></div><p><strong>Explanation:</strong> Authorization annotation grants production Stage permission to patch this Application. Auto-sync ensures ArgoCD deploys changes immediately. targetRevision points to stage-specific branch updated by Kargo.</p>
+<hr>
+<h1 id="appendix-a4-freight-creation-criteria-examples">Appendix A4: Freight Creation Criteria Examples<a class="anchor" href="#appendix-a4-freight-creation-criteria-examples">#</a></h1>
+<p>Expression-based criteria to prevent incompatible combinations.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Tag matching - ensure versions match</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">freightCreationCriteria</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">expression</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    imageFrom(&#39;frontend&#39;).Tag == imageFrom(&#39;backend&#39;).Tag</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Version constraints - only create for stable releases</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">freightCreationCriteria</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">expression</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    !(imageFrom(&#39;myapp&#39;).Tag contains &#39;alpha&#39;) &amp;&amp;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    !(imageFrom(&#39;myapp&#39;).Tag contains &#39;beta&#39;)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Date-based filtering - only recent commits</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">freightCreationCriteria</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">expression</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    commitFrom(&#39;github.com/myorg/repo&#39;).CommitterDate
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      .After(date(&#39;2025-01-01&#39;))</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Combined criteria - versions match AND stable</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">freightCreationCriteria</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">expression</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    imageFrom(&#39;frontend&#39;).Tag == imageFrom(&#39;backend&#39;).Tag &amp;&amp;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    imageFrom(&#39;backend&#39;).Tag == chartFrom(&#39;myapp&#39;).Version &amp;&amp;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    !(imageFrom(&#39;frontend&#39;).Tag contains &#39;rc&#39;)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Specific version pattern - only patch updates</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">freightCreationCriteria</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">expression</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    imageFrom(&#39;myapp&#39;).Tag matches &#39;^v2\\.1\\.\\d+$&#39;</span></span></span></code></pre></div><p><strong>Explanation:</strong> Criteria prevent Warehouse from creating Freight with incompatible artifact versions. Use expressions for tag matching, version filtering, date constraints, or complex combinations.</p>
+<hr>
+<h1 id="appendix-a5-complete-promotion-workflow">Appendix A5: Complete Promotion Workflow<a class="anchor" href="#appendix-a5-complete-promotion-workflow">#</a></h1>
+<p>Full promotion template with all common steps.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">promotionTemplate</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">vars</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">gitopsRepo</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">value</span>: <span style="color:#ae81ff">https://github.com/myorg/gitops.git</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># Clone source and output branches</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">git-clone</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">${{ vars.gitopsRepo }}</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">checkout</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">branch</span>: <span style="color:#ae81ff">main</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./src</span>
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">branch</span>: <span style="color:#ae81ff">stage/dev</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">create</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./out</span>
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># Clear output directory</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">git-clear</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./out</span>
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># Update image tags</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">kustomize-set-image</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">as</span>: <span style="color:#ae81ff">update-image</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./src/overlays/dev</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">images</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">image</span>: <span style="color:#ae81ff">myapp/frontend</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">tag</span>: <span style="color:#ae81ff">${{ imageFrom(&#39;myapp/frontend&#39;).Tag }}</span>
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">image</span>: <span style="color:#ae81ff">myapp/backend</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">tag</span>: <span style="color:#ae81ff">${{ imageFrom(&#39;myapp/backend&#39;).Tag }}</span>
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># Build manifests</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">kustomize-build</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./src/overlays/dev</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">outPath</span>: <span style="color:#ae81ff">./out</span>
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># Commit changes</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">git-commit</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">as</span>: <span style="color:#ae81ff">commit</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./out</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">messageFromSteps</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#ae81ff">update-image</span>
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># Push to remote</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">git-push</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./out</span>
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># Update ArgoCD Application</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">argocd-update</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">apps</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">myapp-dev</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">argocd</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">sources</span>:
+</span></span><span style="display:flex;"><span>                - <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">${{ vars.gitopsRepo }}</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#f92672">desiredRevision</span>: <span style="color:#ae81ff">${{ outputs.commit.commit }}</span></span></span></code></pre></div><p><strong>Explanation:</strong> Complete promotion workflow: clone repos, update images, build manifests, commit, push, and trigger ArgoCD. Uses step outputs (commit SHA) to update Application targetRevision.</p>
+<hr>
+<h1 id="appendix-a6-git-tag-creation-for-releases">Appendix A6: Git Tag Creation for Releases<a class="anchor" href="#appendix-a6-git-tag-creation-for-releases">#</a></h1>
+<p>Bash step for creating annotated tags and release manifests.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Git tag creation step in promotion template</span>
+</span></span><span style="display:flex;"><span>steps:
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># ... standard promotion steps ...</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Create annotated Git tag</span>
+</span></span><span style="display:flex;"><span>  - uses: bash
+</span></span><span style="display:flex;"><span>    config:
+</span></span><span style="display:flex;"><span>      script: |
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#!/bin/bash</span>
+</span></span><span style="display:flex;"><span>        cd ./out
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Generate release version</span>
+</span></span><span style="display:flex;"><span>        RELEASE_TAG<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;release-</span><span style="color:#66d9ef">$(</span>date +%Y.%m.%d-%H%M%S<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Create annotated tag with component manifest</span>
+</span></span><span style="display:flex;"><span>        git tag -a <span style="color:#e6db74">&#34;</span>$RELEASE_TAG<span style="color:#e6db74">&#34;</span> -m <span style="color:#e6db74">&#34;Production Release
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        Kargo Freight: </span><span style="color:#e6db74">${</span>{ ctx.freight.name <span style="color:#e6db74">}</span><span style="color:#e6db74">}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        Freight Alias: </span><span style="color:#e6db74">${</span>{ ctx.freight.alias <span style="color:#e6db74">}</span><span style="color:#e6db74">}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        Components:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        - Frontend: </span><span style="color:#e6db74">${</span>{ imageFrom(<span style="color:#e6db74">&#39;myapp/frontend&#39;</span>).Tag <span style="color:#e6db74">}</span><span style="color:#e6db74">}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        - Backend: </span><span style="color:#e6db74">${</span>{ imageFrom(<span style="color:#e6db74">&#39;myapp/backend&#39;</span>).Tag <span style="color:#e6db74">}</span><span style="color:#e6db74">}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        - Chart: </span><span style="color:#e6db74">${</span>{ chartFrom(<span style="color:#e6db74">&#39;myapp&#39;</span>).Version <span style="color:#e6db74">}</span><span style="color:#e6db74">}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        Promoted: </span><span style="color:#66d9ef">$(</span>date -u +%Y-%m-%dT%H:%M:%SZ<span style="color:#66d9ef">)</span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        Promoted By: </span><span style="color:#e6db74">${</span>{ ctx.promotion.createdBy <span style="color:#e6db74">}</span><span style="color:#e6db74">}&#34;</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Push tag</span>
+</span></span><span style="display:flex;"><span>        git push origin <span style="color:#e6db74">&#34;</span>$RELEASE_TAG<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Optional: Create release manifest</span>
+</span></span><span style="display:flex;"><span>        cat &gt; release-manifest.json <span style="color:#e6db74">&lt;&lt;EOF
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          &#34;version&#34;: &#34;$RELEASE_TAG&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          &#34;freight&#34;: &#34;${{ ctx.freight.name }}&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          &#34;components&#34;: {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &#34;frontend&#34;: &#34;${{ imageFrom(&#39;myapp/frontend&#39;).Tag }}&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &#34;backend&#34;: &#34;${{ imageFrom(&#39;myapp/backend&#39;).Tag }}&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        EOF</span></span></span></code></pre></div><p><strong>Explanation:</strong> Create Git tags during production promotions for external tracking. Tags include complete component manifest, Freight reference, and timestamp. Release manifest enables programmatic access.</p>
+<hr>
+<h1 id="appendix-a7-multiple-warehouses-pattern">Appendix A7: Multiple Warehouses Pattern<a class="anchor" href="#appendix-a7-multiple-warehouses-pattern">#</a></h1>
+<p>Independent pipelines for different artifact cadences.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Warehouse 1: Application images (fast-moving)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">kargo.akuity.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Warehouse</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">app-images</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">my-project</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">subscriptions</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">image</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">myregistry.io/myapp/frontend</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">image</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">myregistry.io/myapp/backend</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Warehouse 2: Infrastructure config (slow-moving)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">kargo.akuity.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Warehouse</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">infra-config</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">my-project</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">subscriptions</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">git</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">https://github.com/myorg/infra-config.git</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">branch</span>: <span style="color:#ae81ff">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Stage accepts Freight from BOTH Warehouses</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">kargo.akuity.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Stage</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">staging</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">my-project</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">requestedFreight</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">origin</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Warehouse</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">name</span>: <span style="color:#ae81ff">app-images</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">sources</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">direct</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">origin</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Warehouse</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">name</span>: <span style="color:#ae81ff">infra-config</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">sources</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">direct</span>: <span style="color:#66d9ef">true</span></span></span></code></pre></div><p><strong>Explanation:</strong> Use multiple Warehouses when artifacts have different change frequencies. Stage requests Freight from both Warehouses. Enables promoting images daily while config changes weekly.</p>
+<hr>
+<h1 id="appendix-a8-freight-cloning-for-hotfixes">Appendix A8: Freight Cloning for Hotfixes<a class="anchor" href="#appendix-a8-freight-cloning-for-hotfixes">#</a></h1>
+<p>Using Freight cloning to create emergency hotfix releases.</p>
+<p><strong>Scenario:</strong> Critical bug in production backend</p>
+<p><strong>Production Freight contains:</strong></p>
+<ul>
+<li>frontend:v2.0.0</li>
+<li>backend:v2.0.0 (buggy)</li>
+<li>config:v1.5.0</li>
+</ul>
+<p><strong>Step 1: Build and push hotfix</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker build -t myregistry.io/myapp/backend:v2.0.1 .
+</span></span><span style="display:flex;"><span>docker push myregistry.io/myapp/backend:v2.0.1</span></span></code></pre></div><p><strong>Step 2: Clone production Freight via Kargo UI/CLI</strong></p>
+<ol>
+<li>Navigate to production Stage</li>
+<li>Select current Freight</li>
+<li>Click &ldquo;Clone Freight&rdquo;</li>
+<li>Select backend artifact</li>
+<li>Change version to v2.0.1</li>
+<li>Click &ldquo;Create Freight&rdquo;</li>
+</ol>
+<p><strong>Result: New Freight with hotfix</strong></p>
+<ul>
+<li>frontend:v2.0.0 (unchanged)</li>
+<li>backend:v2.0.1 (hotfix)</li>
+<li>config:v1.5.0 (unchanged)</li>
+</ul>
+<p><strong>Step 3: Promote hotfix Freight to production</strong></p>
+<ul>
+<li>Can bypass lower environments for emergency</li>
+<li>Or test in dev/staging first if time permits</li>
+</ul>
+<p><strong>Key Benefits:</strong> Freight cloning preserves all other artifacts. Only replaces the component needing hotfix. Maintains reproducibility and audit trail.</p>
+<hr>
+<h1 id="appendix-a9-verification-with-argo-rollouts">Appendix A9: Verification with Argo Rollouts<a class="anchor" href="#appendix-a9-verification-with-argo-rollouts">#</a></h1>
+<p>Stage verification using AnalysisTemplate.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Stage with verification via AnalysisTemplate</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">kargo.akuity.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Stage</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">staging</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">my-project</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">requestedFreight</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">origin</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Warehouse</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">name</span>: <span style="color:#ae81ff">my-warehouse</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">sources</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">direct</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Verification configuration</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">verification</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">analysisTemplates</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">smoke-tests</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Run analysis after promotion</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">analysisRunMetadata</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">stage</span>: <span style="color:#ae81ff">staging</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">promotionTemplate</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># ... promotion steps ...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># AnalysisTemplate for verification</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">argoproj.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">AnalysisTemplate</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">smoke-tests</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">my-project</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">metrics</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">http-check</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">interval</span>: <span style="color:#ae81ff">30s</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">count</span>: <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">successCondition</span>: <span style="color:#ae81ff">result == &#39;200&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">provider</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">web</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">url</span>: <span style="color:#ae81ff">https://myapp-staging.example.com/health</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">jsonPath</span>: <span style="color:#e6db74">&#34;{$.status}&#34;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">error-rate</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">interval</span>: <span style="color:#ae81ff">1m</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">count</span>: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">successCondition</span>: <span style="color:#ae81ff">result &lt; 0.05</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">provider</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">prometheus</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">address</span>: <span style="color:#ae81ff">http://prometheus:9090</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">query</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            sum(rate(http_requests_total{status=~&#34;5..&#34;}[5m])) / 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            sum(rate(http_requests_total[5m]))</span></span></span></code></pre></div><p><strong>Explanation:</strong> Verification ensures Freight is healthy before marking as verified for next Stage. AnalysisTemplate defines health checks: HTTP endpoints, Prometheus metrics, custom tests. Failed verification prevents promotion.</p>
+<hr>
+<h1 id="appendix-a10-troubleshooting-common-issues">Appendix A10: Troubleshooting Common Issues<a class="anchor" href="#appendix-a10-troubleshooting-common-issues">#</a></h1>
+<p>Diagnostic steps and solutions for frequent problems.</p>
+<p><strong>Issue 1: Freight not being created</strong></p>
+<p>Check Warehouse status:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kubectl get warehouse -n my-project my-warehouse -o yaml
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Look for errors in status.conditions</span></span></span></code></pre></div><p>Solution: Add credentials for private registries:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Secret</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">registry-creds</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">my-project</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">kargo.akuity.io/cred-type</span>: <span style="color:#ae81ff">image</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">stringData</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">ghcr.io</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">username</span>: <span style="color:#ae81ff">myuser</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">password</span>: <span style="color:#ae81ff">ghp_xxxxxxxxxxxxx</span></span></span></code></pre></div><p><strong>Issue 2: Promotion failing - git push errors</strong></p>
+<p>Check for Git credentials:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Secret</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">git-creds</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">my-project</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">kargo.akuity.io/cred-type</span>: <span style="color:#ae81ff">git</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">stringData</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">https://github.com/myorg/gitops.git</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">username</span>: <span style="color:#ae81ff">myuser</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">password</span>: <span style="color:#ae81ff">ghp_xxxxxxxxxxxxx</span></span></span></code></pre></div><p><strong>Issue 3: Application not syncing after promotion</strong></p>
+<p>Verify authorization annotation:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kubectl get application -n argocd myapp-dev -o yaml
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Should have: kargo.akuity.io/authorized-stage: &#34;project:stage&#34;</span></span></span></code></pre></div><p><strong>Issue 4: Check Promotion logs for detailed errors</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kubectl get promotion -n my-project &lt;promotion-name&gt; -o yaml
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Review status.stepResults for failures</span></span></span></code></pre></div><hr>
+<h1 id="appendix-a11-expression-language-reference">Appendix A11: Expression Language Reference<a class="anchor" href="#appendix-a11-expression-language-reference">#</a></h1>
+<p>Complete guide to Kargo expression syntax.</p>
+<p><strong>Context Variables:</strong></p>
+<pre tabindex="0"><code>${{ ctx.stage }}                    # Current Stage name
+${{ ctx.freight.name }}             # Freight SHA identifier
+${{ ctx.freight.alias }}            # Human-friendly alias
+${{ ctx.promotion.createdBy }}      # Who triggered promotion</code></pre><p><strong>Artifact Functions:</strong></p>
+<pre tabindex="0"><code>${{ imageFrom(&#39;myapp/frontend&#39;).Tag }}        # Image tag
+${{ imageFrom(&#39;myapp/frontend&#39;).Digest }}     # Image digest
+${{ commitFrom(&#39;github.com/org/repo&#39;).ID }}   # Git commit SHA
+${{ commitFrom(&#39;github.com/org/repo&#39;).Message }}  # Commit message
+${{ chartFrom(&#39;my-chart&#39;).Version }}          # Helm chart version</code></pre><p><strong>Artifact Functions with Warehouse Filter:</strong></p>
+<pre tabindex="0"><code>${{ imageFrom(&#39;myapp&#39;, warehouse(&#39;my-warehouse&#39;)).Tag }}</code></pre><p><strong>Variable References:</strong></p>
+<pre tabindex="0"><code>${{ vars.gitopsRepo }}              # Global variable
+${{ outputs.commit.commit }}        # Step output (by alias)
+${{ outputs[&#39;step-name&#39;].value }}   # Square bracket notation
+${{ task.outputs[&#39;step&#39;].value }}   # Task output</code></pre><p><strong>Utility Functions:</strong></p>
+<pre tabindex="0"><code>${{ timestamp() }}                           # Unix timestamp
+${{ timestamp(&#34;2006.01.02&#34;) }}              # Formatted date
+${{ timestamp(&#34;2006-01-02T15:04:05&#34;) }}     # ISO format
+${{ quote(imageFrom(&#39;app&#39;).Tag) }}          # YAML-safe quoting</code></pre><p><strong>Freight Creation Criteria Examples:</strong></p>
+<pre tabindex="0"><code>imageFrom(&#39;frontend&#39;).Tag == imageFrom(&#39;backend&#39;).Tag
+imageFrom(&#39;app&#39;).Tag &gt; &#39;2.0.0&#39;
+!(imageFrom(&#39;app&#39;).Tag contains &#39;alpha&#39;)
+commitFrom(&#39;repo&#39;).CommitterDate.After(date(&#39;2025-01-01&#39;))</code></pre><hr>
+<h1 id="appendix-a12-complete-end-to-end-example">Appendix A12: Complete End-to-End Example<a class="anchor" href="#appendix-a12-complete-end-to-end-example">#</a></h1>
+<p>Full Kargo setup for e-commerce microservices application.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Complete Kargo Setup for E-Commerce Application</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 1. Warehouse for microservices</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">kargo.akuity.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Warehouse</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">ecommerce-warehouse</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">ecommerce</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">subscriptions</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">image</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">myregistry.io/ecommerce/frontend</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">image</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">myregistry.io/ecommerce/api</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">image</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">myregistry.io/ecommerce/worker</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">chart</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">https://charts.example.com</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">name</span>: <span style="color:#ae81ff">ecommerce</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. Dev Stage (auto-promote)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">kargo.akuity.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Stage</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">dev</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">ecommerce</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">requestedFreight</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">origin</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Warehouse</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">name</span>: <span style="color:#ae81ff">ecommerce-warehouse</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">sources</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">direct</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">promotionTemplate</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">git-clone</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">https://github.com/myorg/ecommerce-gitops.git</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">checkout</span>:
+</span></span><span style="display:flex;"><span>              - <span style="color:#f92672">branch</span>: <span style="color:#ae81ff">stage/dev</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">create</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./out</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">helm-update-image</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./out/values.yaml</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">images</span>:
+</span></span><span style="display:flex;"><span>              - <span style="color:#f92672">image</span>: <span style="color:#ae81ff">ecommerce/frontend</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">key</span>: <span style="color:#ae81ff">frontend.image.tag</span>
+</span></span><span style="display:flex;"><span>              - <span style="color:#f92672">image</span>: <span style="color:#ae81ff">ecommerce/api</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">key</span>: <span style="color:#ae81ff">api.image.tag</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">git-commit</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./out</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">git-push</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./out</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">argocd-update</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">apps</span>:
+</span></span><span style="display:flex;"><span>              - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">ecommerce-dev</span></span></span></code></pre></div><p><strong>Explanation:</strong> Complete example showing Warehouse tracking 3 microservices + Helm chart, dev Stage with auto-promotion. Production would add verification and manual approval. Demonstrates real-world multi-service setup.</p>
+<hr>
+<p><strong>End of Document</strong></p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+  
+  <div class="flex flex-wrap justify-between">
+    <span>
+    
+      <a href="/musings/docs/misc/kargo-argocd-interaction/" class="flex align-center">
+        <img src="/musings/icons/backward.svg" class="book-icon" alt="Backward" />
+        <span>Kargo promotion step</span>
+      </a>
+    
+    </span>
+    <span>
+    
+      <a href="/musings/docs/misc/notion-overview/" class="flex align-center">
+        <span>Notion: A Comprehensive Overview</span>
+        <img src="/musings/icons/forward.svg" class="book-icon" alt="Forward" />
+      </a>
+    
+    </span>
+  </div>
+  
+
+
+ 
+        
+  
+ 
+        
+        
+  
+ 
+        
+  
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#kargo-gitops-promotion-for-argocd">Kargo: GitOps Promotion for ArgoCD</a></li>
+    <li><a href="#what-argocd-doesnt-do">What ArgoCD Doesn&rsquo;t Do</a></li>
+    <li><a href="#kargo-promotion-orchestration-layer">Kargo: Promotion Orchestration Layer</a></li>
+    <li><a href="#warehouses-artifact-discovery">Warehouses: Artifact Discovery</a></li>
+    <li><a href="#freight-immutable-artifact-bundles">Freight: Immutable Artifact Bundles</a></li>
+    <li><a href="#stages-promotion-targets">Stages: Promotion Targets</a></li>
+    <li><a href="#kubernetes-native-integration">Kubernetes-Native Integration</a></li>
+    <li><a href="#end-to-end-promotion-flow">End-to-End Promotion Flow</a></li>
+    <li><a href="#coordinating-multiple-artifact-sources">Coordinating Multiple Artifact Sources</a></li>
+    <li><a href="#preventing-incompatible-combinations">Preventing Incompatible Combinations</a></li>
+    <li><a href="#working-with-freight">Working with Freight</a></li>
+    <li><a href="#visibility-beyond-kargo">Visibility Beyond Kargo</a></li>
+    <li><a href="#architectural-trade-offs">Architectural Trade-offs</a></li>
+    <li><a href="#ensuring-safe-promotions">Ensuring Safe Promotions</a></li>
+    <li><a href="#deployment-patterns-with-kargo">Deployment Patterns with Kargo</a></li>
+    <li><a href="#gitops-repository-structure">GitOps Repository Structure</a></li>
+    <li><a href="#production-recommendations">Production Recommendations</a></li>
+    <li><a href="#issues-and-quick-fixes">Issues and Quick Fixes</a></li>
+    <li><a href="#integrating-kargo-into-existing-setup">Integrating Kargo into Existing Setup</a></li>
+    <li><a href="#key-takeaways">Key Takeaways</a></li>
+    <li><a href="#appendix-a1-multi-repository-warehouse-example">Appendix A1: Multi-Repository Warehouse Example</a></li>
+    <li><a href="#appendix-a2-production-stage-example">Appendix A2: Production Stage Example</a></li>
+    <li><a href="#appendix-a3-argocd-application-authorization-example">Appendix A3: ArgoCD Application Authorization Example</a></li>
+    <li><a href="#appendix-a4-freight-creation-criteria-examples">Appendix A4: Freight Creation Criteria Examples</a></li>
+    <li><a href="#appendix-a5-complete-promotion-workflow">Appendix A5: Complete Promotion Workflow</a></li>
+    <li><a href="#appendix-a6-git-tag-creation-for-releases">Appendix A6: Git Tag Creation for Releases</a></li>
+    <li><a href="#appendix-a7-multiple-warehouses-pattern">Appendix A7: Multiple Warehouses Pattern</a></li>
+    <li><a href="#appendix-a8-freight-cloning-for-hotfixes">Appendix A8: Freight Cloning for Hotfixes</a></li>
+    <li><a href="#appendix-a9-verification-with-argo-rollouts">Appendix A9: Verification with Argo Rollouts</a></li>
+    <li><a href="#appendix-a10-troubleshooting-common-issues">Appendix A10: Troubleshooting Common Issues</a></li>
+    <li><a href="#appendix-a11-expression-language-reference">Appendix A11: Expression Language Reference</a></li>
+    <li><a href="#appendix-a12-complete-end-to-end-example">Appendix A12: Complete End-to-End Example</a></li>
+  </ul>
+</nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

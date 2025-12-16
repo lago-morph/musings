@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><script src="/musings/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=musings/livereload" data-no-instant defer></script>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Perfect - I now have a clear picture of your situation. Let me provide a high-level conceptual approach to release management for your platform.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/musings/docs/infrastructure/overview/">
+  <meta property="og:site_name" content="Technology Documentation Hub">
+  <meta property="og:title" content="Core Strategy: Progressive Delivery with Blast Radius Containment">
+  <meta property="og:description" content="Perfect - I now have a clear picture of your situation. Let me provide a high-level conceptual approach to release management for your platform.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2025-12-16T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-16T00:00:00+00:00">
+
+
+  <meta itemprop="name" content="Core Strategy: Progressive Delivery with Blast Radius Containment">
+  <meta itemprop="description" content="Perfect - I now have a clear picture of your situation. Let me provide a high-level conceptual approach to release management for your platform.">
+  <meta itemprop="datePublished" content="2025-12-16T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-12-16T00:00:00+00:00">
+  <meta itemprop="wordCount" content="777">
+  <meta itemprop="keywords" content="platform,staging,argocd,production,metrics,deployment,workflow,observability">
+
+<title>Core Strategy: Progressive Delivery with Blast Radius Containment | Technology Documentation Hub</title>
+<link rel="icon" href="/musings/favicon.png" >
+<link rel="manifest" href="/musings/manifest.json">
+<link rel="canonical" href="http://localhost:1313/musings/docs/infrastructure/overview/">
+<link rel="stylesheet" href="/musings/book.min.6970156cec683193d93c9c4edaf0d56574e4361df2e0c1be4f697ae81c3ba55f.css" integrity="sha256-aXAVbOxoMZPZPJxO2vDVZXTkNh3y4MG&#43;T2l66Bw7pV8=" crossorigin="anonymous">
+
+
+  <script defer src="/musings/fuse.min.js"></script>
+  <script defer src="/musings/en.search.min.5cc9128683126c7cda9fef74044c10c013f6d8935e1e3e719e3f562033e9ef44.js" integrity="sha256-XMkShoMSbHzan&#43;90BEwQwBP22JNeHj5xnj9WIDPp70Q=" crossorigin="anonymous"></script>
+
+
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-docs">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/musings/"><span>Technology Documentation Hub</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input id="book-search-input" type="text" 
+    placeholder="Search"
+    aria-label="Search"
+    maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/" class="">
+      AI &amp; Machine Learning</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/agentic-computing-overview-and-tools/" class="">
+      Agentic Computing Overview And Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/agno-vs-langchain/" class="">
+      Agno Vs Langchain</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/flowwise-vs-langflow/" class="">
+      Flowise vs Langflow: Detailed Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/one-model-multiple-diagrams/" class="">
+      Generate all views</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/verification-architecture/" class="">
+      Is This a Reasonable Architecture?</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/kiro-ide-comparison-tools/" class="">
+      Kiro IDE: Comprehensive Analysis, Comparisons &amp; Optimal Workflows</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/langchain-architecture/" class="">
+      LangChain: The Foundation Library</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/llm-tracing-metrics-comparison/" class="">
+      Llm Tracing Metrics Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/kubernetes-based/" class="">
+      Open Source Workflow Orchestration on Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/tools-overview-and-getting-started/" class="">
+      Self-Hosted Open Source Agent Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/serverless-function-workflow-tools-for-kubernetes/" class="">
+      Serverless/Function Workflows on Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/n8n-overview/" class="">
+      What Problems Does n8n Solve?</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/" class="">
+      Development Platforms</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/backstage-techdocs-pros-cons/" class="">
+      Backstage Techdocs Pros Cons</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/cross-diagram-reuse-guide/" class="">
+      Cross-Diagram Domain Model Reuse in PlantUML</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/prompt/" class="">
+      Crossplane EKS Management Cluster Implementation - Project Brief</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/comprehensive-guide/" class="">
+      Driven vs Event: Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/gitops-platform-safety/" class="">
+      GitOps Safety Architecture for Platform Evolution</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/kargo-intro/" class="">
+      How Kargo Works with ArgoCD to Manage Deployments</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/backstage-kratix-crossplane-argocd-blueprint/" class="">
+      Implementation Blueprint: Crossplane &#43; Kratix &#43; Backstage &#43; ArgoCD</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/kargo-git-tags/" class="">
+      In subsequent stages, you can read this metadata</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/in-browser-editing-tools/" class="">
+      In-Browser Editing Documentation Solutions</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/initial-comparison/" class="">
+      Initial Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/kargo-argocd-interaction/" class="">
+      Kargo promotion step</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/presentation/" class="">
+      Kargo: GitOps Promotion for ArgoCD</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/notion-overview/" class="">
+      Notion: A Comprehensive Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/oss-portal-platform-orchestration-tools/" class="">
+      Oss Portal Platform Orchestration Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/oss-vs-closed-portal/" class="">
+      Oss Vs Closed Portal</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/recommendations/" class="">
+      Overview of Text-Based UML Domain Modeling Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/export-conversion/" class="">
+      PlantUML Export &amp; Embedding Options</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/crossplane-solution/" class="">
+      Pseudocode for composition function</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/kargo-polyrepo/" class="">
+      Response</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/job-configmap-crossplane-abstraction/" class="">
+      Shell script helper for Option 3</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/tasks/" class="">
+      Stage 1: Approach Overview &amp; Comparison ✅ COMPLETE</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/stage3-outline/" class="">
+      Stage 3: Implementation Patterns - Outline (Crossplane 2.1)</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/" class="">
+      Infrastructure</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/runbooks/" class="">
+      1. Mental Model Shift (Important Framing)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/argocd-layered-values/" class="">
+      ArgoCD and Helm Schema Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/prompt-guide/" class="">
+      Contents</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/overview/" class="active">
+      Core Strategy: Progressive Delivery with Blast Radius Containment</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/stage1/" class="">
+      Crossplane EKS Management Cluster - Approach Overview &amp; Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/getting-started-concise/" class="">
+      Getting Started Concise</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/ci-cd-templates/" class="">
+      GitHub Actions Example</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/k8s-mcp-servers/" class="">
+      K8s Mcp Servers</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/stage2/" class="">
+      Management Cluster VPC Layout</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/non-helm-schema-validation/" class="">
+      Non Helm Schema Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/production-readiness-overview/" class="">
+      Production Readiness Guide: From Docker Compose to Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/schema-testing/" class="">
+      Quick Start: Generate Schema from Existing values.yaml</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/job-plus-configmap-annotation/" class="">
+      Read current state AND capture resourceVersion</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/layered-schema/" class="">
+      Schema Validation with Layered Values Files</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/helm-layered-abstraction/" class="">
+      Solution 2: Kustomize with Helm</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/starting-helm-testing/" class="">
+      Understanding What You&#39;re Testing</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/executive-summary/" class="">
+      What You&#39;re Building</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/devops-domain-model-guide/" class="">
+      Why This Approach Works for DevOps</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/workflows/" class="">
+      Workflows</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/workflows/imperitive-in-declarative/" class="">
+      Imperitive In Declarative</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/mermaid-test/" class="">
+      Mermaid Diagram Test</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/" class="">
+      Miscellaneous</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/test-document/" class="">
+      Test Document</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/musings/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>Core Strategy: Progressive Delivery with Blast Radius Containment</h3>
+
+  <label for="toc-control">
+    
+    <img src="/musings/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#core-strategy-progressive-delivery-with-blast-radius-containment">Core Strategy: Progressive Delivery with Blast Radius Containment</a>
+          <ul>
+            <li><a href="#1-multi-stage-platform-environments">1. <strong>Multi-Stage Platform Environments</strong></a></li>
+            <li><a href="#2-gitops-promotion-flow">2. <strong>Gitops Promotion Flow</strong></a></li>
+            <li><a href="#3-validation--testing-gates">3. <strong>Validation &amp; Testing Gates</strong></a></li>
+            <li><a href="#4-observability--blast-radius-detection">4. <strong>Observability &amp; Blast Radius Detection</strong></a></li>
+            <li><a href="#5-change-management-practices">5. <strong>Change Management Practices</strong></a></li>
+            <li><a href="#6-handling-the">6. <strong>Handling the “ArgoCD Paradox”</strong></a></li>
+            <li><a href="#7-communication--coordination">7. <strong>Communication &amp; Coordination</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#key-mindset-shifts">Key Mindset Shifts</a></li>
+        <li><a href="#what-this-gives-you">What This Gives You</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><p>Perfect - I now have a clear picture of your situation. Let me provide a high-level conceptual approach to release management for your platform.</p>
+<h2 id="core-strategy-progressive-delivery-with-blast-radius-containment">Core Strategy: Progressive Delivery with Blast Radius Containment<a class="anchor" href="#core-strategy-progressive-delivery-with-blast-radius-containment">#</a></h2>
+<p>The fundamental principle is to <strong>create progressive gates that increase confidence before platform changes reach all developers</strong>, while <strong>instrumenting the platform to detect problems early</strong>.</p>
+<h3 id="1-multi-stage-platform-environments">1. <strong>Multi-Stage Platform Environments</strong><a class="anchor" href="#1-multi-stage-platform-environments">#</a></h3>
+<p>Create separate instances of your platform infrastructure that mirror the promotion path:</p>
+<ul>
+<li><strong>Platform Dev</strong>: Unstable, rapid iteration environment for platform team</li>
+<li><strong>Platform Staging</strong>: Stable environment that mirrors production configuration</li>
+<li><strong>Platform Production</strong>: Where all developers work</li>
+</ul>
+<p><strong>Key concept</strong>: These aren&rsquo;t just namespace separations - they&rsquo;re separate instances of ArgoCD, Keycloak, Vault, Jenkins, etc. This gives you true isolation to test platform changes without any risk to developers.</p>
+<p>The platform staging environment should ideally include:</p>
+<ul>
+<li>A subset of real application workloads (synthetic or volunteered &ldquo;canary&rdquo; teams)</li>
+<li>Automated tests that validate the full developer workflow end-to-end</li>
+<li>Configuration that matches production as closely as possible</li>
+</ul>
+<h3 id="2-gitops-promotion-flow">2. <strong>Gitops Promotion Flow</strong><a class="anchor" href="#2-gitops-promotion-flow">#</a></h3>
+<p>Structure your Git repositories to enforce promotion gates:</p>
+<p><strong>Conceptual flow</strong>:</p>
+<ul>
+<li>Platform changes merged to main → auto-deploy to Platform Dev</li>
+<li>Manual/automated promotion → Platform Staging (via PR or tag)</li>
+<li>Soak period + validation gates → Platform Production (via PR or tag)</li>
+</ul>
+<p><strong>Critical principle</strong>: Production platform configs should be in a protected branch/path that requires explicit promotion, not automatic sync from every merge.</p>
+<h3 id="3-validation--testing-gates">3. <strong>Validation &amp; Testing Gates</strong><a class="anchor" href="#3-validation--testing-gates">#</a></h3>
+<p>Before promoting platform changes from Staging → Production:</p>
+<p><strong>Automated validation</strong>:</p>
+<ul>
+<li>Health checks on all platform components (ArgoCD can sync, Vault is unsealed, Keycloak auth works)</li>
+<li>End-to-end workflow tests: simulate a developer deploying an app from Git → running in cluster</li>
+<li>Integration tests: verify Jenkins can trigger builds, apps can authenticate with Keycloak, secrets sync from Vault</li>
+<li>Regression suite: ensure existing applications continue to function</li>
+</ul>
+<p><strong>Manual validation</strong>:</p>
+<ul>
+<li>Soak time (e.g., 24-48 hours in staging with no issues)</li>
+<li>Platform team review of logs/metrics</li>
+<li>Optional: Canary developer team validates their actual workflows in staging</li>
+</ul>
+<h3 id="4-observability--blast-radius-detection">4. <strong>Observability &amp; Blast Radius Detection</strong><a class="anchor" href="#4-observability--blast-radius-detection">#</a></h3>
+<p>You need leading indicators that tell you when a platform change has broken something:</p>
+<p><strong>Platform health metrics</strong> (not just logs):</p>
+<ul>
+<li>ArgoCD sync success/failure rates across all applications</li>
+<li>Application deployment success rates (track pods failing to start)</li>
+<li>Authentication success/failure rates (Keycloak)</li>
+<li>Secret access patterns (Vault)</li>
+<li>Build success rates (Jenkins)</li>
+</ul>
+<p><strong>Developer impact signals</strong>:</p>
+<ul>
+<li>Time-to-deploy metrics (are deployments taking longer after a platform change?)</li>
+<li>Error rate spikes in platform components</li>
+<li>Support requests or incident reports</li>
+</ul>
+<p><strong>Concept</strong>: Establish baselines in staging, then monitor for deviations in production after changes. Set up alerts that fire if metrics degrade post-deployment.</p>
+<h3 id="5-change-management-practices">5. <strong>Change Management Practices</strong><a class="anchor" href="#5-change-management-practices">#</a></h3>
+<p><strong>Categorize changes by risk</strong>:</p>
+<ul>
+<li><strong>Low risk</strong>: Configuration tweaks, resource limit adjustments, minor version updates</li>
+<li><strong>Medium risk</strong>: Feature flag changes, new platform capabilities, dependency updates</li>
+<li><strong>High risk</strong>: Major version upgrades (ArgoCD, Kubernetes), authentication changes, core GitOps workflow modifications</li>
+</ul>
+<p><strong>Apply different gates based on risk</strong>:</p>
+<ul>
+<li>Low risk: Automated promotion after passing staging validation</li>
+<li>Medium risk: Extended soak period, manual approval</li>
+<li>High risk: Maintenance window, canary deployment, detailed runbooks, extra communication</li>
+</ul>
+<h3 id="6-handling-the">6. <strong>Handling the &ldquo;ArgoCD Paradox&rdquo;</strong><a class="anchor" href="#6-handling-the">#</a></h3>
+<p>Your biggest fear - ArgoCD itself breaking - requires special handling:</p>
+<p><strong>Conceptual approaches</strong>:</p>
+<ul>
+<li><strong>Out-of-band recovery mechanism</strong>: Have a way to manage ArgoCD that doesn&rsquo;t depend on ArgoCD (e.g., Helm charts, Terraform, or manual kubectl)</li>
+<li><strong>ArgoCD self-management</strong>: If ArgoCD manages itself, ensure it&rsquo;s in a separate, privileged namespace with extra safeguards</li>
+<li><strong>Backup sync mechanism</strong>: Keep documented procedures for manual recovery of critical platform components</li>
+<li><strong>Progressive rollout</strong>: Update ArgoCD in staging first, verify for extended period before production</li>
+</ul>
+<h3 id="7-communication--coordination">7. <strong>Communication &amp; Coordination</strong><a class="anchor" href="#7-communication--coordination">#</a></h3>
+<p><strong>Developer notification strategy</strong>:</p>
+<ul>
+<li>Advance notice of platform maintenance windows</li>
+<li>Clear communication about what&rsquo;s changing and potential impacts</li>
+<li>Status page or notification channel for platform health</li>
+<li>Rollback communication if issues detected</li>
+</ul>
+<p><strong>Change windows</strong>:</p>
+<ul>
+<li>Schedule platform changes during low-activity periods</li>
+<li>Batch related changes together to minimize disruption frequency</li>
+<li>Maintain a change calendar visible to developers</li>
+</ul>
+<h2 id="key-mindset-shifts">Key Mindset Shifts<a class="anchor" href="#key-mindset-shifts">#</a></h2>
+<ol>
+<li><strong>Platform as a product</strong>: Treat your platform with the same release rigor as a product team treats their application</li>
+<li><strong>Fail in staging, not production</strong>: The staging environment exists to absorb all the risk and unknowns</li>
+<li><strong>Observability first</strong>: You can&rsquo;t manage what you can&rsquo;t measure - invest in metrics before making risky changes</li>
+<li><strong>Gradual confidence building</strong>: Each gate should increase confidence that the change is safe</li>
+</ol>
+<h2 id="what-this-gives-you">What This Gives You<a class="anchor" href="#what-this-gives-you">#</a></h2>
+<ul>
+<li><strong>Unknown → Known blast radius</strong>: Testing in staging reveals issues before they hit developers</li>
+<li><strong>Rollback becomes prevention</strong>: Most issues caught before production, not after</li>
+<li><strong>Confidence in changes</strong>: Data-driven promotion decisions rather than &ldquo;hope and pray&rdquo;</li>
+<li><strong>Reduced MTTR</strong>: When issues do occur, you have metrics to quickly identify impact and cause</li>
+</ul>
+<p>Does this conceptual framework align with what you&rsquo;re looking for? Would you like me to dive deeper into any particular aspect?</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+  
+  <div class="flex flex-wrap justify-between">
+    <span>
+    
+      <a href="/musings/docs/infrastructure/prompt-guide/" class="flex align-center">
+        <img src="/musings/icons/backward.svg" class="book-icon" alt="Backward" />
+        <span>Contents</span>
+      </a>
+    
+    </span>
+    <span>
+    
+      <a href="/musings/docs/infrastructure/stage1/" class="flex align-center">
+        <span>Crossplane EKS Management Cluster - Approach Overview &amp; Comparison</span>
+        <img src="/musings/icons/forward.svg" class="book-icon" alt="Forward" />
+      </a>
+    
+    </span>
+  </div>
+  
+
+
+ 
+        
+  
+ 
+        
+        
+  
+ 
+        
+  
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#core-strategy-progressive-delivery-with-blast-radius-containment">Core Strategy: Progressive Delivery with Blast Radius Containment</a>
+          <ul>
+            <li><a href="#1-multi-stage-platform-environments">1. <strong>Multi-Stage Platform Environments</strong></a></li>
+            <li><a href="#2-gitops-promotion-flow">2. <strong>Gitops Promotion Flow</strong></a></li>
+            <li><a href="#3-validation--testing-gates">3. <strong>Validation &amp; Testing Gates</strong></a></li>
+            <li><a href="#4-observability--blast-radius-detection">4. <strong>Observability &amp; Blast Radius Detection</strong></a></li>
+            <li><a href="#5-change-management-practices">5. <strong>Change Management Practices</strong></a></li>
+            <li><a href="#6-handling-the">6. <strong>Handling the “ArgoCD Paradox”</strong></a></li>
+            <li><a href="#7-communication--coordination">7. <strong>Communication &amp; Coordination</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#key-mindset-shifts">Key Mindset Shifts</a></li>
+        <li><a href="#what-this-gives-you">What This Gives You</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

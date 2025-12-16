@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><script src="/musings/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=musings/livereload" data-no-instant defer></script>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Great question - this is a rapidly evolving space. Let me break down the concepts and tooling landscape.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/musings/docs/misc/agentic-computing-overview-and-tools/">
+  <meta property="og:site_name" content="Technology Documentation Hub">
+  <meta property="og:title" content="Agentic Computing Overview And Tools">
+  <meta property="og:description" content="Great question - this is a rapidly evolving space. Let me break down the concepts and tooling landscape.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2025-12-16T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-16T00:00:00+00:00">
+
+
+  <meta itemprop="name" content="Agentic Computing Overview And Tools">
+  <meta itemprop="description" content="Great question - this is a rapidly evolving space. Let me break down the concepts and tooling landscape.">
+  <meta itemprop="datePublished" content="2025-12-16T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-12-16T00:00:00+00:00">
+  <meta itemprop="wordCount" content="795">
+  <meta itemprop="keywords" content="agent,ai,llm,workflow,agentic,observability,langgraph,langchain">
+
+<title>Agentic Computing Overview And Tools | Technology Documentation Hub</title>
+<link rel="icon" href="/musings/favicon.png" >
+<link rel="manifest" href="/musings/manifest.json">
+<link rel="canonical" href="http://localhost:1313/musings/docs/misc/agentic-computing-overview-and-tools/">
+<link rel="stylesheet" href="/musings/book.min.6970156cec683193d93c9c4edaf0d56574e4361df2e0c1be4f697ae81c3ba55f.css" integrity="sha256-aXAVbOxoMZPZPJxO2vDVZXTkNh3y4MG&#43;T2l66Bw7pV8=" crossorigin="anonymous">
+
+
+  <script defer src="/musings/fuse.min.js"></script>
+  <script defer src="/musings/en.search.min.173ca72eaf49c9fc6baf1c2e2e9837cb4f8ae13874ec0dc634ce40c45c8943dc.js" integrity="sha256-FzynLq9JyfxrrxwuLpg3y0&#43;K4Th07A3GNM5AxFyJQ9w=" crossorigin="anonymous"></script>
+
+
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-docs">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/musings/"><span>Technology Documentation Hub</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input id="book-search-input" type="text" 
+    placeholder="Search"
+    aria-label="Search"
+    maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/" class="">
+      AI &amp; Machine Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/" class="">
+      Development Platforms</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/" class="">
+      Infrastructure</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/workflows/" class="">
+      Workflows</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/" class="">
+      Miscellaneous</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/agentic-computing-overview-and-tools/" class="active">
+      Agentic Computing Overview And Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/agno-vs-langchain/" class="">
+      Agno Vs Langchain</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/serverless-function-workflow-tools-for-kubernetes/" class="">
+      Core Concepts</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/flowwise-vs-langflow/" class="">
+      Flowise vs Langflow: Detailed Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/one-model-multiple-diagrams/" class="">
+      Generate all views</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/verification-architecture/" class="">
+      Is This a Reasonable Architecture?</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kiro-ide-comparison-tools/" class="">
+      Kiro IDE: Comprehensive Analysis, Comparisons &amp; Optimal Workflows</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/langchain-architecture/" class="">
+      Langchain Architecture</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/llm-tracing-metrics-comparison/" class="">
+      Llm Tracing Metrics Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/n8n-overview/" class="">
+      n8n Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kubernetes-based/" class="">
+      Open Source Workflow Orchestration on Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/tools-overview-and-getting-started/" class="">
+      Self-Hosted Open Source Agent Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/backstage-techdocs-pros-cons/" class="">
+      Backstage Techdocs Pros Cons</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/cross-diagram-reuse-guide/" class="">
+      Cross-Diagram Domain Model Reuse in PlantUML</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/prompt/" class="">
+      Crossplane EKS Management Cluster Implementation - Project Brief</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-intro/" class="">
+      Example Stage configuration</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/export-conversion/" class="">
+      Export Conversion</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-polyrepo/" class="">
+      Fast-moving image Warehouse</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/gitops-platform-safety/" class="">
+      GitOps Safety Architecture for Platform Evolution</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/tasks/" class="">
+      High-Level Plan: Crossplane EKS Management Cluster Implementation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/backstage-kratix-crossplane-argocd-blueprint/" class="">
+      Implementation Blueprint: Crossplane &#43; Kratix &#43; Backstage &#43; ArgoCD</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-git-tags/" class="">
+      In subsequent stages, you can read this metadata</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/in-browser-editing-tools/" class="">
+      In-Browser Editing Documentation Solutions</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/initial-comparison/" class="">
+      Initial Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/comprehensive-guide/" class="">
+      Kargo and ArgoCD: A Comprehensive Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-argocd-interaction/" class="">
+      Kargo promotion step</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/presentation/" class="">
+      Kargo: GitOps Promotion for ArgoCD</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/notion-overview/" class="">
+      Notion: A Comprehensive Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/oss-portal-platform-orchestration-tools/" class="">
+      Oss Portal Platform Orchestration Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/oss-vs-closed-portal/" class="">
+      Oss Vs Closed Portal</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/crossplane-solution/" class="">
+      Pseudocode for composition function</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/recommendations/" class="">
+      Recommendations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/job-configmap-crossplane-abstraction/" class="">
+      Shell script helper for Option 3</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/stage3-outline/" class="">
+      Stage 3: Implementation Patterns - Outline (Crossplane 2.1)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/argocd-layered-values/" class="">
+      ArgoCD and Helm Schema Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/schema-testing/" class="">
+      Creating a Helm Values Schema: Complete Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/stage1/" class="">
+      Crossplane EKS Management Cluster - Approach Overview &amp; Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/executive-summary/" class="">
+      DevOps Domain Model: Executive Summary</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/devops-domain-model-guide/" class="">
+      DevOps Domain Model: Implementation Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/getting-started-concise/" class="">
+      Getting Started Concise</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/ci-cd-templates/" class="">
+      GitHub Actions Example</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/k8s-mcp-servers/" class="">
+      K8s Mcp Servers</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/non-helm-schema-validation/" class="">
+      Non Helm Schema Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/overview/" class="">
+      Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/prompt-guide/" class="">
+      Production Readiness Deep-Dive Prompt Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/production-readiness-overview/" class="">
+      Production Readiness Guide: From Docker Compose to Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/job-plus-configmap-annotation/" class="">
+      Read current state AND capture resourceVersion</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/runbooks/" class="">
+      Runbooks</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/layered-schema/" class="">
+      Schema Validation with Layered Values Files</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/helm-layered-abstraction/" class="">
+      Solution 2: Kustomize with Helm</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/stage2/" class="">
+      Stage 2: Architecture Design</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/starting-helm-testing/" class="">
+      Testing Complex Helm Charts: A Practical Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/imperitive-in-declarative/" class="">
+      Imperitive In Declarative</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/mermaid-test/" class="">
+      Mermaid Diagram Test</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/test-document/" class="">
+      Test Document</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/musings/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>Agentic Computing Overview And Tools</h3>
+
+  <label for="toc-control">
+    
+    <img src="/musings/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#what-agentic-computing-means">What &ldquo;Agentic Computing&rdquo; Means</a></li>
+        <li><a href="#agent-architectures">Agent Architectures</a>
+          <ul>
+            <li><a href="#react-pattern-reasoning--acting"><strong>ReAct Pattern</strong> (Reasoning + Acting)</a></li>
+            <li><a href="#planning-agents"><strong>Planning Agents</strong></a></li>
+            <li><a href="#multi-agent-systems"><strong>Multi-Agent Systems</strong></a></li>
+            <li><a href="#reflexive-agents"><strong>Reflexive Agents</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#agent-components">Agent Components</a></li>
+        <li><a href="#evaluation-dimensions-for-agent-tools">Evaluation Dimensions for Agent Tools</a>
+          <ul>
+            <li><a href="#1-visibility--debugging"><strong>1. Visibility &amp; Debugging</strong></a></li>
+            <li><a href="#2-development-experience"><strong>2. Development Experience</strong></a></li>
+            <li><a href="#3-deployment--operations"><strong>3. Deployment &amp; Operations</strong></a></li>
+            <li><a href="#4-reliability--control"><strong>4. Reliability &amp; Control</strong></a></li>
+            <li><a href="#5-integration-ecosystem"><strong>5. Integration Ecosystem</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#tool-landscape-by-use-case">Tool Landscape by Use Case</a>
+          <ul>
+            <li><a href="#for-learningexperimentation"><strong>For Learning/Experimentation</strong></a></li>
+            <li><a href="#for-production-deployment"><strong>For Production Deployment</strong></a></li>
+            <li><a href="#for-low-codebusiness-users"><strong>For Low-Code/Business Users</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#debugging--visualization-tools">Debugging &amp; Visualization Tools</a></li>
+        <li><a href="#recommended-learning-path">Recommended Learning Path</a></li>
+        <li><a href="#key-questions-for-your-use-case">Key Questions for Your Use Case</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><p>Great question - this is a rapidly evolving space. Let me break down the concepts and tooling landscape.</p>
+<h2 id="what-agentic-computing-means">What &ldquo;Agentic Computing&rdquo; Means<a class="anchor" href="#what-agentic-computing-means">#</a></h2>
+<p><strong>Traditional software</strong>: You write explicit instructions for every step
+<strong>Agentic computing</strong>: You give an AI system a goal, and it figures out the steps</p>
+<p>Key characteristics of AI agents:</p>
+<ul>
+<li><strong>Autonomy</strong>: Makes decisions without constant human input</li>
+<li><strong>Tool use</strong>: Can call APIs, search databases, execute code</li>
+<li><strong>Planning</strong>: Breaks down complex goals into subtasks</li>
+<li><strong>Memory</strong>: Maintains context across interactions</li>
+<li><strong>Iteration</strong>: Tries different approaches if initial attempts fail</li>
+</ul>
+<p>Think of it as the difference between:</p>
+<ul>
+<li><strong>Script</strong>: &ldquo;Download file → parse JSON → insert to database&rdquo;</li>
+<li><strong>Agent</strong>: &ldquo;Get me the latest sales data into our dashboard&rdquo; (it figures out how)</li>
+</ul>
+<h2 id="agent-architectures">Agent Architectures<a class="anchor" href="#agent-architectures">#</a></h2>
+<h3 id="react-pattern-reasoning--acting"><strong>ReAct Pattern</strong> (Reasoning + Acting)<a class="anchor" href="#react-pattern-reasoning--acting">#</a></h3>
+<p>Most common agent loop:</p>
+<ol>
+<li><strong>Thought</strong>: Agent reasons about what to do next</li>
+<li><strong>Action</strong>: Calls a tool/API</li>
+<li><strong>Observation</strong>: Sees the result</li>
+<li>Repeat until goal achieved</li>
+</ol>
+<h3 id="planning-agents"><strong>Planning Agents</strong><a class="anchor" href="#planning-agents">#</a></h3>
+<p>Create full plan upfront, then execute steps (less flexible but more predictable)</p>
+<h3 id="multi-agent-systems"><strong>Multi-Agent Systems</strong><a class="anchor" href="#multi-agent-systems">#</a></h3>
+<p>Multiple specialized agents collaborate:</p>
+<ul>
+<li>Researcher agent gathers info</li>
+<li>Analyst agent processes data</li>
+<li>Writer agent creates output</li>
+</ul>
+<h3 id="reflexive-agents"><strong>Reflexive Agents</strong><a class="anchor" href="#reflexive-agents">#</a></h3>
+<p>Simple stimulus-response without deep reasoning (lightweight, fast)</p>
+<h2 id="agent-components">Agent Components<a class="anchor" href="#agent-components">#</a></h2>
+<p><strong>LLM core</strong>: The &ldquo;brain&rdquo; doing reasoning (GPT-4, Claude, etc.)</p>
+<p><strong>Tools/Functions</strong>: Actions the agent can take (search web, query DB, send email, run code)</p>
+<p><strong>Memory systems</strong>:</p>
+<ul>
+<li>Short-term: Conversation context</li>
+<li>Long-term: Vector databases for retrieval</li>
+<li>Episodic: Past interaction history</li>
+</ul>
+<p><strong>Orchestration</strong>: The loop controlling agent execution</p>
+<p><strong>Guardrails</strong>: Constraints on what agents can/can&rsquo;t do</p>
+<h2 id="evaluation-dimensions-for-agent-tools">Evaluation Dimensions for Agent Tools<a class="anchor" href="#evaluation-dimensions-for-agent-tools">#</a></h2>
+<p>Based on your DevOps background, here&rsquo;s how I&rsquo;d evaluate agent platforms:</p>
+<h3 id="1-visibility--debugging"><strong>1. Visibility &amp; Debugging</strong><a class="anchor" href="#1-visibility--debugging">#</a></h3>
+<ul>
+<li>Can you see the agent&rsquo;s reasoning chain?</li>
+<li>Trace tool calls and responses?</li>
+<li>Inspect decision points?</li>
+<li>Replay failed runs?</li>
+</ul>
+<p><strong>Best-in-class</strong>: LangSmith (LangChain&rsquo;s observability platform), Weights &amp; Biases for LLMs</p>
+<h3 id="2-development-experience"><strong>2. Development Experience</strong><a class="anchor" href="#2-development-experience">#</a></h3>
+<ul>
+<li>Visual vs code-first?</li>
+<li>How easy to add custom tools?</li>
+<li>Testing framework?</li>
+<li>Version control integration?</li>
+</ul>
+<h3 id="3-deployment--operations"><strong>3. Deployment &amp; Operations</strong><a class="anchor" href="#3-deployment--operations">#</a></h3>
+<ul>
+<li>Self-hosted vs cloud?</li>
+<li>Scaling model (per-execution, always-on)?</li>
+<li>API access patterns?</li>
+<li>Cost predictability?</li>
+</ul>
+<h3 id="4-reliability--control"><strong>4. Reliability &amp; Control</strong><a class="anchor" href="#4-reliability--control">#</a></h3>
+<ul>
+<li>Error handling mechanisms?</li>
+<li>Timeout/retry logic?</li>
+<li>Human-in-the-loop checkpoints?</li>
+<li>Determinism vs creativity trade-offs?</li>
+</ul>
+<h3 id="5-integration-ecosystem"><strong>5. Integration Ecosystem</strong><a class="anchor" href="#5-integration-ecosystem">#</a></h3>
+<ul>
+<li>Pre-built tool libraries?</li>
+<li>Custom tool SDK quality?</li>
+<li>Data connector availability?</li>
+</ul>
+<h2 id="tool-landscape-by-use-case">Tool Landscape by Use Case<a class="anchor" href="#tool-landscape-by-use-case">#</a></h2>
+<h3 id="for-learningexperimentation"><strong>For Learning/Experimentation</strong><a class="anchor" href="#for-learningexperimentation">#</a></h3>
+<p><strong>LangChain/LangGraph</strong> (Python/JS)</p>
+<ul>
+<li>Pros: Most mature ecosystem, great docs, extensive tooling</li>
+<li>Cons: Can be complex, lots of abstraction layers</li>
+<li>Visualization: LangSmith for tracing</li>
+<li>Good for: Understanding agent patterns deeply</li>
+</ul>
+<p><strong>AutoGen</strong> (Python)</p>
+<ul>
+<li>Pros: Multi-agent focus, good for research</li>
+<li>Cons: Less production-ready, Microsoft-centric</li>
+<li>Visualization: Built-in logging, GroupChat UI</li>
+<li>Good for: Agent collaboration experiments</li>
+</ul>
+<p><strong>Flowise/LangFlow</strong></p>
+<ul>
+<li>Pros: Visual builder, instant feedback, low barrier</li>
+<li>Cons: Less control, harder to version control</li>
+<li>Visualization: Built-in flow diagram is the visualization</li>
+<li>Good for: Quick prototyping, non-coders</li>
+</ul>
+<h3 id="for-production-deployment"><strong>For Production Deployment</strong><a class="anchor" href="#for-production-deployment">#</a></h3>
+<p><strong>Temporal + LLM</strong></p>
+<ul>
+<li>Pros: Bulletproof reliability, durable execution, great debugging</li>
+<li>Cons: More DevOps overhead, not AI-native</li>
+<li>Visualization: Temporal UI shows workflow state</li>
+<li>Good for: Mission-critical agent workflows</li>
+</ul>
+<p><strong>LangGraph Cloud</strong></p>
+<ul>
+<li>Pros: Deployment abstraction, built-in observability</li>
+<li>Cons: Vendor lock-in, newer product</li>
+<li>Visualization: LangSmith integration</li>
+<li>Good for: Teams already using LangChain</li>
+</ul>
+<p><strong>Custom orchestration</strong> (Inngest, Windmill, etc.)</p>
+<ul>
+<li>Pros: Full control, fits your existing stack</li>
+<li>Cons: Build your own agent patterns</li>
+<li>Visualization: Platform-dependent</li>
+<li>Good for: DevOps teams comfortable with infrastructure</li>
+</ul>
+<h3 id="for-low-codebusiness-users"><strong>For Low-Code/Business Users</strong><a class="anchor" href="#for-low-codebusiness-users">#</a></h3>
+<p><strong>n8n with AI nodes</strong></p>
+<ul>
+<li>Pros: Familiar workflow paradigm, self-hostable</li>
+<li>Cons: Not purpose-built for complex agents</li>
+<li>Visualization: Workflow canvas</li>
+<li>Good for: Deterministic workflows with AI steps</li>
+</ul>
+<p><strong>Stack AI, Relevance AI</strong></p>
+<ul>
+<li>Pros: Agent-specific UI, templates</li>
+<li>Cons: Less customization, cloud-only</li>
+<li>Visualization: Built-in trace viewers</li>
+<li>Good for: Quick deployment, less technical teams</li>
+</ul>
+<h2 id="debugging--visualization-tools">Debugging &amp; Visualization Tools<a class="anchor" href="#debugging--visualization-tools">#</a></h2>
+<p><strong>Observability platforms:</strong></p>
+<ul>
+<li><strong>LangSmith</strong>: Trace LangChain agents, evaluate outputs</li>
+<li><strong>Weights &amp; Biases</strong>: Track experiments, compare agent runs</li>
+<li><strong>Helicone</strong>: LLM observability, caching, logging</li>
+<li><strong>Arize AI</strong>: Monitor production LLM apps</li>
+</ul>
+<p><strong>Development tools:</strong></p>
+<ul>
+<li><strong>LangGraph Studio</strong>: Visual debugger for LangGraph agents</li>
+<li><strong>Promptfoo</strong>: Test/evaluate agent prompts systematically</li>
+<li><strong>OpenLIT</strong>: Open-source LLM observability</li>
+</ul>
+<p><strong>Evaluation frameworks:</strong></p>
+<ul>
+<li><strong>RAGAS</strong>: Evaluate RAG pipelines</li>
+<li><strong>DeepEval</strong>: Unit tests for LLM outputs</li>
+<li><strong>TruLens</strong>: Feedback functions for agent quality</li>
+</ul>
+<h2 id="recommended-learning-path">Recommended Learning Path<a class="anchor" href="#recommended-learning-path">#</a></h2>
+<p>Given your technical background:</p>
+<ol>
+<li><strong>Start with LangChain tutorial</strong> - understand ReAct pattern hands-on</li>
+<li><strong>Build simple agent</strong> - web search + calculator tools</li>
+<li><strong>Add LangSmith</strong> - see what tracing/debugging looks like</li>
+<li><strong>Try LangGraph</strong> - for more complex stateful agents</li>
+<li><strong>Experiment with multi-agent</strong> - AutoGen or CrewAI</li>
+<li><strong>Consider production patterns</strong> - how would you deploy this in your DevOps context?</li>
+</ol>
+<h2 id="key-questions-for-your-use-case">Key Questions for Your Use Case<a class="anchor" href="#key-questions-for-your-use-case">#</a></h2>
+<ul>
+<li><strong>Deterministic vs autonomous</strong>: Do you need predictable steps or creative problem-solving?</li>
+<li><strong>Human oversight</strong>: How much do you trust the agent to act independently?</li>
+<li><strong>Failure tolerance</strong>: What happens if the agent makes a wrong decision?</li>
+<li><strong>Scale</strong>: One-off tasks vs high-volume operations?</li>
+</ul>
+<p>For DevOps specifically, promising agent applications:</p>
+<ul>
+<li><strong>Incident response</strong>: Gather logs, analyze patterns, suggest fixes</li>
+<li><strong>Infrastructure optimization</strong>: Analyze metrics, recommend changes</li>
+<li><strong>Documentation generation</strong>: From code/configs to human-readable docs</li>
+<li><strong>Automated troubleshooting</strong>: Debug issues across distributed systems</li>
+</ul>
+<p>What kind of agentic workflow are you thinking about building? That would help me point you to the most relevant tools and patterns.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+  
+  <div class="flex flex-wrap justify-between">
+    <span>
+    
+      <a href="/musings/docs/misc/" class="flex align-center">
+        <img src="/musings/icons/backward.svg" class="book-icon" alt="Backward" />
+        <span>Miscellaneous</span>
+      </a>
+    
+    </span>
+    <span>
+    
+      <a href="/musings/docs/misc/agno-vs-langchain/" class="flex align-center">
+        <span>Agno Vs Langchain</span>
+        <img src="/musings/icons/forward.svg" class="book-icon" alt="Forward" />
+      </a>
+    
+    </span>
+  </div>
+  
+
+
+ 
+        
+  
+ 
+        
+        
+  
+ 
+        
+  
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#what-agentic-computing-means">What &ldquo;Agentic Computing&rdquo; Means</a></li>
+        <li><a href="#agent-architectures">Agent Architectures</a>
+          <ul>
+            <li><a href="#react-pattern-reasoning--acting"><strong>ReAct Pattern</strong> (Reasoning + Acting)</a></li>
+            <li><a href="#planning-agents"><strong>Planning Agents</strong></a></li>
+            <li><a href="#multi-agent-systems"><strong>Multi-Agent Systems</strong></a></li>
+            <li><a href="#reflexive-agents"><strong>Reflexive Agents</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#agent-components">Agent Components</a></li>
+        <li><a href="#evaluation-dimensions-for-agent-tools">Evaluation Dimensions for Agent Tools</a>
+          <ul>
+            <li><a href="#1-visibility--debugging"><strong>1. Visibility &amp; Debugging</strong></a></li>
+            <li><a href="#2-development-experience"><strong>2. Development Experience</strong></a></li>
+            <li><a href="#3-deployment--operations"><strong>3. Deployment &amp; Operations</strong></a></li>
+            <li><a href="#4-reliability--control"><strong>4. Reliability &amp; Control</strong></a></li>
+            <li><a href="#5-integration-ecosystem"><strong>5. Integration Ecosystem</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#tool-landscape-by-use-case">Tool Landscape by Use Case</a>
+          <ul>
+            <li><a href="#for-learningexperimentation"><strong>For Learning/Experimentation</strong></a></li>
+            <li><a href="#for-production-deployment"><strong>For Production Deployment</strong></a></li>
+            <li><a href="#for-low-codebusiness-users"><strong>For Low-Code/Business Users</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#debugging--visualization-tools">Debugging &amp; Visualization Tools</a></li>
+        <li><a href="#recommended-learning-path">Recommended Learning Path</a></li>
+        <li><a href="#key-questions-for-your-use-case">Key Questions for Your Use Case</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

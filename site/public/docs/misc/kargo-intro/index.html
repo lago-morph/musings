@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><script src="/musings/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=musings/livereload" data-no-instant defer></script>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="I’d be happy to explain how Kargo works with ArgoCD to manage deployments, but I want to make sure I provide you with the most accurate and current information since this involves specific tooling that may have evolved. Let me search for the latest information about Kargo and its integration with ArgoCD. Now I have comprehensive information about Kargo and ArgoCD.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/musings/docs/misc/kargo-intro/">
+  <meta property="og:site_name" content="Technology Documentation Hub">
+  <meta property="og:title" content="Example Stage configuration">
+  <meta property="og:description" content="I’d be happy to explain how Kargo works with ArgoCD to manage deployments, but I want to make sure I provide you with the most accurate and current information since this involves specific tooling that may have evolved. Let me search for the latest information about Kargo and its integration with ArgoCD. Now I have comprehensive information about Kargo and ArgoCD.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2025-12-16T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-16T00:00:00+00:00">
+
+
+  <meta itemprop="name" content="Example Stage configuration">
+  <meta itemprop="description" content="I’d be happy to explain how Kargo works with ArgoCD to manage deployments, but I want to make sure I provide you with the most accurate and current information since this involves specific tooling that may have evolved. Let me search for the latest information about Kargo and its integration with ArgoCD. Now I have comprehensive information about Kargo and ArgoCD.">
+  <meta itemprop="datePublished" content="2025-12-16T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-12-16T00:00:00+00:00">
+  <meta itemprop="wordCount" content="696">
+  <meta itemprop="keywords" content="kargo,argocd,deployment,container,gitops,helm,kubernetes,workflow">
+
+<title>Example Stage configuration | Technology Documentation Hub</title>
+<link rel="icon" href="/musings/favicon.png" >
+<link rel="manifest" href="/musings/manifest.json">
+<link rel="canonical" href="http://localhost:1313/musings/docs/misc/kargo-intro/">
+<link rel="stylesheet" href="/musings/book.min.6970156cec683193d93c9c4edaf0d56574e4361df2e0c1be4f697ae81c3ba55f.css" integrity="sha256-aXAVbOxoMZPZPJxO2vDVZXTkNh3y4MG&#43;T2l66Bw7pV8=" crossorigin="anonymous">
+
+
+  <script defer src="/musings/fuse.min.js"></script>
+  <script defer src="/musings/en.search.min.173ca72eaf49c9fc6baf1c2e2e9837cb4f8ae13874ec0dc634ce40c45c8943dc.js" integrity="sha256-FzynLq9JyfxrrxwuLpg3y0&#43;K4Th07A3GNM5AxFyJQ9w=" crossorigin="anonymous"></script>
+
+
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-docs">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/musings/"><span>Technology Documentation Hub</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input id="book-search-input" type="text" 
+    placeholder="Search"
+    aria-label="Search"
+    maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/" class="">
+      AI &amp; Machine Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/" class="">
+      Development Platforms</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/" class="">
+      Infrastructure</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/workflows/" class="">
+      Workflows</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/" class="">
+      Miscellaneous</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/agentic-computing-overview-and-tools/" class="">
+      Agentic Computing Overview And Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/agno-vs-langchain/" class="">
+      Agno Vs Langchain</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/serverless-function-workflow-tools-for-kubernetes/" class="">
+      Core Concepts</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/flowwise-vs-langflow/" class="">
+      Flowise vs Langflow: Detailed Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/one-model-multiple-diagrams/" class="">
+      Generate all views</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/verification-architecture/" class="">
+      Is This a Reasonable Architecture?</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kiro-ide-comparison-tools/" class="">
+      Kiro IDE: Comprehensive Analysis, Comparisons &amp; Optimal Workflows</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/langchain-architecture/" class="">
+      Langchain Architecture</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/llm-tracing-metrics-comparison/" class="">
+      Llm Tracing Metrics Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/n8n-overview/" class="">
+      n8n Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kubernetes-based/" class="">
+      Open Source Workflow Orchestration on Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/tools-overview-and-getting-started/" class="">
+      Self-Hosted Open Source Agent Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/backstage-techdocs-pros-cons/" class="">
+      Backstage Techdocs Pros Cons</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/cross-diagram-reuse-guide/" class="">
+      Cross-Diagram Domain Model Reuse in PlantUML</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/prompt/" class="">
+      Crossplane EKS Management Cluster Implementation - Project Brief</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-intro/" class="active">
+      Example Stage configuration</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/export-conversion/" class="">
+      Export Conversion</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-polyrepo/" class="">
+      Fast-moving image Warehouse</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/gitops-platform-safety/" class="">
+      GitOps Safety Architecture for Platform Evolution</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/tasks/" class="">
+      High-Level Plan: Crossplane EKS Management Cluster Implementation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/backstage-kratix-crossplane-argocd-blueprint/" class="">
+      Implementation Blueprint: Crossplane &#43; Kratix &#43; Backstage &#43; ArgoCD</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-git-tags/" class="">
+      In subsequent stages, you can read this metadata</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/in-browser-editing-tools/" class="">
+      In-Browser Editing Documentation Solutions</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/initial-comparison/" class="">
+      Initial Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/comprehensive-guide/" class="">
+      Kargo and ArgoCD: A Comprehensive Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-argocd-interaction/" class="">
+      Kargo promotion step</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/presentation/" class="">
+      Kargo: GitOps Promotion for ArgoCD</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/notion-overview/" class="">
+      Notion: A Comprehensive Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/oss-portal-platform-orchestration-tools/" class="">
+      Oss Portal Platform Orchestration Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/oss-vs-closed-portal/" class="">
+      Oss Vs Closed Portal</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/crossplane-solution/" class="">
+      Pseudocode for composition function</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/recommendations/" class="">
+      Recommendations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/job-configmap-crossplane-abstraction/" class="">
+      Shell script helper for Option 3</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/stage3-outline/" class="">
+      Stage 3: Implementation Patterns - Outline (Crossplane 2.1)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/argocd-layered-values/" class="">
+      ArgoCD and Helm Schema Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/schema-testing/" class="">
+      Creating a Helm Values Schema: Complete Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/stage1/" class="">
+      Crossplane EKS Management Cluster - Approach Overview &amp; Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/executive-summary/" class="">
+      DevOps Domain Model: Executive Summary</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/devops-domain-model-guide/" class="">
+      DevOps Domain Model: Implementation Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/getting-started-concise/" class="">
+      Getting Started Concise</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/ci-cd-templates/" class="">
+      GitHub Actions Example</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/k8s-mcp-servers/" class="">
+      K8s Mcp Servers</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/non-helm-schema-validation/" class="">
+      Non Helm Schema Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/overview/" class="">
+      Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/prompt-guide/" class="">
+      Production Readiness Deep-Dive Prompt Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/production-readiness-overview/" class="">
+      Production Readiness Guide: From Docker Compose to Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/job-plus-configmap-annotation/" class="">
+      Read current state AND capture resourceVersion</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/runbooks/" class="">
+      Runbooks</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/layered-schema/" class="">
+      Schema Validation with Layered Values Files</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/helm-layered-abstraction/" class="">
+      Solution 2: Kustomize with Helm</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/stage2/" class="">
+      Stage 2: Architecture Design</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/starting-helm-testing/" class="">
+      Testing Complex Helm Charts: A Practical Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/imperitive-in-declarative/" class="">
+      Imperitive In Declarative</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/mermaid-test/" class="">
+      Mermaid Diagram Test</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/test-document/" class="">
+      Test Document</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/musings/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>Example Stage configuration</h3>
+
+  <label for="toc-control">
+    
+    <img src="/musings/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#how-kargo-works-with-argocd-to-manage-deployments">How Kargo Works with ArgoCD to Manage Deployments</a>
+          <ul>
+            <li><a href="#the-complementary-relationship"><strong>The Complementary Relationship</strong></a></li>
+            <li><a href="#key-concepts"><strong>Key Concepts</strong></a></li>
+            <li><a href="#how-the-integration-works"><strong>How the Integration Works</strong></a>
+              <ul>
+                <li><a href="#step-1-argocd-applications-deploy-kargo-promotes"><strong>Step 1: ArgoCD Applications Deploy, Kargo Promotes</strong></a></li>
+                <li><a href="#step-2-the-promotion-flow"><strong>Step 2: The Promotion Flow</strong></a></li>
+              </ul>
+            </li>
+            <li><a href="#practical-workflow-example"><strong>Practical Workflow Example</strong></a></li>
+            <li><a href="#key-benefits-of-the-integration"><strong>Key Benefits of the Integration</strong></a></li>
+            <li><a href="#reasoning--best-practices"><strong>Reasoning &amp; Best Practices</strong></a></li>
+            <li><a href="#questions-for-you"><strong>Questions for You</strong></a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><p>I&rsquo;d be happy to explain how Kargo works with ArgoCD to manage deployments, but I want to make sure I provide you with the most accurate and current information since this involves specific tooling that may have evolved.</p>
+<p>Let me search for the latest information about Kargo and its integration with ArgoCD.Great! Now I have comprehensive information about Kargo and ArgoCD. Let me explain how they work together.</p>
+<h2 id="how-kargo-works-with-argocd-to-manage-deployments">How Kargo Works with ArgoCD to Manage Deployments<a class="anchor" href="#how-kargo-works-with-argocd-to-manage-deployments">#</a></h2>
+<h3 id="the-complementary-relationship"><strong>The Complementary Relationship</strong><a class="anchor" href="#the-complementary-relationship">#</a></h3>
+<p>ArgoCD handles syncing Kubernetes clusters to desired states in Git repositories but doesn&rsquo;t have a concept of &ldquo;promotion&rdquo; between environments. This is where Kargo comes in - Kargo orchestrates progressive rollouts across the application lifecycle while integrating seamlessly with ArgoCD.</p>
+<p><strong>Think of it this way:</strong></p>
+<ul>
+<li><strong>ArgoCD</strong> = The deployment engine (handles the &ldquo;how&rdquo; of deploying)</li>
+<li><strong>Kargo</strong> = The promotion orchestrator (handles the &ldquo;when&rdquo; and &ldquo;what&rdquo; gets promoted between environments)</li>
+</ul>
+<hr>
+<h3 id="key-concepts"><strong>Key Concepts</strong><a class="anchor" href="#key-concepts">#</a></h3>
+<p><strong>1. Stages</strong>
+Kargo introduces the concept of <strong>Stages</strong>, which represent your environments (dev, staging, production). Each Stage is a Kubernetes Custom Resource that defines:</p>
+<ul>
+<li>What artifacts to track (container images, Helm charts, Git commits)</li>
+<li>How to promote changes (update Git repos, trigger ArgoCD syncs)</li>
+<li>Which ArgoCD Applications to manage</li>
+</ul>
+<p><strong>2. Warehouses</strong>
+Warehouses monitor sources like Docker registries for new images following specific version constraints, such as semver patterns.</p>
+<p><strong>3. Freight</strong>
+Freight represents a collection of artifacts (images, charts, configs) that move through your promotion pipeline - like cargo being shipped through stages.</p>
+<hr>
+<h3 id="how-the-integration-works"><strong>How the Integration Works</strong><a class="anchor" href="#how-the-integration-works">#</a></h3>
+<h4 id="step-1-argocd-applications-deploy-kargo-promotes"><strong>Step 1: ArgoCD Applications Deploy, Kargo Promotes</strong><a class="anchor" href="#step-1-argocd-applications-deploy-kargo-promotes">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Example Stage configuration</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">kargo.akuity.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Stage</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">dev</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">kargo-demo</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">subscriptions</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">warehouse</span>: <span style="color:#ae81ff">docker-registry </span> <span style="color:#75715e"># Watches for new images</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">promotionMechanisms</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">gitRepoUpdates</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">${GITOPS_REPO_URL}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">writeBranch</span>: <span style="color:#ae81ff">main</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">kustomize</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">images</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">image</span>: <span style="color:#ae81ff">nginx</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">path</span>: <span style="color:#ae81ff">overlays/dev</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">argoCDAppUpdates</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">appName</span>: <span style="color:#ae81ff">nginx-dev </span> <span style="color:#75715e"># Links to ArgoCD Application</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">appNamespace</span>: <span style="color:#ae81ff">argocd</span></span></span></code></pre></div><h4 id="step-2-the-promotion-flow"><strong>Step 2: The Promotion Flow</strong><a class="anchor" href="#step-2-the-promotion-flow">#</a></h4>
+<ol>
+<li><strong>Artifact Detection</strong>: Kargo&rsquo;s Warehouse detects a new container image in your registry</li>
+<li><strong>Freight Creation</strong>: Kargo creates a &ldquo;Freight&rdquo; object representing this new version</li>
+<li><strong>Git Updates</strong>: When you approve a promotion, Kargo updates your GitOps repo (modifies Kustomize overlays, Helm values, etc.)</li>
+<li><strong>ArgoCD Trigger</strong>: Kargo uses the argocd-update promotion step to modify an ArgoCD Application&rsquo;s operation field, forcing it to sync to the recently updated state</li>
+<li><strong>Health Monitoring</strong>: Kargo registers health checks to continuously monitor the health of Applications updated by argocd-update steps</li>
+</ol>
+<hr>
+<h3 id="practical-workflow-example"><strong>Practical Workflow Example</strong><a class="anchor" href="#practical-workflow-example">#</a></h3>
+<p><strong>Scenario</strong>: Promoting a new nginx image from dev → uat → prod</p>
+<pre tabindex="0"><code>New nginx:1.25.0 pushed to registry
+         ↓
+Kargo Warehouse detects it
+         ↓
+Freight created with nginx:1.25.0
+         ↓
+Developer clicks &#34;Promote to Dev&#34;
+         ↓
+Kargo updates overlays/dev/kustomization.yaml in Git
+         ↓
+Kargo triggers ArgoCD Application &#34;nginx-dev&#34; sync
+         ↓
+ArgoCD deploys nginx:1.25.0 to dev cluster
+         ↓
+Kargo monitors health
+         ↓
+If healthy, Freight becomes available for UAT promotion
+         ↓
+Repeat process for UAT → Prod</code></pre><hr>
+<h3 id="key-benefits-of-the-integration"><strong>Key Benefits of the Integration</strong><a class="anchor" href="#key-benefits-of-the-integration">#</a></h3>
+<ol>
+<li><strong>Separation of Concerns</strong>: ArgoCD focuses on deployment mechanics; Kargo handles promotion logic</li>
+<li><strong>GitOps Compliance</strong>: All changes flow through Git - no direct cluster modifications</li>
+<li><strong>Audit Trail</strong>: Every promotion is tracked and versioned</li>
+<li><strong>Progressive Rollouts</strong>: Kargo enables progressive deployment strategies without custom CI scripts</li>
+<li><strong>Self-Service</strong>: Developers can promote their own changes with built-in guardrails</li>
+</ol>
+<hr>
+<h3 id="reasoning--best-practices"><strong>Reasoning &amp; Best Practices</strong><a class="anchor" href="#reasoning--best-practices">#</a></h3>
+<p><strong>Why this architecture makes sense:</strong></p>
+<ul>
+<li><strong>Single Responsibility</strong>: ArgoCD does what it&rsquo;s best at (syncing Git to clusters), while Kargo adds the missing orchestration layer</li>
+<li><strong>No CI/CD Lock-in</strong>: You don&rsquo;t need complex CI pipelines or custom automation scripts - Kargo manages the promotion workflow declaratively</li>
+<li><strong>State-Driven</strong>: Unlike traditional CI-triggered deployments, this approach is pull-based and declarative, making it more reliable and auditable</li>
+</ul>
+<p><strong>Common deployment pattern:</strong></p>
+<ul>
+<li>Install both Kargo and ArgoCD in the same cluster (management cluster)</li>
+<li>ArgoCD manages multiple target clusters</li>
+<li>Kargo orchestrates what gets deployed where and when</li>
+<li>Each environment (dev/staging/prod) has its own ArgoCD Application and Kargo Stage</li>
+</ul>
+<hr>
+<h3 id="questions-for-you"><strong>Questions for You</strong><a class="anchor" href="#questions-for-you">#</a></h3>
+<p>To provide more specific guidance, I&rsquo;d like to understand:</p>
+<ol>
+<li>Are you planning to use this for a multi-cluster setup or single cluster with namespaces?</li>
+<li>What type of artifacts are you primarily promoting (container images, Helm charts, raw manifests)?</li>
+<li>Do you already have ArgoCD running, or are you setting up both from scratch?</li>
+</ol>
+<p>This will help me tailor the explanation to your specific use case and provide more concrete implementation examples.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+  
+  <div class="flex flex-wrap justify-between">
+    <span>
+    
+      <a href="/musings/docs/misc/prompt/" class="flex align-center">
+        <img src="/musings/icons/backward.svg" class="book-icon" alt="Backward" />
+        <span>Crossplane EKS Management Cluster Implementation - Project Brief</span>
+      </a>
+    
+    </span>
+    <span>
+    
+      <a href="/musings/docs/misc/export-conversion/" class="flex align-center">
+        <span>Export Conversion</span>
+        <img src="/musings/icons/forward.svg" class="book-icon" alt="Forward" />
+      </a>
+    
+    </span>
+  </div>
+  
+
+
+ 
+        
+  
+ 
+        
+        
+  
+ 
+        
+  
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#how-kargo-works-with-argocd-to-manage-deployments">How Kargo Works with ArgoCD to Manage Deployments</a>
+          <ul>
+            <li><a href="#the-complementary-relationship"><strong>The Complementary Relationship</strong></a></li>
+            <li><a href="#key-concepts"><strong>Key Concepts</strong></a></li>
+            <li><a href="#how-the-integration-works"><strong>How the Integration Works</strong></a>
+              <ul>
+                <li><a href="#step-1-argocd-applications-deploy-kargo-promotes"><strong>Step 1: ArgoCD Applications Deploy, Kargo Promotes</strong></a></li>
+                <li><a href="#step-2-the-promotion-flow"><strong>Step 2: The Promotion Flow</strong></a></li>
+              </ul>
+            </li>
+            <li><a href="#practical-workflow-example"><strong>Practical Workflow Example</strong></a></li>
+            <li><a href="#key-benefits-of-the-integration"><strong>Key Benefits of the Integration</strong></a></li>
+            <li><a href="#reasoning--best-practices"><strong>Reasoning &amp; Best Practices</strong></a></li>
+            <li><a href="#questions-for-you"><strong>Questions for You</strong></a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,2532 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><script src="/musings/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=musings/livereload" data-no-instant defer></script>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Now I have comprehensive information to give you a complete answer with practical examples. Covers Complete Solution: Central Model with Selective Views in PlantUML, File Structure 📁, Method 1: Include &#43; Hide/Remove ⭐ Recommended.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/musings/docs/ai-ml/one-model-multiple-diagrams/">
+  <meta property="og:site_name" content="Technology Documentation Hub">
+  <meta property="og:title" content="Generate all views">
+  <meta property="og:description" content="Now I have comprehensive information to give you a complete answer with practical examples. Covers Complete Solution: Central Model with Selective Views in PlantUML, File Structure 📁, Method 1: Include &#43; Hide/Remove ⭐ Recommended.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2025-12-16T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-16T00:00:00+00:00">
+
+
+  <meta itemprop="name" content="Generate all views">
+  <meta itemprop="description" content="Now I have comprehensive information to give you a complete answer with practical examples. Covers Complete Solution: Central Model with Selective Views in PlantUML, File Structure 📁, Method 1: Include &#43; Hide/Remove ⭐ Recommended.">
+  <meta itemprop="datePublished" content="2025-12-16T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-12-16T00:00:00+00:00">
+  <meta itemprop="wordCount" content="3692">
+  <meta itemprop="keywords" content="java,diagrams,domainmodel,initial-with-correlation,one-model-multiple-diagrams">
+
+<title>Generate all views | Technology Documentation Hub</title>
+<link rel="icon" href="/musings/favicon.png" >
+<link rel="manifest" href="/musings/manifest.json">
+<link rel="canonical" href="http://localhost:1313/musings/docs/ai-ml/one-model-multiple-diagrams/">
+<link rel="stylesheet" href="/musings/book.min.6970156cec683193d93c9c4edaf0d56574e4361df2e0c1be4f697ae81c3ba55f.css" integrity="sha256-aXAVbOxoMZPZPJxO2vDVZXTkNh3y4MG&#43;T2l66Bw7pV8=" crossorigin="anonymous">
+
+
+  <script defer src="/musings/fuse.min.js"></script>
+  <script defer src="/musings/en.search.min.5cc9128683126c7cda9fef74044c10c013f6d8935e1e3e719e3f562033e9ef44.js" integrity="sha256-XMkShoMSbHzan&#43;90BEwQwBP22JNeHj5xnj9WIDPp70Q=" crossorigin="anonymous"></script>
+
+
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-docs">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/musings/"><span>Technology Documentation Hub</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input id="book-search-input" type="text" 
+    placeholder="Search"
+    aria-label="Search"
+    maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/" class="">
+      AI &amp; Machine Learning</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/agentic-computing-overview-and-tools/" class="">
+      Agentic Computing Overview And Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/agno-vs-langchain/" class="">
+      Agno Vs Langchain</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/flowwise-vs-langflow/" class="">
+      Flowise vs Langflow: Detailed Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/one-model-multiple-diagrams/" class="active">
+      Generate all views</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/verification-architecture/" class="">
+      Is This a Reasonable Architecture?</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/kiro-ide-comparison-tools/" class="">
+      Kiro IDE: Comprehensive Analysis, Comparisons &amp; Optimal Workflows</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/langchain-architecture/" class="">
+      LangChain: The Foundation Library</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/llm-tracing-metrics-comparison/" class="">
+      Llm Tracing Metrics Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/kubernetes-based/" class="">
+      Open Source Workflow Orchestration on Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/tools-overview-and-getting-started/" class="">
+      Self-Hosted Open Source Agent Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/serverless-function-workflow-tools-for-kubernetes/" class="">
+      Serverless/Function Workflows on Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/n8n-overview/" class="">
+      What Problems Does n8n Solve?</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/" class="">
+      Development Platforms</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/backstage-techdocs-pros-cons/" class="">
+      Backstage Techdocs Pros Cons</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/cross-diagram-reuse-guide/" class="">
+      Cross-Diagram Domain Model Reuse in PlantUML</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/prompt/" class="">
+      Crossplane EKS Management Cluster Implementation - Project Brief</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/comprehensive-guide/" class="">
+      Driven vs Event: Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/gitops-platform-safety/" class="">
+      GitOps Safety Architecture for Platform Evolution</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/kargo-intro/" class="">
+      How Kargo Works with ArgoCD to Manage Deployments</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/backstage-kratix-crossplane-argocd-blueprint/" class="">
+      Implementation Blueprint: Crossplane &#43; Kratix &#43; Backstage &#43; ArgoCD</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/kargo-git-tags/" class="">
+      In subsequent stages, you can read this metadata</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/in-browser-editing-tools/" class="">
+      In-Browser Editing Documentation Solutions</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/initial-comparison/" class="">
+      Initial Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/kargo-argocd-interaction/" class="">
+      Kargo promotion step</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/presentation/" class="">
+      Kargo: GitOps Promotion for ArgoCD</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/notion-overview/" class="">
+      Notion: A Comprehensive Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/oss-portal-platform-orchestration-tools/" class="">
+      Oss Portal Platform Orchestration Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/oss-vs-closed-portal/" class="">
+      Oss Vs Closed Portal</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/recommendations/" class="">
+      Overview of Text-Based UML Domain Modeling Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/export-conversion/" class="">
+      PlantUML Export &amp; Embedding Options</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/crossplane-solution/" class="">
+      Pseudocode for composition function</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/kargo-polyrepo/" class="">
+      Response</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/job-configmap-crossplane-abstraction/" class="">
+      Shell script helper for Option 3</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/tasks/" class="">
+      Stage 1: Approach Overview &amp; Comparison ✅ COMPLETE</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/stage3-outline/" class="">
+      Stage 3: Implementation Patterns - Outline (Crossplane 2.1)</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/" class="">
+      Infrastructure</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/runbooks/" class="">
+      1. Mental Model Shift (Important Framing)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/argocd-layered-values/" class="">
+      ArgoCD and Helm Schema Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/prompt-guide/" class="">
+      Contents</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/overview/" class="">
+      Core Strategy: Progressive Delivery with Blast Radius Containment</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/stage1/" class="">
+      Crossplane EKS Management Cluster - Approach Overview &amp; Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/getting-started-concise/" class="">
+      Getting Started Concise</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/ci-cd-templates/" class="">
+      GitHub Actions Example</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/k8s-mcp-servers/" class="">
+      K8s Mcp Servers</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/stage2/" class="">
+      Management Cluster VPC Layout</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/non-helm-schema-validation/" class="">
+      Non Helm Schema Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/production-readiness-overview/" class="">
+      Production Readiness Guide: From Docker Compose to Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/schema-testing/" class="">
+      Quick Start: Generate Schema from Existing values.yaml</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/job-plus-configmap-annotation/" class="">
+      Read current state AND capture resourceVersion</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/layered-schema/" class="">
+      Schema Validation with Layered Values Files</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/helm-layered-abstraction/" class="">
+      Solution 2: Kustomize with Helm</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/starting-helm-testing/" class="">
+      Understanding What You&#39;re Testing</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/executive-summary/" class="">
+      What You&#39;re Building</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/devops-domain-model-guide/" class="">
+      Why This Approach Works for DevOps</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/workflows/" class="">
+      Workflows</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/workflows/imperitive-in-declarative/" class="">
+      Imperitive In Declarative</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/mermaid-test/" class="">
+      Mermaid Diagram Test</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/" class="">
+      Miscellaneous</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/test-document/" class="">
+      Test Document</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/musings/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>Generate all views</h3>
+
+  <label for="toc-control">
+    
+    <img src="/musings/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#complete-solution-central-model-with-selective-views-in-plantuml">Complete Solution: Central Model with Selective Views in PlantUML</a></li>
+        <li><a href="#file-structure-"><strong>File Structure</strong> 📁</a></li>
+        <li><a href="#method-1-include--hideremove--recommended"><strong>Method 1: Include + Hide/Remove</strong> ⭐ <em>Recommended</em></a>
+          <ul>
+            <li><a href="#step-1-define-all-classes-in-central-file"><strong>Step 1: Define All Classes in Central File</strong></a></li>
+            <li><a href="#step-2-create-selective-views"><strong>Step 2: Create Selective Views</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#method-2-using-tags-for-complex-filtering-"><strong>Method 2: Using Tags for Complex Filtering</strong> 🏷️</a></li>
+        <li><a href="#method-3-using-named-blocks-"><strong>Method 3: Using Named Blocks</strong> 📦</a></li>
+        <li><a href="#method-4-hybrid-approach-with-packages-"><strong>Method 4: Hybrid Approach with Packages</strong> 📚</a></li>
+        <li><a href="#advanced-conditional-compilation-with-macros-"><strong>Advanced: Conditional Compilation with Macros</strong> 🔧</a></li>
+        <li><a href="#best-practice-recommendations-"><strong>Best Practice Recommendations</strong> 💡</a>
+          <ul>
+            <li><a href="#for-your-use-case-3-objects-3-views"><strong>For Your Use Case (3 objects, 3 views):</strong></a></li>
+            <li><a href="#complete-working-example"><strong>Complete Working Example:</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#generation-script-example-"><strong>Generation Script Example</strong> 🚀</a></li>
+        <li><a href="#key-hideremove-commands-"><strong>Key Hide/Remove Commands</strong> 📋</a></li>
+        <li><a href="#validation-checklist-"><strong>Validation Checklist</strong> ✅</a></li>
+        <li><a href="#solution-1-hide-all--show-specific--best-for-your-scenarioperfect-now-i-can-give-you-the-complete-solution-here-are-the-best-approaches"><strong>Solution 1: Hide All + Show Specific</strong> ⭐ <em>Best for Your Scenario</em>Perfect! Now I can give you the complete solution. Here are the best approaches:</a></li>
+        <li><a href="#method-1-use---cleanest"><strong>Method 1: Use <code>hide @unlinked</code> + Define Relationships</strong> ⭐ <em>Cleanest</em></a>
+          <ul>
+            <li><a href="#central-model-file"><strong>Central Model File</strong></a></li>
+            <li><a href="#view-files---just-show-what-you-want"><strong>View Files - Just Show What You Want!</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#method-2-using-stereotypes-as-tags--most-explicit"><strong>Method 2: Using Stereotypes as Tags</strong> 🏷️ <em>Most Explicit</em></a>
+          <ul>
+            <li><a href="#central-model-with-stereotypes"><strong>Central Model with Stereotypes</strong></a></li>
+            <li><a href="#view-files---hide-all-show-tagged"><strong>View Files - Hide All, Show Tagged</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#method-3-using-packages-for-grouping--best-for-complex-models"><strong>Method 3: Using Packages for Grouping</strong> 📦 <em>Best for Complex Models</em></a>
+          <ul>
+            <li><a href="#central-model-with-packages"><strong>Central Model with Packages</strong></a></li>
+            <li><a href="#view-files---show-specific-packages"><strong>View Files - Show Specific Packages</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#method-4-combination-approach--most-flexible"><strong>Method 4: Combination Approach</strong> 🎯 <em>Most Flexible</em></a></li>
+        <li><a href="#my-recommendation-for-your-use-case-"><strong>My Recommendation for Your Use Case</strong> 💡</a></li>
+        <li><a href="#complete-working-example-1"><strong>Complete Working Example</strong></a>
+          <ul>
+            <li><a href="#project-structure"><strong>Project Structure:</strong></a></li>
+            <li><a href="#modelorder-systemiuml"><strong><code>model/order-system.iuml</code>:</strong></a></li>
+            <li><a href="#viewscustomer-orderspuml"><strong><code>views/customer-orders.puml</code>:</strong></a></li>
+            <li><a href="#viewsorder-itemspuml"><strong><code>views/order-items.puml</code>:</strong></a></li>
+            <li><a href="#viewscompletepuml"><strong><code>views/complete.puml</code>:</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#generation-script"><strong>Generation Script</strong></a></li>
+        <li><a href="#key-commands-reference"><strong>Key Commands Reference</strong></a></li>
+        <li><a href="#testing-your-setup-"><strong>Testing Your Setup</strong> ✅</a></li>
+        <li><a href="#solution-1-remove-hidden-classes-from-model--cleanest-approach"><strong>Solution 1: Remove Hidden Classes from Model</strong> ⭐ <em>Cleanest Approach</em></a></li>
+        <li><a href="#solution-2-separate-model-and-relationships-files--most-flexible"><strong>Solution 2: Separate Model and Relationships Files</strong> 📦 <em>Most Flexible</em></a>
+          <ul>
+            <li><a href="#file-structure"><strong>File Structure:</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#solution-3-using-procedures-for-smart-includes--most-powerful"><strong>Solution 3: Using Procedures for Smart Includes</strong> 🔧 <em>Most Powerful</em></a></li>
+        <li><a href="#solution-4-tag-based-relationship-filtering--most-scalable"><strong>Solution 4: Tag-Based Relationship Filtering</strong> 🏷️ <em>Most Scalable</em></a></li>
+        <li><a href="#solution-5-hybrid-approach--my-recommendation"><strong>Solution 5: Hybrid Approach</strong> 🎯 <em>My Recommendation</em></a>
+          <ul>
+            <li><a href="#structure"><strong>Structure:</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#complete-working-example-2"><strong>Complete Working Example</strong></a></li>
+        <li><a href="#why-this-works-so-well-"><strong>Why This Works So Well</strong> ✨</a></li>
+        <li><a href="#key-commands-summary"><strong>Key Commands Summary</strong></a></li>
+        <li><a href="#best-practice-recommendation-"><strong>Best Practice Recommendation</strong> 💡</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><p>Perfect! Now I have comprehensive information to give you a complete answer with practical examples.</p>
+<h2 id="complete-solution-central-model-with-selective-views-in-plantuml">Complete Solution: Central Model with Selective Views in PlantUML<a class="anchor" href="#complete-solution-central-model-with-selective-views-in-plantuml">#</a></h2>
+<p>Great question! This is exactly how you should structure PlantUML for maintainable domain modeling. Here&rsquo;s the complete approach:</p>
+<hr>
+<h2 id="file-structure-"><strong>File Structure</strong> 📁<a class="anchor" href="#file-structure-">#</a></h2>
+<pre tabindex="0"><code>project/
+├── model/
+│   ├── classes.iuml          # All class definitions
+│   └── relationships.iuml     # All relationships (optional)
+├── views/
+│   ├── view-all.puml         # Diagram: A, B, C
+│   ├── view-ab.puml          # Diagram: A, B only
+│   └── view-bc.puml          # Diagram: B, C only
+└── exports/
+    ├── svg/
+    └── png/</code></pre><hr>
+<h2 id="method-1-include--hideremove--recommended"><strong>Method 1: Include + Hide/Remove</strong> ⭐ <em>Recommended</em><a class="anchor" href="#method-1-include--hideremove--recommended">#</a></h2>
+<p>This is the most powerful approach using PlantUML&rsquo;s <code>hide</code> and <code>remove</code> commands.</p>
+<h3 id="step-1-define-all-classes-in-central-file"><strong>Step 1: Define All Classes in Central File</strong><a class="anchor" href="#step-1-define-all-classes-in-central-file">#</a></h3>
+<p><strong><code>model/classes.iuml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+&#39; Central class definitions
+
+class A {
+  - idA: int
+  - nameA: String
+  + methodA(): void
+}
+
+class B {
+  - idB: int
+  - dataB: String
+  + methodB(): void
+  + processData(): String
+}
+
+class C {
+  - idC: int
+  - valueC: double
+  + methodC(): void
+  + calculate(): double
+}
+
+&#39; Define all relationships
+A --&gt; B : uses
+B --&gt; C : transforms
+
+@enduml</code></pre><h3 id="step-2-create-selective-views"><strong>Step 2: Create Selective Views</strong><a class="anchor" href="#step-2-create-selective-views">#</a></h3>
+<p><strong><code>views/view-all.puml</code></strong> (Shows A, B, C):</p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+!include ../model/classes.iuml
+
+&#39; No hiding - shows everything
+@enduml</code></pre><p><strong><code>views/view-ab.puml</code></strong> (Shows only A, B):</p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+!include ../model/classes.iuml
+
+&#39; Hide class C
+hide C
+
+@enduml</code></pre><p><strong><code>views/view-bc.puml</code></strong> (Shows only B, C):</p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+!include ../model/classes.iuml
+
+&#39; Hide class A
+hide A
+
+@enduml</code></pre><p>The <code>hide</code> command is useful when you define a large included file and want to hide some classes after inclusion. You can also use <code>remove</code> instead of <code>hide</code> - the difference is that <code>remove</code> completely removes the element from memory, while <code>hide</code> just makes it invisible.</p>
+<hr>
+<h2 id="method-2-using-tags-for-complex-filtering-"><strong>Method 2: Using Tags for Complex Filtering</strong> 🏷️<a class="anchor" href="#method-2-using-tags-for-complex-filtering-">#</a></h2>
+<p>For more sophisticated scenarios with many classes, use tags:</p>
+<p><strong><code>model/classes-tagged.iuml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+
+class A $viewAB $viewAll {
+  - idA: int
+  - nameA: String
+  + methodA(): void
+}
+
+class B $viewAB $viewBC $viewAll {
+  - idB: int
+  - dataB: String
+  + methodB(): void
+}
+
+class C $viewBC $viewAll {
+  - idC: int
+  - valueC: double
+  + methodC(): void
+}
+
+A --&gt; B : uses $viewAB $viewAll
+B --&gt; C : transforms $viewBC $viewAll
+
+@enduml</code></pre><p><strong><code>views/view-ab-tagged.puml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+!include ../model/classes-tagged.iuml
+
+&#39; Show only elements tagged with $viewAB
+hide @unlinked
+remove $viewBC
+show $viewAB
+
+@enduml</code></pre><p>You can put $tags on elements, then remove, hide or restore components either individually or by tags.</p>
+<hr>
+<h2 id="method-3-using-named-blocks-"><strong>Method 3: Using Named Blocks</strong> 📦<a class="anchor" href="#method-3-using-named-blocks-">#</a></h2>
+<p>Include specific sections using <code>!startsub</code> and <code>!endsub</code>:</p>
+<p><strong><code>model/classes-sections.iuml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+
+!startsub CLASS_A
+class A {
+  - idA: int
+  + methodA(): void
+}
+!endsub
+
+!startsub CLASS_B
+class B {
+  - idB: int
+  + methodB(): void
+}
+!endsub
+
+!startsub CLASS_C
+class C {
+  - idC: int
+  + methodC(): void
+}
+!endsub
+
+!startsub REL_AB
+A --&gt; B : uses
+!endsub
+
+!startsub REL_BC
+B --&gt; C : transforms
+!endsub
+
+@enduml</code></pre><p><strong><code>views/view-ab-subsections.puml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+
+!includesub ../model/classes-sections.iuml!CLASS_A
+!includesub ../model/classes-sections.iuml!CLASS_B
+!includesub ../model/classes-sections.iuml!REL_AB
+
+@enduml</code></pre><p>You can use <code>!startsub NAME</code> and <code>!endsub</code> to indicate sections of text to include from other files using <code>!includesub</code>.</p>
+<hr>
+<h2 id="method-4-hybrid-approach-with-packages-"><strong>Method 4: Hybrid Approach with Packages</strong> 📚<a class="anchor" href="#method-4-hybrid-approach-with-packages-">#</a></h2>
+<p>For large domain models, organize by package:</p>
+<p><strong><code>model/domain-model.iuml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+
+package &#34;Core Domain&#34; {
+  class A {
+    - idA: int
+    + methodA(): void
+  }
+  
+  class B {
+    - idB: int
+    + methodB(): void
+  }
+}
+
+package &#34;Extended Domain&#34; {
+  class C {
+    - idC: int
+    + methodC(): void
+  }
+}
+
+A --&gt; B
+B --&gt; C
+
+@enduml</code></pre><p><strong><code>views/view-core-only.puml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+!include ../model/domain-model.iuml
+
+&#39; Hide entire package
+hide &#34;Extended Domain&#34;
+
+@enduml</code></pre><hr>
+<h2 id="advanced-conditional-compilation-with-macros-"><strong>Advanced: Conditional Compilation with Macros</strong> 🔧<a class="anchor" href="#advanced-conditional-compilation-with-macros-">#</a></h2>
+<p>For maximum flexibility, use preprocessor variables:</p>
+<p><strong><code>views/view-ab-conditional.puml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+
+!$SHOW_A = %true()
+!$SHOW_B = %true()
+!$SHOW_C = %false()
+
+!include ../model/classes-conditional.iuml
+
+@enduml</code></pre><p><strong><code>model/classes-conditional.iuml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+
+!if $SHOW_A
+class A {
+  - idA: int
+  + methodA(): void
+}
+!endif
+
+!if $SHOW_B
+class B {
+  - idB: int
+  + methodB(): void
+}
+!endif
+
+!if $SHOW_C
+class C {
+  - idC: int
+  + methodC(): void
+}
+!endif
+
+!if $SHOW_A &amp;&amp; $SHOW_B
+A --&gt; B : uses
+!endif
+
+!if $SHOW_B &amp;&amp; $SHOW_C
+B --&gt; C : transforms
+!endif
+
+@enduml</code></pre><hr>
+<h2 id="best-practice-recommendations-"><strong>Best Practice Recommendations</strong> 💡<a class="anchor" href="#best-practice-recommendations-">#</a></h2>
+<h3 id="for-your-use-case-3-objects-3-views"><strong>For Your Use Case (3 objects, 3 views):</strong><a class="anchor" href="#for-your-use-case-3-objects-3-views">#</a></h3>
+<p><strong>I recommend Method 1 (Include + Hide)</strong> because:</p>
+<ol>
+<li>✅ Simple and clear</li>
+<li>✅ Easy to maintain</li>
+<li>✅ Changes to class definitions automatically propagate</li>
+<li>✅ Visual - you see all classes defined, then hide unwanted ones</li>
+</ol>
+<h3 id="complete-working-example"><strong>Complete Working Example:</strong><a class="anchor" href="#complete-working-example">#</a></h3>
+<p><strong><code>model/order-domain.iuml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+
+class Customer {
+  - customerId: int
+  - name: String
+  - email: String
+  + placeOrder(): Order
+  + getOrders(): List&lt;Order&gt;
+}
+
+class Order {
+  - orderId: int
+  - orderDate: Date
+  - totalAmount: double
+  + addItem(item: OrderItem): void
+  + calculateTotal(): double
+}
+
+class OrderItem {
+  - itemId: int
+  - quantity: int
+  - price: double
+  + getSubtotal(): double
+}
+
+Customer &#34;1&#34; --&gt; &#34;*&#34; Order : places
+Order &#34;1&#34; --&gt; &#34;*&#34; OrderItem : contains
+
+@enduml</code></pre><p><strong><code>views/customer-order-view.puml</code></strong> (Customer and Order only):</p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+title Customer-Order View
+
+!include ../model/order-domain.iuml
+
+hide OrderItem
+
+note right of Order
+  This view focuses on
+  customer order management
+end note
+
+@enduml</code></pre><p><strong><code>views/order-items-view.puml</code></strong> (Order and OrderItem only):</p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+title Order Items View
+
+!include ../model/order-domain.iuml
+
+hide Customer
+
+note right of OrderItem
+  This view focuses on
+  order line item details
+end note
+
+@enduml</code></pre><hr>
+<h2 id="generation-script-example-"><strong>Generation Script Example</strong> 🚀<a class="anchor" href="#generation-script-example-">#</a></h2>
+<p><strong><code>generate-all-views.sh</code>:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Generate all views</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> view in views/*.puml; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>  filename<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>basename <span style="color:#e6db74">&#34;</span>$view<span style="color:#e6db74">&#34;</span> .puml<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>  java -jar plantuml.jar <span style="color:#e6db74">&#34;</span>$view<span style="color:#e6db74">&#34;</span> -tsvg -o <span style="color:#e6db74">&#34;../exports/svg&#34;</span>
+</span></span><span style="display:flex;"><span>  java -jar plantuml.jar <span style="color:#e6db74">&#34;</span>$view<span style="color:#e6db74">&#34;</span> -tpng -o <span style="color:#e6db74">&#34;../exports/png&#34;</span>
+</span></span><span style="display:flex;"><span>  echo <span style="color:#e6db74">&#34;Generated: </span>$filename<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;All diagrams generated!&#34;</span></span></span></code></pre></div><hr>
+<h2 id="key-hideremove-commands-"><strong>Key Hide/Remove Commands</strong> 📋<a class="anchor" href="#key-hideremove-commands-">#</a></h2>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">hide ClassName              &#39; Hide specific class
+hide @unlinked             &#39; Hide classes with no relationships
+hide empty members         &#39; Hide empty attributes/methods
+hide circle                &#39; Hide class circle notation
+hide ClassName attributes  &#39; Hide only attributes of ClassName
+hide ClassName methods     &#39; Hide only methods of ClassName
+hide &lt;&lt;stereotype&gt;&gt;        &#39; Hide all classes with stereotype
+
+remove ClassName           &#39; Completely remove class
+show ClassName             &#39; Re-show hidden class</code></pre><hr>
+<h2 id="validation-checklist-"><strong>Validation Checklist</strong> ✅<a class="anchor" href="#validation-checklist-">#</a></h2>
+<p>Before committing your structure:</p>
+<ul>
+<li><input disabled="" type="checkbox"> All classes defined once in central file(s)</li>
+<li><input disabled="" type="checkbox"> Each view file uses <code>!include</code> for central definitions</li>
+<li><input disabled="" type="checkbox"> Views use <code>hide</code>/<code>remove</code> to filter classes</li>
+<li><input disabled="" type="checkbox"> File paths are correct (use <code>../</code> for relative paths)</li>
+<li><input disabled="" type="checkbox"> Test generation: <code>java -jar plantuml.jar views/*.puml</code></li>
+<li><input disabled="" type="checkbox"> Verify exports render correctly</li>
+</ul>
+<hr>
+<p><strong>Would you like me to:</strong></p>
+<ol>
+<li>Show how to handle more complex scenarios (inheritance, interfaces, nested packages)?</li>
+<li>Provide a CI/CD pipeline that auto-generates all views?</li>
+<li>Demonstrate how to add metadata (notes, colors, styles) that also uses the central model?</li>
+<li>Show how to generate a &ldquo;model catalog&rdquo; that documents all available classes?</li>
+</ol>
+<p>This approach gives you exactly what you need: <strong>one source of truth, multiple selective views, easy maintenance!</strong></p>
+<p>Excellent thinking! Yes, absolutely - you can <strong>hide all, then selectively show</strong>. This is much better for maintainability. Let me show you the best approaches:</p>
+<hr>
+<h2 id="solution-1-hide-all--show-specific--best-for-your-scenarioperfect-now-i-can-give-you-the-complete-solution-here-are-the-best-approaches"><strong>Solution 1: Hide All + Show Specific</strong> ⭐ <em>Best for Your Scenario</em>Perfect! Now I can give you the complete solution. Here are the best approaches:<a class="anchor" href="#solution-1-hide-all--show-specific--best-for-your-scenarioperfect-now-i-can-give-you-the-complete-solution-here-are-the-best-approaches">#</a></h2>
+<hr>
+<h2 id="method-1-use---cleanest"><strong>Method 1: Use <code>hide @unlinked</code> + Define Relationships</strong> ⭐ <em>Cleanest</em><a class="anchor" href="#method-1-use---cleanest">#</a></h2>
+<p>This is the smartest approach: PlantUML will automatically hide any class that doesn&rsquo;t have a relationship shown in the diagram.</p>
+<h3 id="central-model-file"><strong>Central Model File</strong><a class="anchor" href="#central-model-file">#</a></h3>
+<p><strong><code>model/classes.iuml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+
+class A {
+  - idA: int
+  - nameA: String
+  + methodA(): void
+}
+
+class B {
+  - idB: int
+  - dataB: String
+  + methodB(): void
+}
+
+class C {
+  - idC: int
+  - valueC: double
+  + methodC(): void
+}
+
+class D {
+  - idD: int
+  + methodD(): void
+}
+
+class E {
+  - idE: int
+  + methodE(): void
+}
+
+&#39; Define ALL relationships
+A --&gt; B : uses
+B --&gt; C : transforms
+C --&gt; D : processes
+D --&gt; E : notifies
+
+@enduml</code></pre><h3 id="view-files---just-show-what-you-want"><strong>View Files - Just Show What You Want!</strong><a class="anchor" href="#view-files---just-show-what-you-want">#</a></h3>
+<p><strong><code>views/view-all.puml</code></strong> (Shows A, B, C):</p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+title All Classes View
+
+!include ../model/classes.iuml
+
+&#39; Show only the relationships we care about
+A --&gt; B
+B --&gt; C
+
+&#39; Hide anything not connected
+hide @unlinked
+
+@enduml</code></pre><p><strong>Result:</strong> Only A, B, and C appear. D and E are automatically hidden! 🎉</p>
+<p><strong><code>views/view-ab.puml</code></strong> (Shows only A, B):</p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+title A-B View
+
+!include ../model/classes.iuml
+
+&#39; Show only this relationship
+A --&gt; B
+
+hide @unlinked
+
+@enduml</code></pre><p><strong><code>views/view-bc.puml</code></strong> (Shows only B, C):</p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+title B-C View
+
+!include ../model/classes.iuml
+
+&#39; Show only this relationship
+B --&gt; C
+
+hide @unlinked
+
+@enduml</code></pre><p><code>hide @unlinked</code> hides classes that aren&rsquo;t linked to anything in the current diagram.</p>
+<hr>
+<h2 id="method-2-using-stereotypes-as-tags--most-explicit"><strong>Method 2: Using Stereotypes as Tags</strong> 🏷️ <em>Most Explicit</em><a class="anchor" href="#method-2-using-stereotypes-as-tags--most-explicit">#</a></h2>
+<p>This gives you complete control - mark which classes belong in which views.</p>
+<h3 id="central-model-with-stereotypes"><strong>Central Model with Stereotypes</strong><a class="anchor" href="#central-model-with-stereotypes">#</a></h3>
+<p><strong><code>model/classes-tagged.iuml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+
+class A &lt;&lt;ViewAll&gt;&gt; &lt;&lt;ViewAB&gt;&gt; {
+  - idA: int
+  + methodA(): void
+}
+
+class B &lt;&lt;ViewAll&gt;&gt; &lt;&lt;ViewAB&gt;&gt; &lt;&lt;ViewBC&gt;&gt; {
+  - idB: int
+  + methodB(): void
+}
+
+class C &lt;&lt;ViewAll&gt;&gt; &lt;&lt;ViewBC&gt;&gt; {
+  - idC: int
+  + methodC(): void
+}
+
+class D {
+  - idD: int
+  + methodD(): void
+}
+
+class E {
+  - idE: int
+  + methodE(): void
+}
+
+A --&gt; B
+B --&gt; C
+C --&gt; D
+D --&gt; E
+
+@enduml</code></pre><h3 id="view-files---hide-all-show-tagged"><strong>View Files - Hide All, Show Tagged</strong><a class="anchor" href="#view-files---hide-all-show-tagged">#</a></h3>
+<p><strong><code>views/view-ab-tagged.puml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+title A-B View (Tagged)
+
+!include ../model/classes-tagged.iuml
+
+&#39; Hide everything first
+hide class
+
+&#39; Show only what we want
+show &lt;&lt;ViewAB&gt;&gt;
+
+@enduml</code></pre><p><strong><code>views/view-bc-tagged.puml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+title B-C View (Tagged)
+
+!include ../model/classes-tagged.iuml
+
+&#39; Hide everything first
+hide class
+
+&#39; Show only what we want
+show &lt;&lt;ViewBC&gt;&gt;
+
+@enduml</code></pre><hr>
+<h2 id="method-3-using-packages-for-grouping--best-for-complex-models"><strong>Method 3: Using Packages for Grouping</strong> 📦 <em>Best for Complex Models</em><a class="anchor" href="#method-3-using-packages-for-grouping--best-for-complex-models">#</a></h2>
+<p>Group related classes in packages, then show/hide packages.</p>
+<h3 id="central-model-with-packages"><strong>Central Model with Packages</strong><a class="anchor" href="#central-model-with-packages">#</a></h3>
+<p><strong><code>model/domain-model.iuml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+
+package &#34;Core&#34; {
+  class A {
+    - idA: int
+    + methodA(): void
+  }
+  
+  class B {
+    - idB: int
+    + methodB(): void
+  }
+}
+
+package &#34;Processing&#34; {
+  class C {
+    - idC: int
+    + methodC(): void
+  }
+}
+
+package &#34;Notification&#34; {
+  class D {
+    - idD: int
+    + methodD(): void
+  }
+  
+  class E {
+    - idE: int
+    + methodE(): void
+  }
+}
+
+A --&gt; B
+B --&gt; C
+C --&gt; D
+D --&gt; E
+
+@enduml</code></pre><h3 id="view-files---show-specific-packages"><strong>View Files - Show Specific Packages</strong><a class="anchor" href="#view-files---show-specific-packages">#</a></h3>
+<p><strong><code>views/view-core.puml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+title Core View
+
+!include ../model/domain-model.iuml
+
+&#39; Hide all packages first
+hide package
+
+&#39; Show only what we want
+show &#34;Core&#34;
+
+@enduml</code></pre><p><strong><code>views/view-core-processing.puml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+title Core + Processing View
+
+!include ../model/domain-model.iuml
+
+hide package
+
+show &#34;Core&#34;
+show &#34;Processing&#34;
+
+@enduml</code></pre><hr>
+<h2 id="method-4-combination-approach--most-flexible"><strong>Method 4: Combination Approach</strong> 🎯 <em>Most Flexible</em><a class="anchor" href="#method-4-combination-approach--most-flexible">#</a></h2>
+<p>Combine <code>hide @unlinked</code> with selective relationship definitions.</p>
+<p><strong><code>model/classes-all.iuml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+
+&#39; Define all classes once
+class A {
+  - idA: int
+  + methodA(): void
+}
+
+class B {
+  - idB: int
+  + methodB(): void
+}
+
+class C {
+  - idC: int
+  + methodC(): void
+}
+
+class D {
+  - idD: int
+  + methodD(): void
+}
+
+class E {
+  - idE: int
+  + methodE(): void
+}
+
+@enduml</code></pre><p><strong><code>model/relationships.iuml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+
+&#39; Define all relationships
+A --&gt; B : uses
+B --&gt; C : transforms
+C --&gt; D : processes
+D --&gt; E : notifies
+
+@enduml</code></pre><p><strong><code>views/view-ab-combo.puml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+title A-B View
+
+!include ../model/classes-all.iuml
+
+&#39; Include only the relationships we want
+A --&gt; B : uses
+
+&#39; Hide unlinked classes
+hide @unlinked
+
+@enduml</code></pre><p><strong>Benefits:</strong></p>
+<ul>
+<li>✅ Add new class to <code>classes-all.iuml</code> → doesn&rsquo;t appear in any view unless you link it</li>
+<li>✅ No need to update existing view files when adding new classes</li>
+<li>✅ Relationships are explicit in each view</li>
+<li>✅ Can reuse relationship definitions when needed</li>
+</ul>
+<hr>
+<h2 id="my-recommendation-for-your-use-case-"><strong>My Recommendation for Your Use Case</strong> 💡<a class="anchor" href="#my-recommendation-for-your-use-case-">#</a></h2>
+<p><strong>Use Method 1 (<code>hide @unlinked</code> with selective relationships)</strong> because:</p>
+<ol>
+<li>✅ <strong>Zero maintenance overhead</strong> - add classes to model, they won&rsquo;t show up anywhere unless explicitly linked</li>
+<li>✅ <strong>Self-documenting</strong> - each view clearly shows which relationships it cares about</li>
+<li>✅ <strong>Clean separation</strong> - model has all definitions, views control visibility</li>
+<li>✅ <strong>No tagging required</strong> - simpler syntax</li>
+</ol>
+<hr>
+<h2 id="complete-working-example-1"><strong>Complete Working Example</strong><a class="anchor" href="#complete-working-example-1">#</a></h2>
+<h3 id="project-structure"><strong>Project Structure:</strong><a class="anchor" href="#project-structure">#</a></h3>
+<pre tabindex="0"><code>domain-model/
+├── model/
+│   └── order-system.iuml      # All class definitions
+├── views/
+│   ├── customer-orders.puml   # Customer + Order only
+│   ├── order-items.puml       # Order + OrderItem only
+│   └── complete.puml          # Everything
+└── generate.sh</code></pre><h3 id="modelorder-systemiuml"><strong><code>model/order-system.iuml</code>:</strong><a class="anchor" href="#modelorder-systemiuml">#</a></h3>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+
+class Customer {
+  - customerId: int
+  - name: String
+  - email: String
+  + placeOrder(): Order
+}
+
+class Order {
+  - orderId: int
+  - orderDate: Date
+  - total: double
+  + calculateTotal(): double
+}
+
+class OrderItem {
+  - itemId: int
+  - quantity: int
+  - price: double
+  + getSubtotal(): double
+}
+
+class Product {
+  - productId: int
+  - name: String
+  - price: double
+  + getDetails(): String
+}
+
+class Inventory {
+  - stockLevel: int
+  + checkAvailability(): boolean
+}
+
+&#39; Define all relationships
+Customer &#34;1&#34; --&gt; &#34;*&#34; Order : places
+Order &#34;1&#34; --&gt; &#34;*&#34; OrderItem : contains
+OrderItem &#34;*&#34; --&gt; &#34;1&#34; Product : references
+Product &#34;1&#34; --&gt; &#34;1&#34; Inventory : tracked_by
+
+@enduml</code></pre><h3 id="viewscustomer-orderspuml"><strong><code>views/customer-orders.puml</code>:</strong><a class="anchor" href="#viewscustomer-orderspuml">#</a></h3>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+title Customer-Order Management View
+
+!include ../model/order-system.iuml
+
+&#39; Redefine only relationships we care about
+Customer &#34;1&#34; --&gt; &#34;*&#34; Order : places
+
+&#39; Hide everything not connected
+hide @unlinked
+
+note right of Customer
+  This view focuses on
+  customer order management
+  
+  - Product, Inventory, OrderItem
+    are automatically hidden
+end note
+
+@enduml</code></pre><h3 id="viewsorder-itemspuml"><strong><code>views/order-items.puml</code>:</strong><a class="anchor" href="#viewsorder-itemspuml">#</a></h3>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+title Order Line Items View
+
+!include ../model/order-system.iuml
+
+&#39; Show these relationships
+Order &#34;1&#34; --&gt; &#34;*&#34; OrderItem : contains
+OrderItem &#34;*&#34; --&gt; &#34;1&#34; Product : references
+
+hide @unlinked
+
+@enduml</code></pre><h3 id="viewscompletepuml"><strong><code>views/complete.puml</code>:</strong><a class="anchor" href="#viewscompletepuml">#</a></h3>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+title Complete Order System
+
+!include ../model/order-system.iuml
+
+&#39; Include all relationships
+Customer &#34;1&#34; --&gt; &#34;*&#34; Order : places
+Order &#34;1&#34; --&gt; &#34;*&#34; OrderItem : contains
+OrderItem &#34;*&#34; --&gt; &#34;1&#34; Product : references
+Product &#34;1&#34; --&gt; &#34;1&#34; Inventory : tracked_by
+
+&#39; Everything is linked, so nothing hidden
+hide @unlinked
+
+@enduml</code></pre><hr>
+<h2 id="generation-script"><strong>Generation Script</strong><a class="anchor" href="#generation-script">#</a></h2>
+<p><strong><code>generate.sh</code>:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Generating all views...&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> view in views/*.puml; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>  filename<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>basename <span style="color:#e6db74">&#34;</span>$view<span style="color:#e6db74">&#34;</span> .puml<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>  echo <span style="color:#e6db74">&#34;  Processing: </span>$filename<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>  java -jar plantuml.jar <span style="color:#e6db74">&#34;</span>$view<span style="color:#e6db74">&#34;</span> -tsvg -o <span style="color:#e6db74">&#34;../exports/svg&#34;</span> -quiet
+</span></span><span style="display:flex;"><span>  java -jar plantuml.jar <span style="color:#e6db74">&#34;</span>$view<span style="color:#e6db74">&#34;</span> -tpng -o <span style="color:#e6db74">&#34;../exports/png&#34;</span> -quiet
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;✅ All diagrams generated!&#34;</span></span></span></code></pre></div><hr>
+<h2 id="key-commands-reference"><strong>Key Commands Reference</strong><a class="anchor" href="#key-commands-reference">#</a></h2>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">&#39; Hide everything unlinked
+hide @unlinked
+
+&#39; Hide all classes, then show specific ones
+hide class
+show ClassA
+show ClassB
+
+&#39; Hide all packages, then show specific ones
+hide package
+show &#34;PackageName&#34;
+
+&#39; Hide by stereotype
+hide &lt;&lt;stereotype&gt;&gt;
+
+&#39; Show by stereotype (after hiding all)
+hide class
+show &lt;&lt;ViewTag&gt;&gt;
+
+&#39; Remove vs Hide
+remove ClassA     &#39; Completely removes from memory
+hide ClassA       &#39; Just makes invisible, can be shown later</code></pre><hr>
+<h2 id="testing-your-setup-"><strong>Testing Your Setup</strong> ✅<a class="anchor" href="#testing-your-setup-">#</a></h2>
+<ol>
+<li>
+<p><strong>Add a new class</strong> to <code>order-system.iuml</code>:</p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">class PaymentMethod {
+  - paymentId: int
+  + processPayment(): boolean
+}</code></pre></li>
+<li>
+<p><strong>Regenerate all views</strong> → PaymentMethod doesn&rsquo;t appear in any existing view! ✨</p>
+</li>
+<li>
+<p><strong>When you want it</strong>, add to specific view:</p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">Order --&gt; PaymentMethod : paid_with</code></pre></li>
+</ol>
+<hr>
+<p><strong>This approach scales beautifully</strong> - you can have 100 classes in your model, but each view only shows the 3-5 relevant ones, and adding new classes never breaks existing views!</p>
+<p>Would you like me to show:</p>
+<ol>
+<li>How to handle inheritance and interfaces with this approach?</li>
+<li>How to add conditional compilation for even more control?</li>
+<li>How to generate a &ldquo;catalog&rdquo; document showing all available classes?</li>
+</ol>
+<p>Unfortunately, PlantUML doesn&rsquo;t have a built-in feature to automatically show &ldquo;all relationships between visible classes only.&rdquo; However, I have <strong>excellent workarounds</strong> that give you exactly what you want. Let me show you the best approaches:</p>
+<hr>
+<h2 id="solution-1-remove-hidden-classes-from-model--cleanest-approach"><strong>Solution 1: Remove Hidden Classes from Model</strong> ⭐ <em>Cleanest Approach</em><a class="anchor" href="#solution-1-remove-hidden-classes-from-model--cleanest-approach">#</a></h2>
+<p>Instead of hiding classes, use <code>remove</code> to completely eliminate them from memory. This automatically removes all their relationships too!</p>
+<p><strong><code>model/order-system.iuml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+
+class Customer {
+  - customerId: int
+  - name: String
+}
+
+class Order {
+  - orderId: int
+  - total: double
+}
+
+class OrderItem {
+  - itemId: int
+  - quantity: int
+}
+
+class Product {
+  - productId: int
+  - name: String
+}
+
+class Inventory {
+  - stockLevel: int
+}
+
+&#39; ALL relationships defined
+Customer &#34;1&#34; --&gt; &#34;*&#34; Order : places
+Order &#34;1&#34; --&gt; &#34;*&#34; OrderItem : contains
+OrderItem &#34;*&#34; --&gt; &#34;1&#34; Product : references
+Product &#34;1&#34; --&gt; &#34;1&#34; Inventory : tracked_by
+
+@enduml</code></pre><p><strong><code>views/customer-orders.puml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+title Customer-Order View
+
+!include ../model/order-system.iuml
+
+&#39; Remove unwanted classes - their relationships disappear too!
+remove OrderItem
+remove Product
+remove Inventory
+
+@enduml</code></pre><p><strong>Result:</strong> Only shows Customer, Order, and the relationship between them! 🎉</p>
+<hr>
+<h2 id="solution-2-separate-model-and-relationships-files--most-flexible"><strong>Solution 2: Separate Model and Relationships Files</strong> 📦 <em>Most Flexible</em><a class="anchor" href="#solution-2-separate-model-and-relationships-files--most-flexible">#</a></h2>
+<p>Split your class definitions from relationships, then selectively include what you need.</p>
+<h3 id="file-structure"><strong>File Structure:</strong><a class="anchor" href="#file-structure">#</a></h3>
+<pre tabindex="0"><code>model/
+├── classes.iuml           # All class definitions
+├── rel-customer-order.iuml
+├── rel-order-item.iuml
+├── rel-item-product.iuml
+└── rel-product-inventory.iuml</code></pre><p><strong><code>model/classes.iuml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+
+class Customer {
+  - customerId: int
+  - name: String
+}
+
+class Order {
+  - orderId: int
+  - total: double
+}
+
+class OrderItem {
+  - itemId: int
+  - quantity: int
+}
+
+class Product {
+  - productId: int
+  - name: String
+}
+
+class Inventory {
+  - stockLevel: int
+}
+
+@enduml</code></pre><p><strong><code>model/rel-customer-order.iuml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+Customer &#34;1&#34; --&gt; &#34;*&#34; Order : places
+@enduml</code></pre><p><strong><code>model/rel-order-item.iuml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+Order &#34;1&#34; --&gt; &#34;*&#34; OrderItem : contains
+@enduml</code></pre><p><strong><code>model/rel-item-product.iuml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+OrderItem &#34;*&#34; --&gt; &#34;1&#34; Product : references
+@enduml</code></pre><p><strong><code>views/customer-orders.puml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+title Customer-Order View
+
+!include ../model/classes.iuml
+!include ../model/rel-customer-order.iuml
+
+&#39; Hide everything unlinked
+hide @unlinked
+
+@enduml</code></pre><p><strong>Benefits:</strong></p>
+<ul>
+<li>✅ Relationships are reusable</li>
+<li>✅ Easy to see what&rsquo;s included</li>
+<li>✅ No need to manually list classes to show</li>
+<li>✅ Auto-hides unconnected classes</li>
+</ul>
+<hr>
+<h2 id="solution-3-using-procedures-for-smart-includes--most-powerful"><strong>Solution 3: Using Procedures for Smart Includes</strong> 🔧 <em>Most Powerful</em><a class="anchor" href="#solution-3-using-procedures-for-smart-includes--most-powerful">#</a></h2>
+<p>Create a macro system where you define &ldquo;views&rdquo; and automatically include relevant relationships.</p>
+<p><strong><code>model/domain-complete.iuml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+
+&#39; Define all classes
+class Customer {
+  - customerId: int
+  - name: String
+}
+
+class Order {
+  - orderId: int
+  - total: double
+}
+
+class OrderItem {
+  - itemId: int
+  - quantity: int
+}
+
+class Product {
+  - productId: int
+  - name: String
+}
+
+class Inventory {
+  - stockLevel: int
+}
+
+&#39; Procedure to include relationships by view
+!procedure $show_relationships($view)
+  !if ($view == &#34;customer-order&#34;)
+    Customer &#34;1&#34; --&gt; &#34;*&#34; Order : places
+  !endif
+  
+  !if ($view == &#34;order-items&#34;)
+    Order &#34;1&#34; --&gt; &#34;*&#34; OrderItem : contains
+    OrderItem &#34;*&#34; --&gt; &#34;1&#34; Product : references
+  !endif
+  
+  !if ($view == &#34;inventory&#34;)
+    Product &#34;1&#34; --&gt; &#34;1&#34; Inventory : tracked_by
+  !endif
+  
+  !if ($view == &#34;complete&#34;)
+    Customer &#34;1&#34; --&gt; &#34;*&#34; Order : places
+    Order &#34;1&#34; --&gt; &#34;*&#34; OrderItem : contains
+    OrderItem &#34;*&#34; --&gt; &#34;1&#34; Product : references
+    Product &#34;1&#34; --&gt; &#34;1&#34; Inventory : tracked_by
+  !endif
+!endprocedure
+
+@enduml</code></pre><p><strong><code>views/customer-orders-macro.puml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+title Customer-Order View
+
+!include ../model/domain-complete.iuml
+
+&#39; Show only customer-order relationships
+$show_relationships(&#34;customer-order&#34;)
+
+hide @unlinked
+
+@enduml</code></pre><hr>
+<h2 id="solution-4-tag-based-relationship-filtering--most-scalable"><strong>Solution 4: Tag-Based Relationship Filtering</strong> 🏷️ <em>Most Scalable</em><a class="anchor" href="#solution-4-tag-based-relationship-filtering--most-scalable">#</a></h2>
+<p>Tag both classes AND relationships, then filter by tag.</p>
+<p><strong><code>model/tagged-model.iuml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+
+class Customer &lt;&lt;view_customer_order&gt;&gt; &lt;&lt;view_complete&gt;&gt; {
+  - customerId: int
+  - name: String
+}
+
+class Order &lt;&lt;view_customer_order&gt;&gt; &lt;&lt;view_order_items&gt;&gt; &lt;&lt;view_complete&gt;&gt; {
+  - orderId: int
+  - total: double
+}
+
+class OrderItem &lt;&lt;view_order_items&gt;&gt; &lt;&lt;view_complete&gt;&gt; {
+  - itemId: int
+  - quantity: int
+}
+
+class Product &lt;&lt;view_order_items&gt;&gt; &lt;&lt;view_inventory&gt;&gt; &lt;&lt;view_complete&gt;&gt; {
+  - productId: int
+  - name: String
+}
+
+class Inventory &lt;&lt;view_inventory&gt;&gt; &lt;&lt;view_complete&gt;&gt; {
+  - stockLevel: int
+}
+
+&#39; Tag relationships with same tags
+Customer &#34;1&#34; --&gt; &#34;*&#34; Order : places $view_customer_order $view_complete
+Order &#34;1&#34; --&gt; &#34;*&#34; OrderItem : contains $view_order_items $view_complete
+OrderItem &#34;*&#34; --&gt; &#34;1&#34; Product : references $view_order_items $view_complete
+Product &#34;1&#34; --&gt; &#34;1&#34; Inventory : tracked_by $view_inventory $view_complete
+
+@enduml</code></pre><p><strong><code>views/customer-orders-tagged.puml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+title Customer-Order View
+
+!include ../model/tagged-model.iuml
+
+&#39; Hide everything
+hide class
+
+&#39; Show only tagged elements
+show &lt;&lt;view_customer_order&gt;&gt;
+
+@enduml</code></pre><hr>
+<h2 id="solution-5-hybrid-approach--my-recommendation"><strong>Solution 5: Hybrid Approach</strong> 🎯 <em>My Recommendation</em><a class="anchor" href="#solution-5-hybrid-approach--my-recommendation">#</a></h2>
+<p>Combine the best of <code>remove</code> with relationship files for maximum maintainability.</p>
+<h3 id="structure"><strong>Structure:</strong><a class="anchor" href="#structure">#</a></h3>
+<pre tabindex="0"><code>model/
+├── all-classes.iuml        # Every class
+└── all-relationships.iuml  # Every relationship
+
+views/
+├── customer-orders.puml
+├── order-items.puml
+└── complete.puml</code></pre><p><strong><code>model/all-classes.iuml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+
+class Customer {
+  - customerId: int
+  - name: String
+  + placeOrder(): Order
+}
+
+class Order {
+  - orderId: int
+  - orderDate: Date
+  - total: double
+  + calculateTotal(): double
+}
+
+class OrderItem {
+  - itemId: int
+  - quantity: int
+  - price: double
+  + getSubtotal(): double
+}
+
+class Product {
+  - productId: int
+  - name: String
+  - price: double
+  + getDetails(): String
+}
+
+class Inventory {
+  - stockLevel: int
+  + checkAvailability(): boolean
+  + reduceStock(amount: int): void
+}
+
+@enduml</code></pre><p><strong><code>model/all-relationships.iuml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+
+Customer &#34;1&#34; --&gt; &#34;*&#34; Order : places
+Order &#34;1&#34; --&gt; &#34;*&#34; OrderItem : contains
+OrderItem &#34;*&#34; --&gt; &#34;1&#34; Product : references
+Product &#34;1&#34; --&gt; &#34;1&#34; Inventory : tracked_by
+
+@enduml</code></pre><p><strong><code>views/customer-orders.puml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+title Customer-Order View
+
+!include ../model/all-classes.iuml
+!include ../model/all-relationships.iuml
+
+&#39; Remove unwanted classes
+&#39; Their relationships automatically disappear!
+remove OrderItem
+remove Product
+remove Inventory
+
+@enduml</code></pre><p><strong><code>views/order-items.puml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+title Order Items View
+
+!include ../model/all-classes.iuml
+!include ../model/all-relationships.iuml
+
+&#39; Remove what we don&#39;t need
+remove Customer
+remove Inventory
+
+@enduml</code></pre><p><strong><code>views/complete.puml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+title Complete Order System
+
+!include ../model/all-classes.iuml
+!include ../model/all-relationships.iuml
+
+&#39; Nothing removed - show everything!
+
+@enduml</code></pre><hr>
+<h2 id="complete-working-example-2"><strong>Complete Working Example</strong><a class="anchor" href="#complete-working-example-2">#</a></h2>
+<p>Let me show you a real-world example with all files:</p>
+<p><strong><code>model/all-classes.iuml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+
+class Customer {
+  - customerId: int
+  - name: String
+  - email: String
+  + register(): void
+  + login(): boolean
+  + placeOrder(): Order
+}
+
+class Order {
+  - orderId: int
+  - orderDate: Date
+  - status: String
+  - totalAmount: double
+  + addItem(item: OrderItem): void
+  + calculateTotal(): double
+  + submit(): void
+}
+
+class OrderItem {
+  - itemId: int
+  - quantity: int
+  - unitPrice: double
+  + getSubtotal(): double
+}
+
+class Product {
+  - productId: int
+  - name: String
+  - description: String
+  - basePrice: double
+  + getDetails(): String
+  + updatePrice(price: double): void
+}
+
+class Inventory {
+  - inventoryId: int
+  - stockLevel: int
+  - reorderPoint: int
+  + checkAvailability(): boolean
+  + reduceStock(amount: int): void
+  + restock(amount: int): void
+}
+
+class Payment {
+  - paymentId: int
+  - amount: double
+  - paymentMethod: String
+  + process(): boolean
+}
+
+class Shipment {
+  - shipmentId: int
+  - trackingNumber: String
+  - status: String
+  + ship(): void
+  + trackStatus(): String
+}
+
+@enduml</code></pre><p><strong><code>model/all-relationships.iuml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+
+Customer &#34;1&#34; --&gt; &#34;*&#34; Order : places
+Order &#34;1&#34; --&gt; &#34;*&#34; OrderItem : contains
+Order &#34;1&#34; --&gt; &#34;0..1&#34; Payment : paid_with
+Order &#34;1&#34; --&gt; &#34;0..1&#34; Shipment : fulfilled_by
+OrderItem &#34;*&#34; --&gt; &#34;1&#34; Product : references
+Product &#34;1&#34; --&gt; &#34;1&#34; Inventory : tracked_by
+
+@enduml</code></pre><p><strong><code>views/customer-management.puml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+title Customer Management View
+
+!include ../model/all-classes.iuml
+!include ../model/all-relationships.iuml
+
+remove OrderItem
+remove Product
+remove Inventory
+remove Payment
+remove Shipment
+
+note right of Customer
+  Focus: Customer orders
+  Shows: Customer → Order relationship
+end note
+
+@enduml</code></pre><p><strong><code>views/order-fulfillment.puml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+title Order Fulfillment View
+
+!include ../model/all-classes.iuml
+!include ../model/all-relationships.iuml
+
+remove Customer
+remove OrderItem
+remove Product
+remove Inventory
+
+note right of Order
+  Focus: Order processing
+  Shows: Payment &amp; Shipment
+end note
+
+@enduml</code></pre><p><strong><code>views/inventory-management.puml</code>:</strong></p>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+title Inventory Management View
+
+!include ../model/all-classes.iuml
+!include ../model/all-relationships.iuml
+
+remove Customer
+remove Order
+remove Payment
+remove Shipment
+
+note right of Product
+  Focus: Stock management
+  Shows: Products &amp; Inventory
+end note
+
+@enduml</code></pre><hr>
+<h2 id="why-this-works-so-well-"><strong>Why This Works So Well</strong> ✨<a class="anchor" href="#why-this-works-so-well-">#</a></h2>
+<ol>
+<li><strong>Add a new class</strong> (e.g., <code>Category</code>) to <code>all-classes.iuml</code></li>
+<li><strong>Add its relationships</strong> to <code>all-relationships.iuml</code></li>
+<li><strong>No existing views change</strong> - they automatically exclude it!</li>
+<li><strong>When you want it in a view</strong>, just don&rsquo;t <code>remove</code> it</li>
+</ol>
+<hr>
+<h2 id="key-commands-summary"><strong>Key Commands Summary</strong><a class="anchor" href="#key-commands-summary">#</a></h2>
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">&#39; Remove classes (removes their relationships too)
+remove ClassName
+
+&#39; Hide classes (keeps relationships)
+hide ClassName
+
+&#39; Hide unlinked classes
+hide @unlinked
+
+&#39; Show specific classes after hiding all
+hide class
+show ClassA
+show ClassB</code></pre><hr>
+<h2 id="best-practice-recommendation-"><strong>Best Practice Recommendation</strong> 💡<a class="anchor" href="#best-practice-recommendation-">#</a></h2>
+<p><strong>For your use case:</strong></p>
+<ol>
+<li>Use <strong>Solution 5</strong> (Hybrid Approach with <code>remove</code>)</li>
+<li>Maintain two files: <code>all-classes.iuml</code> and <code>all-relationships.iuml</code></li>
+<li>Each view includes both, then uses <code>remove</code> to exclude unwanted classes</li>
+<li>Relationships to removed classes automatically disappear!</li>
+</ol>
+<p>This gives you:</p>
+<ul>
+<li>✅ <strong>Single source of truth</strong> for classes</li>
+<li>✅ <strong>Single source of truth</strong> for relationships</li>
+<li>✅ <strong>Automatic relationship filtering</strong> (this is what you wanted!)</li>
+<li>✅ <strong>Zero maintenance</strong> when adding new classes</li>
+<li>✅ <strong>Clear, explicit</strong> view definitions</li>
+</ul>
+<hr>
+<p>Would you like me to show:</p>
+<ol>
+<li>How to handle inheritance hierarchies with this approach?</li>
+<li>How to create a script that validates all views still compile?</li>
+<li>How to generate a &ldquo;relationship matrix&rdquo; showing which views include which classes?</li>
+</ol>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+  
+  <div class="flex flex-wrap justify-between">
+    <span>
+    
+      <a href="/musings/docs/ai-ml/flowwise-vs-langflow/" class="flex align-center">
+        <img src="/musings/icons/backward.svg" class="book-icon" alt="Backward" />
+        <span>Flowise vs Langflow: Detailed Comparison</span>
+      </a>
+    
+    </span>
+    <span>
+    
+      <a href="/musings/docs/ai-ml/verification-architecture/" class="flex align-center">
+        <span>Is This a Reasonable Architecture?</span>
+        <img src="/musings/icons/forward.svg" class="book-icon" alt="Forward" />
+      </a>
+    
+    </span>
+  </div>
+  
+
+
+ 
+        
+  
+ 
+        
+        
+  
+ 
+        
+  
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#complete-solution-central-model-with-selective-views-in-plantuml">Complete Solution: Central Model with Selective Views in PlantUML</a></li>
+        <li><a href="#file-structure-"><strong>File Structure</strong> 📁</a></li>
+        <li><a href="#method-1-include--hideremove--recommended"><strong>Method 1: Include + Hide/Remove</strong> ⭐ <em>Recommended</em></a>
+          <ul>
+            <li><a href="#step-1-define-all-classes-in-central-file"><strong>Step 1: Define All Classes in Central File</strong></a></li>
+            <li><a href="#step-2-create-selective-views"><strong>Step 2: Create Selective Views</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#method-2-using-tags-for-complex-filtering-"><strong>Method 2: Using Tags for Complex Filtering</strong> 🏷️</a></li>
+        <li><a href="#method-3-using-named-blocks-"><strong>Method 3: Using Named Blocks</strong> 📦</a></li>
+        <li><a href="#method-4-hybrid-approach-with-packages-"><strong>Method 4: Hybrid Approach with Packages</strong> 📚</a></li>
+        <li><a href="#advanced-conditional-compilation-with-macros-"><strong>Advanced: Conditional Compilation with Macros</strong> 🔧</a></li>
+        <li><a href="#best-practice-recommendations-"><strong>Best Practice Recommendations</strong> 💡</a>
+          <ul>
+            <li><a href="#for-your-use-case-3-objects-3-views"><strong>For Your Use Case (3 objects, 3 views):</strong></a></li>
+            <li><a href="#complete-working-example"><strong>Complete Working Example:</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#generation-script-example-"><strong>Generation Script Example</strong> 🚀</a></li>
+        <li><a href="#key-hideremove-commands-"><strong>Key Hide/Remove Commands</strong> 📋</a></li>
+        <li><a href="#validation-checklist-"><strong>Validation Checklist</strong> ✅</a></li>
+        <li><a href="#solution-1-hide-all--show-specific--best-for-your-scenarioperfect-now-i-can-give-you-the-complete-solution-here-are-the-best-approaches"><strong>Solution 1: Hide All + Show Specific</strong> ⭐ <em>Best for Your Scenario</em>Perfect! Now I can give you the complete solution. Here are the best approaches:</a></li>
+        <li><a href="#method-1-use---cleanest"><strong>Method 1: Use <code>hide @unlinked</code> + Define Relationships</strong> ⭐ <em>Cleanest</em></a>
+          <ul>
+            <li><a href="#central-model-file"><strong>Central Model File</strong></a></li>
+            <li><a href="#view-files---just-show-what-you-want"><strong>View Files - Just Show What You Want!</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#method-2-using-stereotypes-as-tags--most-explicit"><strong>Method 2: Using Stereotypes as Tags</strong> 🏷️ <em>Most Explicit</em></a>
+          <ul>
+            <li><a href="#central-model-with-stereotypes"><strong>Central Model with Stereotypes</strong></a></li>
+            <li><a href="#view-files---hide-all-show-tagged"><strong>View Files - Hide All, Show Tagged</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#method-3-using-packages-for-grouping--best-for-complex-models"><strong>Method 3: Using Packages for Grouping</strong> 📦 <em>Best for Complex Models</em></a>
+          <ul>
+            <li><a href="#central-model-with-packages"><strong>Central Model with Packages</strong></a></li>
+            <li><a href="#view-files---show-specific-packages"><strong>View Files - Show Specific Packages</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#method-4-combination-approach--most-flexible"><strong>Method 4: Combination Approach</strong> 🎯 <em>Most Flexible</em></a></li>
+        <li><a href="#my-recommendation-for-your-use-case-"><strong>My Recommendation for Your Use Case</strong> 💡</a></li>
+        <li><a href="#complete-working-example-1"><strong>Complete Working Example</strong></a>
+          <ul>
+            <li><a href="#project-structure"><strong>Project Structure:</strong></a></li>
+            <li><a href="#modelorder-systemiuml"><strong><code>model/order-system.iuml</code>:</strong></a></li>
+            <li><a href="#viewscustomer-orderspuml"><strong><code>views/customer-orders.puml</code>:</strong></a></li>
+            <li><a href="#viewsorder-itemspuml"><strong><code>views/order-items.puml</code>:</strong></a></li>
+            <li><a href="#viewscompletepuml"><strong><code>views/complete.puml</code>:</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#generation-script"><strong>Generation Script</strong></a></li>
+        <li><a href="#key-commands-reference"><strong>Key Commands Reference</strong></a></li>
+        <li><a href="#testing-your-setup-"><strong>Testing Your Setup</strong> ✅</a></li>
+        <li><a href="#solution-1-remove-hidden-classes-from-model--cleanest-approach"><strong>Solution 1: Remove Hidden Classes from Model</strong> ⭐ <em>Cleanest Approach</em></a></li>
+        <li><a href="#solution-2-separate-model-and-relationships-files--most-flexible"><strong>Solution 2: Separate Model and Relationships Files</strong> 📦 <em>Most Flexible</em></a>
+          <ul>
+            <li><a href="#file-structure"><strong>File Structure:</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#solution-3-using-procedures-for-smart-includes--most-powerful"><strong>Solution 3: Using Procedures for Smart Includes</strong> 🔧 <em>Most Powerful</em></a></li>
+        <li><a href="#solution-4-tag-based-relationship-filtering--most-scalable"><strong>Solution 4: Tag-Based Relationship Filtering</strong> 🏷️ <em>Most Scalable</em></a></li>
+        <li><a href="#solution-5-hybrid-approach--my-recommendation"><strong>Solution 5: Hybrid Approach</strong> 🎯 <em>My Recommendation</em></a>
+          <ul>
+            <li><a href="#structure"><strong>Structure:</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#complete-working-example-2"><strong>Complete Working Example</strong></a></li>
+        <li><a href="#why-this-works-so-well-"><strong>Why This Works So Well</strong> ✨</a></li>
+        <li><a href="#key-commands-summary"><strong>Key Commands Summary</strong></a></li>
+        <li><a href="#best-practice-recommendation-"><strong>Best Practice Recommendation</strong> 💡</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

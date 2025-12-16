@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><script src="/musings/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=musings/livereload" data-no-instant defer></script>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Now I have comprehensive information. Let me provide a detailed answer about how Kargo interacts with ArgoCD.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/musings/docs/devplatform/kargo-argocd-interaction/">
+  <meta property="og:site_name" content="Technology Documentation Hub">
+  <meta property="og:title" content="Kargo promotion step">
+  <meta property="og:description" content="Now I have comprehensive information. Let me provide a detailed answer about how Kargo interacts with ArgoCD.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2025-12-16T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-16T00:00:00+00:00">
+
+
+  <meta itemprop="name" content="Kargo promotion step">
+  <meta itemprop="description" content="Now I have comprehensive information. Let me provide a detailed answer about how Kargo interacts with ArgoCD.">
+  <meta itemprop="datePublished" content="2025-12-16T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-12-16T00:00:00+00:00">
+  <meta itemprop="wordCount" content="1389">
+  <meta itemprop="keywords" content="kargo,argocd,api,kubernetes,yaml,production,gitops,helm">
+
+<title>Kargo promotion step | Technology Documentation Hub</title>
+<link rel="icon" href="/musings/favicon.png" >
+<link rel="manifest" href="/musings/manifest.json">
+<link rel="canonical" href="http://localhost:1313/musings/docs/devplatform/kargo-argocd-interaction/">
+<link rel="stylesheet" href="/musings/book.min.6970156cec683193d93c9c4edaf0d56574e4361df2e0c1be4f697ae81c3ba55f.css" integrity="sha256-aXAVbOxoMZPZPJxO2vDVZXTkNh3y4MG&#43;T2l66Bw7pV8=" crossorigin="anonymous">
+
+
+  <script defer src="/musings/fuse.min.js"></script>
+  <script defer src="/musings/en.search.min.5cc9128683126c7cda9fef74044c10c013f6d8935e1e3e719e3f562033e9ef44.js" integrity="sha256-XMkShoMSbHzan&#43;90BEwQwBP22JNeHj5xnj9WIDPp70Q=" crossorigin="anonymous"></script>
+
+
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-docs">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/musings/"><span>Technology Documentation Hub</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input id="book-search-input" type="text" 
+    placeholder="Search"
+    aria-label="Search"
+    maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/" class="">
+      AI &amp; Machine Learning</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/agentic-computing-overview-and-tools/" class="">
+      Agentic Computing Overview And Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/agno-vs-langchain/" class="">
+      Agno Vs Langchain</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/flowwise-vs-langflow/" class="">
+      Flowise vs Langflow: Detailed Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/one-model-multiple-diagrams/" class="">
+      Generate all views</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/verification-architecture/" class="">
+      Is This a Reasonable Architecture?</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/kiro-ide-comparison-tools/" class="">
+      Kiro IDE: Comprehensive Analysis, Comparisons &amp; Optimal Workflows</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/langchain-architecture/" class="">
+      LangChain: The Foundation Library</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/llm-tracing-metrics-comparison/" class="">
+      Llm Tracing Metrics Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/kubernetes-based/" class="">
+      Open Source Workflow Orchestration on Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/tools-overview-and-getting-started/" class="">
+      Self-Hosted Open Source Agent Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/serverless-function-workflow-tools-for-kubernetes/" class="">
+      Serverless/Function Workflows on Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/n8n-overview/" class="">
+      What Problems Does n8n Solve?</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/" class="">
+      Development Platforms</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/backstage-techdocs-pros-cons/" class="">
+      Backstage Techdocs Pros Cons</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/cross-diagram-reuse-guide/" class="">
+      Cross-Diagram Domain Model Reuse in PlantUML</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/prompt/" class="">
+      Crossplane EKS Management Cluster Implementation - Project Brief</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/comprehensive-guide/" class="">
+      Driven vs Event: Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/gitops-platform-safety/" class="">
+      GitOps Safety Architecture for Platform Evolution</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/kargo-intro/" class="">
+      How Kargo Works with ArgoCD to Manage Deployments</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/backstage-kratix-crossplane-argocd-blueprint/" class="">
+      Implementation Blueprint: Crossplane &#43; Kratix &#43; Backstage &#43; ArgoCD</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/kargo-git-tags/" class="">
+      In subsequent stages, you can read this metadata</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/in-browser-editing-tools/" class="">
+      In-Browser Editing Documentation Solutions</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/initial-comparison/" class="">
+      Initial Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/kargo-argocd-interaction/" class="active">
+      Kargo promotion step</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/presentation/" class="">
+      Kargo: GitOps Promotion for ArgoCD</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/notion-overview/" class="">
+      Notion: A Comprehensive Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/oss-portal-platform-orchestration-tools/" class="">
+      Oss Portal Platform Orchestration Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/oss-vs-closed-portal/" class="">
+      Oss Vs Closed Portal</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/recommendations/" class="">
+      Overview of Text-Based UML Domain Modeling Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/export-conversion/" class="">
+      PlantUML Export &amp; Embedding Options</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/crossplane-solution/" class="">
+      Pseudocode for composition function</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/kargo-polyrepo/" class="">
+      Response</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/job-configmap-crossplane-abstraction/" class="">
+      Shell script helper for Option 3</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/tasks/" class="">
+      Stage 1: Approach Overview &amp; Comparison ✅ COMPLETE</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/stage3-outline/" class="">
+      Stage 3: Implementation Patterns - Outline (Crossplane 2.1)</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/" class="">
+      Infrastructure</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/runbooks/" class="">
+      1. Mental Model Shift (Important Framing)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/argocd-layered-values/" class="">
+      ArgoCD and Helm Schema Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/prompt-guide/" class="">
+      Contents</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/overview/" class="">
+      Core Strategy: Progressive Delivery with Blast Radius Containment</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/stage1/" class="">
+      Crossplane EKS Management Cluster - Approach Overview &amp; Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/getting-started-concise/" class="">
+      Getting Started Concise</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/ci-cd-templates/" class="">
+      GitHub Actions Example</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/k8s-mcp-servers/" class="">
+      K8s Mcp Servers</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/stage2/" class="">
+      Management Cluster VPC Layout</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/non-helm-schema-validation/" class="">
+      Non Helm Schema Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/production-readiness-overview/" class="">
+      Production Readiness Guide: From Docker Compose to Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/schema-testing/" class="">
+      Quick Start: Generate Schema from Existing values.yaml</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/job-plus-configmap-annotation/" class="">
+      Read current state AND capture resourceVersion</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/layered-schema/" class="">
+      Schema Validation with Layered Values Files</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/helm-layered-abstraction/" class="">
+      Solution 2: Kustomize with Helm</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/starting-helm-testing/" class="">
+      Understanding What You&#39;re Testing</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/executive-summary/" class="">
+      What You&#39;re Building</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/devops-domain-model-guide/" class="">
+      Why This Approach Works for DevOps</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/workflows/" class="">
+      Workflows</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/workflows/imperitive-in-declarative/" class="">
+      Imperitive In Declarative</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/mermaid-test/" class="">
+      Mermaid Diagram Test</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/" class="">
+      Miscellaneous</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/test-document/" class="">
+      Test Document</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/musings/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>Kargo promotion step</h3>
+
+  <label for="toc-control">
+    
+    <img src="/musings/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#how-kargo-interacts-with-argocd">How Kargo Interacts with ArgoCD</a></li>
+        <li><a href="#the-integration-architecture"><strong>The Integration Architecture</strong></a>
+          <ul>
+            <li><a href="#1-primary-interaction-kubernetes-custom-resources"><strong>1. Primary Interaction: Kubernetes Custom Resources</strong></a></li>
+            <li><a href="#2-authorization-model-annotations"><strong>2. Authorization Model: Annotations</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#how-the-integration-works"><strong>How the Integration Works</strong></a>
+          <ul>
+            <li><a href="#method-1-direct-application-resource-modification"><strong>Method 1: Direct Application Resource Modification</strong></a></li>
+            <li><a href="#method-2-health-monitoring-via-application-status"><strong>Method 2: Health Monitoring via Application Status</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#what-kargo-modifies-in-applications"><strong>What Kargo Modifies in Applications</strong></a>
+          <ul>
+            <li><a href="#common-modifications"><strong>Common Modifications:</strong></a>
+              <ul>
+                <li><a href="#1-update-targetrevision-most-common"><strong>1. Update targetRevision (Most Common)</strong></a></li>
+                <li><a href="#2-trigger-sync-via-operation-field"><strong>2. Trigger Sync via Operation Field</strong></a></li>
+                <li><a href="#3-update-helm-values-non-gitops-mode"><strong>3. Update Helm Values (Non-GitOps Mode)</strong></a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#rbac--permissions"><strong>RBAC &amp; Permissions</strong></a>
+          <ul>
+            <li><a href="#kargo"><strong>Kargo’s Permissions</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#configuration-options"><strong>Configuration Options</strong></a>
+          <ul>
+            <li><a href="#argocd-integration-configuration"><strong>ArgoCD Integration Configuration</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#typical-workflow-step-by-step"><strong>Typical Workflow: Step-by-Step</strong></a>
+          <ul>
+            <li><a href="#setup-phase"><strong>Setup Phase</strong></a></li>
+            <li><a href="#promotion-phase"><strong>Promotion Phase</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#key-differences-kargo-vs-argocd-api"><strong>Key Differences: Kargo vs. ArgoCD API</strong></a></li>
+        <li><a href="#advanced-health-check-registration"><strong>Advanced: Health Check Registration</strong></a></li>
+        <li><a href="#non-gitops-mode-less-common"><strong>Non-GitOps Mode (Less Common)</strong></a></li>
+        <li><a href="#summary"><strong>Summary</strong></a>
+          <ul>
+            <li><a href="#how-kargo-interacts-with-argocd-1"><strong>How Kargo Interacts with ArgoCD:</strong></a></li>
+            <li><a href="#authorization-model"><strong>Authorization Model:</strong></a></li>
+            <li><a href="#benefits-of-this-approach"><strong>Benefits of This Approach:</strong></a></li>
+            <li><a href="#typical-pattern"><strong>Typical Pattern:</strong></a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><p>Perfect! Now I have comprehensive information. Let me provide a detailed answer about how Kargo interacts with ArgoCD.</p>
+<h2 id="how-kargo-interacts-with-argocd">How Kargo Interacts with ArgoCD<a class="anchor" href="#how-kargo-interacts-with-argocd">#</a></h2>
+<p><strong>Short Answer:</strong> <strong>Both</strong>. Kargo uses a hybrid approach - it primarily modifies ArgoCD Application <strong>Custom Resources</strong> directly via the Kubernetes API, but it also monitors Application health and sync status. The interaction is <strong>declarative and Kubernetes-native</strong>, not through the ArgoCD REST API.</p>
+<hr>
+<h2 id="the-integration-architecture"><strong>The Integration Architecture</strong><a class="anchor" href="#the-integration-architecture">#</a></h2>
+<h3 id="1-primary-interaction-kubernetes-custom-resources"><strong>1. Primary Interaction: Kubernetes Custom Resources</strong><a class="anchor" href="#1-primary-interaction-kubernetes-custom-resources">#</a></h3>
+<p>Kargo updates Argo CD Application resources through the use of the argocd-update promotion step, which often entails little more than modifying an Application&rsquo;s operation field to force the Application to be synced to recently updated desired state.</p>
+<p><strong>Key Point:</strong> Kargo treats ArgoCD Applications as Kubernetes resources and modifies them using standard Kubernetes API operations (patch, update) - <strong>NOT</strong> through ArgoCD&rsquo;s REST API.</p>
+<h3 id="2-authorization-model-annotations"><strong>2. Authorization Model: Annotations</strong><a class="anchor" href="#2-authorization-model-annotations">#</a></h3>
+<p>For an Argo CD Application resource to be managed by a Kargo Stage, the Application must have an annotation of the following form: kargo.akuity.io/authorized-stage: &ldquo;&lt;project-name&gt;:&lt;stage-name&gt;&rdquo;.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">argoproj.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Application</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">kargo-demo-test</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">argocd</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">kargo.akuity.io/authorized-stage</span>: <span style="color:#ae81ff">kargo-demo:test </span> <span style="color:#75715e"># Authorization</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">project</span>: <span style="color:#ae81ff">default</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">source</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">https://github.com/myorg/gitops-repo.git</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">targetRevision</span>: <span style="color:#ae81ff">stage/test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">path</span>: <span style="color:#ae81ff">.</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">destination</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">server</span>: <span style="color:#ae81ff">https://kubernetes.default.svc</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">kargo-demo-test</span></span></span></code></pre></div><p><strong>Reasoning:</strong> Because an annotation such as this could only be added to an Application by a user who, themselves, is authorized to update that Application, Kargo interprets the presence of such an annotation as delegation of that user&rsquo;s authority to do so.</p>
+<hr>
+<h2 id="how-the-integration-works"><strong>How the Integration Works</strong><a class="anchor" href="#how-the-integration-works">#</a></h2>
+<h3 id="method-1-direct-application-resource-modification"><strong>Method 1: Direct Application Resource Modification</strong><a class="anchor" href="#method-1-direct-application-resource-modification">#</a></h3>
+<p>Kargo uses the Kubernetes API to <strong>patch</strong> Application resources:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Kargo promotion step</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">git-commit</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">as</span>: <span style="color:#ae81ff">commit</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./out</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">message</span>: <span style="color:#e6db74">&#34;Updated manifests&#34;</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">git-push</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./out</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># This modifies the Application CR via Kubernetes API</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">argocd-update</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">apps</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">my-app</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">sources</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">https://github.com/example/repo.git</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">desiredRevision</span>: <span style="color:#ae81ff">${{ outputs.commit.commit }}</span></span></span></code></pre></div><p><strong>What happens:</strong></p>
+<ol>
+<li>Kargo controller uses its Kubernetes client</li>
+<li>Patches the <code>Application</code> CR in the <code>argocd</code> namespace</li>
+<li>Updates fields like <code>spec.source.targetRevision</code> or <code>operation</code> field</li>
+<li>ArgoCD controller detects the change and syncs</li>
+</ol>
+<p><strong>This is Kubernetes-native - no ArgoCD API calls!</strong></p>
+<hr>
+<h3 id="method-2-health-monitoring-via-application-status"><strong>Method 2: Health Monitoring via Application Status</strong><a class="anchor" href="#method-2-health-monitoring-via-application-status">#</a></h3>
+<p>When a Promotion uses an argocd-update step to update an Application, a health check is registered for the Stage that the Promotion is targeting, used to continuously monitor the health of the Application.</p>
+<p>Kargo <strong>reads</strong> Application resources to check:</p>
+<ul>
+<li><code>.status.health.status</code> (Healthy, Degraded, Progressing, etc.)</li>
+<li><code>.status.sync.status</code> (Synced, OutOfSync, etc.)</li>
+<li><code>.status.operationState</code> (Running, Succeeded, Failed)</li>
+</ul>
+<p><strong>Example of what Kargo reads:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">argoproj.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Application</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">my-app</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">status</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">health</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">status</span>: <span style="color:#ae81ff">Healthy </span> <span style="color:#75715e"># Kargo monitors this</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">sync</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">status</span>: <span style="color:#ae81ff">Synced  </span> <span style="color:#75715e"># Kargo monitors this</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">operationState</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">finishedAt</span>: <span style="color:#e6db74">&#34;2024-01-15T10:30:00Z&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">phase</span>: <span style="color:#ae81ff">Succeeded</span> <span style="color:#75715e"># Kargo monitors this</span></span></span></code></pre></div><hr>
+<h2 id="what-kargo-modifies-in-applications"><strong>What Kargo Modifies in Applications</strong><a class="anchor" href="#what-kargo-modifies-in-applications">#</a></h2>
+<h3 id="common-modifications"><strong>Common Modifications:</strong><a class="anchor" href="#common-modifications">#</a></h3>
+<h4 id="1-update-targetrevision-most-common"><strong>1. Update targetRevision (Most Common)</strong><a class="anchor" href="#1-update-targetrevision-most-common">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Before</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">source</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">targetRevision</span>: <span style="color:#ae81ff">stage/test</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># After Kargo promotion</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">source</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">targetRevision</span>: <span style="color:#ae81ff">abc123def </span> <span style="color:#75715e"># Git commit SHA from promotion</span></span></span></code></pre></div><h4 id="2-trigger-sync-via-operation-field"><strong>2. Trigger Sync via Operation Field</strong><a class="anchor" href="#2-trigger-sync-via-operation-field">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Kargo adds this to force a sync</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">operation</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">initiatedBy</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">username</span>: <span style="color:#ae81ff">kargo</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">sync</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">revision</span>: <span style="color:#ae81ff">abc123def</span></span></span></code></pre></div><h4 id="3-update-helm-values-non-gitops-mode"><strong>3. Update Helm Values (Non-GitOps Mode)</strong><a class="anchor" href="#3-update-helm-values-non-gitops-mode">#</a></h4>
+<p>This example simply updates a &ldquo;live&rdquo; Argo CD Application resource to point its targetRevision field at a specific version of a Helm chart, which Argo CD will pull directly from the chart repository.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">argocd-update</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">apps</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">my-app</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">sources</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">https://github.com/example/repo.git</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">helm</span>:
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">images</span>:
+</span></span><span style="display:flex;"><span>                  - <span style="color:#f92672">key</span>: <span style="color:#ae81ff">image.tag</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">value</span>: <span style="color:#ae81ff">${{ imageFrom(&#34;my/image&#34;).Tag }}</span></span></span></code></pre></div><p><strong>Warning:</strong> This is not &ldquo;real GitOps&rdquo; since the state of the Application resource is not backed up in a Git repository.</p>
+<hr>
+<h2 id="rbac--permissions"><strong>RBAC &amp; Permissions</strong><a class="anchor" href="#rbac--permissions">#</a></h2>
+<h3 id="kargo"><strong>Kargo&rsquo;s Permissions</strong><a class="anchor" href="#kargo">#</a></h3>
+<p>Kargo controllers have the requisite RBAC permissions to perform such updates, but being a multi-tenant system, Kargo must also understand, internally, when it is acceptable to utilize those broad permissions to update a specific Application resource on behalf of a given Stage.</p>
+<p><strong>Kargo needs these Kubernetes permissions:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">rbac.authorization.k8s.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ClusterRole</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">kargo-controller</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">rules</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Read/watch Application resources</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">apiGroups</span>: [<span style="color:#e6db74">&#34;argoproj.io&#34;</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">resources</span>: [<span style="color:#e6db74">&#34;applications&#34;</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">verbs</span>: [<span style="color:#e6db74">&#34;get&#34;</span>, <span style="color:#e6db74">&#34;list&#34;</span>, <span style="color:#e6db74">&#34;watch&#34;</span>]
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Update Application resources</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">apiGroups</span>: [<span style="color:#e6db74">&#34;argoproj.io&#34;</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">resources</span>: [<span style="color:#e6db74">&#34;applications&#34;</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">verbs</span>: [<span style="color:#e6db74">&#34;patch&#34;</span>, <span style="color:#e6db74">&#34;update&#34;</span>]
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Read Application status</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">apiGroups</span>: [<span style="color:#e6db74">&#34;argoproj.io&#34;</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">resources</span>: [<span style="color:#e6db74">&#34;applications/status&#34;</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">verbs</span>: [<span style="color:#e6db74">&#34;get&#34;</span>, <span style="color:#e6db74">&#34;watch&#34;</span>]</span></span></code></pre></div><hr>
+<h2 id="configuration-options"><strong>Configuration Options</strong><a class="anchor" href="#configuration-options">#</a></h2>
+<h3 id="argocd-integration-configuration"><strong>ArgoCD Integration Configuration</strong><a class="anchor" href="#argocd-integration-configuration">#</a></h3>
+<p>By default, Kargo expects Argo CD to be installed to the argocd namespace, which is also the default namespace it will use for Application resources if a namespace is not specified in the argocd-update Promotion step.</p>
+<p><strong>Helm values to configure integration:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">controller</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">argocd</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Enable/disable ArgoCD integration</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">integrationEnabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Default namespace for Applications</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">argocd</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Only watch Applications in the configured namespace</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">watchArgocdNamespaceOnly</span>: <span style="color:#66d9ef">true</span></span></span></code></pre></div><p><strong>Disabling Integration:</strong>
+When disabled, the controller will not watch Argo CD Application resources and disable Argo CD specific features.</p>
+<hr>
+<h2 id="typical-workflow-step-by-step"><strong>Typical Workflow: Step-by-Step</strong><a class="anchor" href="#typical-workflow-step-by-step">#</a></h2>
+<p>Let me show you exactly what happens:</p>
+<h3 id="setup-phase"><strong>Setup Phase</strong><a class="anchor" href="#setup-phase">#</a></h3>
+<ol>
+<li><strong>User creates ArgoCD Application with annotation:</strong></li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">argoproj.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Application</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">myapp-production</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">argocd</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">kargo.akuity.io/authorized-stage</span>: <span style="color:#ae81ff">myproject:production</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">source</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">https://github.com/myorg/gitops.git</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">targetRevision</span>: <span style="color:#ae81ff">stage/production </span> <span style="color:#75715e"># Points to stage branch</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">path</span>: <span style="color:#ae81ff">manifests</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">destination</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">server</span>: <span style="color:#ae81ff">https://kubernetes.default.svc</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">production</span></span></span></code></pre></div><ol start="2">
+<li><strong>User creates Kargo Stage:</strong></li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">kargo.akuity.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Stage</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">production</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">myproject</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">promotionTemplate</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># ... git operations ...</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">argocd-update</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">apps</span>:
+</span></span><span style="display:flex;"><span>              - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">myapp-production</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">argocd </span> <span style="color:#75715e"># Optional, defaults to &#39;argocd&#39;</span></span></span></code></pre></div><h3 id="promotion-phase"><strong>Promotion Phase</strong><a class="anchor" href="#promotion-phase">#</a></h3>
+<p><strong>What actually happens during promotion:</strong></p>
+<pre tabindex="0"><code>1. User triggers promotion (or auto-promotion occurs)
+   ↓
+2. Kargo executes promotion steps:
+   a. git-clone: Clone GitOps repo
+   b. yaml-update: Update image tags
+   c. git-commit: Commit changes (outputs: commit SHA)
+   d. git-push: Push to stage/production branch
+   ↓
+3. argocd-update step executes:
+   ↓
+4. Kargo controller makes Kubernetes API call:
+   
+   PATCH /apis/argoproj.io/v1alpha1/namespaces/argocd/applications/myapp-production
+   {
+     &#34;spec&#34;: {
+       &#34;source&#34;: {
+         &#34;targetRevision&#34;: &#34;abc123def456&#34;  # New commit SHA
+       }
+     },
+     &#34;operation&#34;: {
+       &#34;initiatedBy&#34;: {&#34;username&#34;: &#34;kargo&#34;},
+       &#34;sync&#34;: {&#34;revision&#34;: &#34;abc123def456&#34;}
+     }
+   }
+   ↓
+5. ArgoCD controller detects Application change
+   ↓
+6. ArgoCD syncs Application to new revision
+   ↓
+7. ArgoCD updates Application status:
+   {
+     &#34;status&#34;: {
+       &#34;sync&#34;: {&#34;status&#34;: &#34;Synced&#34;},
+       &#34;health&#34;: {&#34;status&#34;: &#34;Progressing&#34;}
+     }
+   }
+   ↓
+8. Kargo watches Application status (via Kubernetes watch)
+   ↓
+9. When health becomes &#34;Healthy&#34;:
+   - Kargo marks Stage as healthy
+   - Promotion succeeds
+   ↓
+10. Freight can now be promoted to next Stage</code></pre><hr>
+<h2 id="key-differences-kargo-vs-argocd-api"><strong>Key Differences: Kargo vs. ArgoCD API</strong><a class="anchor" href="#key-differences-kargo-vs-argocd-api">#</a></h2>
+<table>
+  <thead>
+      <tr>
+          <th>Aspect</th>
+          <th>Kargo&rsquo;s Approach</th>
+          <th>If Using ArgoCD API</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Communication</strong></td>
+          <td>Kubernetes API (Application CRs)</td>
+          <td>ArgoCD REST API</td>
+      </tr>
+      <tr>
+          <td><strong>Authentication</strong></td>
+          <td>Kubernetes RBAC + Annotations</td>
+          <td>ArgoCD tokens/sessions</td>
+      </tr>
+      <tr>
+          <td><strong>Authorization</strong></td>
+          <td>Annotation-based delegation</td>
+          <td>ArgoCD RBAC policies</td>
+      </tr>
+      <tr>
+          <td><strong>Resource Type</strong></td>
+          <td>Native Kubernetes resources</td>
+          <td>HTTP REST calls</td>
+      </tr>
+      <tr>
+          <td><strong>Idempotency</strong></td>
+          <td>Kubernetes declarative model</td>
+          <td>Must handle manually</td>
+      </tr>
+      <tr>
+          <td><strong>Watching</strong></td>
+          <td>Kubernetes watch API</td>
+          <td>ArgoCD webhooks/polling</td>
+      </tr>
+      <tr>
+          <td><strong>Integration</strong></td>
+          <td>Seamless (same cluster)</td>
+          <td>Network dependency</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="advanced-health-check-registration"><strong>Advanced: Health Check Registration</strong><a class="anchor" href="#advanced-health-check-registration">#</a></h2>
+<p>The argocd-update step is unique among all other built-in promotion steps in that, on successful completion, it will register health checks to be performed upon the target Stage on an ongoing basis.</p>
+<p><strong>What this means:</strong></p>
+<ul>
+<li>Kargo doesn&rsquo;t just update the Application once</li>
+<li>It continuously monitors the Application&rsquo;s health</li>
+<li>Stage health reflects Application health</li>
+<li>If Application becomes unhealthy, Stage becomes unhealthy</li>
+</ul>
+<p><strong>Stage health factors:</strong>
+It is important to note that Stage health is not determined solely by the health of the Application(s) that the Stage is managing. The health of the Stage is determined by the health of all Application resources that the Stage is managing, as well as any other indicators of health that are part of the Stage&rsquo;s definition.</p>
+<hr>
+<h2 id="non-gitops-mode-less-common"><strong>Non-GitOps Mode (Less Common)</strong><a class="anchor" href="#non-gitops-mode-less-common">#</a></h2>
+<p>You can also update Applications <strong>without</strong> modifying Git:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># No git operations!</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">argocd-update</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">apps</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">my-app</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">sources</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">https://charts.example.com</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">chart</span>: <span style="color:#ae81ff">my-chart</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">targetRevision</span>: <span style="color:#ae81ff">1.2.3</span>  <span style="color:#75715e"># Helm chart version</span></span></span></code></pre></div><p>This directly modifies the Application CR to point to a new Helm chart version, <strong>bypassing Git entirely</strong>.</p>
+<hr>
+<h2 id="summary"><strong>Summary</strong><a class="anchor" href="#summary">#</a></h2>
+<h3 id="how-kargo-interacts-with-argocd-1"><strong>How Kargo Interacts with ArgoCD:</strong><a class="anchor" href="#how-kargo-interacts-with-argocd-1">#</a></h3>
+<p>✅ <strong>Custom Resources (Primary):</strong></p>
+<ul>
+<li>Kargo <strong>patches</strong> Application CRs via Kubernetes API</li>
+<li>Modifies <code>spec.source.targetRevision</code>, <code>spec.operation</code>, etc.</li>
+<li>Uses standard Kubernetes client libraries</li>
+</ul>
+<p>✅ <strong>Status Monitoring (Secondary):</strong></p>
+<ul>
+<li>Kargo <strong>reads</strong> Application status via Kubernetes API</li>
+<li>Watches <code>.status.health</code> and <code>.status.sync</code></li>
+<li>Registers continuous health checks</li>
+</ul>
+<p>❌ <strong>NOT ArgoCD API:</strong></p>
+<ul>
+<li>Kargo does <strong>NOT</strong> call ArgoCD&rsquo;s REST API</li>
+<li>Kargo does <strong>NOT</strong> use ArgoCD CLI</li>
+<li>Kargo does <strong>NOT</strong> need ArgoCD credentials</li>
+</ul>
+<h3 id="authorization-model"><strong>Authorization Model:</strong><a class="anchor" href="#authorization-model">#</a></h3>
+<ul>
+<li>Uses annotation-based delegation</li>
+<li>Requires explicit <code>kargo.akuity.io/authorized-stage</code> annotation</li>
+<li>Respects Kubernetes RBAC</li>
+</ul>
+<h3 id="benefits-of-this-approach"><strong>Benefits of This Approach:</strong><a class="anchor" href="#benefits-of-this-approach">#</a></h3>
+<ol>
+<li><strong>Kubernetes-Native</strong>: Everything is a CR, managed declaratively</li>
+<li><strong>GitOps Compliant</strong>: Applications themselves can be in Git</li>
+<li><strong>No Network Dependency</strong>: Same cluster, same API server</li>
+<li><strong>RBAC Integration</strong>: Uses standard Kubernetes permissions</li>
+<li><strong>Loose Coupling</strong>: ArgoCD and Kargo remain independent</li>
+</ol>
+<h3 id="typical-pattern"><strong>Typical Pattern:</strong><a class="anchor" href="#typical-pattern">#</a></h3>
+<pre tabindex="0"><code>Kargo promotes → Updates Git → Patches Application CR → ArgoCD syncs → Kargo monitors health</code></pre><p><strong>Does this clarify the interaction model? Would you like me to dive deeper into any specific aspect, such as the exact Kubernetes API calls, RBAC configuration, or health monitoring implementation?</strong></p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+  
+  <div class="flex flex-wrap justify-between">
+    <span>
+    
+      <a href="/musings/docs/devplatform/initial-comparison/" class="flex align-center">
+        <img src="/musings/icons/backward.svg" class="book-icon" alt="Backward" />
+        <span>Initial Comparison</span>
+      </a>
+    
+    </span>
+    <span>
+    
+      <a href="/musings/docs/devplatform/presentation/" class="flex align-center">
+        <span>Kargo: GitOps Promotion for ArgoCD</span>
+        <img src="/musings/icons/forward.svg" class="book-icon" alt="Forward" />
+      </a>
+    
+    </span>
+  </div>
+  
+
+
+ 
+        
+  
+ 
+        
+        
+  
+ 
+        
+  
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#how-kargo-interacts-with-argocd">How Kargo Interacts with ArgoCD</a></li>
+        <li><a href="#the-integration-architecture"><strong>The Integration Architecture</strong></a>
+          <ul>
+            <li><a href="#1-primary-interaction-kubernetes-custom-resources"><strong>1. Primary Interaction: Kubernetes Custom Resources</strong></a></li>
+            <li><a href="#2-authorization-model-annotations"><strong>2. Authorization Model: Annotations</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#how-the-integration-works"><strong>How the Integration Works</strong></a>
+          <ul>
+            <li><a href="#method-1-direct-application-resource-modification"><strong>Method 1: Direct Application Resource Modification</strong></a></li>
+            <li><a href="#method-2-health-monitoring-via-application-status"><strong>Method 2: Health Monitoring via Application Status</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#what-kargo-modifies-in-applications"><strong>What Kargo Modifies in Applications</strong></a>
+          <ul>
+            <li><a href="#common-modifications"><strong>Common Modifications:</strong></a>
+              <ul>
+                <li><a href="#1-update-targetrevision-most-common"><strong>1. Update targetRevision (Most Common)</strong></a></li>
+                <li><a href="#2-trigger-sync-via-operation-field"><strong>2. Trigger Sync via Operation Field</strong></a></li>
+                <li><a href="#3-update-helm-values-non-gitops-mode"><strong>3. Update Helm Values (Non-GitOps Mode)</strong></a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#rbac--permissions"><strong>RBAC &amp; Permissions</strong></a>
+          <ul>
+            <li><a href="#kargo"><strong>Kargo’s Permissions</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#configuration-options"><strong>Configuration Options</strong></a>
+          <ul>
+            <li><a href="#argocd-integration-configuration"><strong>ArgoCD Integration Configuration</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#typical-workflow-step-by-step"><strong>Typical Workflow: Step-by-Step</strong></a>
+          <ul>
+            <li><a href="#setup-phase"><strong>Setup Phase</strong></a></li>
+            <li><a href="#promotion-phase"><strong>Promotion Phase</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#key-differences-kargo-vs-argocd-api"><strong>Key Differences: Kargo vs. ArgoCD API</strong></a></li>
+        <li><a href="#advanced-health-check-registration"><strong>Advanced: Health Check Registration</strong></a></li>
+        <li><a href="#non-gitops-mode-less-common"><strong>Non-GitOps Mode (Less Common)</strong></a></li>
+        <li><a href="#summary"><strong>Summary</strong></a>
+          <ul>
+            <li><a href="#how-kargo-interacts-with-argocd-1"><strong>How Kargo Interacts with ArgoCD:</strong></a></li>
+            <li><a href="#authorization-model"><strong>Authorization Model:</strong></a></li>
+            <li><a href="#benefits-of-this-approach"><strong>Benefits of This Approach:</strong></a></li>
+            <li><a href="#typical-pattern"><strong>Typical Pattern:</strong></a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

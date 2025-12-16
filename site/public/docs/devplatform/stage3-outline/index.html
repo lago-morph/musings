@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><script src="/musings/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=musings/livereload" data-no-instant defer></script>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Stage 3: Implementation Patterns - Outline (Crossplane 2.1) is a development platform document covering Stage 3: Implementation Patterns - Outline (Crossplane 2.1) and Purpose. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/musings/docs/devplatform/stage3-outline/">
+  <meta property="og:site_name" content="Technology Documentation Hub">
+  <meta property="og:title" content="Stage 3: Implementation Patterns - Outline (Crossplane 2.1)">
+  <meta property="og:description" content="Stage 3: Implementation Patterns - Outline (Crossplane 2.1) is a development platform document covering Stage 3: Implementation Patterns - Outline (Crossplane 2.1) and Purpose. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2025-12-16T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-16T00:00:00+00:00">
+
+
+  <meta itemprop="name" content="Stage 3: Implementation Patterns - Outline (Crossplane 2.1)">
+  <meta itemprop="description" content="Stage 3: Implementation Patterns - Outline (Crossplane 2.1) is a development platform document covering Stage 3: Implementation Patterns - Outline (Crossplane 2.1) and Purpose. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details.">
+  <meta itemprop="datePublished" content="2025-12-16T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-12-16T00:00:00+00:00">
+  <meta itemprop="wordCount" content="763">
+  <meta itemprop="keywords" content="function,crossplane,helm,deployment,platform,api,aws,observability">
+
+<title>Stage 3: Implementation Patterns - Outline (Crossplane 2.1) | Technology Documentation Hub</title>
+<link rel="icon" href="/musings/favicon.png" >
+<link rel="manifest" href="/musings/manifest.json">
+<link rel="canonical" href="http://localhost:1313/musings/docs/devplatform/stage3-outline/">
+<link rel="stylesheet" href="/musings/book.min.6970156cec683193d93c9c4edaf0d56574e4361df2e0c1be4f697ae81c3ba55f.css" integrity="sha256-aXAVbOxoMZPZPJxO2vDVZXTkNh3y4MG&#43;T2l66Bw7pV8=" crossorigin="anonymous">
+
+
+  <script defer src="/musings/fuse.min.js"></script>
+  <script defer src="/musings/en.search.min.5cc9128683126c7cda9fef74044c10c013f6d8935e1e3e719e3f562033e9ef44.js" integrity="sha256-XMkShoMSbHzan&#43;90BEwQwBP22JNeHj5xnj9WIDPp70Q=" crossorigin="anonymous"></script>
+
+
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-docs">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/musings/"><span>Technology Documentation Hub</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input id="book-search-input" type="text" 
+    placeholder="Search"
+    aria-label="Search"
+    maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/" class="">
+      AI &amp; Machine Learning</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/agentic-computing-overview-and-tools/" class="">
+      Agentic Computing Overview And Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/agno-vs-langchain/" class="">
+      Agno Vs Langchain</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/flowwise-vs-langflow/" class="">
+      Flowise vs Langflow: Detailed Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/one-model-multiple-diagrams/" class="">
+      Generate all views</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/verification-architecture/" class="">
+      Is This a Reasonable Architecture?</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/kiro-ide-comparison-tools/" class="">
+      Kiro IDE: Comprehensive Analysis, Comparisons &amp; Optimal Workflows</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/langchain-architecture/" class="">
+      LangChain: The Foundation Library</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/llm-tracing-metrics-comparison/" class="">
+      Llm Tracing Metrics Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/kubernetes-based/" class="">
+      Open Source Workflow Orchestration on Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/tools-overview-and-getting-started/" class="">
+      Self-Hosted Open Source Agent Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/serverless-function-workflow-tools-for-kubernetes/" class="">
+      Serverless/Function Workflows on Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/n8n-overview/" class="">
+      What Problems Does n8n Solve?</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/" class="">
+      Development Platforms</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/backstage-techdocs-pros-cons/" class="">
+      Backstage Techdocs Pros Cons</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/cross-diagram-reuse-guide/" class="">
+      Cross-Diagram Domain Model Reuse in PlantUML</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/prompt/" class="">
+      Crossplane EKS Management Cluster Implementation - Project Brief</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/comprehensive-guide/" class="">
+      Driven vs Event: Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/gitops-platform-safety/" class="">
+      GitOps Safety Architecture for Platform Evolution</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/kargo-intro/" class="">
+      How Kargo Works with ArgoCD to Manage Deployments</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/backstage-kratix-crossplane-argocd-blueprint/" class="">
+      Implementation Blueprint: Crossplane &#43; Kratix &#43; Backstage &#43; ArgoCD</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/kargo-git-tags/" class="">
+      In subsequent stages, you can read this metadata</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/in-browser-editing-tools/" class="">
+      In-Browser Editing Documentation Solutions</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/initial-comparison/" class="">
+      Initial Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/kargo-argocd-interaction/" class="">
+      Kargo promotion step</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/presentation/" class="">
+      Kargo: GitOps Promotion for ArgoCD</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/notion-overview/" class="">
+      Notion: A Comprehensive Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/oss-portal-platform-orchestration-tools/" class="">
+      Oss Portal Platform Orchestration Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/oss-vs-closed-portal/" class="">
+      Oss Vs Closed Portal</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/recommendations/" class="">
+      Overview of Text-Based UML Domain Modeling Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/export-conversion/" class="">
+      PlantUML Export &amp; Embedding Options</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/crossplane-solution/" class="">
+      Pseudocode for composition function</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/kargo-polyrepo/" class="">
+      Response</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/job-configmap-crossplane-abstraction/" class="">
+      Shell script helper for Option 3</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/tasks/" class="">
+      Stage 1: Approach Overview &amp; Comparison ✅ COMPLETE</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/stage3-outline/" class="active">
+      Stage 3: Implementation Patterns - Outline (Crossplane 2.1)</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/" class="">
+      Infrastructure</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/runbooks/" class="">
+      1. Mental Model Shift (Important Framing)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/argocd-layered-values/" class="">
+      ArgoCD and Helm Schema Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/prompt-guide/" class="">
+      Contents</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/overview/" class="">
+      Core Strategy: Progressive Delivery with Blast Radius Containment</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/stage1/" class="">
+      Crossplane EKS Management Cluster - Approach Overview &amp; Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/getting-started-concise/" class="">
+      Getting Started Concise</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/ci-cd-templates/" class="">
+      GitHub Actions Example</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/k8s-mcp-servers/" class="">
+      K8s Mcp Servers</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/stage2/" class="">
+      Management Cluster VPC Layout</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/non-helm-schema-validation/" class="">
+      Non Helm Schema Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/production-readiness-overview/" class="">
+      Production Readiness Guide: From Docker Compose to Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/schema-testing/" class="">
+      Quick Start: Generate Schema from Existing values.yaml</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/job-plus-configmap-annotation/" class="">
+      Read current state AND capture resourceVersion</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/layered-schema/" class="">
+      Schema Validation with Layered Values Files</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/helm-layered-abstraction/" class="">
+      Solution 2: Kustomize with Helm</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/starting-helm-testing/" class="">
+      Understanding What You&#39;re Testing</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/executive-summary/" class="">
+      What You&#39;re Building</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/devops-domain-model-guide/" class="">
+      Why This Approach Works for DevOps</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/workflows/" class="">
+      Workflows</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/workflows/imperitive-in-declarative/" class="">
+      Imperitive In Declarative</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/mermaid-test/" class="">
+      Mermaid Diagram Test</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/" class="">
+      Miscellaneous</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/test-document/" class="">
+      Test Document</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/musings/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>Stage 3: Implementation Patterns - Outline (Crossplane 2.1)</h3>
+
+  <label for="toc-control">
+    
+    <img src="/musings/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#stage-3-implementation-patterns---outline-crossplane-21">Stage 3: Implementation Patterns - Outline (Crossplane 2.1)</a>
+      <ul>
+        <li><a href="#purpose">Purpose</a></li>
+        <li><a href="#proposed-outline-structure">Proposed Outline Structure</a>
+          <ul>
+            <li><a href="#31-approach-1-direct-managed-resources">3.1 Approach 1: Direct Managed Resources</a></li>
+            <li><a href="#32-approach-2-composite-resources-xrds">3.2 Approach 2: Composite Resources (XRDs)</a></li>
+            <li><a href="#33-approach-3a-opinionated-platform">3.3 Approach 3a: Opinionated Platform</a></li>
+            <li><a href="#34-approach-3b-multi-cloud-abstraction">3.4 Approach 3b: Multi-Cloud Abstraction</a></li>
+            <li><a href="#35-approach-3c-fargate-first-architecture">3.5 Approach 3c: Fargate-First Architecture</a></li>
+            <li><a href="#36-approach-3d-vcluster-based-multi-tenancy">3.6 Approach 3d: vCluster-Based Multi-Tenancy</a></li>
+            <li><a href="#37-approach-3e-kubernetes-native-tooling">3.7 Approach 3e: Kubernetes-Native Tooling</a></li>
+            <li><a href="#38-approach-3f-ecs-control-plane-alternative">3.8 Approach 3f: ECS Control Plane Alternative</a></li>
+          </ul>
+        </li>
+        <li><a href="#crossplane-21-specific-patterns">Crossplane 2.1 Specific Patterns</a>
+          <ul>
+            <li><a href="#composition-functions">Composition Functions</a></li>
+            <li><a href="#provider-families">Provider Families</a></li>
+            <li><a href="#resource-management">Resource Management</a></li>
+            <li><a href="#namespace-scoping">Namespace Scoping</a></li>
+          </ul>
+        </li>
+        <li><a href="#general-patterns-across-all-approaches">General Patterns Across All Approaches</a>
+          <ul>
+            <li><a href="#provider-configuration-21-style">Provider Configuration (2.1 Style)</a></li>
+            <li><a href="#workload-cluster-provisioning">Workload Cluster Provisioning</a></li>
+          </ul>
+        </li>
+        <li><a href="#review-questions">Review Questions</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h1 id="stage-3-implementation-patterns---outline-crossplane-21">Stage 3: Implementation Patterns - Outline (Crossplane 2.1)<a class="anchor" href="#stage-3-implementation-patterns---outline-crossplane-21">#</a></h1>
+<h2 id="purpose">Purpose<a class="anchor" href="#purpose">#</a></h2>
+<p>Describe the structural and organizational patterns for each approach using Crossplane 2.1 features. Focus on how manifests are organized, how dependencies are handled, composition functions, and the key architectural decisions that differentiate each approach.</p>
+<hr>
+<h2 id="proposed-outline-structure">Proposed Outline Structure<a class="anchor" href="#proposed-outline-structure">#</a></h2>
+<h3 id="31-approach-1-direct-managed-resources">3.1 Approach 1: Direct Managed Resources<a class="anchor" href="#31-approach-1-direct-managed-resources">#</a></h3>
+<ul>
+<li><strong>Manifest Organization</strong>
+<ul>
+<li>File structure and naming conventions</li>
+<li>Dependency ordering strategy</li>
+<li>Namespace vs cluster-scoped resources</li>
+</ul>
+</li>
+<li><strong>Resource Reference Patterns</strong>
+<ul>
+<li>Crossplane 2.1 reference resolution (matchControllerRef, resolvers)</li>
+<li>Match labels and selectors for dynamic references</li>
+<li>External name usage patterns</li>
+</ul>
+</li>
+<li><strong>Key Decisions</strong>
+<ul>
+<li>When to use references vs match selectors</li>
+<li>Managing resource lifecycle and deletion policies</li>
+<li>Handling parallel vs sequential provisioning</li>
+</ul>
+</li>
+</ul>
+<h3 id="32-approach-2-composite-resources-xrds">3.2 Approach 2: Composite Resources (XRDs)<a class="anchor" href="#32-approach-2-composite-resources-xrds">#</a></h3>
+<ul>
+<li><strong>XRD Design (Crossplane 2.1)</strong>
+<ul>
+<li>XR-only pattern (no Claims in 2.1)</li>
+<li>API surface design (what parameters to expose)</li>
+<li>Namespace-scoped XRs and their implications</li>
+</ul>
+</li>
+<li><strong>Composition Functions</strong>
+<ul>
+<li>Function pipeline architecture (replacing patches)</li>
+<li>Using composition functions for resource generation</li>
+<li>Function chaining and data flow</li>
+</ul>
+</li>
+<li><strong>Composition Structure</strong>
+<ul>
+<li>Modern composition mode (Pipeline vs Resources)</li>
+<li>Composition functions vs traditional patch-and-transform</li>
+<li>Connection secrets and composition references</li>
+</ul>
+</li>
+<li><strong>Key Decisions</strong>
+<ul>
+<li>Traditional patches vs composition functions</li>
+<li>Function selection and ordering in pipeline</li>
+<li>Handling composition updates and versioning</li>
+</ul>
+</li>
+</ul>
+<h3 id="33-approach-3a-opinionated-platform">3.3 Approach 3a: Opinionated Platform<a class="anchor" href="#33-approach-3a-opinionated-platform">#</a></h3>
+<ul>
+<li><strong>Provider/Platform Selection</strong>
+<ul>
+<li>Upbound Official Provider Families (recommended for 2.1)</li>
+<li>Pre-built Crossplane Configurations</li>
+<li>Provider family advantages over monolithic providers</li>
+</ul>
+</li>
+<li><strong>Configuration Packages</strong>
+<ul>
+<li>Using Crossplane Configuration packages</li>
+<li>Dependency management between configurations</li>
+<li>Package versioning and updates</li>
+</ul>
+</li>
+<li><strong>Key Decisions</strong>
+<ul>
+<li>Configuration package granularity</li>
+<li>Customization vs standardization trade-offs</li>
+<li>Package dependency management</li>
+</ul>
+</li>
+</ul>
+<h3 id="34-approach-3b-multi-cloud-abstraction">3.4 Approach 3b: Multi-Cloud Abstraction<a class="anchor" href="#34-approach-3b-multi-cloud-abstraction">#</a></h3>
+<ul>
+<li><strong>Abstraction Layer Design</strong>
+<ul>
+<li>Cloud-agnostic XRD definitions</li>
+<li>Composition selection via environment configs</li>
+<li>Provider family approach for multi-cloud</li>
+</ul>
+</li>
+<li><strong>Composition Selectors</strong>
+<ul>
+<li>Using compositionSelector and compositionRef</li>
+<li>Environment-based composition selection</li>
+<li>Label-based routing to cloud-specific compositions</li>
+</ul>
+</li>
+<li><strong>Key Decisions</strong>
+<ul>
+<li>XRD API design for portability</li>
+<li>Composition selection strategy</li>
+<li>Handling cloud-specific features</li>
+</ul>
+</li>
+</ul>
+<h3 id="35-approach-3c-fargate-first-architecture">3.5 Approach 3c: Fargate-First Architecture<a class="anchor" href="#35-approach-3c-fargate-first-architecture">#</a></h3>
+<ul>
+<li><strong>Fargate-Specific Resources</strong>
+<ul>
+<li>Fargate Profile managed resources</li>
+<li>Pod Execution Role configuration</li>
+<li>OIDC provider for pod identities</li>
+</ul>
+</li>
+<li><strong>Composition Adaptations</strong>
+<ul>
+<li>Conditional resource rendering (via functions)</li>
+<li>Fargate profile selectors and namespaces</li>
+</ul>
+</li>
+<li><strong>Key Decisions</strong>
+<ul>
+<li>Namespace-based vs label-based Fargate selection</li>
+<li>Handling workloads not suitable for Fargate</li>
+<li>IRSA configuration for Fargate pods</li>
+</ul>
+</li>
+</ul>
+<h3 id="36-approach-3d-vcluster-based-multi-tenancy">3.6 Approach 3d: vCluster-Based Multi-Tenancy<a class="anchor" href="#36-approach-3d-vcluster-based-multi-tenancy">#</a></h3>
+<ul>
+<li><strong>vCluster Provider Integration</strong>
+<ul>
+<li>Using provider-helm or provider-kubernetes for vCluster</li>
+<li>vCluster Helm chart deployment via Crossplane</li>
+<li>vCluster CRD management</li>
+</ul>
+</li>
+<li><strong>Management Cluster Pattern</strong>
+<ul>
+<li>Standard EKS with Crossplane 2.1</li>
+<li>Provider configuration for in-cluster resources</li>
+<li>Resource sizing and quotas</li>
+</ul>
+</li>
+<li><strong>Workload vCluster Composition</strong>
+<ul>
+<li>XRD for vCluster provisioning</li>
+<li>Composition function for vCluster configuration</li>
+<li>Network and storage configuration</li>
+</ul>
+</li>
+<li><strong>Key Decisions</strong>
+<ul>
+<li>vCluster deployment mechanism (Helm vs native)</li>
+<li>Host cluster provider configuration</li>
+<li>vCluster isolation and resource limits</li>
+</ul>
+</li>
+</ul>
+<h3 id="37-approach-3e-kubernetes-native-tooling">3.7 Approach 3e: Kubernetes-Native Tooling<a class="anchor" href="#37-approach-3e-kubernetes-native-tooling">#</a></h3>
+<ul>
+<li><strong>Tooling Deployment Strategy</strong>
+<ul>
+<li>Using provider-helm for K8s-native tools</li>
+<li>Using provider-kubernetes for CRD-based tools</li>
+<li>Composition functions for tool configuration</li>
+</ul>
+</li>
+<li><strong>Tool Stack</strong>
+<ul>
+<li>Vault (provider-helm for deployment)</li>
+<li>Harbor (provider-helm for deployment)</li>
+<li>cert-manager (provider-kubernetes for CRDs)</li>
+<li>NGINX Ingress (provider-helm)</li>
+<li>external-dns (provider-helm)</li>
+</ul>
+</li>
+<li><strong>Integration Patterns</strong>
+<ul>
+<li>Tool dependencies and ordering</li>
+<li>Configuration secrets management</li>
+<li>AWS integration (S3 for Harbor, Route53 for DNS)</li>
+</ul>
+</li>
+<li><strong>Key Decisions</strong>
+<ul>
+<li>Crossplane-managed vs externally-managed tools</li>
+<li>Tool lifecycle and upgrade management</li>
+<li>Composition functions for tool configuration</li>
+</ul>
+</li>
+</ul>
+<h3 id="38-approach-3f-ecs-control-plane-alternative">3.8 Approach 3f: ECS Control Plane Alternative<a class="anchor" href="#38-approach-3f-ecs-control-plane-alternative">#</a></h3>
+<ul>
+<li><strong>ECS-Based Crossplane Deployment</strong>
+<ul>
+<li>ECS Task Definition for Crossplane</li>
+<li>Fargate vs EC2 launch type</li>
+<li>Persistent storage for Crossplane (EFS or S3)</li>
+</ul>
+</li>
+<li><strong>Provider Configuration in ECS</strong>
+<ul>
+<li>AWS credentials via IAM task roles</li>
+<li>ProviderConfig for ECS-hosted Crossplane</li>
+<li>Network configuration for ECS tasks</li>
+</ul>
+</li>
+<li><strong>State Management</strong>
+<ul>
+<li>etcd as sidecar vs external</li>
+<li>Backup and restore strategies</li>
+</ul>
+</li>
+<li><strong>Key Decisions</strong>
+<ul>
+<li>State persistence approach</li>
+<li>Crossplane version and upgrade path</li>
+<li>Observability for ECS-based control plane</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="crossplane-21-specific-patterns">Crossplane 2.1 Specific Patterns<a class="anchor" href="#crossplane-21-specific-patterns">#</a></h2>
+<h3 id="composition-functions">Composition Functions<a class="anchor" href="#composition-functions">#</a></h3>
+<ul>
+<li>Function pipeline architecture</li>
+<li>When to use functions vs patches</li>
+<li>Available function types (Go templates, patch-and-transform, etc.)</li>
+</ul>
+<h3 id="provider-families">Provider Families<a class="anchor" href="#provider-families">#</a></h3>
+<ul>
+<li>Official Provider Families vs monolithic providers</li>
+<li>Upjet/Terraform-based providers in 2.1</li>
+<li>Provider configuration and credentials</li>
+</ul>
+<h3 id="resource-management">Resource Management<a class="anchor" href="#resource-management">#</a></h3>
+<ul>
+<li>Deletion policies and management policies</li>
+<li>Connection secrets in 2.1</li>
+<li>ProviderConfig references and inheritance</li>
+</ul>
+<h3 id="namespace-scoping">Namespace Scoping<a class="anchor" href="#namespace-scoping">#</a></h3>
+<ul>
+<li>XR namespace scoping implications</li>
+<li>Cross-namespace resource references</li>
+<li>RBAC considerations for namespace-scoped resources</li>
+</ul>
+<hr>
+<h2 id="general-patterns-across-all-approaches">General Patterns Across All Approaches<a class="anchor" href="#general-patterns-across-all-approaches">#</a></h2>
+<h3 id="provider-configuration-21-style">Provider Configuration (2.1 Style)<a class="anchor" href="#provider-configuration-21-style">#</a></h3>
+<ul>
+<li>ProviderConfig with credentials</li>
+<li>DeploymentRuntimeConfig for provider settings</li>
+<li>Provider package installation and configuration</li>
+</ul>
+<h3 id="workload-cluster-provisioning">Workload Cluster Provisioning<a class="anchor" href="#workload-cluster-provisioning">#</a></h3>
+<ul>
+<li>Template structure for each approach</li>
+<li>Composition function usage for templating</li>
+<li>Namespace organization and RBAC</li>
+</ul>
+<hr>
+<h2 id="review-questions">Review Questions<a class="anchor" href="#review-questions">#</a></h2>
+<p>Before I flesh out the details:</p>
+<ol>
+<li>
+<p><strong>Composition Functions</strong>: Should I recommend specific composition functions (e.g., function-patch-and-transform, function-go-templating) or keep it generic?</p>
+</li>
+<li>
+<p><strong>Provider Selection</strong>: For approach 3a (Opinionated), should I recommend Upbound&rsquo;s official provider families and specific Configuration packages?</p>
+</li>
+<li>
+<p><strong>Level of Detail</strong>: Should I include conceptual manifest snippets showing key Crossplane 2.1 features (composition functions, match selectors, etc.) or keep it purely descriptive?</p>
+</li>
+<li>
+<p><strong>Function Pipeline Examples</strong>: Should I show the structure of composition function pipelines or just describe them conceptually?</p>
+</li>
+<li>
+<p><strong>Workload Templates</strong>: Should Stage 3 discuss the workload cluster templates for each approach, or save that entirely for Stage 5 (Reference Implementation)?</p>
+</li>
+</ol>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+  
+  <div class="flex flex-wrap justify-between">
+    <span>
+    
+      <a href="/musings/docs/devplatform/tasks/" class="flex align-center">
+        <img src="/musings/icons/backward.svg" class="book-icon" alt="Backward" />
+        <span>Stage 1: Approach Overview &amp; Comparison ✅ COMPLETE</span>
+      </a>
+    
+    </span>
+    <span>
+    
+      <a href="/musings/docs/infrastructure/" class="flex align-center">
+        <span>Infrastructure</span>
+        <img src="/musings/icons/forward.svg" class="book-icon" alt="Forward" />
+      </a>
+    
+    </span>
+  </div>
+  
+
+
+ 
+        
+  
+ 
+        
+        
+  
+ 
+        
+  
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#stage-3-implementation-patterns---outline-crossplane-21">Stage 3: Implementation Patterns - Outline (Crossplane 2.1)</a>
+      <ul>
+        <li><a href="#purpose">Purpose</a></li>
+        <li><a href="#proposed-outline-structure">Proposed Outline Structure</a>
+          <ul>
+            <li><a href="#31-approach-1-direct-managed-resources">3.1 Approach 1: Direct Managed Resources</a></li>
+            <li><a href="#32-approach-2-composite-resources-xrds">3.2 Approach 2: Composite Resources (XRDs)</a></li>
+            <li><a href="#33-approach-3a-opinionated-platform">3.3 Approach 3a: Opinionated Platform</a></li>
+            <li><a href="#34-approach-3b-multi-cloud-abstraction">3.4 Approach 3b: Multi-Cloud Abstraction</a></li>
+            <li><a href="#35-approach-3c-fargate-first-architecture">3.5 Approach 3c: Fargate-First Architecture</a></li>
+            <li><a href="#36-approach-3d-vcluster-based-multi-tenancy">3.6 Approach 3d: vCluster-Based Multi-Tenancy</a></li>
+            <li><a href="#37-approach-3e-kubernetes-native-tooling">3.7 Approach 3e: Kubernetes-Native Tooling</a></li>
+            <li><a href="#38-approach-3f-ecs-control-plane-alternative">3.8 Approach 3f: ECS Control Plane Alternative</a></li>
+          </ul>
+        </li>
+        <li><a href="#crossplane-21-specific-patterns">Crossplane 2.1 Specific Patterns</a>
+          <ul>
+            <li><a href="#composition-functions">Composition Functions</a></li>
+            <li><a href="#provider-families">Provider Families</a></li>
+            <li><a href="#resource-management">Resource Management</a></li>
+            <li><a href="#namespace-scoping">Namespace Scoping</a></li>
+          </ul>
+        </li>
+        <li><a href="#general-patterns-across-all-approaches">General Patterns Across All Approaches</a>
+          <ul>
+            <li><a href="#provider-configuration-21-style">Provider Configuration (2.1 Style)</a></li>
+            <li><a href="#workload-cluster-provisioning">Workload Cluster Provisioning</a></li>
+          </ul>
+        </li>
+        <li><a href="#review-questions">Review Questions</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

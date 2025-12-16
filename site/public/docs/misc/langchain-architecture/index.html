@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><script src="/musings/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=musings/livereload" data-no-instant defer></script>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Langchain Architecture is a ai &amp; machine learning document covering LangChain and LangGraph: Architectural Overview and LangChain: The Foundation Library. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/musings/docs/misc/langchain-architecture/">
+  <meta property="og:site_name" content="Technology Documentation Hub">
+  <meta property="og:title" content="Langchain Architecture">
+  <meta property="og:description" content="Langchain Architecture is a ai &amp; machine learning document covering LangChain and LangGraph: Architectural Overview and LangChain: The Foundation Library. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2025-12-16T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-16T00:00:00+00:00">
+
+
+  <meta itemprop="name" content="Langchain Architecture">
+  <meta itemprop="description" content="Langchain Architecture is a ai &amp; machine learning document covering LangChain and LangGraph: Architectural Overview and LangChain: The Foundation Library. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details.">
+  <meta itemprop="datePublished" content="2025-12-16T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-12-16T00:00:00+00:00">
+  <meta itemprop="wordCount" content="770">
+  <meta itemprop="keywords" content="langchain,langgraph,workflow,llm,agent,ai,orchestration,observability">
+
+<title>Langchain Architecture | Technology Documentation Hub</title>
+<link rel="icon" href="/musings/favicon.png" >
+<link rel="manifest" href="/musings/manifest.json">
+<link rel="canonical" href="http://localhost:1313/musings/docs/misc/langchain-architecture/">
+<link rel="stylesheet" href="/musings/book.min.6970156cec683193d93c9c4edaf0d56574e4361df2e0c1be4f697ae81c3ba55f.css" integrity="sha256-aXAVbOxoMZPZPJxO2vDVZXTkNh3y4MG&#43;T2l66Bw7pV8=" crossorigin="anonymous">
+
+
+  <script defer src="/musings/fuse.min.js"></script>
+  <script defer src="/musings/en.search.min.173ca72eaf49c9fc6baf1c2e2e9837cb4f8ae13874ec0dc634ce40c45c8943dc.js" integrity="sha256-FzynLq9JyfxrrxwuLpg3y0&#43;K4Th07A3GNM5AxFyJQ9w=" crossorigin="anonymous"></script>
+
+
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-docs">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/musings/"><span>Technology Documentation Hub</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input id="book-search-input" type="text" 
+    placeholder="Search"
+    aria-label="Search"
+    maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/" class="">
+      AI &amp; Machine Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/" class="">
+      Development Platforms</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/" class="">
+      Infrastructure</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/workflows/" class="">
+      Workflows</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/" class="">
+      Miscellaneous</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/agentic-computing-overview-and-tools/" class="">
+      Agentic Computing Overview And Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/agno-vs-langchain/" class="">
+      Agno Vs Langchain</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/serverless-function-workflow-tools-for-kubernetes/" class="">
+      Core Concepts</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/flowwise-vs-langflow/" class="">
+      Flowise vs Langflow: Detailed Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/one-model-multiple-diagrams/" class="">
+      Generate all views</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/verification-architecture/" class="">
+      Is This a Reasonable Architecture?</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kiro-ide-comparison-tools/" class="">
+      Kiro IDE: Comprehensive Analysis, Comparisons &amp; Optimal Workflows</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/langchain-architecture/" class="active">
+      Langchain Architecture</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/llm-tracing-metrics-comparison/" class="">
+      Llm Tracing Metrics Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/n8n-overview/" class="">
+      n8n Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kubernetes-based/" class="">
+      Open Source Workflow Orchestration on Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/tools-overview-and-getting-started/" class="">
+      Self-Hosted Open Source Agent Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/backstage-techdocs-pros-cons/" class="">
+      Backstage Techdocs Pros Cons</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/cross-diagram-reuse-guide/" class="">
+      Cross-Diagram Domain Model Reuse in PlantUML</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/prompt/" class="">
+      Crossplane EKS Management Cluster Implementation - Project Brief</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-intro/" class="">
+      Example Stage configuration</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/export-conversion/" class="">
+      Export Conversion</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-polyrepo/" class="">
+      Fast-moving image Warehouse</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/gitops-platform-safety/" class="">
+      GitOps Safety Architecture for Platform Evolution</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/tasks/" class="">
+      High-Level Plan: Crossplane EKS Management Cluster Implementation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/backstage-kratix-crossplane-argocd-blueprint/" class="">
+      Implementation Blueprint: Crossplane &#43; Kratix &#43; Backstage &#43; ArgoCD</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-git-tags/" class="">
+      In subsequent stages, you can read this metadata</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/in-browser-editing-tools/" class="">
+      In-Browser Editing Documentation Solutions</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/initial-comparison/" class="">
+      Initial Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/comprehensive-guide/" class="">
+      Kargo and ArgoCD: A Comprehensive Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-argocd-interaction/" class="">
+      Kargo promotion step</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/presentation/" class="">
+      Kargo: GitOps Promotion for ArgoCD</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/notion-overview/" class="">
+      Notion: A Comprehensive Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/oss-portal-platform-orchestration-tools/" class="">
+      Oss Portal Platform Orchestration Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/oss-vs-closed-portal/" class="">
+      Oss Vs Closed Portal</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/crossplane-solution/" class="">
+      Pseudocode for composition function</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/recommendations/" class="">
+      Recommendations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/job-configmap-crossplane-abstraction/" class="">
+      Shell script helper for Option 3</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/stage3-outline/" class="">
+      Stage 3: Implementation Patterns - Outline (Crossplane 2.1)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/argocd-layered-values/" class="">
+      ArgoCD and Helm Schema Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/schema-testing/" class="">
+      Creating a Helm Values Schema: Complete Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/stage1/" class="">
+      Crossplane EKS Management Cluster - Approach Overview &amp; Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/executive-summary/" class="">
+      DevOps Domain Model: Executive Summary</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/devops-domain-model-guide/" class="">
+      DevOps Domain Model: Implementation Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/getting-started-concise/" class="">
+      Getting Started Concise</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/ci-cd-templates/" class="">
+      GitHub Actions Example</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/k8s-mcp-servers/" class="">
+      K8s Mcp Servers</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/non-helm-schema-validation/" class="">
+      Non Helm Schema Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/overview/" class="">
+      Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/prompt-guide/" class="">
+      Production Readiness Deep-Dive Prompt Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/production-readiness-overview/" class="">
+      Production Readiness Guide: From Docker Compose to Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/job-plus-configmap-annotation/" class="">
+      Read current state AND capture resourceVersion</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/runbooks/" class="">
+      Runbooks</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/layered-schema/" class="">
+      Schema Validation with Layered Values Files</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/helm-layered-abstraction/" class="">
+      Solution 2: Kustomize with Helm</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/stage2/" class="">
+      Stage 2: Architecture Design</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/starting-helm-testing/" class="">
+      Testing Complex Helm Charts: A Practical Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/imperitive-in-declarative/" class="">
+      Imperitive In Declarative</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/mermaid-test/" class="">
+      Mermaid Diagram Test</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/test-document/" class="">
+      Test Document</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/musings/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>Langchain Architecture</h3>
+
+  <label for="toc-control">
+    
+    <img src="/musings/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#langchain-and-langgraph-architectural-overview">LangChain and LangGraph: Architectural Overview</a>
+          <ul>
+            <li><a href="#langchain-the-foundation-library"><strong>LangChain: The Foundation Library</strong></a></li>
+            <li><a href="#langgraph-the-orchestration-layer"><strong>LangGraph: The Orchestration Layer</strong></a></li>
+            <li><a href="#how-they-relate"><strong>How They Relate</strong></a></li>
+            <li><a href="#when-to-use-what"><strong>When to Use What</strong></a></li>
+            <li><a href="#for-your-conference-summaries-project"><strong>For Your Conference Summaries Project</strong></a></li>
+            <li><a href="#learning-roadmap"><strong>Learning Roadmap</strong></a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h2 id="langchain-and-langgraph-architectural-overview">LangChain and LangGraph: Architectural Overview<a class="anchor" href="#langchain-and-langgraph-architectural-overview">#</a></h2>
+<h3 id="langchain-the-foundation-library"><strong>LangChain: The Foundation Library</strong><a class="anchor" href="#langchain-the-foundation-library">#</a></h3>
+<p>Think of LangChain as a comprehensive toolkit for building LLM-powered applications. It&rsquo;s essentially a collection of composable abstractions and integrations that handle common LLM application patterns.</p>
+<p><strong>Core Architecture:</strong></p>
+<ul>
+<li><strong>Abstraction Layers</strong>: Provides standardized interfaces for LLMs, vector stores, document loaders, retrievers, and tools</li>
+<li><strong>Composition Pattern</strong>: Everything is designed to be chained together (hence the name) - you build pipelines by connecting components</li>
+<li><strong>Integration Hub</strong>: Pre-built connectors for 100+ LLMs, databases, APIs, and services</li>
+<li><strong>LCEL (LangChain Expression Language)</strong>: A declarative syntax for composing chains using the pipe operator - think Unix pipes for LLM workflows</li>
+</ul>
+<p><strong>What LangChain gives you:</strong></p>
+<ul>
+<li>Document processing pipeline (loaders, splitters, transformers)</li>
+<li>Vector store abstractions (Chroma, Pinecone, FAISS, etc.)</li>
+<li>Prompt templates and management</li>
+<li>Output parsers and structured data extraction</li>
+<li>Tool/function calling abstractions</li>
+<li>Memory systems for maintaining conversation state</li>
+<li>RAG (Retrieval Augmented Generation) patterns out of the box</li>
+</ul>
+<p><strong>Mental Model</strong>: LangChain is like a well-designed SDK for LLM applications - lots of pre-built components that you compose together. It handles the &ldquo;plumbing&rdquo; so you can focus on application logic.</p>
+<h3 id="langgraph-the-orchestration-layer"><strong>LangGraph: The Orchestration Layer</strong><a class="anchor" href="#langgraph-the-orchestration-layer">#</a></h3>
+<p>LangGraph is a newer library (built on top of LangChain) that addresses a specific limitation: <strong>stateful, cyclic workflows with complex control flow</strong>.</p>
+<p><strong>The Problem LangGraph Solves:</strong>
+LangChain&rsquo;s chain-based model is great for linear or tree-like workflows, but breaks down when you need:</p>
+<ul>
+<li>Cycles (agent tries something, fails, tries again differently)</li>
+<li>Complex state management across multiple steps</li>
+<li>Dynamic routing based on intermediate results</li>
+<li>Human-in-the-loop approval gates</li>
+<li>Parallel execution with synchronization points</li>
+</ul>
+<p><strong>Core Architecture:</strong></p>
+<ul>
+<li><strong>Graph-Based State Machines</strong>: You define workflows as directed graphs where nodes are functions and edges are transitions</li>
+<li><strong>Persistent State</strong>: Built-in state management with checkpointing - can pause/resume anywhere</li>
+<li><strong>Conditional Edges</strong>: Dynamic routing based on state/results</li>
+<li><strong>Cycles and Loops</strong>: First-class support for iterative workflows</li>
+<li><strong>Streaming</strong>: Can stream intermediate results as the graph executes</li>
+</ul>
+<p><strong>Key Concepts:</strong></p>
+<ol>
+<li><strong>StateGraph</strong>: The main abstraction - you define a schema for your state and add nodes that transform it</li>
+<li><strong>Nodes</strong>: Python functions that take current state and return state updates</li>
+<li><strong>Edges</strong>: Define flow between nodes (can be conditional)</li>
+<li><strong>Checkpointers</strong>: Persistence layer for state (memory, SQLite, Redis, etc.)</li>
+<li><strong>Reducers</strong>: Control how state updates merge (append, overwrite, custom logic)</li>
+</ol>
+<p><strong>Mental Model</strong>: LangGraph is like a workflow engine specifically designed for LLM applications. Think Apache Airflow or Temporal, but optimized for agentic AI patterns where you need cycles, retries, and complex state management.</p>
+<h3 id="how-they-relate"><strong>How They Relate</strong><a class="anchor" href="#how-they-relate">#</a></h3>
+<pre tabindex="0"><code>LangChain (Foundation)
+├── Components: LLMs, Tools, Retrievers, Memory
+├── Patterns: Chains, Prompts, Output Parsers
+└── Integrations: 100+ services
+
+LangGraph (Orchestration)
+├── Built on LangChain components
+├── Adds: State machines, cycles, checkpointing
+└── Use case: Complex multi-step agentic workflows</code></pre><p><strong>Relationship:</strong></p>
+<ul>
+<li>LangGraph uses LangChain components (LLMs, tools, retrievers) as building blocks</li>
+<li>You can use LangChain without LangGraph for simple linear workflows</li>
+<li>LangGraph is necessary when you need stateful, cyclic, or complex control flow</li>
+<li>They share the same ecosystem (LangSmith for observability, same integrations)</li>
+</ul>
+<h3 id="when-to-use-what"><strong>When to Use What</strong><a class="anchor" href="#when-to-use-what">#</a></h3>
+<p><strong>Use LangChain alone when:</strong></p>
+<ul>
+<li>Simple question-answering or RAG</li>
+<li>Linear processing pipelines</li>
+<li>Document summarization/transformation</li>
+<li>Basic chatbots with simple memory</li>
+</ul>
+<p><strong>Use LangGraph (which includes LangChain) when:</strong></p>
+<ul>
+<li>Multi-agent systems with complex interactions</li>
+<li>Workflows that need to retry/branch based on results</li>
+<li>Long-running processes that need checkpointing</li>
+<li>Human-in-the-loop workflows</li>
+<li><strong>Your use case</strong>: Multi-task data extraction with error recovery and state management</li>
+</ul>
+<h3 id="for-your-conference-summaries-project"><strong>For Your Conference Summaries Project</strong><a class="anchor" href="#for-your-conference-summaries-project">#</a></h3>
+<p>Your 4-task architecture maps to LangGraph like this:</p>
+<p><strong>Task 1 (Conference Discovery)</strong>: LangGraph node that searches, validates URLs, updates shared state
+<strong>Task 2 (Raw Data Extraction)</strong>: LangGraph node with retry logic, rate limiting, checkpoint-driven resumability
+<strong>Task 3 (AI Processing)</strong>: LangGraph node that processes in batches, with conditional routing based on confidence scores
+<strong>Task 4 (Issue Resolution)</strong>: LangGraph node with human-in-the-loop gates, automatic retry after fixes</p>
+<p><strong>The shared data store</strong> becomes the StateGraph&rsquo;s state, persisted via checkpointers. Each task becomes a node (or subgraph) with edges defining when to transition between tasks.</p>
+<h3 id="learning-roadmap"><strong>Learning Roadmap</strong><a class="anchor" href="#learning-roadmap">#</a></h3>
+<p><strong>Phase 1: LangChain Fundamentals</strong></p>
+<ul>
+<li>Understand LCEL (LangChain Expression Language) syntax</li>
+<li>Learn the core abstractions (LLMs, prompts, output parsers)</li>
+<li>Explore document loaders and text splitters</li>
+<li>Understand tool/function calling</li>
+</ul>
+<p><strong>Phase 2: LangGraph Basics</strong></p>
+<ul>
+<li>StateGraph concept and state management</li>
+<li>Adding nodes and edges</li>
+<li>Conditional routing</li>
+<li>Basic checkpointing</li>
+</ul>
+<p><strong>Phase 3: Advanced LangGraph</strong></p>
+<ul>
+<li>Subgraphs for task decomposition</li>
+<li>Custom reducers for complex state updates</li>
+<li>Parallel execution patterns</li>
+<li>Error handling and retry strategies</li>
+</ul>
+<p><strong>Phase 4: Production Patterns</strong></p>
+<ul>
+<li>LangSmith integration for observability</li>
+<li>Persistence strategies (SQLite vs Redis)</li>
+<li>Streaming and progress reporting</li>
+<li>Testing and debugging workflows</li>
+</ul>
+<p><strong>Key Resources:</strong></p>
+<ul>
+<li>LangChain docs focus on component usage</li>
+<li>LangGraph docs focus on workflow patterns</li>
+<li>LangSmith for understanding execution traces</li>
+<li>The &ldquo;ReAct agent&rdquo; pattern is the canonical example that shows why LangGraph exists</li>
+</ul>
+<p>Does this give you the architectural understanding you need to start digging deeper?</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+  
+  <div class="flex flex-wrap justify-between">
+    <span>
+    
+      <a href="/musings/docs/misc/kiro-ide-comparison-tools/" class="flex align-center">
+        <img src="/musings/icons/backward.svg" class="book-icon" alt="Backward" />
+        <span>Kiro IDE: Comprehensive Analysis, Comparisons &amp; Optimal Workflows</span>
+      </a>
+    
+    </span>
+    <span>
+    
+      <a href="/musings/docs/misc/llm-tracing-metrics-comparison/" class="flex align-center">
+        <span>Llm Tracing Metrics Comparison</span>
+        <img src="/musings/icons/forward.svg" class="book-icon" alt="Forward" />
+      </a>
+    
+    </span>
+  </div>
+  
+
+
+ 
+        
+  
+ 
+        
+        
+  
+ 
+        
+  
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#langchain-and-langgraph-architectural-overview">LangChain and LangGraph: Architectural Overview</a>
+          <ul>
+            <li><a href="#langchain-the-foundation-library"><strong>LangChain: The Foundation Library</strong></a></li>
+            <li><a href="#langgraph-the-orchestration-layer"><strong>LangGraph: The Orchestration Layer</strong></a></li>
+            <li><a href="#how-they-relate"><strong>How They Relate</strong></a></li>
+            <li><a href="#when-to-use-what"><strong>When to Use What</strong></a></li>
+            <li><a href="#for-your-conference-summaries-project"><strong>For Your Conference Summaries Project</strong></a></li>
+            <li><a href="#learning-roadmap"><strong>Learning Roadmap</strong></a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

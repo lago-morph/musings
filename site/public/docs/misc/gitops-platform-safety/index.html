@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><script src="/musings/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=musings/livereload" data-no-instant defer></script>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="GitOps Safety Architecture for Platform Evolution is a development platform document covering GitOps Safety Architecture for Platform Evolution and The Core Problem. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/musings/docs/misc/gitops-platform-safety/">
+  <meta property="og:site_name" content="Technology Documentation Hub">
+  <meta property="og:title" content="GitOps Safety Architecture for Platform Evolution">
+  <meta property="og:description" content="GitOps Safety Architecture for Platform Evolution is a development platform document covering GitOps Safety Architecture for Platform Evolution and The Core Problem. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2025-12-16T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-16T00:00:00+00:00">
+
+
+  <meta itemprop="name" content="GitOps Safety Architecture for Platform Evolution">
+  <meta itemprop="description" content="GitOps Safety Architecture for Platform Evolution is a development platform document covering GitOps Safety Architecture for Platform Evolution and The Core Problem. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details.">
+  <meta itemprop="datePublished" content="2025-12-16T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-12-16T00:00:00+00:00">
+  <meta itemprop="wordCount" content="2057">
+  <meta itemprop="keywords" content="platform,yaml,crossplane,argocd,production,database,backstage,gitops">
+
+<title>GitOps Safety Architecture for Platform Evolution | Technology Documentation Hub</title>
+<link rel="icon" href="/musings/favicon.png" >
+<link rel="manifest" href="/musings/manifest.json">
+<link rel="canonical" href="http://localhost:1313/musings/docs/misc/gitops-platform-safety/">
+<link rel="stylesheet" href="/musings/book.min.6970156cec683193d93c9c4edaf0d56574e4361df2e0c1be4f697ae81c3ba55f.css" integrity="sha256-aXAVbOxoMZPZPJxO2vDVZXTkNh3y4MG&#43;T2l66Bw7pV8=" crossorigin="anonymous">
+
+
+  <script defer src="/musings/fuse.min.js"></script>
+  <script defer src="/musings/en.search.min.173ca72eaf49c9fc6baf1c2e2e9837cb4f8ae13874ec0dc634ce40c45c8943dc.js" integrity="sha256-FzynLq9JyfxrrxwuLpg3y0&#43;K4Th07A3GNM5AxFyJQ9w=" crossorigin="anonymous"></script>
+
+
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-docs">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/musings/"><span>Technology Documentation Hub</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input id="book-search-input" type="text" 
+    placeholder="Search"
+    aria-label="Search"
+    maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/" class="">
+      AI &amp; Machine Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/" class="">
+      Development Platforms</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/" class="">
+      Infrastructure</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/workflows/" class="">
+      Workflows</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/" class="">
+      Miscellaneous</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/agentic-computing-overview-and-tools/" class="">
+      Agentic Computing Overview And Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/agno-vs-langchain/" class="">
+      Agno Vs Langchain</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/serverless-function-workflow-tools-for-kubernetes/" class="">
+      Core Concepts</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/flowwise-vs-langflow/" class="">
+      Flowise vs Langflow: Detailed Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/one-model-multiple-diagrams/" class="">
+      Generate all views</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/verification-architecture/" class="">
+      Is This a Reasonable Architecture?</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kiro-ide-comparison-tools/" class="">
+      Kiro IDE: Comprehensive Analysis, Comparisons &amp; Optimal Workflows</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/langchain-architecture/" class="">
+      Langchain Architecture</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/llm-tracing-metrics-comparison/" class="">
+      Llm Tracing Metrics Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/n8n-overview/" class="">
+      n8n Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kubernetes-based/" class="">
+      Open Source Workflow Orchestration on Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/tools-overview-and-getting-started/" class="">
+      Self-Hosted Open Source Agent Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/backstage-techdocs-pros-cons/" class="">
+      Backstage Techdocs Pros Cons</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/cross-diagram-reuse-guide/" class="">
+      Cross-Diagram Domain Model Reuse in PlantUML</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/prompt/" class="">
+      Crossplane EKS Management Cluster Implementation - Project Brief</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-intro/" class="">
+      Example Stage configuration</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/export-conversion/" class="">
+      Export Conversion</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-polyrepo/" class="">
+      Fast-moving image Warehouse</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/gitops-platform-safety/" class="active">
+      GitOps Safety Architecture for Platform Evolution</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/tasks/" class="">
+      High-Level Plan: Crossplane EKS Management Cluster Implementation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/backstage-kratix-crossplane-argocd-blueprint/" class="">
+      Implementation Blueprint: Crossplane &#43; Kratix &#43; Backstage &#43; ArgoCD</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-git-tags/" class="">
+      In subsequent stages, you can read this metadata</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/in-browser-editing-tools/" class="">
+      In-Browser Editing Documentation Solutions</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/initial-comparison/" class="">
+      Initial Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/comprehensive-guide/" class="">
+      Kargo and ArgoCD: A Comprehensive Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-argocd-interaction/" class="">
+      Kargo promotion step</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/presentation/" class="">
+      Kargo: GitOps Promotion for ArgoCD</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/notion-overview/" class="">
+      Notion: A Comprehensive Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/oss-portal-platform-orchestration-tools/" class="">
+      Oss Portal Platform Orchestration Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/oss-vs-closed-portal/" class="">
+      Oss Vs Closed Portal</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/crossplane-solution/" class="">
+      Pseudocode for composition function</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/recommendations/" class="">
+      Recommendations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/job-configmap-crossplane-abstraction/" class="">
+      Shell script helper for Option 3</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/stage3-outline/" class="">
+      Stage 3: Implementation Patterns - Outline (Crossplane 2.1)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/argocd-layered-values/" class="">
+      ArgoCD and Helm Schema Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/schema-testing/" class="">
+      Creating a Helm Values Schema: Complete Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/stage1/" class="">
+      Crossplane EKS Management Cluster - Approach Overview &amp; Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/executive-summary/" class="">
+      DevOps Domain Model: Executive Summary</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/devops-domain-model-guide/" class="">
+      DevOps Domain Model: Implementation Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/getting-started-concise/" class="">
+      Getting Started Concise</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/ci-cd-templates/" class="">
+      GitHub Actions Example</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/k8s-mcp-servers/" class="">
+      K8s Mcp Servers</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/non-helm-schema-validation/" class="">
+      Non Helm Schema Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/overview/" class="">
+      Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/prompt-guide/" class="">
+      Production Readiness Deep-Dive Prompt Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/production-readiness-overview/" class="">
+      Production Readiness Guide: From Docker Compose to Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/job-plus-configmap-annotation/" class="">
+      Read current state AND capture resourceVersion</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/runbooks/" class="">
+      Runbooks</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/layered-schema/" class="">
+      Schema Validation with Layered Values Files</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/helm-layered-abstraction/" class="">
+      Solution 2: Kustomize with Helm</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/stage2/" class="">
+      Stage 2: Architecture Design</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/starting-helm-testing/" class="">
+      Testing Complex Helm Charts: A Practical Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/imperitive-in-declarative/" class="">
+      Imperitive In Declarative</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/mermaid-test/" class="">
+      Mermaid Diagram Test</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/test-document/" class="">
+      Test Document</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/musings/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>GitOps Safety Architecture for Platform Evolution</h3>
+
+  <label for="toc-control">
+    
+    <img src="/musings/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#gitops-safety-architecture-for-platform-evolution">GitOps Safety Architecture for Platform Evolution</a>
+      <ul>
+        <li><a href="#the-core-problem"><strong>The Core Problem</strong></a></li>
+        <li><a href="#architecture-1-the-platform-as-layers-model"><strong>Architecture 1: The Platform-as-Layers Model</strong></a>
+          <ul>
+            <li><a href="#repository-structure">Repository Structure</a></li>
+            <li><a href="#argocd-application-hierarchy">ArgoCD Application Hierarchy</a></li>
+          </ul>
+        </li>
+        <li><a href="#architecture-2-immutable-versioned-capabilities"><strong>Architecture 2: Immutable Versioned Capabilities</strong></a>
+          <ul>
+            <li><a href="#the-versioning-strategy">The Versioning Strategy</a></li>
+            <li><a href="#composition-selection-strategy">Composition Selection Strategy</a></li>
+          </ul>
+        </li>
+        <li><a href="#architecture-3-blast-radius-containment"><strong>Architecture 3: Blast Radius Containment</strong></a>
+          <ul>
+            <li><a href="#namespace-isolation-for-platform-capabilities">Namespace Isolation for Platform Capabilities</a></li>
+            <li><a href="#kratix-promise-isolation">Kratix Promise Isolation</a></li>
+          </ul>
+        </li>
+        <li><a href="#architecture-4-the-promotion-pipeline"><strong>Architecture 4: The Promotion Pipeline</strong></a>
+          <ul>
+            <li><a href="#stage-1-platform-team-sandbox">Stage 1: Platform Team Sandbox</a></li>
+            <li><a href="#stage-2-canary-deployment">Stage 2: Canary Deployment</a></li>
+            <li><a href="#stage-3-beta-opt-in-for-early-adopters">Stage 3: Beta (Opt-in for Early Adopters)</a></li>
+            <li><a href="#stage-4-stable-promotion">Stage 4: Stable Promotion</a></li>
+          </ul>
+        </li>
+        <li><a href="#architecture-5-safety-mechanisms"><strong>Architecture 5: Safety Mechanisms</strong></a>
+          <ul>
+            <li><a href="#1-resource-reconciliation-protection">1. Resource Reconciliation Protection</a></li>
+            <li><a href="#2-drift-detection-alerts">2. Drift Detection Alerts</a></li>
+            <li><a href="#3-pre-sync-validation">3. Pre-Sync Validation</a></li>
+            <li><a href="#4-automatic-rollback-triggers">4. Automatic Rollback Triggers</a></li>
+          </ul>
+        </li>
+        <li><a href="#architecture-6-testing-strategy"><strong>Architecture 6: Testing Strategy</strong></a>
+          <ul>
+            <li><a href="#unit-tests-for-compositions">Unit Tests for Compositions</a></li>
+            <li><a href="#integration-tests-in-canary">Integration Tests in Canary</a></li>
+          </ul>
+        </li>
+        <li><a href="#the-safety-checklist"><strong>The Safety Checklist</strong></a></li>
+        <li><a href="#real-world-example-database-upgrade"><strong>Real-World Example: Database Upgrade</strong></a>
+          <ul>
+            <li><a href="#-dangerous-approach">❌ Dangerous Approach</a></li>
+            <li><a href="#-safe-approach">✅ Safe Approach</a></li>
+          </ul>
+        </li>
+        <li><a href="#monitoring--alerts"><strong>Monitoring &amp; Alerts</strong></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h1 id="gitops-safety-architecture-for-platform-evolution">GitOps Safety Architecture for Platform Evolution<a class="anchor" href="#gitops-safety-architecture-for-platform-evolution">#</a></h1>
+<p>This is the <strong>#1 problem</strong> that kills platform adoption. You&rsquo;re absolutely right—one bad XRD or Promise can destroy trust instantly. Here&rsquo;s the battle-tested approach:</p>
+<h2 id="the-core-problem"><strong>The Core Problem</strong><a class="anchor" href="#the-core-problem">#</a></h2>
+<pre tabindex="0"><code>Developer requests database via Kratix Promise
+    ↓
+You update the Promise to add new features
+    ↓
+Crossplane reconciles ALL existing databases
+    ↓
+Bug in new Composition = 50 databases get recreated
+    ↓
+Developers lose data, platform team loses credibility</code></pre><hr>
+<h2 id="architecture-1-the-platform-as-layers-model"><strong>Architecture 1: The Platform-as-Layers Model</strong><a class="anchor" href="#architecture-1-the-platform-as-layers-model">#</a></h2>
+<h3 id="repository-structure">Repository Structure<a class="anchor" href="#repository-structure">#</a></h3>
+<pre tabindex="0"><code>platform-infra/                    # REPO 1: Platform Team owns
+├── bootstrap/
+│   └── argocd-root.yaml          # The one true root
+├── core-platform/                 # Tier 0: Never changes
+│   ├── crossplane/
+│   │   └── crossplane-install.yaml
+│   ├── kratix/
+│   │   └── kratix-install.yaml
+│   └── argocd/
+│       └── argocd-config.yaml
+├── platform-capabilities/         # Tier 1: Changes carefully
+│   ├── stable/                    # Production Promises/XRDs
+│   │   ├── postgres-v1/
+│   │   │   ├── xrd.yaml
+│   │   │   ├── composition-prod.yaml
+│   │   │   └── composition-dev.yaml
+│   │   └── s3-bucket-v1/
+│   └── beta/                      # Testing new versions
+│       └── postgres-v2/
+│           ├── xrd.yaml
+│           └── composition.yaml
+└── workload-instances/            # Tier 2: Developer requests
+    └── team-a/
+        └── payment-db-claim.yaml
+
+platform-dev/                      # REPO 2: Sandbox for platform team
+└── experimental/
+    └── postgres-v3-experimental/  # Break things here safely</code></pre><h3 id="argocd-application-hierarchy">ArgoCD Application Hierarchy<a class="anchor" href="#argocd-application-hierarchy">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># bootstrap/argocd-root.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">argoproj.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Application</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">platform-root</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">argocd</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">project</span>: <span style="color:#ae81ff">platform</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">source</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">https://github.com/org/platform-infra</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">path</span>: <span style="color:#ae81ff">bootstrap/apps</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">destination</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">server</span>: <span style="color:#ae81ff">https://kubernetes.default.svc</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">syncPolicy</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">automated</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">prune</span>: <span style="color:#66d9ef">false</span>      <span style="color:#75715e"># NEVER auto-prune the root!</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">selfHeal</span>: <span style="color:#66d9ef">false</span>   <span style="color:#75715e"># Manual sync only</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># bootstrap/apps/core-platform.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">argoproj.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Application</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">core-platform</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">syncPolicy</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">automated</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">prune</span>: <span style="color:#66d9ef">false</span>      <span style="color:#75715e"># Core infra = manual changes only</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">selfHeal</span>: <span style="color:#66d9ef">true</span>    <span style="color:#75715e"># Fix drift, but don&#39;t delete</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">syncOptions</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">CreateNamespace=true</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># bootstrap/apps/stable-capabilities.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">argoproj.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Application</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">stable-capabilities</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">syncPolicy</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">automated</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">prune</span>: <span style="color:#66d9ef">true</span>       <span style="color:#75715e"># Safe to prune old versions</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">selfHeal</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">syncOptions</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">RespectIgnoreDifferences=true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ignoreDifferences</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">group</span>: <span style="color:#ae81ff">apiextensions.crossplane.io</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">CompositeResourceDefinition</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">jsonPointers</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">/status             </span> <span style="color:#75715e"># Ignore status changes</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">group</span>: <span style="color:#ae81ff">platform.kratix.io</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Promise</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">managedFieldsManagers</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">kratix             </span> <span style="color:#75715e"># Let Kratix manage its fields</span></span></span></code></pre></div><p><strong>Key insight:</strong> Different sync policies for different tiers. Core = manual, capabilities = automated but careful, workloads = fully automated.</p>
+<hr>
+<h2 id="architecture-2-immutable-versioned-capabilities"><strong>Architecture 2: Immutable Versioned Capabilities</strong><a class="anchor" href="#architecture-2-immutable-versioned-capabilities">#</a></h2>
+<h3 id="the-versioning-strategy">The Versioning Strategy<a class="anchor" href="#the-versioning-strategy">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># DON&#39;T DO THIS - Breaks existing claims when you update</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apiextensions.crossplane.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">CompositeResourceDefinition</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">xpostgresdatabases.platform.example.com </span> <span style="color:#75715e"># Collision!</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># DO THIS - New versions coexist with old</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apiextensions.crossplane.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">CompositeResourceDefinition</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">xpostgresdatabases.platform.example.com</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">group</span>: <span style="color:#ae81ff">platform.example.com</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">names</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">XPostgresDatabase</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">plural</span>: <span style="color:#ae81ff">xpostgresdatabases</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">claimNames</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">PostgresDatabase</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">plural</span>: <span style="color:#ae81ff">postgresdatabases</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">versions</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">v1alpha1         </span> <span style="color:#75715e"># Old version - keep supporting</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">served</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">referenceable</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">schema</span>: {<span style="color:#ae81ff">...}</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">v1beta1          </span> <span style="color:#75715e"># New version - opt-in</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">served</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">referenceable</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">schema</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># New features here</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">properties</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">properties</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">version</span>:        <span style="color:#75715e"># New field</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">type</span>: <span style="color:#ae81ff">string</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">backupSchedule</span>: <span style="color:#75715e"># New field</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">type</span>: <span style="color:#ae81ff">string</span></span></span></code></pre></div><h3 id="composition-selection-strategy">Composition Selection Strategy<a class="anchor" href="#composition-selection-strategy">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Composition for v1alpha1 (old claims use this)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apiextensions.crossplane.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Composition</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">postgres.platform.example.com.v1alpha1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">crossplane.io/xrd</span>: <span style="color:#ae81ff">xpostgresdatabases.platform.example.com</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">provider</span>: <span style="color:#ae81ff">aws</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">version</span>: <span style="color:#ae81ff">v1alpha1      </span> <span style="color:#75715e"># Explicit version label</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">compositeTypeRef</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">platform.example.com/v1alpha1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">XPostgresDatabase</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># ... existing composition logic</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># New composition for v1beta1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apiextensions.crossplane.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Composition</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">postgres.platform.example.com.v1beta1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">crossplane.io/xrd</span>: <span style="color:#ae81ff">xpostgresdatabases.platform.example.com</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">provider</span>: <span style="color:#ae81ff">aws</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">version</span>: <span style="color:#ae81ff">v1beta1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">compositeTypeRef</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">platform.example.com/v1beta1 </span> <span style="color:#75715e"># Points to new version</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">XPostgresDatabase</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># ... new improved composition</span></span></span></code></pre></div><p><strong>Key insight:</strong> Old claims keep using old Compositions. They don&rsquo;t break when you add v1beta1.</p>
+<hr>
+<h2 id="architecture-3-blast-radius-containment"><strong>Architecture 3: Blast Radius Containment</strong><a class="anchor" href="#architecture-3-blast-radius-containment">#</a></h2>
+<h3 id="namespace-isolation-for-platform-capabilities">Namespace Isolation for Platform Capabilities<a class="anchor" href="#namespace-isolation-for-platform-capabilities">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Different namespaces = different failure domains</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Namespace</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">platform-stable    </span> <span style="color:#75715e"># Production XRDs/Promises</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Namespace</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">platform-beta      </span> <span style="color:#75715e"># Testing new versions</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Namespace</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">platform-canary    </span> <span style="color:#75715e"># Platform team&#39;s canary</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Install XRDs in different namespaces</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Stable version</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">pkg.crossplane.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Configuration</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">postgres-config-v1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">platform-stable</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">package</span>: <span style="color:#ae81ff">registry.example.com/postgres:v1.2.3</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Beta version</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">pkg.crossplane.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Configuration</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">postgres-config-v2</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">platform-beta</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">package</span>: <span style="color:#ae81ff">registry.example.com/postgres:v2.0.0-beta1</span></span></span></code></pre></div><h3 id="kratix-promise-isolation">Kratix Promise Isolation<a class="anchor" href="#kratix-promise-isolation">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Stable Promise - production ready</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">platform.kratix.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Promise</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">postgres-v1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">platform-stable</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">stability</span>: <span style="color:#ae81ff">stable</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">version</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">destinationSelectors</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">matchLabels</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">environment</span>: <span style="color:#ae81ff">production </span> <span style="color:#75715e"># Only prod clusters get stable</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Beta Promise - testing</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">platform.kratix.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Promise</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">postgres-v2</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">platform-beta</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">stability</span>: <span style="color:#ae81ff">beta</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">version</span>: <span style="color:#ae81ff">v2</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">destinationSelectors</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">matchLabels</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">environment</span>: <span style="color:#ae81ff">development </span> <span style="color:#75715e"># Only dev clusters for beta</span></span></span></code></pre></div><p><strong>Key insight:</strong> Physical separation prevents cross-contamination. Beta capabilities can&rsquo;t affect prod workloads.</p>
+<hr>
+<h2 id="architecture-4-the-promotion-pipeline"><strong>Architecture 4: The Promotion Pipeline</strong><a class="anchor" href="#architecture-4-the-promotion-pipeline">#</a></h2>
+<h3 id="stage-1-platform-team-sandbox">Stage 1: Platform Team Sandbox<a class="anchor" href="#stage-1-platform-team-sandbox">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># platform-dev repo, branch: feature/postgres-v2</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ArgoCD App for platform team&#39;s testing cluster only</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">argoproj.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Application</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">platform-experiments</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">argocd</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">project</span>: <span style="color:#ae81ff">platform-team-only</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">source</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">https://github.com/org/platform-dev</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">path</span>: <span style="color:#ae81ff">experimental</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">targetRevision</span>: <span style="color:#ae81ff">HEAD </span> <span style="color:#75715e"># Tracks all branches</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">destination</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">server</span>: <span style="color:#ae81ff">https://platform-dev-cluster </span> <span style="color:#75715e"># Isolated cluster!</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">experiments</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">syncPolicy</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">automated</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">prune</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">selfHeal</span>: <span style="color:#66d9ef">true</span></span></span></code></pre></div><p><strong>Timeline:</strong> 2-5 days of breaking things safely</p>
+<h3 id="stage-2-canary-deployment">Stage 2: Canary Deployment<a class="anchor" href="#stage-2-canary-deployment">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># After testing in sandbox, promote to canary namespace</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create ONE test claim using new version</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">platform.example.com/v1beta1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">PostgresDatabase</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">canary-test-db</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">platform-canary</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">platform-canary-test</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">version</span>: <span style="color:#ae81ff">v1beta1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">size</span>: <span style="color:#ae81ff">small</span></span></span></code></pre></div><p><strong>Validation checklist:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Automated tests run against canary</span>
+</span></span><span style="display:flex;"><span>- name: Validate Canary
+</span></span><span style="display:flex;"><span>  script: |
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Check database was created</span>
+</span></span><span style="display:flex;"><span>    kubectl wait --for<span style="color:#f92672">=</span>condition<span style="color:#f92672">=</span>Ready <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>      postgresdatabase/canary-test-db --timeout<span style="color:#f92672">=</span>300s
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Verify connection</span>
+</span></span><span style="display:flex;"><span>    kubectl run -it --rm test-connection <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>      --image<span style="color:#f92672">=</span>postgres:15 --restart<span style="color:#f92672">=</span>Never -- <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>      psql $CONNECTION_STRING -c <span style="color:#e6db74">&#34;SELECT 1&#34;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Check no unintended side effects</span>
+</span></span><span style="display:flex;"><span>    kubectl get postgresdatabase -A | <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>      grep -v canary | grep -v Ready <span style="color:#f92672">&amp;&amp;</span> exit <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Passed? Promote to beta</span></span></span></code></pre></div><p><strong>Timeline:</strong> 1-2 days monitoring</p>
+<h3 id="stage-3-beta-opt-in-for-early-adopters">Stage 3: Beta (Opt-in for Early Adopters)<a class="anchor" href="#stage-3-beta-opt-in-for-early-adopters">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Merge to platform-infra repo, beta/ directory</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># beta/argocd-app.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">argoproj.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Application</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">platform-beta-capabilities</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">source</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">https://github.com/org/platform-infra</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">path</span>: <span style="color:#ae81ff">platform-capabilities/beta</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">destination</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">platform-beta</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">syncPolicy</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">automated</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">prune</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">selfHeal</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">syncWave</span>: <span style="color:#ae81ff">20</span>  <span style="color:#75715e"># After stable (wave 10)</span></span></span></code></pre></div><p><strong>Exposure strategy:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Only show beta capabilities to opted-in teams</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Backstage template with annotation</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">scaffolder.backstage.io/v1beta3</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Template</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">postgres-v2-beta</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">backstage.io/beta</span>: <span style="color:#e6db74">&#34;true&#34;</span>  <span style="color:#75715e"># Hidden unless user enables beta features</span></span></span></code></pre></div><p><strong>Timeline:</strong> 2-4 weeks with friendly teams</p>
+<h3 id="stage-4-stable-promotion">Stage 4: Stable Promotion<a class="anchor" href="#stage-4-stable-promotion">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Move from beta/ to stable/</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">git mv platform-capabilities/beta/postgres-v2 \</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#ae81ff">platform-capabilities/stable/postgres-v2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Update ArgoCD app to point to stable</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># stable/argocd-app.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">argoproj.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Application</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">platform-stable-capabilities</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">source</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">path</span>: <span style="color:#ae81ff">platform-capabilities/stable</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">syncWave</span>: <span style="color:#ae81ff">10</span>  <span style="color:#75715e"># Deploys before beta</span></span></span></code></pre></div><p><strong>Deprecation of v1:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Don&#39;t delete v1 immediately!</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Mark as deprecated in stable/postgres-v1/</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apiextensions.crossplane.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">CompositeResourceDefinition</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">xpostgresdatabases.platform.example.com</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">deprecated</span>: <span style="color:#e6db74">&#34;true&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">deprecation.message</span>: <span style="color:#e6db74">&#34;Use v1beta1. v1alpha1 will be removed in 90 days&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">sunset.date</span>: <span style="color:#e6db74">&#34;2025-06-01&#34;</span></span></span></code></pre></div><hr>
+<h2 id="architecture-5-safety-mechanisms"><strong>Architecture 5: Safety Mechanisms</strong><a class="anchor" href="#architecture-5-safety-mechanisms">#</a></h2>
+<h3 id="1-resource-reconciliation-protection">1. Resource Reconciliation Protection<a class="anchor" href="#1-resource-reconciliation-protection">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Composition with deletion protection</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apiextensions.crossplane.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Composition</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">postgres.platform.example.com</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">resources</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">rds-instance</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">base</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">rds.aws.upbound.io/v1beta1</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Instance</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#75715e"># Prevent accidental deletion</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">crossplane.io/external-name</span>: <span style="color:#ae81ff">preserve</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">deletionPolicy</span>: <span style="color:#ae81ff">Orphan </span> <span style="color:#75715e"># Don&#39;t delete cloud resource</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">forProvider</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">skipFinalSnapshot</span>: <span style="color:#66d9ef">false</span>  <span style="color:#75715e"># Always take snapshot</span></span></span></code></pre></div><h3 id="2-drift-detection-alerts">2. Drift Detection Alerts<a class="anchor" href="#2-drift-detection-alerts">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># ArgoCD notification when platform drifts</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ConfigMap</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">argocd-notifications-cm</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">data</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">trigger.platform-drift</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    - when: app.status.sync.status == &#39;OutOfSync&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      oncePer: app.metadata.name
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      send: [platform-team-slack]</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template.platform-drift</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    message: |
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      ⚠️ PLATFORM DRIFT DETECTED
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      App: {{.app.metadata.name}}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      Diff: {{.app.status.sync.comparisonResult.diff}}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      This may indicate someone manually modified platform resources.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      Review immediately: {{.context.argocdUrl}}/applications/{{.app.metadata.name}}</span></span></span></code></pre></div><h3 id="3-pre-sync-validation">3. Pre-Sync Validation<a class="anchor" href="#3-pre-sync-validation">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># ArgoCD PreSync hook to validate changes</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">batch/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Job</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">validate-platform-changes</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">argocd.argoproj.io/hook</span>: <span style="color:#ae81ff">PreSync</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">argocd.argoproj.io/hook-delete-policy</span>: <span style="color:#ae81ff">BeforeHookCreation</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">validator</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">image</span>: <span style="color:#ae81ff">your-registry/platform-validator:v1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">command</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#ae81ff">/bin/sh</span>
+</span></span><span style="display:flex;"><span>        - -<span style="color:#ae81ff">c</span>
+</span></span><span style="display:flex;"><span>        - |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          # Check for dangerous changes
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          # 1. Ensure no XRD deletions without migration
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          if kubectl get xrd -o yaml | grep &#34;deletionTimestamp&#34;; then
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            echo &#34;ERROR: XRD deletion detected without migration plan&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            exit 1
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          fi
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          # 2. Validate all XRDs still compile
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          for xrd in /manifests/xrds/*.yaml; do
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            kubectl apply --dry-run=server -f $xrd || exit 1
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          done
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          # 3. Check for breaking schema changes
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          /scripts/check-schema-compatibility.sh || exit 1
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          echo &#34;✓ Platform changes validated&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">restartPolicy</span>: <span style="color:#ae81ff">Never</span></span></span></code></pre></div><h3 id="4-automatic-rollback-triggers">4. Automatic Rollback Triggers<a class="anchor" href="#4-automatic-rollback-triggers">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># ArgoCD app with auto-rollback</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">argoproj.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Application</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">platform-stable-capabilities</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">syncPolicy</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">automated</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">prune</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">selfHeal</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">retry</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">limit</span>: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">backoff</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">duration</span>: <span style="color:#ae81ff">5s</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">factor</span>: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">maxDuration</span>: <span style="color:#ae81ff">1m</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Auto-rollback on health degradation</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ignoreDifferences</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">group</span>: <span style="color:#ae81ff">apiextensions.crossplane.io</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">CompositeResourceDefinition</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">jsonPointers</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">/status/conditions</span></span></span></code></pre></div><hr>
+<h2 id="architecture-6-testing-strategy"><strong>Architecture 6: Testing Strategy</strong><a class="anchor" href="#architecture-6-testing-strategy">#</a></h2>
+<h3 id="unit-tests-for-compositions">Unit Tests for Compositions<a class="anchor" href="#unit-tests-for-compositions">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Use crossplane/composition-testing</span>
+</span></span><span style="display:flex;"><span>cat <span style="color:#e6db74">&lt;&lt;EOF | kubectl apply --dry-run=client -f - -o yaml
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">apiVersion: platform.example.com/v1beta1
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">kind: PostgresDatabase
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">metadata:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  name: test-db
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">spec:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  size: medium
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  environment: dev
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Python test using crossplane render</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> subprocess
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> yaml
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_postgres_composition</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Render composition with test claim</span>
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> subprocess<span style="color:#f92672">.</span>run([
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;crossplane&#39;</span>, <span style="color:#e6db74">&#39;beta&#39;</span>, <span style="color:#e6db74">&#39;render&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;xrd.yaml&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;composition.yaml&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;claim.yaml&#39;</span>
+</span></span><span style="display:flex;"><span>    ], capture_output<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>, text<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    resources <span style="color:#f92672">=</span> yaml<span style="color:#f92672">.</span>safe_load_all(result<span style="color:#f92672">.</span>stdout)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Assert expected resources created</span>
+</span></span><span style="display:flex;"><span>    resource_types <span style="color:#f92672">=</span> [r[<span style="color:#e6db74">&#39;kind&#39;</span>] <span style="color:#66d9ef">for</span> r <span style="color:#f92672">in</span> resources]
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">assert</span> <span style="color:#e6db74">&#39;Instance&#39;</span> <span style="color:#f92672">in</span> resource_types  <span style="color:#75715e"># RDS</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">assert</span> <span style="color:#e6db74">&#39;SubnetGroup&#39;</span> <span style="color:#f92672">in</span> resource_types
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">assert</span> <span style="color:#e6db74">&#39;SecurityGroup&#39;</span> <span style="color:#f92672">in</span> resource_types
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Assert correct sizing</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> r <span style="color:#f92672">in</span> resources:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> r[<span style="color:#e6db74">&#39;kind&#39;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Instance&#39;</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">assert</span> r[<span style="color:#e6db74">&#39;spec&#39;</span>][<span style="color:#e6db74">&#39;forProvider&#39;</span>][<span style="color:#e6db74">&#39;instanceClass&#39;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;db.t3.medium&#39;</span></span></span></code></pre></div><h3 id="integration-tests-in-canary">Integration Tests in Canary<a class="anchor" href="#integration-tests-in-canary">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Tekton pipeline for canary testing</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">tekton.dev/v1beta1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Pipeline</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">test-new-capability</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">tasks</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">create-test-claim</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">taskSpec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">apply-claim</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">image</span>: <span style="color:#ae81ff">bitnami/kubectl</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">script</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          kubectl apply -f - &lt;&lt;EOF
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          apiVersion: platform.example.com/v1beta1
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          kind: PostgresDatabase
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          metadata:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            name: test-${RANDOM}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            namespace: platform-canary
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          spec:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            size: small
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          EOF</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">wait-for-ready</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">runAfter</span>: [<span style="color:#ae81ff">create-test-claim]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">taskSpec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">wait</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">image</span>: <span style="color:#ae81ff">bitnami/kubectl</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">script</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          kubectl wait --for=condition=Ready \
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            postgresdatabase -n platform-canary \
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            --all --timeout=600s</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">validate-connection</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">runAfter</span>: [<span style="color:#ae81ff">wait-for-ready]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">taskSpec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">test-connection</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">image</span>: <span style="color:#ae81ff">postgres:15</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">script</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          # Get connection secret
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          SECRET=$(kubectl get postgresdatabase -n platform-canary \
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            -o jsonpath=&#39;{.items[0].status.connectionSecret}&#39;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          # Test connection
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          psql $(kubectl get secret $SECRET -o jsonpath=&#39;{.data.uri}&#39; | base64 -d) \
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            -c &#34;SELECT version();&#34;</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">cleanup</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">runAfter</span>: [<span style="color:#ae81ff">validate-connection]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">taskSpec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">delete</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">image</span>: <span style="color:#ae81ff">bitnami/kubectl</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">script</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          kubectl delete postgresdatabase -n platform-canary --all</span></span></span></code></pre></div><hr>
+<h2 id="the-safety-checklist"><strong>The Safety Checklist</strong><a class="anchor" href="#the-safety-checklist">#</a></h2>
+<p>Before promoting ANY platform capability to production:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span><span style="color:#75715e">## Platform Capability Promotion Checklist
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Phase 1: Development (platform-dev cluster)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">- [ ]</span> XRD compiles without errors
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">- [ ]</span> Composition renders successfully with test claims
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">- [ ]</span> Unit tests pass (<span style="color:#e6db74">`crossplane render`</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">- [ ]</span> No unexpected resources created
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">- [ ]</span> Deletion completes cleanly (no orphaned resources)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Phase 2: Canary (production cluster, isolated namespace)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">- [ ]</span> Single test claim created successfully
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">- [ ]</span> Cloud resources provisioned correctly
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">- [ ]</span> Connection/credentials work
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">- [ ]</span> No impact on existing claims (monitored for 24h)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">- [ ]</span> Resource cleanup works (delete claim, verify cloud resources removed)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Phase 3: Beta (production cluster, opt-in)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">- [ ]</span> Deployed to platform-beta namespace
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">- [ ]</span> At least 2 friendly teams using it
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">- [ ]</span> Running in production for 2+ weeks
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">- [ ]</span> No escalated issues
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">- [ ]</span> Metrics look healthy (provision time, error rate)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">- [ ]</span> Deprecation plan for old version documented
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Phase 4: Stable (production cluster, default)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">- [ ]</span> Moved to platform-stable namespace
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">- [ ]</span> Documentation updated
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">- [ ]</span> Backstage templates updated
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">- [ ]</span> Old version marked deprecated (if applicable)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">- [ ]</span> Migration guide published (if breaking changes)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">- [ ]</span> Announcement sent to engineering teams
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Phase 5: Sunset (removing old version)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">- [ ]</span> 90-day deprecation notice given
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">- [ ]</span> All existing claims migrated
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">- [ ]</span> Old Composition removed
+</span></span><span style="display:flex;"><span>- [ ] Old XRD version marked as not served</span></span></code></pre></div><hr>
+<h2 id="real-world-example-database-upgrade"><strong>Real-World Example: Database Upgrade</strong><a class="anchor" href="#real-world-example-database-upgrade">#</a></h2>
+<p><strong>Scenario:</strong> You want to add automated backups to PostgresDatabase XRD</p>
+<h3 id="-dangerous-approach">❌ Dangerous Approach<a class="anchor" href="#-dangerous-approach">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Modifying existing v1alpha1 XRD</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># This triggers reconciliation of ALL existing databases!</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">versions</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">v1alpha1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">schema</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">properties</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">properties</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">backupRetention</span>:  <span style="color:#75715e"># NEW FIELD</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">type</span>: <span style="color:#ae81ff">integer</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">default</span>: <span style="color:#ae81ff">7</span>      <span style="color:#75715e"># Uh oh, all DBs just got modified!</span></span></span></code></pre></div><h3 id="-safe-approach">✅ Safe Approach<a class="anchor" href="#-safe-approach">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Create v1alpha2 with new feature</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">versions</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">v1alpha1     </span> <span style="color:#75715e"># OLD - still served</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">served</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">referenceable</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">schema</span>: {<span style="color:#ae81ff">...}      </span> <span style="color:#75715e"># Unchanged</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">v1alpha2     </span> <span style="color:#75715e"># NEW - opt-in</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">served</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">referenceable</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">schema</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">properties</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">properties</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">backupRetention</span>:
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">type</span>: <span style="color:#ae81ff">integer</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">default</span>: <span style="color:#ae81ff">7</span></span></span></code></pre></div><p><strong>Migration path:</strong></p>
+<ol>
+<li>Deploy v1alpha2 to beta namespace</li>
+<li>Create test claim with <code>apiVersion: v1alpha2</code></li>
+<li>Validate backups work</li>
+<li>Document migration: &ldquo;To enable backups, update your claim to v1alpha2&rdquo;</li>
+<li>Old claims keep working on v1alpha1 (no backups, but stable)</li>
+<li>Teams migrate when ready</li>
+<li>After 90 days, deprecate v1alpha1</li>
+</ol>
+<hr>
+<h2 id="monitoring--alerts"><strong>Monitoring &amp; Alerts</strong><a class="anchor" href="#monitoring--alerts">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Prometheus alerts for platform health</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ConfigMap</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">platform-alerts</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">data</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">alerts.yaml</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    groups:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    - name: platform-stability
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      rules:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      - alert: CrossplaneReconciliationFailures
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        expr: |
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          rate(crossplane_reconcile_errors_total[5m]) &gt; 0.1
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        for: 5m
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        annotations:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          summary: &#34;Crossplane reconciliation errors detected&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      - alert: UnhealthyXRClaims
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        expr: |
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          count(crossplane_claim_status{condition=&#34;Ready&#34;,status=&#34;False&#34;}) &gt; 5
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        for: 10m
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        annotations:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          summary: &#34;Multiple claims unhealthy&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      - alert: PlatformDrift
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        expr: |
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          argocd_app_sync_status{name=~&#34;platform-.*&#34;,sync_status=&#34;OutOfSync&#34;} == 1
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        for: 15m
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        annotations:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          summary: &#34;Platform components drifted from Git&#34;</span></span></span></code></pre></div><p><strong>Dashboard metrics to track:</strong></p>
+<ul>
+<li>Claims created per day (by version)</li>
+<li>Time to ready (by XRD type)</li>
+<li>Error rate (by Composition)</li>
+<li>Resource churn (creates vs deletes)</li>
+<li>Platform component sync status</li>
+</ul>
+<p>This architecture lets you innovate rapidly while keeping production stable. The key is <strong>immutability</strong> (versions never change) and <strong>isolation</strong> (blast radius containment).</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+  
+  <div class="flex flex-wrap justify-between">
+    <span>
+    
+      <a href="/musings/docs/misc/kargo-polyrepo/" class="flex align-center">
+        <img src="/musings/icons/backward.svg" class="book-icon" alt="Backward" />
+        <span>Fast-moving image Warehouse</span>
+      </a>
+    
+    </span>
+    <span>
+    
+      <a href="/musings/docs/misc/tasks/" class="flex align-center">
+        <span>High-Level Plan: Crossplane EKS Management Cluster Implementation</span>
+        <img src="/musings/icons/forward.svg" class="book-icon" alt="Forward" />
+      </a>
+    
+    </span>
+  </div>
+  
+
+
+ 
+        
+  
+ 
+        
+        
+  
+ 
+        
+  
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#gitops-safety-architecture-for-platform-evolution">GitOps Safety Architecture for Platform Evolution</a>
+      <ul>
+        <li><a href="#the-core-problem"><strong>The Core Problem</strong></a></li>
+        <li><a href="#architecture-1-the-platform-as-layers-model"><strong>Architecture 1: The Platform-as-Layers Model</strong></a>
+          <ul>
+            <li><a href="#repository-structure">Repository Structure</a></li>
+            <li><a href="#argocd-application-hierarchy">ArgoCD Application Hierarchy</a></li>
+          </ul>
+        </li>
+        <li><a href="#architecture-2-immutable-versioned-capabilities"><strong>Architecture 2: Immutable Versioned Capabilities</strong></a>
+          <ul>
+            <li><a href="#the-versioning-strategy">The Versioning Strategy</a></li>
+            <li><a href="#composition-selection-strategy">Composition Selection Strategy</a></li>
+          </ul>
+        </li>
+        <li><a href="#architecture-3-blast-radius-containment"><strong>Architecture 3: Blast Radius Containment</strong></a>
+          <ul>
+            <li><a href="#namespace-isolation-for-platform-capabilities">Namespace Isolation for Platform Capabilities</a></li>
+            <li><a href="#kratix-promise-isolation">Kratix Promise Isolation</a></li>
+          </ul>
+        </li>
+        <li><a href="#architecture-4-the-promotion-pipeline"><strong>Architecture 4: The Promotion Pipeline</strong></a>
+          <ul>
+            <li><a href="#stage-1-platform-team-sandbox">Stage 1: Platform Team Sandbox</a></li>
+            <li><a href="#stage-2-canary-deployment">Stage 2: Canary Deployment</a></li>
+            <li><a href="#stage-3-beta-opt-in-for-early-adopters">Stage 3: Beta (Opt-in for Early Adopters)</a></li>
+            <li><a href="#stage-4-stable-promotion">Stage 4: Stable Promotion</a></li>
+          </ul>
+        </li>
+        <li><a href="#architecture-5-safety-mechanisms"><strong>Architecture 5: Safety Mechanisms</strong></a>
+          <ul>
+            <li><a href="#1-resource-reconciliation-protection">1. Resource Reconciliation Protection</a></li>
+            <li><a href="#2-drift-detection-alerts">2. Drift Detection Alerts</a></li>
+            <li><a href="#3-pre-sync-validation">3. Pre-Sync Validation</a></li>
+            <li><a href="#4-automatic-rollback-triggers">4. Automatic Rollback Triggers</a></li>
+          </ul>
+        </li>
+        <li><a href="#architecture-6-testing-strategy"><strong>Architecture 6: Testing Strategy</strong></a>
+          <ul>
+            <li><a href="#unit-tests-for-compositions">Unit Tests for Compositions</a></li>
+            <li><a href="#integration-tests-in-canary">Integration Tests in Canary</a></li>
+          </ul>
+        </li>
+        <li><a href="#the-safety-checklist"><strong>The Safety Checklist</strong></a></li>
+        <li><a href="#real-world-example-database-upgrade"><strong>Real-World Example: Database Upgrade</strong></a>
+          <ul>
+            <li><a href="#-dangerous-approach">❌ Dangerous Approach</a></li>
+            <li><a href="#-safe-approach">✅ Safe Approach</a></li>
+          </ul>
+        </li>
+        <li><a href="#monitoring--alerts"><strong>Monitoring &amp; Alerts</strong></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

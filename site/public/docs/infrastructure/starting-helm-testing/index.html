@@ -1,0 +1,1823 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><script src="/musings/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=musings/livereload" data-no-instant defer></script>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Testing Complex Helm Charts: A Practical Guide is a infrastructure document covering Testing Complex Helm Charts: A Practical Guide and Understanding What You’re Testing. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/musings/docs/infrastructure/starting-helm-testing/">
+  <meta property="og:site_name" content="Technology Documentation Hub">
+  <meta property="og:title" content="Understanding What You&#39;re Testing">
+  <meta property="og:description" content="Testing Complex Helm Charts: A Practical Guide is a infrastructure document covering Testing Complex Helm Charts: A Practical Guide and Understanding What You’re Testing. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2025-12-16T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-16T00:00:00+00:00">
+
+
+  <meta itemprop="name" content="Understanding What You&#39;re Testing">
+  <meta itemprop="description" content="Testing Complex Helm Charts: A Practical Guide is a infrastructure document covering Testing Complex Helm Charts: A Practical Guide and Understanding What You’re Testing. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details.">
+  <meta itemprop="datePublished" content="2025-12-16T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-12-16T00:00:00+00:00">
+  <meta itemprop="wordCount" content="1798">
+  <meta itemprop="keywords" content="yaml,helm,deployment,testing,security,production,kubernetes,k8s">
+
+<title>Understanding What You&#39;re Testing | Technology Documentation Hub</title>
+<link rel="icon" href="/musings/favicon.png" >
+<link rel="manifest" href="/musings/manifest.json">
+<link rel="canonical" href="http://localhost:1313/musings/docs/infrastructure/starting-helm-testing/">
+<link rel="stylesheet" href="/musings/book.min.6970156cec683193d93c9c4edaf0d56574e4361df2e0c1be4f697ae81c3ba55f.css" integrity="sha256-aXAVbOxoMZPZPJxO2vDVZXTkNh3y4MG&#43;T2l66Bw7pV8=" crossorigin="anonymous">
+
+
+  <script defer src="/musings/fuse.min.js"></script>
+  <script defer src="/musings/en.search.min.5cc9128683126c7cda9fef74044c10c013f6d8935e1e3e719e3f562033e9ef44.js" integrity="sha256-XMkShoMSbHzan&#43;90BEwQwBP22JNeHj5xnj9WIDPp70Q=" crossorigin="anonymous"></script>
+
+
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-docs">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/musings/"><span>Technology Documentation Hub</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input id="book-search-input" type="text" 
+    placeholder="Search"
+    aria-label="Search"
+    maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/" class="">
+      AI &amp; Machine Learning</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/agentic-computing-overview-and-tools/" class="">
+      Agentic Computing Overview And Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/agno-vs-langchain/" class="">
+      Agno Vs Langchain</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/flowwise-vs-langflow/" class="">
+      Flowise vs Langflow: Detailed Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/one-model-multiple-diagrams/" class="">
+      Generate all views</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/verification-architecture/" class="">
+      Is This a Reasonable Architecture?</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/kiro-ide-comparison-tools/" class="">
+      Kiro IDE: Comprehensive Analysis, Comparisons &amp; Optimal Workflows</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/langchain-architecture/" class="">
+      LangChain: The Foundation Library</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/llm-tracing-metrics-comparison/" class="">
+      Llm Tracing Metrics Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/kubernetes-based/" class="">
+      Open Source Workflow Orchestration on Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/tools-overview-and-getting-started/" class="">
+      Self-Hosted Open Source Agent Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/serverless-function-workflow-tools-for-kubernetes/" class="">
+      Serverless/Function Workflows on Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/n8n-overview/" class="">
+      What Problems Does n8n Solve?</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/" class="">
+      Development Platforms</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/backstage-techdocs-pros-cons/" class="">
+      Backstage Techdocs Pros Cons</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/cross-diagram-reuse-guide/" class="">
+      Cross-Diagram Domain Model Reuse in PlantUML</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/prompt/" class="">
+      Crossplane EKS Management Cluster Implementation - Project Brief</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/comprehensive-guide/" class="">
+      Driven vs Event: Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/gitops-platform-safety/" class="">
+      GitOps Safety Architecture for Platform Evolution</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/kargo-intro/" class="">
+      How Kargo Works with ArgoCD to Manage Deployments</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/backstage-kratix-crossplane-argocd-blueprint/" class="">
+      Implementation Blueprint: Crossplane &#43; Kratix &#43; Backstage &#43; ArgoCD</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/kargo-git-tags/" class="">
+      In subsequent stages, you can read this metadata</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/in-browser-editing-tools/" class="">
+      In-Browser Editing Documentation Solutions</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/initial-comparison/" class="">
+      Initial Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/kargo-argocd-interaction/" class="">
+      Kargo promotion step</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/presentation/" class="">
+      Kargo: GitOps Promotion for ArgoCD</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/notion-overview/" class="">
+      Notion: A Comprehensive Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/oss-portal-platform-orchestration-tools/" class="">
+      Oss Portal Platform Orchestration Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/oss-vs-closed-portal/" class="">
+      Oss Vs Closed Portal</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/recommendations/" class="">
+      Overview of Text-Based UML Domain Modeling Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/export-conversion/" class="">
+      PlantUML Export &amp; Embedding Options</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/crossplane-solution/" class="">
+      Pseudocode for composition function</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/kargo-polyrepo/" class="">
+      Response</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/job-configmap-crossplane-abstraction/" class="">
+      Shell script helper for Option 3</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/tasks/" class="">
+      Stage 1: Approach Overview &amp; Comparison ✅ COMPLETE</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/stage3-outline/" class="">
+      Stage 3: Implementation Patterns - Outline (Crossplane 2.1)</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/" class="">
+      Infrastructure</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/runbooks/" class="">
+      1. Mental Model Shift (Important Framing)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/argocd-layered-values/" class="">
+      ArgoCD and Helm Schema Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/prompt-guide/" class="">
+      Contents</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/overview/" class="">
+      Core Strategy: Progressive Delivery with Blast Radius Containment</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/stage1/" class="">
+      Crossplane EKS Management Cluster - Approach Overview &amp; Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/getting-started-concise/" class="">
+      Getting Started Concise</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/ci-cd-templates/" class="">
+      GitHub Actions Example</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/k8s-mcp-servers/" class="">
+      K8s Mcp Servers</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/stage2/" class="">
+      Management Cluster VPC Layout</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/non-helm-schema-validation/" class="">
+      Non Helm Schema Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/production-readiness-overview/" class="">
+      Production Readiness Guide: From Docker Compose to Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/schema-testing/" class="">
+      Quick Start: Generate Schema from Existing values.yaml</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/job-plus-configmap-annotation/" class="">
+      Read current state AND capture resourceVersion</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/layered-schema/" class="">
+      Schema Validation with Layered Values Files</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/helm-layered-abstraction/" class="">
+      Solution 2: Kustomize with Helm</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/starting-helm-testing/" class="active">
+      Understanding What You&#39;re Testing</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/executive-summary/" class="">
+      What You&#39;re Building</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/devops-domain-model-guide/" class="">
+      Why This Approach Works for DevOps</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/workflows/" class="">
+      Workflows</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/workflows/imperitive-in-declarative/" class="">
+      Imperitive In Declarative</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/mermaid-test/" class="">
+      Mermaid Diagram Test</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/" class="">
+      Miscellaneous</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/test-document/" class="">
+      Test Document</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/musings/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>Understanding What You&#39;re Testing</h3>
+
+  <label for="toc-control">
+    
+    <img src="/musings/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#testing-complex-helm-charts-a-practical-guide">Testing Complex Helm Charts: A Practical Guide</a>
+      <ul>
+        <li><a href="#understanding-what-you"><strong>Understanding What You’re Testing</strong></a></li>
+        <li><a href="#step-0-audit-your-current-chart"><strong>Step 0: Audit Your Current Chart</strong></a></li>
+        <li><a href="#phase-1-unit-tests-testing-template-rendering"><strong>Phase 1: Unit Tests (Testing Template Rendering)</strong></a>
+          <ul>
+            <li><a href="#tool-helm-unittest-start-here">Tool: <code>helm unittest</code> (Start Here)</a></li>
+            <li><a href="#your-first-test-5-minutes">Your First Test (5 minutes)</a></li>
+            <li><a href="#real-world-example-testing-conditional-logic">Real-World Example: Testing Conditional Logic</a></li>
+            <li><a href="#testing-complex-value-combinations">Testing Complex Value Combinations</a></li>
+            <li><a href="#testing-helper-functions">Testing Helper Functions</a></li>
+            <li><a href="#testing-schema-validation-values-validation">Testing Schema Validation (Values Validation)</a></li>
+          </ul>
+        </li>
+        <li><a href="#phase-2-integration-tests-testing-against-real-kubernetes"><strong>Phase 2: Integration Tests (Testing Against Real Kubernetes)</strong></a>
+          <ul>
+            <li><a href="#tool-ct-chart-testing">Tool: <code>ct</code> (Chart Testing)</a></li>
+            <li><a href="#setup">Setup</a></li>
+            <li><a href="#custom-integration-tests-with-yaml">Custom Integration Tests with YAML</a></li>
+          </ul>
+        </li>
+        <li><a href="#phase-3-advanced-testing-patterns"><strong>Phase 3: Advanced Testing Patterns</strong></a>
+          <ul>
+            <li><a href="#testing-with-multiple-kubernetes-versions">Testing with Multiple Kubernetes Versions</a></li>
+            <li><a href="#snapshot-testing">Snapshot Testing</a></li>
+            <li><a href="#security--policy-testing">Security &amp; Policy Testing</a></li>
+          </ul>
+        </li>
+        <li><a href="#quick-start-test-your-chart-in-30-minutes"><strong>Quick Start: Test Your Chart in 30 Minutes</strong></a>
+          <ul>
+            <li><a href="#minute-0-10-basic-unit-tests">Minute 0-10: Basic Unit Tests</a></li>
+            <li><a href="#minute-10-20-test-conditionals">Minute 10-20: Test Conditionals</a></li>
+            <li><a href="#minute-20-30-integration-test-setup">Minute 20-30: Integration Test Setup</a></li>
+          </ul>
+        </li>
+        <li><a href="#common-patterns-to-test"><strong>Common Patterns to Test</strong></a>
+          <ul>
+            <li><a href="#1-security-context">1. Security Context</a></li>
+            <li><a href="#2-resource-limits">2. Resource Limits</a></li>
+            <li><a href="#3-volume-mounts">3. Volume Mounts</a></li>
+          </ul>
+        </li>
+        <li><a href="#cicd-integration"><strong>CI/CD Integration</strong></a>
+          <ul>
+            <li><a href="#github-actions">GitHub Actions</a></li>
+          </ul>
+        </li>
+        <li><a href="#where-to-start-with-your-chart"><strong>Where to Start with YOUR Chart</strong></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h1 id="testing-complex-helm-charts-a-practical-guide">Testing Complex Helm Charts: A Practical Guide<a class="anchor" href="#testing-complex-helm-charts-a-practical-guide">#</a></h1>
+<p>You&rsquo;re asking the right question. Most Helm charts in production have <strong>zero tests</strong>, and teams discover bugs when they blow up in staging (or worse, production). Let me walk you through this systematically.</p>
+<hr>
+<h2 id="understanding-what-you"><strong>Understanding What You&rsquo;re Testing</strong><a class="anchor" href="#understanding-what-you">#</a></h2>
+<p>A Helm chart has <strong>three</strong> distinct failure modes:</p>
+<ol>
+<li><strong>Template rendering failures</strong> - YAML doesn&rsquo;t compile</li>
+<li><strong>Kubernetes validation failures</strong> - Valid YAML, invalid K8s resources</li>
+<li><strong>Runtime failures</strong> - Deploys successfully but doesn&rsquo;t work</li>
+</ol>
+<p>Each needs different testing approaches.</p>
+<hr>
+<h2 id="step-0-audit-your-current-chart"><strong>Step 0: Audit Your Current Chart</strong><a class="anchor" href="#step-0-audit-your-current-chart">#</a></h2>
+<p>Before writing tests, understand what you have:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 1. How complex is it?</span>
+</span></span><span style="display:flex;"><span>find charts/my-app/templates -name <span style="color:#e6db74">&#34;*.yaml&#34;</span> | wc -l
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. How many values are there?</span>
+</span></span><span style="display:flex;"><span>yq eval <span style="color:#e6db74">&#39;..&#39;</span> charts/my-app/values.yaml | grep -c <span style="color:#e6db74">&#39;^&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. What conditional logic exists?</span>
+</span></span><span style="display:flex;"><span>grep -r <span style="color:#e6db74">&#34;{{- if&#34;</span> charts/my-app/templates/ | wc -l
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 4. How many helpers?</span>
+</span></span><span style="display:flex;"><span>grep -c <span style="color:#e6db74">&#34;define&#34;</span> charts/my-app/templates/_helpers.tpl</span></span></code></pre></div><p><strong>Example output:</strong></p>
+<pre tabindex="0"><code>23 template files
+147 configurable values
+38 conditional blocks
+12 helper functions</code></pre><p><strong>Translation:</strong> This chart is complex. You need tests.</p>
+<hr>
+<h2 id="phase-1-unit-tests-testing-template-rendering"><strong>Phase 1: Unit Tests (Testing Template Rendering)</strong><a class="anchor" href="#phase-1-unit-tests-testing-template-rendering">#</a></h2>
+<h3 id="tool-helm-unittest-start-here">Tool: <code>helm unittest</code> (Start Here)<a class="anchor" href="#tool-helm-unittest-start-here">#</a></h3>
+<p><strong>Install:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm plugin install https://github.com/helm-unittest/helm-unittest</span></span></code></pre></div><h3 id="your-first-test-5-minutes">Your First Test (5 minutes)<a class="anchor" href="#your-first-test-5-minutes">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Create test directory</span>
+</span></span><span style="display:flex;"><span>mkdir -p charts/my-app/tests
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create your first test file</span>
+</span></span><span style="display:flex;"><span>cat &gt; charts/my-app/tests/deployment_test.yaml <span style="color:#e6db74">&lt;&lt;&#39;EOF&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">suite: test deployment
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">templates:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  - deployment.yaml
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">tests:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  - it: should create a deployment
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    asserts:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      - isKind:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          of: Deployment
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      - equal:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          path: metadata.name
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          value: RELEASE-NAME-my-app
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span></span></span></code></pre></div><p><strong>Run it:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm unittest charts/my-app
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Chart [ my-app ] charts/my-app</span>
+</span></span><span style="display:flex;"><span> PASS  test deployment	charts/my-app/tests/deployment_test.yaml
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Charts:      <span style="color:#ae81ff">1</span> passed, <span style="color:#ae81ff">1</span> total
+</span></span><span style="display:flex;"><span>Test Suites: <span style="color:#ae81ff">1</span> passed, <span style="color:#ae81ff">1</span> total
+</span></span><span style="display:flex;"><span>Tests:       <span style="color:#ae81ff">1</span> passed, <span style="color:#ae81ff">1</span> total</span></span></code></pre></div><p><strong>You just wrote your first test in 5 minutes.</strong> 🎉</p>
+<hr>
+<h3 id="real-world-example-testing-conditional-logic">Real-World Example: Testing Conditional Logic<a class="anchor" href="#real-world-example-testing-conditional-logic">#</a></h3>
+<p>Your chart probably has something like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># templates/deployment.yaml</span>
+</span></span><span style="display:flex;"><span>{{- <span style="color:#ae81ff">if .Values.autoscaling.enabled }}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">autoscaling/v2</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">HorizontalPodAutoscaler</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: {{ <span style="color:#ae81ff">include &#34;my-app.fullname&#34; . }}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">scaleTargetRef</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: {{ <span style="color:#ae81ff">include &#34;my-app.fullname&#34; . }}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">minReplicas</span>: {{ <span style="color:#ae81ff">.Values.autoscaling.minReplicas }}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">maxReplicas</span>: {{ <span style="color:#ae81ff">.Values.autoscaling.maxReplicas }}</span>
+</span></span><span style="display:flex;"><span>{{- <span style="color:#ae81ff">end }}</span></span></span></code></pre></div><p><strong>The test:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># tests/hpa_test.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">suite</span>: <span style="color:#ae81ff">test horizontal pod autoscaler</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">templates</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">hpa.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">tests</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">it</span>: <span style="color:#ae81ff">should not create HPA when autoscaling is disabled</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">set</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">autoscaling.enabled</span>: <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">asserts</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">hasDocuments</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">count</span>: <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">it</span>: <span style="color:#ae81ff">should create HPA when autoscaling is enabled</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">set</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">autoscaling.enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">autoscaling.minReplicas</span>: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">autoscaling.maxReplicas</span>: <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">asserts</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">isKind</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">of</span>: <span style="color:#ae81ff">HorizontalPodAutoscaler</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">equal</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">path</span>: <span style="color:#ae81ff">spec.minReplicas</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">value</span>: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">equal</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">path</span>: <span style="color:#ae81ff">spec.maxReplicas</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">value</span>: <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">it</span>: <span style="color:#ae81ff">should target the correct deployment</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">set</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">autoscaling.enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">asserts</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">equal</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">path</span>: <span style="color:#ae81ff">spec.scaleTargetRef.kind</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">value</span>: <span style="color:#ae81ff">Deployment</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">equal</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">path</span>: <span style="color:#ae81ff">spec.scaleTargetRef.name</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">value</span>: <span style="color:#ae81ff">RELEASE-NAME-my-app</span></span></span></code></pre></div><hr>
+<h3 id="testing-complex-value-combinations">Testing Complex Value Combinations<a class="anchor" href="#testing-complex-value-combinations">#</a></h3>
+<p><strong>Common bug:</strong> Chart works with default values, breaks with custom values.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># tests/deployment_resources_test.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">suite</span>: <span style="color:#ae81ff">test resource limits</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">templates</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">deployment.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">tests</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">it</span>: <span style="color:#ae81ff">should use default resources when not specified</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">asserts</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">equal</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">path</span>: <span style="color:#ae81ff">spec.template.spec.containers[0].resources.requests.cpu</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">value</span>: <span style="color:#ae81ff">100m</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">equal</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">path</span>: <span style="color:#ae81ff">spec.template.spec.containers[0].resources.requests.memory</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">value</span>: <span style="color:#ae81ff">128Mi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">it</span>: <span style="color:#ae81ff">should override resources when specified</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">set</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">resources.requests.cpu</span>: <span style="color:#ae81ff">500m</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">resources.requests.memory</span>: <span style="color:#ae81ff">512Mi</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">resources.limits.cpu</span>: <span style="color:#ae81ff">1000m</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">resources.limits.memory</span>: <span style="color:#ae81ff">1Gi</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">asserts</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">equal</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">path</span>: <span style="color:#ae81ff">spec.template.spec.containers[0].resources.requests.cpu</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">value</span>: <span style="color:#ae81ff">500m</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">equal</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">path</span>: <span style="color:#ae81ff">spec.template.spec.containers[0].resources.limits.memory</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">value</span>: <span style="color:#ae81ff">1Gi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">it</span>: <span style="color:#ae81ff">should allow disabling resource limits</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">set</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">resources</span>: {}
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">asserts</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">isNull</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">path</span>: <span style="color:#ae81ff">spec.template.spec.containers[0].resources</span></span></span></code></pre></div><hr>
+<h3 id="testing-helper-functions">Testing Helper Functions<a class="anchor" href="#testing-helper-functions">#</a></h3>
+<p>Your <code>_helpers.tpl</code> probably has something like:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>{{<span style="color:#ae81ff">/*</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Create chart name and version as used by the chart label.</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">*/}}</span>
+</span></span><span style="display:flex;"><span>{{- <span style="color:#ae81ff">define &#34;my-app.chart&#34; -}}</span>
+</span></span><span style="display:flex;"><span>{{- <span style="color:#ae81ff">printf &#34;%s-%s&#34; .Chart.Name .Chart.Version | replace &#34;+&#34; &#34;_&#34; | trunc 63 | trimSuffix &#34;-&#34; }}</span>
+</span></span><span style="display:flex;"><span>{{- <span style="color:#ae81ff">end }}</span></span></span></code></pre></div><p><strong>Test it:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># tests/helpers_test.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">suite</span>: <span style="color:#ae81ff">test helper functions</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">templates</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">deployment.yaml </span> <span style="color:#75715e"># Any template that uses the helper</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">tests</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">it</span>: <span style="color:#ae81ff">should generate correct chart label</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">chart</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">version</span>: <span style="color:#ae81ff">1.2.3</span><span style="color:#ae81ff">+build.456 </span> <span style="color:#75715e"># Chart version with +</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">asserts</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">equal</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">path</span>: <span style="color:#ae81ff">metadata.labels[&#34;helm.sh/chart&#34;]</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">value</span>: <span style="color:#ae81ff">my-app-1.2.3_build.456 </span> <span style="color:#75715e"># + replaced with _</span></span></span></code></pre></div><hr>
+<h3 id="testing-schema-validation-values-validation">Testing Schema Validation (Values Validation)<a class="anchor" href="#testing-schema-validation-values-validation">#</a></h3>
+<p><strong>Create a values schema:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># values.schema.json</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;$schema&#34;: </span><span style="color:#e6db74">&#34;http://json-schema.org/draft-07/schema#&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;type&#34;: </span><span style="color:#e6db74">&#34;object&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;properties&#34;: </span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;replicaCount&#34;: </span>{
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;type&#34;: </span><span style="color:#e6db74">&#34;integer&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;minimum&#34;: </span><span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;maximum&#34;: </span><span style="color:#ae81ff">100</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;image&#34;: </span>{
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;type&#34;: </span><span style="color:#e6db74">&#34;object&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;required&#34;: </span>[<span style="color:#e6db74">&#34;repository&#34;</span>, <span style="color:#e6db74">&#34;tag&#34;</span>],
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;properties&#34;: </span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;repository&#34;: </span>{
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;type&#34;: </span><span style="color:#e6db74">&#34;string&#34;</span>
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;tag&#34;: </span>{
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;type&#34;: </span><span style="color:#e6db74">&#34;string&#34;</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;autoscaling&#34;: </span>{
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;type&#34;: </span><span style="color:#e6db74">&#34;object&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;properties&#34;: </span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;enabled&#34;: </span>{
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;type&#34;: </span><span style="color:#e6db74">&#34;boolean&#34;</span>
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;minReplicas&#34;: </span>{
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;type&#34;: </span><span style="color:#e6db74">&#34;integer&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;minimum&#34;: </span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;maxReplicas&#34;: </span>{
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;type&#34;: </span><span style="color:#e6db74">&#34;integer&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;minimum&#34;: </span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;if&#34;: </span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;properties&#34;: { &#34;enabled&#34;: { &#34;const&#34;: </span><span style="color:#66d9ef">true</span> } }
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;then&#34;: </span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;required&#34;: </span>[<span style="color:#e6db74">&#34;minReplicas&#34;</span>, <span style="color:#e6db74">&#34;maxReplicas&#34;</span>]
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><p><strong>Test schema validation:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># This should fail</span>
+</span></span><span style="display:flex;"><span>helm install my-app charts/my-app <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --set replicaCount<span style="color:#f92672">=</span><span style="color:#ae81ff">200</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --dry-run
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Error: values don&#39;t meet the specifications of the schema</span></span></span></code></pre></div><hr>
+<h2 id="phase-2-integration-tests-testing-against-real-kubernetes"><strong>Phase 2: Integration Tests (Testing Against Real Kubernetes)</strong><a class="anchor" href="#phase-2-integration-tests-testing-against-real-kubernetes">#</a></h2>
+<h3 id="tool-ct-chart-testing">Tool: <code>ct</code> (Chart Testing)<a class="anchor" href="#tool-ct-chart-testing">#</a></h3>
+<p><strong>Install:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install chart-testing</span>
+</span></span><span style="display:flex;"><span>brew install chart-testing  <span style="color:#75715e"># macOS</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># or</span>
+</span></span><span style="display:flex;"><span>pip install yamllint yamale
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install kind for local k8s cluster</span>
+</span></span><span style="display:flex;"><span>brew install kind</span></span></code></pre></div><h3 id="setup">Setup<a class="anchor" href="#setup">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Create ct config</span>
+</span></span><span style="display:flex;"><span>cat &gt; ct.yaml <span style="color:#e6db74">&lt;&lt;&#39;EOF&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">chart-dirs:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  - charts
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">chart-repos:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  - bitnami=https://charts.bitnami.com/bitnami
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">helm-extra-args: --timeout 600s
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">validate-maintainers: false
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span></span></span></code></pre></div><p><strong>Create test values:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># charts/my-app/ci/default-values.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Minimal viable deployment</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">replicaCount</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">image</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">repository</span>: <span style="color:#ae81ff">nginx</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">tag</span>: <span style="color:#e6db74">&#34;1.21&#34;</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># charts/my-app/ci/production-like-values.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Production-like configuration</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">replicaCount</span>: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">autoscaling</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">minReplicas</span>: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">maxReplicas</span>: <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">ingress</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">hosts</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">host</span>: <span style="color:#ae81ff">test.example.com</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">paths</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">path</span>: <span style="color:#ae81ff">/</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">pathType</span>: <span style="color:#ae81ff">Prefix</span></span></span></code></pre></div><p><strong>Run integration tests:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Create local k8s cluster</span>
+</span></span><span style="display:flex;"><span>kind create cluster --name chart-testing
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install and test the chart</span>
+</span></span><span style="display:flex;"><span>ct install --charts charts/my-app
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Installing chart &#39;my-app&#39; with values files:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#  - charts/my-app/ci/default-values.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#  - charts/my-app/ci/production-like-values.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ✓ Chart installed successfully</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ✓ All pods became ready</span></span></span></code></pre></div><hr>
+<h3 id="custom-integration-tests-with-yaml">Custom Integration Tests with YAML<a class="anchor" href="#custom-integration-tests-with-yaml">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># charts/my-app/ci/test-values.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># This will actually deploy and run tests</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">image</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">repository</span>: <span style="color:#ae81ff">nginx</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">tag</span>: <span style="color:#e6db74">&#34;1.21&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Enable test job</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">tests</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span></span></span></code></pre></div><p><strong>Create test pod template:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># templates/tests/test-connection.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Pod</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;{{ include &#34;</span><span style="color:#ae81ff">my-app.fullname&#34; . }}-test-connection&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;helm.sh/hook&#34;: </span><span style="color:#ae81ff">test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;helm.sh/hook-delete-policy&#34;: </span><span style="color:#ae81ff">before-hook-creation,hook-succeeded</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">wget</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">image</span>: <span style="color:#ae81ff">busybox</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">command</span>: [<span style="color:#e6db74">&#39;wget&#39;</span>]
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">args</span>: [<span style="color:#e6db74">&#39;{{ include &#34;my-app.fullname&#34; . }}:{{ .Values.service.port }}&#39;</span>]
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">restartPolicy</span>: <span style="color:#ae81ff">Never</span></span></span></code></pre></div><p><strong>Run the test:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm install my-app charts/my-app
+</span></span><span style="display:flex;"><span>helm test my-app
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># NAME: my-app</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># LAST DEPLOYED: ...</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># NAMESPACE: default</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># STATUS: deployed</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># TEST SUITE:     my-app-test-connection</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Last Started:   ...</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Last Completed: ...</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Phase:          Succeeded</span></span></span></code></pre></div><hr>
+<h2 id="phase-3-advanced-testing-patterns"><strong>Phase 3: Advanced Testing Patterns</strong><a class="anchor" href="#phase-3-advanced-testing-patterns">#</a></h2>
+<h3 id="testing-with-multiple-kubernetes-versions">Testing with Multiple Kubernetes Versions<a class="anchor" href="#testing-with-multiple-kubernetes-versions">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># .github/workflows/chart-test.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">Lint and Test Charts</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">on</span>: <span style="color:#ae81ff">pull_request</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">jobs</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">test</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">strategy</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">matrix</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">k8s-version</span>:
+</span></span><span style="display:flex;"><span>          - <span style="color:#ae81ff">v1.24.0</span>
+</span></span><span style="display:flex;"><span>          - <span style="color:#ae81ff">v1.25.0</span>
+</span></span><span style="display:flex;"><span>          - <span style="color:#ae81ff">v1.26.0</span>
+</span></span><span style="display:flex;"><span>          - <span style="color:#ae81ff">v1.27.0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v3</span>
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Set up chart-testing</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">helm/chart-testing-action@v2</span>
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Create kind cluster</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">helm/kind-action@v1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">with</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">node_image</span>: <span style="color:#ae81ff">kindest/node:${{ matrix.k8s-version }}</span>
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Run chart-testing (install)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: <span style="color:#ae81ff">ct install --charts charts/my-app</span></span></span></code></pre></div><hr>
+<h3 id="snapshot-testing">Snapshot Testing<a class="anchor" href="#snapshot-testing">#</a></h3>
+<p><strong>Problem:</strong> You want to detect ANY change in rendered output.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># tests/snapshot_test.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">suite</span>: <span style="color:#ae81ff">snapshot tests</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">templates</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">deployment.yaml</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">service.yaml</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">ingress.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">tests</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">it</span>: <span style="color:#ae81ff">should match snapshot for default values</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">asserts</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">matchSnapshot</span>: {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">it</span>: <span style="color:#ae81ff">should match snapshot for production config</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">values</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">../ci/production-like-values.yaml</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">asserts</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">matchSnapshot</span>: {}</span></span></code></pre></div><p><strong>First run creates snapshots:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm unittest charts/my-app --update-snapshot</span></span></code></pre></div><p><strong>Future runs detect changes:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm unittest charts/my-app
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># If output changed:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># FAIL  should match snapshot for default values</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   - asserts[0] `matchSnapshot` fail</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     Template:	charts/my-app/templates/deployment.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     Expected to match snapshot but got diff:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     --- Expected</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     +++ Actual</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     @@ -15,7 +15,7 @@</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     -      replicas: 1</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     +      replicas: 3</span></span></span></code></pre></div><hr>
+<h3 id="security--policy-testing">Security &amp; Policy Testing<a class="anchor" href="#security--policy-testing">#</a></h3>
+<p><strong>Using Polaris:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install polaris</span>
+</span></span><span style="display:flex;"><span>helm repo add fairwinds-stable https://charts.fairwinds.com/stable
+</span></span><span style="display:flex;"><span>helm install polaris fairwinds-stable/polaris --namespace polaris --create-namespace
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Test your chart against best practices</span>
+</span></span><span style="display:flex;"><span>helm template my-app charts/my-app | polaris audit --format<span style="color:#f92672">=</span>pretty
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Results for kind Deployment:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   my-app</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     ✓ hostIPCSet: Host IPC is not configured</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     ✓ hostPIDSet: Host PID is not configured</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     ✗ runAsNonRoot: Should not be allowed to run as root</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     ✗ readOnlyRootFilesystem: Root filesystem should be read-only</span></span></span></code></pre></div><p><strong>Using Checkov:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install checkov</span>
+</span></span><span style="display:flex;"><span>pip install checkov
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Scan rendered templates</span>
+</span></span><span style="display:flex;"><span>helm template my-app charts/my-app &gt; /tmp/my-app.yaml
+</span></span><span style="display:flex;"><span>checkov -f /tmp/my-app.yaml --framework kubernetes
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># kubernetes scan results:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Passed checks: 15, Failed checks: 8, Skipped checks: 0</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check: CKV_K8S_8: &#34;Liveness Probe Should Be Configured&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 	FAILED for resource: Deployment.default.my-app</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 	File: /tmp/my-app.yaml:1-50</span></span></span></code></pre></div><hr>
+<h2 id="quick-start-test-your-chart-in-30-minutes"><strong>Quick Start: Test Your Chart in 30 Minutes</strong><a class="anchor" href="#quick-start-test-your-chart-in-30-minutes">#</a></h2>
+<h3 id="minute-0-10-basic-unit-tests">Minute 0-10: Basic Unit Tests<a class="anchor" href="#minute-0-10-basic-unit-tests">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install helm unittest</span>
+</span></span><span style="display:flex;"><span>helm plugin install https://github.com/helm-unittest/helm-unittest
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create test directory</span>
+</span></span><span style="display:flex;"><span>mkdir -p charts/my-app/tests
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Test the most critical template (usually deployment)</span>
+</span></span><span style="display:flex;"><span>cat &gt; charts/my-app/tests/deployment_test.yaml <span style="color:#e6db74">&lt;&lt;&#39;EOF&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">suite: deployment tests
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">templates:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  - deployment.yaml
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">tests:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  - it: should create a Deployment
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    asserts:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      - isKind:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          of: Deployment
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  - it: should use correct image
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    set:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      image.repository: myapp
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      image.tag: &#34;1.0.0&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    asserts:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      - equal:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          path: spec.template.spec.containers[0].image
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          value: myapp:1.0.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  - it: should set replica count
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    set:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      replicaCount: 5
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    asserts:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      - equal:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          path: spec.replicas
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          value: 5
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Run tests</span>
+</span></span><span style="display:flex;"><span>helm unittest charts/my-app</span></span></code></pre></div><h3 id="minute-10-20-test-conditionals">Minute 10-20: Test Conditionals<a class="anchor" href="#minute-10-20-test-conditionals">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat &gt; charts/my-app/tests/conditionals_test.yaml <span style="color:#e6db74">&lt;&lt;&#39;EOF&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">suite: conditional resource tests
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">templates:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  - ingress.yaml
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">tests:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  - it: should not create Ingress when disabled
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    set:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      ingress.enabled: false
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    asserts:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      - hasDocuments:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          count: 0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  - it: should create Ingress when enabled
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    set:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      ingress.enabled: true
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      ingress.hosts[0].host: example.com
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    asserts:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      - isKind:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          of: Ingress
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      - contains:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          path: spec.rules
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          content:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            host: example.com
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>helm unittest charts/my-app</span></span></code></pre></div><h3 id="minute-20-30-integration-test-setup">Minute 20-30: Integration Test Setup<a class="anchor" href="#minute-20-30-integration-test-setup">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Create test values</span>
+</span></span><span style="display:flex;"><span>cat &gt; charts/my-app/ci/test-values.yaml <span style="color:#e6db74">&lt;&lt;&#39;EOF&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">replicaCount: 1
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">image:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  repository: nginx
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  tag: &#34;1.21&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">service:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  type: ClusterIP
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  port: 80
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create kind cluster</span>
+</span></span><span style="display:flex;"><span>kind create cluster --name test
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install chart</span>
+</span></span><span style="display:flex;"><span>helm install test-release charts/my-app -f charts/my-app/ci/test-values.yaml
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Verify deployment</span>
+</span></span><span style="display:flex;"><span>kubectl get all
+</span></span><span style="display:flex;"><span>kubectl wait --for<span style="color:#f92672">=</span>condition<span style="color:#f92672">=</span>ready pod -l app.kubernetes.io/name<span style="color:#f92672">=</span>my-app --timeout<span style="color:#f92672">=</span>60s
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Success? You have a working integration test!</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Cleanup</span>
+</span></span><span style="display:flex;"><span>kind delete cluster --name test</span></span></code></pre></div><hr>
+<h2 id="common-patterns-to-test"><strong>Common Patterns to Test</strong><a class="anchor" href="#common-patterns-to-test">#</a></h2>
+<h3 id="1-security-context">1. Security Context<a class="anchor" href="#1-security-context">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">tests</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">it</span>: <span style="color:#ae81ff">should run as non-root when securityContext is set</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">set</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">securityContext.runAsNonRoot</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">securityContext.runAsUser</span>: <span style="color:#ae81ff">1000</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">asserts</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">equal</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">path</span>: <span style="color:#ae81ff">spec.template.spec.securityContext.runAsNonRoot</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">value</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">equal</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">path</span>: <span style="color:#ae81ff">spec.template.spec.securityContext.runAsUser</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">value</span>: <span style="color:#ae81ff">1000</span></span></span></code></pre></div><h3 id="2-resource-limits">2. Resource Limits<a class="anchor" href="#2-resource-limits">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">tests</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">it</span>: <span style="color:#ae81ff">should fail if CPU limits are too low</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">set</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">resources.limits.cpu</span>: <span style="color:#ae81ff">10m</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">asserts</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">failedTemplate</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">errorMessage</span>: <span style="color:#e6db74">&#34;CPU limit too low, minimum is 100m&#34;</span></span></span></code></pre></div><h3 id="3-volume-mounts">3. Volume Mounts<a class="anchor" href="#3-volume-mounts">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">tests</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">it</span>: <span style="color:#ae81ff">should mount config volume when configMap is provided</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">set</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">configMap.enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">configMap.data</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">config.yaml</span>: <span style="color:#e6db74">&#34;test: data&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">asserts</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">contains</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">path</span>: <span style="color:#ae81ff">spec.template.spec.volumes</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">content</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">name</span>: <span style="color:#ae81ff">config</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">configMap</span>:
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">name</span>: <span style="color:#ae81ff">RELEASE-NAME-my-app</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">contains</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">path</span>: <span style="color:#ae81ff">spec.template.spec.containers[0].volumeMounts</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">content</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">name</span>: <span style="color:#ae81ff">config</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">mountPath</span>: <span style="color:#ae81ff">/config</span></span></span></code></pre></div><hr>
+<h2 id="cicd-integration"><strong>CI/CD Integration</strong><a class="anchor" href="#cicd-integration">#</a></h2>
+<h3 id="github-actions">GitHub Actions<a class="anchor" href="#github-actions">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># .github/workflows/helm-test.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">Helm Chart Testing</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">on</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">pull_request</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">paths</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#39;charts/**&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">jobs</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">unit-test</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v3</span>
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Install Helm</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">azure/setup-helm@v3</span>
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Install helm-unittest</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: <span style="color:#ae81ff">helm plugin install https://github.com/helm-unittest/helm-unittest</span>
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Run unit tests</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: <span style="color:#ae81ff">helm unittest charts/my-app</span>
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Upload test results</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">if</span>: <span style="color:#ae81ff">always()</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/upload-artifact@v3</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">with</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">test-results</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">path</span>: <span style="color:#ae81ff">charts/my-app/tests/*.xml</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">integration-test</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">needs</span>: <span style="color:#ae81ff">unit-test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v3</span>
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Create kind cluster</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">helm/kind-action@v1</span>
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Install chart-testing</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">helm/chart-testing-action@v2</span>
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Run integration tests</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: <span style="color:#ae81ff">ct install --charts charts/my-app</span></span></span></code></pre></div><hr>
+<h2 id="where-to-start-with-your-chart"><strong>Where to Start with YOUR Chart</strong><a class="anchor" href="#where-to-start-with-your-chart">#</a></h2>
+<p><strong>Day 1 Checklist:</strong></p>
+<ol>
+<li>✅ Install <code>helm unittest</code></li>
+<li>✅ Create <code>charts/my-app/tests/</code> directory</li>
+<li>✅ Write ONE test for your most critical template</li>
+<li>✅ Run it: <code>helm unittest charts/my-app</code></li>
+</ol>
+<p><strong>Week 1 Goal:</strong></p>
+<ul>
+<li>Test all conditional logic (<code>{{- if }}</code> blocks)</li>
+<li>Test value overrides for critical settings</li>
+<li>Achieve &gt;50% template coverage</li>
+</ul>
+<p><strong>Week 2 Goal:</strong></p>
+<ul>
+<li>Add values schema validation</li>
+<li>Create 2-3 CI test value files</li>
+<li>Set up integration testing with kind</li>
+</ul>
+<p><strong>Month 1 Goal:</strong></p>
+<ul>
+<li>Tests in CI/CD pipeline</li>
+<li>Snapshot tests for stability</li>
+<li>Security scanning integrated</li>
+</ul>
+<p>Start small. One test is infinitely better than zero tests. You got this! 🚀</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+  
+  <div class="flex flex-wrap justify-between">
+    <span>
+    
+      <a href="/musings/docs/infrastructure/helm-layered-abstraction/" class="flex align-center">
+        <img src="/musings/icons/backward.svg" class="book-icon" alt="Backward" />
+        <span>Solution 2: Kustomize with Helm</span>
+      </a>
+    
+    </span>
+    <span>
+    
+      <a href="/musings/docs/infrastructure/executive-summary/" class="flex align-center">
+        <span>What You&#39;re Building</span>
+        <img src="/musings/icons/forward.svg" class="book-icon" alt="Forward" />
+      </a>
+    
+    </span>
+  </div>
+  
+
+
+ 
+        
+  
+ 
+        
+        
+  
+ 
+        
+  
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#testing-complex-helm-charts-a-practical-guide">Testing Complex Helm Charts: A Practical Guide</a>
+      <ul>
+        <li><a href="#understanding-what-you"><strong>Understanding What You’re Testing</strong></a></li>
+        <li><a href="#step-0-audit-your-current-chart"><strong>Step 0: Audit Your Current Chart</strong></a></li>
+        <li><a href="#phase-1-unit-tests-testing-template-rendering"><strong>Phase 1: Unit Tests (Testing Template Rendering)</strong></a>
+          <ul>
+            <li><a href="#tool-helm-unittest-start-here">Tool: <code>helm unittest</code> (Start Here)</a></li>
+            <li><a href="#your-first-test-5-minutes">Your First Test (5 minutes)</a></li>
+            <li><a href="#real-world-example-testing-conditional-logic">Real-World Example: Testing Conditional Logic</a></li>
+            <li><a href="#testing-complex-value-combinations">Testing Complex Value Combinations</a></li>
+            <li><a href="#testing-helper-functions">Testing Helper Functions</a></li>
+            <li><a href="#testing-schema-validation-values-validation">Testing Schema Validation (Values Validation)</a></li>
+          </ul>
+        </li>
+        <li><a href="#phase-2-integration-tests-testing-against-real-kubernetes"><strong>Phase 2: Integration Tests (Testing Against Real Kubernetes)</strong></a>
+          <ul>
+            <li><a href="#tool-ct-chart-testing">Tool: <code>ct</code> (Chart Testing)</a></li>
+            <li><a href="#setup">Setup</a></li>
+            <li><a href="#custom-integration-tests-with-yaml">Custom Integration Tests with YAML</a></li>
+          </ul>
+        </li>
+        <li><a href="#phase-3-advanced-testing-patterns"><strong>Phase 3: Advanced Testing Patterns</strong></a>
+          <ul>
+            <li><a href="#testing-with-multiple-kubernetes-versions">Testing with Multiple Kubernetes Versions</a></li>
+            <li><a href="#snapshot-testing">Snapshot Testing</a></li>
+            <li><a href="#security--policy-testing">Security &amp; Policy Testing</a></li>
+          </ul>
+        </li>
+        <li><a href="#quick-start-test-your-chart-in-30-minutes"><strong>Quick Start: Test Your Chart in 30 Minutes</strong></a>
+          <ul>
+            <li><a href="#minute-0-10-basic-unit-tests">Minute 0-10: Basic Unit Tests</a></li>
+            <li><a href="#minute-10-20-test-conditionals">Minute 10-20: Test Conditionals</a></li>
+            <li><a href="#minute-20-30-integration-test-setup">Minute 20-30: Integration Test Setup</a></li>
+          </ul>
+        </li>
+        <li><a href="#common-patterns-to-test"><strong>Common Patterns to Test</strong></a>
+          <ul>
+            <li><a href="#1-security-context">1. Security Context</a></li>
+            <li><a href="#2-resource-limits">2. Resource Limits</a></li>
+            <li><a href="#3-volume-mounts">3. Volume Mounts</a></li>
+          </ul>
+        </li>
+        <li><a href="#cicd-integration"><strong>CI/CD Integration</strong></a>
+          <ul>
+            <li><a href="#github-actions">GitHub Actions</a></li>
+          </ul>
+        </li>
+        <li><a href="#where-to-start-with-your-chart"><strong>Where to Start with YOUR Chart</strong></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,1250 @@
+{
+  "keywords": [
+    {
+      "path": "ai\\agents\\agentic_computing_overview_and_tools.md",
+      "title": "Agentic Computing Overview And Tools",
+      "category": "ai-ml",
+      "keywords": [
+        "agent",
+        "ai",
+        "llm",
+        "workflow",
+        "agentic",
+        "observability",
+        "langgraph",
+        "langchain"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 27,
+        "domain": 13,
+        "path": 2
+      }
+    },
+    {
+      "path": "ai\\agents\\agno_vs_langchain.md",
+      "title": "Agno Vs Langchain",
+      "category": "ai-ml",
+      "keywords": [
+        "langchain",
+        "production",
+        "ai",
+        "langgraph",
+        "workflow",
+        "observability",
+        "orchestration",
+        "multi-agent"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 8,
+        "domain": 6,
+        "path": 2
+      }
+    },
+    {
+      "path": "ai\\agents\\flowwise_vs_langflow.md",
+      "title": "Flowise vs Langflow: Detailed Comparison",
+      "category": "ai-ml",
+      "keywords": [
+        "python",
+        "agent",
+        "langchain",
+        "typescript",
+        "ai",
+        "javascript",
+        "workflow",
+        "logging"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 27,
+        "domain": 7,
+        "path": 2
+      }
+    },
+    {
+      "path": "ai\\agents\\langchain_architecture.md",
+      "title": "Langchain Architecture",
+      "category": "ai-ml",
+      "keywords": [
+        "langchain",
+        "langgraph",
+        "workflow",
+        "llm",
+        "agent",
+        "ai",
+        "orchestration",
+        "observability"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 14,
+        "domain": 10,
+        "path": 2
+      }
+    },
+    {
+      "path": "ai\\agents\\tools_overview_and_getting_started.md",
+      "title": "Self-Hosted Open Source Agent Tools",
+      "category": "ai-ml",
+      "keywords": [
+        "agent",
+        "docker",
+        "python",
+        "k8s",
+        "langchain",
+        "observability",
+        "deployment",
+        "workflow"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 36,
+        "domain": 12,
+        "path": 2
+      }
+    },
+    {
+      "path": "ai\\mcp\\k8s_mcp_servers.md",
+      "title": "K8s Mcp Servers",
+      "category": "infrastructure",
+      "keywords": [
+        "kubernetes",
+        "mcp",
+        "container",
+        "production",
+        "helm",
+        "eks",
+        "aws",
+        "deployment"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 14,
+        "domain": 10,
+        "path": 2
+      }
+    },
+    {
+      "path": "ai\\observability\\llm_tracing_metrics_comparison.md",
+      "title": "Llm Tracing Metrics Comparison",
+      "category": "ai-ml",
+      "keywords": [
+        "llm",
+        "agent",
+        "observability",
+        "production",
+        "monitoring",
+        "cloud",
+        "metrics",
+        "langchain"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 20,
+        "domain": 10,
+        "path": 2
+      }
+    },
+    {
+      "path": "ai\\orchestration\\n8n_overview.md",
+      "title": "n8n Overview",
+      "category": "ai-ml",
+      "keywords": [
+        "ai",
+        "workflow",
+        "agent",
+        "automation",
+        "cloud",
+        "llm",
+        "platform",
+        "orchestration"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 21,
+        "domain": 11,
+        "path": 2
+      }
+    },
+    {
+      "path": "ai\\tools\\kiro_ide_comparison_tools.md",
+      "title": "Kiro IDE: Comprehensive Analysis, Comparisons & Optimal Workflows",
+      "category": "ai-ml",
+      "keywords": [
+        "workflow",
+        "aws",
+        "ai",
+        "agent",
+        "documentation",
+        "production",
+        "security",
+        "api"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 25,
+        "domain": 4,
+        "path": 2
+      }
+    },
+    {
+      "path": "devplatform\\documentation\\backstage_techdocs_pros_cons.md",
+      "title": "Backstage Techdocs Pros Cons",
+      "category": "devplatform",
+      "keywords": [
+        "backstage",
+        "techdocs",
+        "documentation",
+        "wiki",
+        "confluence",
+        "api",
+        "markdown",
+        "workflow"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 10,
+        "domain": 9,
+        "path": 3
+      }
+    },
+    {
+      "path": "devplatform\\documentation\\in_browser_editing_tools.md",
+      "title": "In-Browser Editing Documentation Solutions",
+      "category": "devplatform",
+      "keywords": [
+        "wiki",
+        "documentation",
+        "database",
+        "markdown",
+        "workflow",
+        "java",
+        "sql",
+        "platform"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 9,
+        "domain": 4,
+        "path": 3
+      }
+    },
+    {
+      "path": "devplatform\\documentation\\notion_overview.md",
+      "title": "Notion: A Comprehensive Overview",
+      "category": "devplatform",
+      "keywords": [
+        "documentation",
+        "ai",
+        "platform",
+        "workflow",
+        "techdocs",
+        "automation",
+        "security",
+        "api"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 8,
+        "domain": 5,
+        "path": 3
+      }
+    },
+    {
+      "path": "devplatform\\gitops\\crossplane_solution.md",
+      "title": "Pseudocode for composition function",
+      "category": "devplatform",
+      "keywords": [
+        "function",
+        "crossplane",
+        "yaml",
+        "kubernetes",
+        "helm",
+        "python",
+        "argocd",
+        "gitops"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 11,
+        "domain": 3,
+        "path": 3
+      }
+    },
+    {
+      "path": "devplatform\\gitops\\imperitive_in_declarative.md",
+      "title": "Imperitive In Declarative",
+      "category": "workflows",
+      "keywords": [
+        "workflow",
+        "argocd",
+        "yaml",
+        "database",
+        "orchestration",
+        "kubernetes",
+        "gitops",
+        "react"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 8,
+        "domain": 5,
+        "path": 3
+      }
+    },
+    {
+      "path": "devplatform\\gitops\\job_configmap_crossplane_abstraction.md",
+      "title": "Shell script helper for Option 3",
+      "category": "devplatform",
+      "keywords": [
+        "crossplane",
+        "database",
+        "api",
+        "yaml",
+        "function",
+        "deployment",
+        "container",
+        "python"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 10,
+        "domain": 1,
+        "path": 3
+      }
+    },
+    {
+      "path": "devplatform\\gitops\\job_plus_configmap_annotation.md",
+      "title": "Read current state AND capture resourceVersion",
+      "category": "infrastructure",
+      "keywords": [
+        "deployment",
+        "yaml",
+        "observability",
+        "workflow",
+        "argocd",
+        "orchestration",
+        "kubernetes",
+        "monitoring"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 8,
+        "domain": 6,
+        "path": 3
+      }
+    },
+    {
+      "path": "devplatform\\kargo_argocd\\comprehensive_guide.md",
+      "title": "Kargo and ArgoCD: A Comprehensive Guide",
+      "category": "devplatform",
+      "keywords": [
+        "kargo",
+        "argocd",
+        "yaml",
+        "gitops",
+        "production",
+        "helm",
+        "api",
+        "kubernetes"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 23,
+        "domain": 7,
+        "path": 3
+      }
+    },
+    {
+      "path": "devplatform\\kargo_argocd\\kargo_argocd_interaction.md",
+      "title": "Kargo promotion step",
+      "category": "devplatform",
+      "keywords": [
+        "kargo",
+        "argocd",
+        "api",
+        "kubernetes",
+        "yaml",
+        "production",
+        "gitops",
+        "helm"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 11,
+        "domain": 3,
+        "path": 3
+      }
+    },
+    {
+      "path": "devplatform\\kargo_argocd\\kargo_git_tags.md",
+      "title": "In subsequent stages, you can read this metadata",
+      "category": "devplatform",
+      "keywords": [
+        "kargo",
+        "production",
+        "yaml",
+        "gitops",
+        "helm",
+        "json",
+        "deployment",
+        "orchestration"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 8,
+        "domain": 2,
+        "path": 3
+      }
+    },
+    {
+      "path": "devplatform\\kargo_argocd\\kargo_intro.md",
+      "title": "Example Stage configuration",
+      "category": "devplatform",
+      "keywords": [
+        "kargo",
+        "argocd",
+        "deployment",
+        "container",
+        "gitops",
+        "helm",
+        "kubernetes",
+        "workflow"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 15,
+        "domain": 4,
+        "path": 3
+      }
+    },
+    {
+      "path": "devplatform\\kargo_argocd\\kargo_polyrepo.md",
+      "title": "Fast-moving image Warehouse",
+      "category": "devplatform",
+      "keywords": [
+        "kargo",
+        "helm",
+        "yaml",
+        "container",
+        "deployment",
+        "orchestration",
+        "microservices",
+        "workflow"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 8,
+        "domain": 2,
+        "path": 3
+      }
+    },
+    {
+      "path": "devplatform\\kargo_argocd\\presentation.md",
+      "title": "Kargo: GitOps Promotion for ArgoCD",
+      "category": "devplatform",
+      "keywords": [
+        "kargo",
+        "argocd",
+        "production",
+        "gitops",
+        "staging",
+        "api",
+        "yaml",
+        "kubernetes"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 25,
+        "domain": 6,
+        "path": 3
+      }
+    },
+    {
+      "path": "devplatform\\osscomparison\\backstage_kratix_crossplane_argocd_blueprint.md",
+      "title": "Implementation Blueprint: Crossplane + Kratix + Backstage + ArgoCD",
+      "category": "devplatform",
+      "keywords": [
+        "crossplane",
+        "backstage",
+        "yaml",
+        "argocd",
+        "api",
+        "platform",
+        "kubernetes",
+        "aws"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 22,
+        "domain": 5,
+        "path": 3
+      }
+    },
+    {
+      "path": "devplatform\\osscomparison\\gitops_platform_safety.md",
+      "title": "GitOps Safety Architecture for Platform Evolution",
+      "category": "devplatform",
+      "keywords": [
+        "platform",
+        "yaml",
+        "crossplane",
+        "argocd",
+        "production",
+        "database",
+        "backstage",
+        "gitops"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 16,
+        "domain": 6,
+        "path": 3
+      }
+    },
+    {
+      "path": "devplatform\\osscomparison\\initial_comparison.md",
+      "title": "Initial Comparison",
+      "category": "devplatform",
+      "keywords": [
+        "crossplane",
+        "platform",
+        "backstage",
+        "infrastructure",
+        "cloud",
+        "api",
+        "kubernetes",
+        "database"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 23,
+        "domain": 7,
+        "path": 3
+      }
+    },
+    {
+      "path": "devplatform\\osscomparison\\oss_portal_platform_orchestration_tools.md",
+      "title": "Oss Portal Platform Orchestration Tools",
+      "category": "devplatform",
+      "keywords": [
+        "platform",
+        "backstage",
+        "crossplane",
+        "kubernetes",
+        "cloud",
+        "devplatform",
+        "osscomparison",
+        "oss-portal-platform-orchestration-tools"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 5,
+        "domain": 3,
+        "path": 3
+      }
+    },
+    {
+      "path": "devplatform\\osscomparison\\oss_vs_closed_portal.md",
+      "title": "Oss Vs Closed Portal",
+      "category": "devplatform",
+      "keywords": [
+        "backstage",
+        "platform",
+        "devplatform",
+        "osscomparison",
+        "oss-vs-closed-portal"
+      ],
+      "keywordCount": 5,
+      "success": true,
+      "sources": {
+        "technical": 1,
+        "domain": 2,
+        "path": 3
+      }
+    },
+    {
+      "path": "devplatform\\platform_dev\\overview.md",
+      "title": "Overview",
+      "category": "infrastructure",
+      "keywords": [
+        "platform",
+        "staging",
+        "argocd",
+        "production",
+        "metrics",
+        "deployment",
+        "workflow",
+        "observability"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 14,
+        "domain": 7,
+        "path": 3
+      }
+    },
+    {
+      "path": "domainmodel\\initial_with_correlation\\CI-CD-TEMPLATES.md",
+      "title": "GitHub Actions Example",
+      "category": "infrastructure",
+      "keywords": [
+        "deployment",
+        "docker",
+        "production",
+        "platform",
+        "yaml",
+        "container",
+        "k8s",
+        "security"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 12,
+        "domain": 7,
+        "path": 3
+      }
+    },
+    {
+      "path": "domainmodel\\initial_with_correlation\\DEVOPS-DOMAIN-MODEL-GUIDE.md",
+      "title": "DevOps Domain Model: Implementation Guide",
+      "category": "infrastructure",
+      "keywords": [
+        "deployment",
+        "docker",
+        "json",
+        "container",
+        "k8s",
+        "production",
+        "kubernetes",
+        "logging"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 23,
+        "domain": 12,
+        "path": 3
+      }
+    },
+    {
+      "path": "domainmodel\\initial_with_correlation\\diagrams\\cross_diagram_reuse_guide.md",
+      "title": "Cross-Diagram Domain Model Reuse in PlantUML",
+      "category": "devplatform",
+      "keywords": [
+        "diagrams",
+        "deployment",
+        "documentation",
+        "infrastructure",
+        "function",
+        "markdown",
+        "domainmodel",
+        "initial-with-correlation"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 5,
+        "domain": 1,
+        "path": 4
+      }
+    },
+    {
+      "path": "domainmodel\\initial_with_correlation\\diagrams\\export_conversion.md",
+      "title": "Export Conversion",
+      "category": "devplatform",
+      "keywords": [
+        "mermaid",
+        "confluence",
+        "documentation",
+        "diagrams",
+        "workflow",
+        "platform",
+        "wiki",
+        "javascript"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 7,
+        "domain": 5,
+        "path": 4
+      }
+    },
+    {
+      "path": "domainmodel\\initial_with_correlation\\diagrams\\one_model_multiple_diagrams.md",
+      "title": "Generate all views",
+      "category": "ai-ml",
+      "keywords": [
+        "java",
+        "diagrams",
+        "domainmodel",
+        "initial-with-correlation",
+        "one-model-multiple-diagrams"
+      ],
+      "keywordCount": 5,
+      "success": true,
+      "sources": {
+        "technical": 1,
+        "domain": 0,
+        "path": 4
+      }
+    },
+    {
+      "path": "domainmodel\\initial_with_correlation\\diagrams\\recommendations.md",
+      "title": "Recommendations",
+      "category": "devplatform",
+      "keywords": [
+        "mermaid",
+        "json",
+        "documentation",
+        "deployment",
+        "container",
+        "diagrams",
+        "recommendations",
+        "domainmodel"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 5,
+        "domain": 1,
+        "path": 4
+      }
+    },
+    {
+      "path": "domainmodel\\initial_with_correlation\\EXECUTIVE-SUMMARY.md",
+      "title": "DevOps Domain Model: Executive Summary",
+      "category": "infrastructure",
+      "keywords": [
+        "deployment",
+        "docker",
+        "k8s",
+        "devops",
+        "production",
+        "container",
+        "python",
+        "json"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 17,
+        "domain": 8,
+        "path": 3
+      }
+    },
+    {
+      "path": "domainmodel\\initial_with_correlation\\verification_architecture.md",
+      "title": "Is This a Reasonable Architecture?",
+      "category": "ai-ml",
+      "keywords": [
+        "monitoring",
+        "java",
+        "alerting",
+        "platform",
+        "python",
+        "yaml",
+        "api",
+        "verification-architecture"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 7,
+        "domain": 0,
+        "path": 3
+      }
+    },
+    {
+      "path": "eks_crossplane\\initial\\prompt.md",
+      "title": "Crossplane EKS Management Cluster Implementation - Project Brief",
+      "category": "devplatform",
+      "keywords": [
+        "crossplane",
+        "aws",
+        "eks",
+        "infrastructure",
+        "argocd",
+        "terraform",
+        "kubernetes",
+        "agent"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 9,
+        "domain": 2,
+        "path": 3
+      }
+    },
+    {
+      "path": "eks_crossplane\\initial\\stage1.md",
+      "title": "Crossplane EKS Management Cluster - Approach Overview & Comparison",
+      "category": "infrastructure",
+      "keywords": [
+        "cloud",
+        "aws",
+        "crossplane",
+        "eks",
+        "kubernetes",
+        "api",
+        "infrastructure",
+        "k8s"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 19,
+        "domain": 12,
+        "path": 3
+      }
+    },
+    {
+      "path": "eks_crossplane\\initial\\stage2.md",
+      "title": "Stage 2: Architecture Design",
+      "category": "infrastructure",
+      "keywords": [
+        "eks",
+        "aws",
+        "cloud",
+        "infrastructure",
+        "crossplane",
+        "security",
+        "mermaid",
+        "azure"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 19,
+        "domain": 16,
+        "path": 3
+      }
+    },
+    {
+      "path": "eks_crossplane\\initial\\stage3_outline.md",
+      "title": "Stage 3: Implementation Patterns - Outline (Crossplane 2.1)",
+      "category": "devplatform",
+      "keywords": [
+        "function",
+        "crossplane",
+        "helm",
+        "deployment",
+        "platform",
+        "api",
+        "aws",
+        "observability"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 9,
+        "domain": 2,
+        "path": 3
+      }
+    },
+    {
+      "path": "eks_crossplane\\initial\\tasks.md",
+      "title": "High-Level Plan: Crossplane EKS Management Cluster Implementation",
+      "category": "devplatform",
+      "keywords": [
+        "crossplane",
+        "eks",
+        "cloud",
+        "aws",
+        "deployment",
+        "platform",
+        "kubernetes",
+        "production"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 15,
+        "domain": 4,
+        "path": 3
+      }
+    },
+    {
+      "path": "helm\\helm_layered_abstraction.md",
+      "title": "Solution 2: Kustomize with Helm",
+      "category": "infrastructure",
+      "keywords": [
+        "yaml",
+        "helm",
+        "argocd",
+        "gitops",
+        "kubernetes",
+        "staging",
+        "security",
+        "monitoring"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 14,
+        "domain": 10,
+        "path": 2
+      }
+    },
+    {
+      "path": "helm\\testing\\argocd_layered_values.md",
+      "title": "ArgoCD and Helm Schema Validation",
+      "category": "infrastructure",
+      "keywords": [
+        "yaml",
+        "argocd",
+        "helm",
+        "platform",
+        "api",
+        "production",
+        "kubernetes",
+        "staging"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 11,
+        "domain": 6,
+        "path": 3
+      }
+    },
+    {
+      "path": "helm\\testing\\getting_started_concise.md",
+      "title": "Getting Started Concise",
+      "category": "infrastructure",
+      "keywords": [
+        "deployment",
+        "helm",
+        "kubernetes",
+        "production",
+        "testing",
+        "getting-started-concise"
+      ],
+      "keywordCount": 6,
+      "success": true,
+      "sources": {
+        "technical": 4,
+        "domain": 4,
+        "path": 3
+      }
+    },
+    {
+      "path": "helm\\testing\\layered_schema.md",
+      "title": "Schema Validation with Layered Values Files",
+      "category": "infrastructure",
+      "keywords": [
+        "yaml",
+        "platform",
+        "database",
+        "helm",
+        "json",
+        "deployment",
+        "production",
+        "api"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 11,
+        "domain": 5,
+        "path": 3
+      }
+    },
+    {
+      "path": "helm\\testing\\non_helm_schema_validation.md",
+      "title": "Non Helm Schema Validation",
+      "category": "infrastructure",
+      "keywords": [
+        "kubernetes",
+        "helm",
+        "yaml",
+        "api",
+        "security",
+        "non-helm-schema-validation",
+        "testing"
+      ],
+      "keywordCount": 7,
+      "success": true,
+      "sources": {
+        "technical": 5,
+        "domain": 3,
+        "path": 3
+      }
+    },
+    {
+      "path": "helm\\testing\\schema_testing.md",
+      "title": "Creating a Helm Values Schema: Complete Guide",
+      "category": "infrastructure",
+      "keywords": [
+        "helm",
+        "json",
+        "yaml",
+        "container",
+        "production",
+        "deployment",
+        "kubernetes",
+        "database"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 9,
+        "domain": 6,
+        "path": 3
+      }
+    },
+    {
+      "path": "helm\\testing\\starting_helm_testing.md",
+      "title": "Testing Complex Helm Charts: A Practical Guide",
+      "category": "infrastructure",
+      "keywords": [
+        "yaml",
+        "helm",
+        "deployment",
+        "testing",
+        "security",
+        "production",
+        "kubernetes",
+        "k8s"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 8,
+        "domain": 8,
+        "path": 3
+      }
+    },
+    {
+      "path": "production\\production-readiness-overview.md",
+      "title": "Production Readiness Guide: From Docker Compose to Kubernetes",
+      "category": "infrastructure",
+      "keywords": [
+        "production",
+        "deployment",
+        "database",
+        "kubernetes",
+        "rest",
+        "metrics",
+        "staging",
+        "observability"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 29,
+        "domain": 16,
+        "path": 2
+      }
+    },
+    {
+      "path": "production\\prompt-guide.md",
+      "title": "Production Readiness Deep-Dive Prompt Guide",
+      "category": "infrastructure",
+      "keywords": [
+        "kubernetes",
+        "production",
+        "database",
+        "deployment",
+        "monitoring",
+        "observability",
+        "metrics",
+        "logging"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 27,
+        "domain": 15,
+        "path": 2
+      }
+    },
+    {
+      "path": "production\\runbooks.md",
+      "title": "Runbooks",
+      "category": "infrastructure",
+      "keywords": [
+        "deployment",
+        "runbooks",
+        "kubernetes",
+        "platform",
+        "database",
+        "markdown",
+        "scaling",
+        "staging"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 10,
+        "domain": 6,
+        "path": 2
+      }
+    },
+    {
+      "path": "workflow\\kubernetes_based.md",
+      "title": "Open Source Workflow Orchestration on Kubernetes",
+      "category": "ai-ml",
+      "keywords": [
+        "workflow",
+        "agent",
+        "python",
+        "prefect",
+        "k8s",
+        "yaml",
+        "temporal",
+        "ai"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 28,
+        "domain": 8,
+        "path": 2
+      }
+    },
+    {
+      "path": "workflow\\serverless_function_workflow_tools_for_kubernetes.md",
+      "title": "Core Concepts",
+      "category": "ai-ml",
+      "keywords": [
+        "agent",
+        "function",
+        "api",
+        "workflow",
+        "yaml",
+        "serverless",
+        "python",
+        "temporal"
+      ],
+      "keywordCount": 8,
+      "success": true,
+      "sources": {
+        "technical": 28,
+        "domain": 7,
+        "path": 2
+      }
+    }
+  ],
+  "statistics": {
+    "total": 53,
+    "successful": 53,
+    "failed": 0,
+    "averageKeywordCount": 8,
+    "totalUniqueKeywords": 75,
+    "sources": {
+      "technical": 759,
+      "domain": 334,
+      "path": 148
+    }
+  },
+  "allKeywords": [
+    "agent",
+    "agentic",
+    "ai",
+    "alerting",
+    "api",
+    "argocd",
+    "automation",
+    "aws",
+    "azure",
+    "backstage",
+    "cloud",
+    "confluence",
+    "container",
+    "crossplane",
+    "database",
+    "deployment",
+    "devops",
+    "devplatform",
+    "diagrams",
+    "docker",
+    "documentation",
+    "domainmodel",
+    "eks",
+    "function",
+    "getting-started-concise",
+    "gitops",
+    "helm",
+    "infrastructure",
+    "initial-with-correlation",
+    "java",
+    "javascript",
+    "json",
+    "k8s",
+    "kargo",
+    "kubernetes",
+    "langchain",
+    "langgraph",
+    "llm",
+    "logging",
+    "markdown",
+    "mcp",
+    "mermaid",
+    "metrics",
+    "microservices",
+    "monitoring",
+    "multi-agent",
+    "non-helm-schema-validation",
+    "observability",
+    "one-model-multiple-diagrams",
+    "orchestration",
+    "oss-portal-platform-orchestration-tools",
+    "oss-vs-closed-portal",
+    "osscomparison",
+    "platform",
+    "prefect",
+    "production",
+    "python",
+    "react",
+    "recommendations",
+    "rest",
+    "runbooks",
+    "scaling",
+    "security",
+    "serverless",
+    "sql",
+    "staging",
+    "techdocs",
+    "temporal",
+    "terraform",
+    "testing",
+    "typescript",
+    "verification-architecture",
+    "wiki",
+    "workflow",
+    "yaml"
+  ]
+}

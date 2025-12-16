@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Infrastructure on Technology Documentation Hub</title>
+    <link>http://localhost:1313/musings/docs/infrastructure/</link>
+    <description>Recent content in Infrastructure on Technology Documentation Hub</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 16 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/musings/docs/infrastructure/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>1. Mental Model Shift (Important Framing)</title>
+      <link>http://localhost:1313/musings/docs/infrastructure/runbooks/</link>
+      <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/musings/docs/infrastructure/runbooks/</guid>
+      <description>Below is a practical, ops-first guide written for an experienced Unix/PC server architect who is new to operating distributed systems at scale. It assumes you understand the theory—but want concrete, repeatable practices that keep Tier 3 asleep and let Tier 2 resolve the majority of incidents safely.</description>
+    </item>
+    <item>
+      <title>ArgoCD and Helm Schema Validation</title>
+      <link>http://localhost:1313/musings/docs/infrastructure/argocd-layered-values/</link>
+      <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/musings/docs/infrastructure/argocd-layered-values/</guid>
+      <description>ArgoCD and Helm Schema Validation is a infrastructure document covering ArgoCD and Helm Schema Validation and &lt;strong&gt;How ArgoCD Uses Helm Schema Validation&lt;/strong&gt;. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details.</description>
+    </item>
+    <item>
+      <title>Contents</title>
+      <link>http://localhost:1313/musings/docs/infrastructure/prompt-guide/</link>
+      <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/musings/docs/infrastructure/prompt-guide/</guid>
+      <description>Production Readiness Deep-Dive Prompt Guide is a infrastructure document covering Production Readiness Deep-Dive Prompt Guide and How to Use This Guide. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details.</description>
+    </item>
+    <item>
+      <title>Core Strategy: Progressive Delivery with Blast Radius Containment</title>
+      <link>http://localhost:1313/musings/docs/infrastructure/overview/</link>
+      <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/musings/docs/infrastructure/overview/</guid>
+      <description>Perfect - I now have a clear picture of your situation. Let me provide a high-level conceptual approach to release management for your platform.</description>
+    </item>
+    <item>
+      <title>Crossplane EKS Management Cluster - Approach Overview &amp; Comparison</title>
+      <link>http://localhost:1313/musings/docs/infrastructure/stage1/</link>
+      <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/musings/docs/infrastructure/stage1/</guid>
+      <description>Crossplane EKS Management Cluster - Approach Overview &amp;amp; Comparison is a infrastructure document covering Crossplane EKS Management Cluster - Approach Overview &amp;amp; Comparison and Approach 1: Direct Managed Resources. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details.</description>
+    </item>
+    <item>
+      <title>Getting Started Concise</title>
+      <link>http://localhost:1313/musings/docs/infrastructure/getting-started-concise/</link>
+      <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/musings/docs/infrastructure/getting-started-concise/</guid>
+      <description>Here&amp;rsquo;s a concise strategy: 1. Schema Validation First (Quickest Win) - Run helm template to generate manifests - Validate with kubeconform or kubeval against Kubernetes schemas - Automate in CI/CD 2. Unit Tests (Template Logic) - Use helm-unittest plugin - Start with critical templates (deployments, services, configmaps) - Test: default values render correctly, conditional logic works, value overrides produce expected output - Focus on areas with complex templating (if/else, loops, merges) 3.</description>
+    </item>
+    <item>
+      <title>GitHub Actions Example</title>
+      <link>http://localhost:1313/musings/docs/infrastructure/ci-cd-templates/</link>
+      <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/musings/docs/infrastructure/ci-cd-templates/</guid>
+      <description>GitHub Actions Example is a infrastructure document covering CI/CD Pipeline Template with Metadata Injection and GitHub Actions Example. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details.</description>
+    </item>
+    <item>
+      <title>K8s Mcp Servers</title>
+      <link>http://localhost:1313/musings/docs/infrastructure/k8s-mcp-servers/</link>
+      <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/musings/docs/infrastructure/k8s-mcp-servers/</guid>
+      <description>I&amp;rsquo;ll search for information about open source Kubernetes MCP servers for you. Based on my research, here&amp;rsquo;s what I found about open source Kubernetes MCP servers:.</description>
+    </item>
+    <item>
+      <title>Management Cluster VPC Layout</title>
+      <link>http://localhost:1313/musings/docs/infrastructure/stage2/</link>
+      <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/musings/docs/infrastructure/stage2/</guid>
+      <description>Complexity Gradient: - Simplest Structure: vCluster (fewest resources per workload) - Most Transparent: Direct MRs (every resource visible) - Most Abstracted: Opinionated (user sees almost nothing) - Most Hybrid: ECS Control Plane (mixing orchestrators) Resource Count Comparison: &amp;mdash;. Covers Stage 2: Architecture Design, Reference Network Architecture, Management Cluster VPC Layout.</description>
+    </item>
+    <item>
+      <title>Non Helm Schema Validation</title>
+      <link>http://localhost:1313/musings/docs/infrastructure/non-helm-schema-validation/</link>
+      <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/musings/docs/infrastructure/non-helm-schema-validation/</guid>
+      <description>Yes, there are several tools that can validate Kubernetes manifests independently of Helm: kubeval - Validates Kubernetes configuration files against the expected schema. Works with individual files or directories. It&amp;rsquo;s standalone and doesn&amp;rsquo;t require a cluster.</description>
+    </item>
+    <item>
+      <title>Production Readiness Guide: From Docker Compose to Kubernetes</title>
+      <link>http://localhost:1313/musings/docs/infrastructure/production-readiness-overview/</link>
+      <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/musings/docs/infrastructure/production-readiness-overview/</guid>
+      <description>This guide bridges the gap between traditional single-server deployments and cloud-native Kubernetes environments. If you&amp;rsquo;ve spent years deploying applications on Unix servers or PC hardware, where each service runs as a single process on a known machine, the shift to distributed systems represents both an operational paradigm change and an architectural evolution. The fundamental difference is deceptively simple: instead of one copy of your service running on one machine, you now have N copies running across M nodes, managed by an orchestrator you don&amp;rsquo;t directly control.</description>
+    </item>
+    <item>
+      <title>Quick Start: Generate Schema from Existing values.yaml</title>
+      <link>http://localhost:1313/musings/docs/infrastructure/schema-testing/</link>
+      <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/musings/docs/infrastructure/schema-testing/</guid>
+      <description>Creating a Helm Values Schema: Complete Guide is a infrastructure document covering Creating a Helm Values Schema: Complete Guide and &lt;strong&gt;Quick Start: Generate Schema from Existing values.yaml&lt;/strong&gt;. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details.</description>
+    </item>
+    <item>
+      <title>Read current state AND capture resourceVersion</title>
+      <link>http://localhost:1313/musings/docs/infrastructure/job-plus-configmap-annotation/</link>
+      <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/musings/docs/infrastructure/job-plus-configmap-annotation/</guid>
+      <description>Good choice - Option 3 is pragmatic and you can iterate quickly. Let me expand on it.</description>
+    </item>
+    <item>
+      <title>Schema Validation with Layered Values Files</title>
+      <link>http://localhost:1313/musings/docs/infrastructure/layered-schema/</link>
+      <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/musings/docs/infrastructure/layered-schema/</guid>
+      <description>Schema Validation with Layered Values Files is a infrastructure document covering Schema Validation with Layered Values Files and &lt;strong&gt;The Core Challenge&lt;/strong&gt;. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details.</description>
+    </item>
+    <item>
+      <title>Solution 2: Kustomize with Helm</title>
+      <link>http://localhost:1313/musings/docs/infrastructure/helm-layered-abstraction/</link>
+      <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/musings/docs/infrastructure/helm-layered-abstraction/</guid>
+      <description>Great question - this is a common challenge with multi-layered architectures. Here are several approaches, from simplest to most sophisticated:.</description>
+    </item>
+    <item>
+      <title>Understanding What You&#39;re Testing</title>
+      <link>http://localhost:1313/musings/docs/infrastructure/starting-helm-testing/</link>
+      <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/musings/docs/infrastructure/starting-helm-testing/</guid>
+      <description>Testing Complex Helm Charts: A Practical Guide is a infrastructure document covering Testing Complex Helm Charts: A Practical Guide and &lt;strong&gt;Understanding What You&amp;rsquo;re Testing&lt;/strong&gt;. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details.</description>
+    </item>
+    <item>
+      <title>What You&#39;re Building</title>
+      <link>http://localhost:1313/musings/docs/infrastructure/executive-summary/</link>
+      <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/musings/docs/infrastructure/executive-summary/</guid>
+      <description>DevOps Domain Model: Executive Summary is a infrastructure document covering DevOps Domain Model: Executive Summary and What You&amp;rsquo;re Building. This resource provides information and guidance on the topic. See the full document for detailed information and implementation details.</description>
+    </item>
+    <item>
+      <title>Why This Approach Works for DevOps</title>
+      <link>http://localhost:1313/musings/docs/infrastructure/devops-domain-model-guide/</link>
+      <pubDate>Tue, 16 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/musings/docs/infrastructure/devops-domain-model-guide/</guid>
+      <description>This guide shows how to impose a unified domain model on distributed DevOps infrastructure (Git, Docker, Kubernetes, CI/CD, logs) for consolidated visibility and consistency checking. Covers DevOps Domain Model: Implementation Guide, Overview, Why This Approach Works for DevOps.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><script src="/musings/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=musings/livereload" data-no-instant defer></script>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Crossplane v2 opens up some very elegant solutions for this use case. Let me explain the key differences and how they apply.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/musings/docs/devplatform/crossplane-solution/">
+  <meta property="og:site_name" content="Technology Documentation Hub">
+  <meta property="og:title" content="Pseudocode for composition function">
+  <meta property="og:description" content="Crossplane v2 opens up some very elegant solutions for this use case. Let me explain the key differences and how they apply.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2025-12-16T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-16T00:00:00+00:00">
+
+
+  <meta itemprop="name" content="Pseudocode for composition function">
+  <meta itemprop="description" content="Crossplane v2 opens up some very elegant solutions for this use case. Let me explain the key differences and how they apply.">
+  <meta itemprop="datePublished" content="2025-12-16T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-12-16T00:00:00+00:00">
+  <meta itemprop="wordCount" content="945">
+  <meta itemprop="keywords" content="function,crossplane,yaml,kubernetes,helm,python,argocd,gitops">
+
+<title>Pseudocode for composition function | Technology Documentation Hub</title>
+<link rel="icon" href="/musings/favicon.png" >
+<link rel="manifest" href="/musings/manifest.json">
+<link rel="canonical" href="http://localhost:1313/musings/docs/devplatform/crossplane-solution/">
+<link rel="stylesheet" href="/musings/book.min.6970156cec683193d93c9c4edaf0d56574e4361df2e0c1be4f697ae81c3ba55f.css" integrity="sha256-aXAVbOxoMZPZPJxO2vDVZXTkNh3y4MG&#43;T2l66Bw7pV8=" crossorigin="anonymous">
+
+
+  <script defer src="/musings/fuse.min.js"></script>
+  <script defer src="/musings/en.search.min.5cc9128683126c7cda9fef74044c10c013f6d8935e1e3e719e3f562033e9ef44.js" integrity="sha256-XMkShoMSbHzan&#43;90BEwQwBP22JNeHj5xnj9WIDPp70Q=" crossorigin="anonymous"></script>
+
+
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-docs">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/musings/"><span>Technology Documentation Hub</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input id="book-search-input" type="text" 
+    placeholder="Search"
+    aria-label="Search"
+    maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/" class="">
+      AI &amp; Machine Learning</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/agentic-computing-overview-and-tools/" class="">
+      Agentic Computing Overview And Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/agno-vs-langchain/" class="">
+      Agno Vs Langchain</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/flowwise-vs-langflow/" class="">
+      Flowise vs Langflow: Detailed Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/one-model-multiple-diagrams/" class="">
+      Generate all views</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/verification-architecture/" class="">
+      Is This a Reasonable Architecture?</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/kiro-ide-comparison-tools/" class="">
+      Kiro IDE: Comprehensive Analysis, Comparisons &amp; Optimal Workflows</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/langchain-architecture/" class="">
+      LangChain: The Foundation Library</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/llm-tracing-metrics-comparison/" class="">
+      Llm Tracing Metrics Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/kubernetes-based/" class="">
+      Open Source Workflow Orchestration on Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/tools-overview-and-getting-started/" class="">
+      Self-Hosted Open Source Agent Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/serverless-function-workflow-tools-for-kubernetes/" class="">
+      Serverless/Function Workflows on Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/n8n-overview/" class="">
+      What Problems Does n8n Solve?</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/" class="">
+      Development Platforms</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/backstage-techdocs-pros-cons/" class="">
+      Backstage Techdocs Pros Cons</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/cross-diagram-reuse-guide/" class="">
+      Cross-Diagram Domain Model Reuse in PlantUML</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/prompt/" class="">
+      Crossplane EKS Management Cluster Implementation - Project Brief</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/comprehensive-guide/" class="">
+      Driven vs Event: Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/gitops-platform-safety/" class="">
+      GitOps Safety Architecture for Platform Evolution</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/kargo-intro/" class="">
+      How Kargo Works with ArgoCD to Manage Deployments</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/backstage-kratix-crossplane-argocd-blueprint/" class="">
+      Implementation Blueprint: Crossplane &#43; Kratix &#43; Backstage &#43; ArgoCD</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/kargo-git-tags/" class="">
+      In subsequent stages, you can read this metadata</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/in-browser-editing-tools/" class="">
+      In-Browser Editing Documentation Solutions</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/initial-comparison/" class="">
+      Initial Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/kargo-argocd-interaction/" class="">
+      Kargo promotion step</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/presentation/" class="">
+      Kargo: GitOps Promotion for ArgoCD</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/notion-overview/" class="">
+      Notion: A Comprehensive Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/oss-portal-platform-orchestration-tools/" class="">
+      Oss Portal Platform Orchestration Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/oss-vs-closed-portal/" class="">
+      Oss Vs Closed Portal</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/recommendations/" class="">
+      Overview of Text-Based UML Domain Modeling Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/export-conversion/" class="">
+      PlantUML Export &amp; Embedding Options</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/crossplane-solution/" class="active">
+      Pseudocode for composition function</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/kargo-polyrepo/" class="">
+      Response</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/job-configmap-crossplane-abstraction/" class="">
+      Shell script helper for Option 3</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/tasks/" class="">
+      Stage 1: Approach Overview &amp; Comparison ✅ COMPLETE</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/stage3-outline/" class="">
+      Stage 3: Implementation Patterns - Outline (Crossplane 2.1)</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/" class="">
+      Infrastructure</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/runbooks/" class="">
+      1. Mental Model Shift (Important Framing)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/argocd-layered-values/" class="">
+      ArgoCD and Helm Schema Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/prompt-guide/" class="">
+      Contents</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/overview/" class="">
+      Core Strategy: Progressive Delivery with Blast Radius Containment</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/stage1/" class="">
+      Crossplane EKS Management Cluster - Approach Overview &amp; Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/getting-started-concise/" class="">
+      Getting Started Concise</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/ci-cd-templates/" class="">
+      GitHub Actions Example</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/k8s-mcp-servers/" class="">
+      K8s Mcp Servers</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/stage2/" class="">
+      Management Cluster VPC Layout</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/non-helm-schema-validation/" class="">
+      Non Helm Schema Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/production-readiness-overview/" class="">
+      Production Readiness Guide: From Docker Compose to Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/schema-testing/" class="">
+      Quick Start: Generate Schema from Existing values.yaml</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/job-plus-configmap-annotation/" class="">
+      Read current state AND capture resourceVersion</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/layered-schema/" class="">
+      Schema Validation with Layered Values Files</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/helm-layered-abstraction/" class="">
+      Solution 2: Kustomize with Helm</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/starting-helm-testing/" class="">
+      Understanding What You&#39;re Testing</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/executive-summary/" class="">
+      What You&#39;re Building</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/devops-domain-model-guide/" class="">
+      Why This Approach Works for DevOps</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/workflows/" class="">
+      Workflows</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/workflows/imperitive-in-declarative/" class="">
+      Imperitive In Declarative</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/mermaid-test/" class="">
+      Mermaid Diagram Test</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/" class="">
+      Miscellaneous</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/test-document/" class="">
+      Test Document</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/musings/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>Pseudocode for composition function</h3>
+
+  <label for="toc-control">
+    
+    <img src="/musings/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#key-crossplane-v2-improvements-relevant-here">Key Crossplane v2 Improvements Relevant Here</a></li>
+        <li><a href="#solution-1-custom-xrd-with-composition-function">Solution 1: Custom XRD with Composition Function</a>
+          <ul>
+            <li><a href="#pros">Pros:</a></li>
+            <li><a href="#cons">Cons:</a></li>
+          </ul>
+        </li>
+        <li><a href="#solution-2-provider-kubernetes-with-job-orchestration">Solution 2: Provider-Kubernetes with Job Orchestration</a>
+          <ul>
+            <li><a href="#pros-1">Pros:</a></li>
+            <li><a href="#cons-1">Cons:</a></li>
+          </ul>
+        </li>
+        <li><a href="#solution-3-crossplane--providerconfig-with-external-system">Solution 3: Crossplane + ProviderConfig with External System</a>
+          <ul>
+            <li><a href="#pros-2">Pros:</a></li>
+            <li><a href="#cons-2">Cons:</a></li>
+          </ul>
+        </li>
+        <li><a href="#solution-4-crossplane-with-provider-helm-for-jobs">Solution 4: Crossplane with Provider-Helm for Jobs</a>
+          <ul>
+            <li><a href="#pros-3">Pros:</a></li>
+            <li><a href="#cons-3">Cons:</a></li>
+          </ul>
+        </li>
+        <li><a href="#my-recommendation-for-crossplane-v2">My Recommendation for Crossplane v2</a></li>
+        <li><a href="#quick-comparison-to-option-3">Quick Comparison to Option 3</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><p>Yes! Crossplane v2 opens up some very elegant solutions for this use case. Let me explain the key differences and how they apply.</p>
+<h2 id="key-crossplane-v2-improvements-relevant-here">Key Crossplane v2 Improvements Relevant Here<a class="anchor" href="#key-crossplane-v2-improvements-relevant-here">#</a></h2>
+<p><strong>Crossplane v2 introduces:</strong></p>
+<ol>
+<li><strong>Composition Functions (replacing Patch &amp; Transform)</strong> - Write composition logic in real programming languages (Go, Python, etc.) instead of YAML patches</li>
+<li><strong>Better lifecycle management</strong> - More control over resource ordering and dependencies</li>
+<li><strong>Improved status handling</strong> - Better state tracking and conditions</li>
+<li><strong>Function pipelines</strong> - Chain multiple functions together for complex workflows</li>
+</ol>
+<h2 id="solution-1-custom-xrd-with-composition-function">Solution 1: Custom XRD with Composition Function<a class="anchor" href="#solution-1-custom-xrd-with-composition-function">#</a></h2>
+<p>This is probably the cleanest approach. Define a Custom Resource (XRD) that represents your restore intent:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apiextensions.crossplane.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">CompositeResourceDefinition</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">xdatabaserestores.ops.example.com</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">group</span>: <span style="color:#ae81ff">ops.example.com</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">names</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">XDatabaseRestore</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">plural</span>: <span style="color:#ae81ff">xdatabaserestores</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">claimNames</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">DatabaseRestore</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">plural</span>: <span style="color:#ae81ff">databaserestores</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">versions</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">v1alpha1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">schema</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">openAPIV3Schema</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">type</span>: <span style="color:#ae81ff">object</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">properties</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">type</span>: <span style="color:#ae81ff">object</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">properties</span>:
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">backupTimestamp</span>:
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">type</span>: <span style="color:#ae81ff">string</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">databaseRef</span>:
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">type</span>: <span style="color:#ae81ff">string</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">targetDeployments</span>:
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">type</span>: <span style="color:#ae81ff">array</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">items</span>:
+</span></span><span style="display:flex;"><span>                  <span style="color:#f92672">type</span>: <span style="color:#ae81ff">string</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">status</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">type</span>: <span style="color:#ae81ff">object</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">properties</span>:
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">phase</span>:
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">type</span>: <span style="color:#ae81ff">string</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">lastAppliedBackup</span>:
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">type</span>: <span style="color:#ae81ff">string</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">operationStarted</span>:
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">type</span>: <span style="color:#ae81ff">string</span></span></span></code></pre></div><p>Then create a <strong>Composition Function</strong> (in Go, Python, etc.) that:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Pseudocode for composition function</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">compose</span>(request):
+</span></span><span style="display:flex;"><span>    desired <span style="color:#f92672">=</span> request<span style="color:#f92672">.</span>observed<span style="color:#f92672">.</span>composite<span style="color:#f92672">.</span>spec<span style="color:#f92672">.</span>backupTimestamp
+</span></span><span style="display:flex;"><span>    applied <span style="color:#f92672">=</span> request<span style="color:#f92672">.</span>observed<span style="color:#f92672">.</span>composite<span style="color:#f92672">.</span>status<span style="color:#f92672">.</span>lastAppliedBackup
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> desired <span style="color:#f92672">==</span> applied:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Nothing to do, already in desired state</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> response(resources<span style="color:#f92672">=</span>[])
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    phase <span style="color:#f92672">=</span> request<span style="color:#f92672">.</span>observed<span style="color:#f92672">.</span>composite<span style="color:#f92672">.</span>status<span style="color:#f92672">.</span>phase
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> phase <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Complete&#34;</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Start new operation</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> response(resources<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>            disable_ingress_patch(),
+</span></span><span style="display:flex;"><span>            scale_deployments_to_zero(),
+</span></span><span style="display:flex;"><span>            restore_job(desired),
+</span></span><span style="display:flex;"><span>        ], status<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;phase&#34;</span>: <span style="color:#e6db74">&#34;InProgress&#34;</span>})
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">elif</span> phase <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;InProgress&#34;</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Check if job completed</span>
+</span></span><span style="display:flex;"><span>        job_status <span style="color:#f92672">=</span> get_job_status(request)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> job_status <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Succeeded&#34;</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> response(resources<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>                restore_deployments(),
+</span></span><span style="display:flex;"><span>                enable_ingress(),
+</span></span><span style="display:flex;"><span>            ], status<span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;phase&#34;</span>: <span style="color:#e6db74">&#34;Complete&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;lastAppliedBackup&#34;</span>: desired
+</span></span><span style="display:flex;"><span>            })
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> response()</span></span></code></pre></div><p><strong>Usage in Git:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">ops.example.com/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">DatabaseRestore</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">prod-restore</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">backupTimestamp</span>: <span style="color:#e6db74">&#34;2024-12-10T00:00:00Z&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">databaseRef</span>: <span style="color:#ae81ff">postgres-prod</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">targetDeployments</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">myapp</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">worker</span></span></span></code></pre></div><h3 id="pros">Pros:<a class="anchor" href="#pros">#</a></h3>
+<ul>
+<li><strong>Truly declarative</strong> - GitOps-friendly, ArgoCD sees it as just another resource</li>
+<li><strong>Full programming language</strong> - Complex logic, error handling, retries in Python/Go</li>
+<li><strong>Built-in reconciliation</strong> - Crossplane reconciles automatically</li>
+<li><strong>Idempotent by design</strong> - Composition functions are pure functions of desired state</li>
+<li><strong>Rich status reporting</strong> - Can track detailed progress in <code>.status</code></li>
+<li><strong>Works without ArgoCD</strong> - Just needs Crossplane</li>
+<li><strong>Clean separation</strong> - Business logic in function, state in cluster</li>
+</ul>
+<h3 id="cons">Cons:<a class="anchor" href="#cons">#</a></h3>
+<ul>
+<li>Requires writing a composition function (but simpler than a full operator)</li>
+<li>Need to package and deploy the function</li>
+<li>Learning curve for Crossplane v2 function model</li>
+</ul>
+<h2 id="solution-2-provider-kubernetes-with-job-orchestration">Solution 2: Provider-Kubernetes with Job Orchestration<a class="anchor" href="#solution-2-provider-kubernetes-with-job-orchestration">#</a></h2>
+<p>Use Crossplane&rsquo;s Provider-Kubernetes (which can manage any Kubernetes resources) with a structured approach:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apiextensions.crossplane.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Composition</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">database-restore-workflow</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">compositeTypeRef</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">ops.example.com/v1alpha1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">XDatabaseRestore</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">mode</span>: <span style="color:#ae81ff">Pipeline</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">pipeline</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">step</span>: <span style="color:#ae81ff">check-state</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">functionRef</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">name</span>: <span style="color:#ae81ff">function-check-restore-state</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">step</span>: <span style="color:#ae81ff">create-prereq-resources</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">functionRef</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">name</span>: <span style="color:#ae81ff">function-conditional-resources</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">step</span>: <span style="color:#ae81ff">create-restore-job</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">functionRef</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">name</span>: <span style="color:#ae81ff">function-restore-job</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">step</span>: <span style="color:#ae81ff">create-postreq-resources</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">functionRef</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">name</span>: <span style="color:#ae81ff">function-cleanup-resources</span></span></span></code></pre></div><p>Each function can conditionally create Kubernetes resources based on state:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Function output creates these only when needed</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">kubernetes.crossplane.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Object</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">forProvider</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">manifest</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">batch/v1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Job</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">restore-db-20241210</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">restore.ops/timestamp</span>: <span style="color:#e6db74">&#34;2024-12-10T00:00:00Z&#34;</span></span></span></code></pre></div><h3 id="pros-1">Pros:<a class="anchor" href="#pros-1">#</a></h3>
+<ul>
+<li>Leverages Provider-Kubernetes for actual resource management</li>
+<li>Pipeline model makes sequencing clear</li>
+<li>Each function can be simple and focused</li>
+<li>Can conditionally create/skip resources based on state</li>
+</ul>
+<h3 id="cons-1">Cons:<a class="anchor" href="#cons-1">#</a></h3>
+<ul>
+<li>Still requires writing functions</li>
+<li>Provider-Kubernetes adds another layer</li>
+<li>State tracking across pipeline steps needs careful design</li>
+</ul>
+<h2 id="solution-3-crossplane--providerconfig-with-external-system">Solution 3: Crossplane + ProviderConfig with External System<a class="anchor" href="#solution-3-crossplane--providerconfig-with-external-system">#</a></h2>
+<p>If you have an external job orchestration system (even something simple), use Crossplane to manage the &ldquo;intent&rdquo; and let external system do work:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apiextensions.crossplane.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">CompositeResourceDefinition</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">xdatabaserestores.ops.example.com</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ... XRD definition ...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apiextensions.crossplane.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Composition</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">resources</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">restore-trigger</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">base</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">kubernetes.crossplane.io/v1alpha2</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Object</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">forProvider</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">manifest</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ConfigMap</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">name</span>: <span style="color:#ae81ff">restore-intent</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">data</span>:
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">backupTimestamp</span>: <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#75715e"># Patched from XR</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">state</span>: <span style="color:#e6db74">&#34;pending&#34;</span></span></span></code></pre></div><p>Then your Option 3 controller watches for this ConfigMap and does the work, updating the state back.</p>
+<h3 id="pros-2">Pros:<a class="anchor" href="#pros-2">#</a></h3>
+<ul>
+<li>Combines Crossplane&rsquo;s declarative model with your simpler controller</li>
+<li>Can reuse existing tooling</li>
+<li>Clear separation: Crossplane = state management, controller = execution</li>
+<li>Easier than full composition function for simple cases</li>
+</ul>
+<h3 id="cons-2">Cons:<a class="anchor" href="#cons-2">#</a></h3>
+<ul>
+<li>Two systems to coordinate</li>
+<li>Not as &ldquo;pure&rdquo; as function-based approach</li>
+<li>Still need the controller logic</li>
+</ul>
+<h2 id="solution-4-crossplane-with-provider-helm-for-jobs">Solution 4: Crossplane with Provider-Helm for Jobs<a class="anchor" href="#solution-4-crossplane-with-provider-helm-for-jobs">#</a></h2>
+<p>Use Provider-Helm to deploy Helm charts that include Jobs:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">helm.crossplane.io/v1beta1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Release</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">database-restore-20241210</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">forProvider</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">chart</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">name</span>: <span style="color:#ae81ff">database-restore</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">repository</span>: <span style="color:#ae81ff">https://charts.example.com</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">values</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">backupTimestamp</span>: <span style="color:#e6db74">&#34;2024-12-10T00:00:00Z&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">onlyIfChanged</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Crossplane tracks if values changed, only upgrades if needed</span></span></span></code></pre></div><p>The Helm chart contains Jobs with idempotent scripts.</p>
+<h3 id="pros-3">Pros:<a class="anchor" href="#pros-3">#</a></h3>
+<ul>
+<li>Simple if you already use Helm</li>
+<li>Helm&rsquo;s release tracking provides some state management</li>
+<li>Can package restore logic in a chart</li>
+</ul>
+<h3 id="cons-3">Cons:<a class="anchor" href="#cons-3">#</a></h3>
+<ul>
+<li>Helm isn&rsquo;t really designed for operational workflows</li>
+<li>Less elegant than purpose-built solution</li>
+<li>State tracking still manual within the chart</li>
+</ul>
+<h2 id="my-recommendation-for-crossplane-v2">My Recommendation for Crossplane v2<a class="anchor" href="#my-recommendation-for-crossplane-v2">#</a></h2>
+<p><strong>Start with Solution 1: Custom XRD + Composition Function</strong></p>
+<p>Here&rsquo;s why it&rsquo;s cleanest:</p>
+<ol>
+<li>
+<p><strong>True GitOps</strong> - Your git repo has:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">ops.example.com/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">DatabaseRestore</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">prod-restore</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">backupTimestamp</span>: <span style="color:#e6db74">&#34;2024-12-10T00:00:00Z&#34;</span></span></span></code></pre></div><p>That&rsquo;s it. Clean, declarative, obvious.</p>
+</li>
+<li>
+<p><strong>Composition function handles complexity</strong> - All the imperative &ldquo;how&rdquo; lives in code, not YAML. You write proper error handling, logging, state machines in a real language.</p>
+</li>
+<li>
+<p><strong>Crossplane does reconciliation</strong> - You don&rsquo;t write a controller loop. Crossplane handles watching, reconciling, retrying.</p>
+</li>
+<li>
+<p><strong>Status is built-in</strong> - <code>.status</code> field shows exactly what happened:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">status</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">phase</span>: <span style="color:#ae81ff">Complete</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">lastAppliedBackup</span>: <span style="color:#e6db74">&#34;2024-12-10T00:00:00Z&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">operationStarted</span>: <span style="color:#e6db74">&#34;2024-12-11T10:00:00Z&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">operationCompleted</span>: <span style="color:#e6db74">&#34;2024-12-11T10:15:00Z&#34;</span></span></span></code></pre></div></li>
+<li>
+<p><strong>Idempotent by design</strong> - Function receives current state, returns desired resources. Crossplane ensures idempotency.</p>
+</li>
+<li>
+<p><strong>Works everywhere</strong> - With or without ArgoCD. Just needs Crossplane.</p>
+</li>
+</ol>
+<h2 id="quick-comparison-to-option-3">Quick Comparison to Option 3<a class="anchor" href="#quick-comparison-to-option-3">#</a></h2>
+<table>
+  <thead>
+      <tr>
+          <th>Aspect</th>
+          <th>Option 3 (Deployment + ConfigMap)</th>
+          <th>Crossplane XRD + Function</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Reconciliation</td>
+          <td>Manual (polling loop)</td>
+          <td>Automatic (Crossplane)</td>
+      </tr>
+      <tr>
+          <td>Language</td>
+          <td>Bash scripts</td>
+          <td>Python/Go</td>
+      </tr>
+      <tr>
+          <td>State tracking</td>
+          <td>Manual in ConfigMap</td>
+          <td>Built-in <code>.status</code></td>
+      </tr>
+      <tr>
+          <td>Idempotency</td>
+          <td>Manual implementation</td>
+          <td>Framework-provided</td>
+      </tr>
+      <tr>
+          <td>GitOps</td>
+          <td>Works, but hacky</td>
+          <td>First-class</td>
+      </tr>
+      <tr>
+          <td>Learning curve</td>
+          <td>Low</td>
+          <td>Medium</td>
+      </tr>
+      <tr>
+          <td>Maintainability</td>
+          <td>Scripts get messy</td>
+          <td>Structured code</td>
+      </tr>
+  </tbody>
+</table>
+<p>The composition function approach is &ldquo;just enough&rdquo; structure without being a full operator. You get 95% of operator benefits with maybe 30% of the work.</p>
+<p>Would you like me to show a more concrete example of a composition function for this use case?</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+  
+  <div class="flex flex-wrap justify-between">
+    <span>
+    
+      <a href="/musings/docs/devplatform/export-conversion/" class="flex align-center">
+        <img src="/musings/icons/backward.svg" class="book-icon" alt="Backward" />
+        <span>PlantUML Export &amp; Embedding Options</span>
+      </a>
+    
+    </span>
+    <span>
+    
+      <a href="/musings/docs/devplatform/kargo-polyrepo/" class="flex align-center">
+        <span>Response</span>
+        <img src="/musings/icons/forward.svg" class="book-icon" alt="Forward" />
+      </a>
+    
+    </span>
+  </div>
+  
+
+
+ 
+        
+  
+ 
+        
+        
+  
+ 
+        
+  
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#key-crossplane-v2-improvements-relevant-here">Key Crossplane v2 Improvements Relevant Here</a></li>
+        <li><a href="#solution-1-custom-xrd-with-composition-function">Solution 1: Custom XRD with Composition Function</a>
+          <ul>
+            <li><a href="#pros">Pros:</a></li>
+            <li><a href="#cons">Cons:</a></li>
+          </ul>
+        </li>
+        <li><a href="#solution-2-provider-kubernetes-with-job-orchestration">Solution 2: Provider-Kubernetes with Job Orchestration</a>
+          <ul>
+            <li><a href="#pros-1">Pros:</a></li>
+            <li><a href="#cons-1">Cons:</a></li>
+          </ul>
+        </li>
+        <li><a href="#solution-3-crossplane--providerconfig-with-external-system">Solution 3: Crossplane + ProviderConfig with External System</a>
+          <ul>
+            <li><a href="#pros-2">Pros:</a></li>
+            <li><a href="#cons-2">Cons:</a></li>
+          </ul>
+        </li>
+        <li><a href="#solution-4-crossplane-with-provider-helm-for-jobs">Solution 4: Crossplane with Provider-Helm for Jobs</a>
+          <ul>
+            <li><a href="#pros-3">Pros:</a></li>
+            <li><a href="#cons-3">Cons:</a></li>
+          </ul>
+        </li>
+        <li><a href="#my-recommendation-for-crossplane-v2">My Recommendation for Crossplane v2</a></li>
+        <li><a href="#quick-comparison-to-option-3">Quick Comparison to Option 3</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

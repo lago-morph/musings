@@ -1,0 +1,1611 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><script src="/musings/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=musings/livereload" data-no-instant defer></script>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Let me search more specifically for Git tag creation capabilities in Kargo. Based on my research, I can now provide you with a comprehensive answer about creating tags when Freight reaches a stage.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/musings/docs/misc/kargo-git-tags/">
+  <meta property="og:site_name" content="Technology Documentation Hub">
+  <meta property="og:title" content="In subsequent stages, you can read this metadata">
+  <meta property="og:description" content="Let me search more specifically for Git tag creation capabilities in Kargo. Based on my research, I can now provide you with a comprehensive answer about creating tags when Freight reaches a stage.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2025-12-16T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-16T00:00:00+00:00">
+
+
+  <meta itemprop="name" content="In subsequent stages, you can read this metadata">
+  <meta itemprop="description" content="Let me search more specifically for Git tag creation capabilities in Kargo. Based on my research, I can now provide you with a comprehensive answer about creating tags when Freight reaches a stage.">
+  <meta itemprop="datePublished" content="2025-12-16T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-12-16T00:00:00+00:00">
+  <meta itemprop="wordCount" content="1519">
+  <meta itemprop="keywords" content="kargo,production,yaml,gitops,helm,json,deployment,orchestration">
+
+<title>In subsequent stages, you can read this metadata | Technology Documentation Hub</title>
+<link rel="icon" href="/musings/favicon.png" >
+<link rel="manifest" href="/musings/manifest.json">
+<link rel="canonical" href="http://localhost:1313/musings/docs/misc/kargo-git-tags/">
+<link rel="stylesheet" href="/musings/book.min.6970156cec683193d93c9c4edaf0d56574e4361df2e0c1be4f697ae81c3ba55f.css" integrity="sha256-aXAVbOxoMZPZPJxO2vDVZXTkNh3y4MG&#43;T2l66Bw7pV8=" crossorigin="anonymous">
+
+
+  <script defer src="/musings/fuse.min.js"></script>
+  <script defer src="/musings/en.search.min.173ca72eaf49c9fc6baf1c2e2e9837cb4f8ae13874ec0dc634ce40c45c8943dc.js" integrity="sha256-FzynLq9JyfxrrxwuLpg3y0&#43;K4Th07A3GNM5AxFyJQ9w=" crossorigin="anonymous"></script>
+
+
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-docs">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/musings/"><span>Technology Documentation Hub</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input id="book-search-input" type="text" 
+    placeholder="Search"
+    aria-label="Search"
+    maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/ai-ml/" class="">
+      AI &amp; Machine Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/devplatform/" class="">
+      Development Platforms</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/infrastructure/" class="">
+      Infrastructure</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/workflows/" class="">
+      Workflows</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/" class="">
+      Miscellaneous</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/agentic-computing-overview-and-tools/" class="">
+      Agentic Computing Overview And Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/agno-vs-langchain/" class="">
+      Agno Vs Langchain</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/serverless-function-workflow-tools-for-kubernetes/" class="">
+      Core Concepts</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/flowwise-vs-langflow/" class="">
+      Flowise vs Langflow: Detailed Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/one-model-multiple-diagrams/" class="">
+      Generate all views</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/verification-architecture/" class="">
+      Is This a Reasonable Architecture?</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kiro-ide-comparison-tools/" class="">
+      Kiro IDE: Comprehensive Analysis, Comparisons &amp; Optimal Workflows</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/langchain-architecture/" class="">
+      Langchain Architecture</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/llm-tracing-metrics-comparison/" class="">
+      Llm Tracing Metrics Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/n8n-overview/" class="">
+      n8n Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kubernetes-based/" class="">
+      Open Source Workflow Orchestration on Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/tools-overview-and-getting-started/" class="">
+      Self-Hosted Open Source Agent Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/backstage-techdocs-pros-cons/" class="">
+      Backstage Techdocs Pros Cons</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/cross-diagram-reuse-guide/" class="">
+      Cross-Diagram Domain Model Reuse in PlantUML</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/prompt/" class="">
+      Crossplane EKS Management Cluster Implementation - Project Brief</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-intro/" class="">
+      Example Stage configuration</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/export-conversion/" class="">
+      Export Conversion</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-polyrepo/" class="">
+      Fast-moving image Warehouse</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/gitops-platform-safety/" class="">
+      GitOps Safety Architecture for Platform Evolution</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/tasks/" class="">
+      High-Level Plan: Crossplane EKS Management Cluster Implementation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/backstage-kratix-crossplane-argocd-blueprint/" class="">
+      Implementation Blueprint: Crossplane &#43; Kratix &#43; Backstage &#43; ArgoCD</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-git-tags/" class="active">
+      In subsequent stages, you can read this metadata</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/in-browser-editing-tools/" class="">
+      In-Browser Editing Documentation Solutions</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/initial-comparison/" class="">
+      Initial Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/comprehensive-guide/" class="">
+      Kargo and ArgoCD: A Comprehensive Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/kargo-argocd-interaction/" class="">
+      Kargo promotion step</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/presentation/" class="">
+      Kargo: GitOps Promotion for ArgoCD</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/notion-overview/" class="">
+      Notion: A Comprehensive Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/oss-portal-platform-orchestration-tools/" class="">
+      Oss Portal Platform Orchestration Tools</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/oss-vs-closed-portal/" class="">
+      Oss Vs Closed Portal</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/crossplane-solution/" class="">
+      Pseudocode for composition function</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/recommendations/" class="">
+      Recommendations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/job-configmap-crossplane-abstraction/" class="">
+      Shell script helper for Option 3</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/stage3-outline/" class="">
+      Stage 3: Implementation Patterns - Outline (Crossplane 2.1)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/argocd-layered-values/" class="">
+      ArgoCD and Helm Schema Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/schema-testing/" class="">
+      Creating a Helm Values Schema: Complete Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/stage1/" class="">
+      Crossplane EKS Management Cluster - Approach Overview &amp; Comparison</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/executive-summary/" class="">
+      DevOps Domain Model: Executive Summary</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/devops-domain-model-guide/" class="">
+      DevOps Domain Model: Implementation Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/getting-started-concise/" class="">
+      Getting Started Concise</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/ci-cd-templates/" class="">
+      GitHub Actions Example</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/k8s-mcp-servers/" class="">
+      K8s Mcp Servers</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/non-helm-schema-validation/" class="">
+      Non Helm Schema Validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/overview/" class="">
+      Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/prompt-guide/" class="">
+      Production Readiness Deep-Dive Prompt Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/production-readiness-overview/" class="">
+      Production Readiness Guide: From Docker Compose to Kubernetes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/job-plus-configmap-annotation/" class="">
+      Read current state AND capture resourceVersion</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/runbooks/" class="">
+      Runbooks</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/layered-schema/" class="">
+      Schema Validation with Layered Values Files</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/helm-layered-abstraction/" class="">
+      Solution 2: Kustomize with Helm</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/stage2/" class="">
+      Stage 2: Architecture Design</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/starting-helm-testing/" class="">
+      Testing Complex Helm Charts: A Practical Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/misc/imperitive-in-declarative/" class="">
+      Imperitive In Declarative</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/mermaid-test/" class="">
+      Mermaid Diagram Test</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/musings/docs/test-document/" class="">
+      Test Document</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/musings/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>In subsequent stages, you can read this metadata</h3>
+
+  <label for="toc-control">
+    
+    <img src="/musings/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#can-kargo-create-tags-for-all-components-when-freight-reaches-a-stage">Can Kargo Create Tags for All Components When Freight Reaches a Stage?</a></li>
+        <li><a href="#what-kargo-does-provide"><strong>What Kargo Does Provide</strong></a>
+          <ul>
+            <li><a href="#1-git-commits-built-in"><strong>1. Git Commits (Built-in)</strong></a></li>
+            <li><a href="#2-freight-and-stage-metadata"><strong>2. Freight and Stage Metadata</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#how-to-create-tags-for-component-tracking"><strong>How to Create Tags for Component Tracking</strong></a>
+          <ul>
+            <li><a href="#approach-1-create-git-tags-in-your-promotion-process-recommended"><strong>Approach 1: Create Git Tags in Your Promotion Process (Recommended)</strong></a></li>
+            <li><a href="#approach-2-store-component-manifest-in-git"><strong>Approach 2: Store Component Manifest in Git</strong></a></li>
+            <li><a href="#approach-3-use-freight-metadata-to-track-releases"><strong>Approach 3: Use Freight Metadata to Track Releases</strong></a></li>
+            <li><a href="#approach-4-external-release-tracking-system"><strong>Approach 4: External Release Tracking System</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#comparison-kargo"><strong>Comparison: Kargo’s Approach vs. Traditional Versioning</strong></a></li>
+        <li><a href="#best-practice-recommendation"><strong>Best Practice Recommendation</strong></a>
+          <ul>
+            <li><a href="#1-let-kargo-do-what-it-does-best"><strong>1. Let Kargo do what it does best:</strong></a></li>
+            <li><a href="#2-add-custom-tagging-for-external-visibility"><strong>2. Add custom tagging for external visibility:</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#what-this-gives-you"><strong>What This Gives You</strong></a></li>
+        <li><a href="#summary"><strong>Summary</strong></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><p>Let me search more specifically for Git tag creation capabilities in Kargo.Based on my research, I can now provide you with a comprehensive answer about creating tags when Freight reaches a stage.</p>
+<h2 id="can-kargo-create-tags-for-all-components-when-freight-reaches-a-stage">Can Kargo Create Tags for All Components When Freight Reaches a Stage?<a class="anchor" href="#can-kargo-create-tags-for-all-components-when-freight-reaches-a-stage">#</a></h2>
+<p><strong>Short Answer:</strong> Yes, but <strong>not automatically out-of-the-box</strong>. Kargo doesn&rsquo;t have a built-in &ldquo;create git tags for all artifacts&rdquo; feature, but you can implement this yourself using Kargo&rsquo;s promotion steps and metadata capabilities.</p>
+<hr>
+<h2 id="what-kargo-does-provide"><strong>What Kargo Does Provide</strong><a class="anchor" href="#what-kargo-does-provide">#</a></h2>
+<h3 id="1-git-commits-built-in"><strong>1. Git Commits (Built-in)</strong><a class="anchor" href="#1-git-commits-built-in">#</a></h3>
+<p>The git-commit step commits all changes in a working tree to its checked out branch, and every promotion creates a traceable Git commit with metadata about what was promoted.</p>
+<p><strong>Standard Promotion Flow:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">git-clone</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># ... clone repo</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">yaml-update</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># ... update manifests with new image versions</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">git-commit</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">as</span>: <span style="color:#ae81ff">commit</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./out</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">message</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        Promoted to ${{ ctx.stage }}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        - frontend: ${{ imageFrom(&#39;myapp/frontend&#39;).Tag }}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        - backend: ${{ imageFrom(&#39;myapp/backend&#39;).Tag }}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        - config: ${{ commitFrom(&#39;github.com/myorg/config&#39;).ID }}</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">git-push</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># ... push changes</span></span></span></code></pre></div><p><strong>Result:</strong> Each promotion creates a Git commit in your GitOps repository that records exactly what was deployed.</p>
+<h3 id="2-freight-and-stage-metadata"><strong>2. Freight and Stage Metadata</strong><a class="anchor" href="#2-freight-and-stage-metadata">#</a></h3>
+<p>You can propagate important context between Stages using a set-metadata promotion step, and arbitrary metadata attached to Freight and Stage resources can be retrieved using stageMetadata() and freightMetadata() expression functions.</p>
+<hr>
+<h2 id="how-to-create-tags-for-component-tracking"><strong>How to Create Tags for Component Tracking</strong><a class="anchor" href="#how-to-create-tags-for-component-tracking">#</a></h2>
+<p>Since Kargo doesn&rsquo;t create tags automatically, here are the approaches you can use:</p>
+<h3 id="approach-1-create-git-tags-in-your-promotion-process-recommended"><strong>Approach 1: Create Git Tags in Your Promotion Process (Recommended)</strong><a class="anchor" href="#approach-1-create-git-tags-in-your-promotion-process-recommended">#</a></h3>
+<p>You can use bash commands within Kargo&rsquo;s promotion steps to create Git tags.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">kargo.akuity.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Stage</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">production</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">promotionTemplate</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">vars</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">gitopsRepo</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">value</span>: <span style="color:#ae81ff">https://github.com/myorg/gitops.git</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">releaseTag</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#75715e"># Compose a release tag from component versions</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">value</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            release-${{ ctx.stage }}-
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            fe-${{ imageFrom(&#39;myapp/frontend&#39;).Tag }}-
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            be-${{ imageFrom(&#39;myapp/backend&#39;).Tag }}</span>
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 1. Clone and update manifests</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">git-clone</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">${{ vars.gitopsRepo }}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">checkout</span>:
+</span></span><span style="display:flex;"><span>              - <span style="color:#f92672">branch</span>: <span style="color:#ae81ff">main</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./repo</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 2. Update YAML with new versions</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">yaml-update</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./repo/manifests/production.yaml</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">updates</span>:
+</span></span><span style="display:flex;"><span>              - <span style="color:#f92672">key</span>: <span style="color:#ae81ff">frontend.image.tag</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">value</span>: <span style="color:#ae81ff">${{ imageFrom(&#39;myapp/frontend&#39;).Tag }}</span>
+</span></span><span style="display:flex;"><span>              - <span style="color:#f92672">key</span>: <span style="color:#ae81ff">backend.image.tag</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">value</span>: <span style="color:#ae81ff">${{ imageFrom(&#39;myapp/backend&#39;).Tag }}</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 3. Commit the changes</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">git-commit</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">as</span>: <span style="color:#ae81ff">commit</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./repo</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">message</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              Promoted to production
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              - Frontend: ${{ imageFrom(&#39;myapp/frontend&#39;).Tag }}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              - Backend: ${{ imageFrom(&#39;myapp/backend&#39;).Tag }}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              - Chart: ${{ chartFrom(&#39;my-chart&#39;).Version }}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              - Config: ${{ commitFrom(&#39;github.com/myorg/config&#39;).ID }}</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 4. Create Git tag using bash</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">bash</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">script</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              #!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              cd ./repo
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              # Create annotated tag with component details
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              git tag -a &#34;${{ vars.releaseTag }}&#34; -m &#34;Production Release
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              Freight: ${{ ctx.freight.name }}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              Stage: ${{ ctx.stage }}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              Promoted: $(date -u +%Y-%m-%dT%H:%M:%SZ)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              Components:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              - frontend: ${{ imageFrom(&#39;myapp/frontend&#39;).Tag }} (${{ imageFrom(&#39;myapp/frontend&#39;).Digest }})
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              - backend: ${{ imageFrom(&#39;myapp/backend&#39;).Tag }} (${{ imageFrom(&#39;myapp/backend&#39;).Digest }})
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              - helm-chart: ${{ chartFrom(&#39;my-chart&#39;).Version }}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              - config: ${{ commitFrom(&#39;github.com/myorg/config&#39;).ID }}&#34;</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 5. Push commit and tags</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">git-push</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./repo</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">targetBranch</span>: <span style="color:#ae81ff">main</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 6. Push the tag separately</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">bash</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">script</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              #!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              cd ./repo
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              git push origin &#34;${{ vars.releaseTag }}&#34;</span></span></span></code></pre></div><p><strong>Result:</strong></p>
+<ul>
+<li>Git commit shows the changes</li>
+<li>Git tag captures the complete component snapshot</li>
+<li>Tag is named with all component versions: <code>release-production-fe-v2.1.0-be-v3.0.1</code></li>
+</ul>
+<hr>
+<h3 id="approach-2-store-component-manifest-in-git"><strong>Approach 2: Store Component Manifest in Git</strong><a class="anchor" href="#approach-2-store-component-manifest-in-git">#</a></h3>
+<p>Create a dedicated &ldquo;release manifest&rdquo; file that gets versioned:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># ... clone, update manifests steps ...</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Create release manifest file</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">bash</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">script</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        #!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        cat &gt; ./repo/releases/production-$(date +%Y%m%d-%H%M%S).yaml &lt;&lt;EOF
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        apiVersion: v1
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        kind: ReleaseManifest
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        metadata:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          stage: ${{ ctx.stage }}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          freight: ${{ ctx.freight.name }}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          timestamp: $(date -u +%Y-%m-%dT%H:%M:%SZ)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        components:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          frontend:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            image: myapp/frontend
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            tag: ${{ imageFrom(&#39;myapp/frontend&#39;).Tag }}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            digest: ${{ imageFrom(&#39;myapp/frontend&#39;).Digest }}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          backend:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            image: myapp/backend
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            tag: ${{ imageFrom(&#39;myapp/backend&#39;).Tag }}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            digest: ${{ imageFrom(&#39;myapp/backend&#39;).Digest }}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          helm:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            chart: my-chart
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            version: ${{ chartFrom(&#39;my-chart&#39;).Version }}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          config:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            repo: github.com/myorg/config
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            commit: ${{ commitFrom(&#39;github.com/myorg/config&#39;).ID }}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        EOF</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">git-commit</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./repo</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">message</span>: <span style="color:#e6db74">&#34;Release manifest for production deployment&#34;</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">git-push</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./repo</span></span></span></code></pre></div><p><strong>Result:</strong> Every production deployment creates a YAML file tracking all component versions.</p>
+<hr>
+<h3 id="approach-3-use-freight-metadata-to-track-releases"><strong>Approach 3: Use Freight Metadata to Track Releases</strong><a class="anchor" href="#approach-3-use-freight-metadata-to-track-releases">#</a></h3>
+<p>Arbitrary metadata can be attached to Freight and Stage resources using the set-metadata promotion step.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># ... promotion steps ...</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Tag this Freight with production metadata</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">set-metadata</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">target</span>: <span style="color:#ae81ff">freight</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">productionReleaseTag</span>: <span style="color:#ae81ff">release-${{ ctx.stage }}-${{ timestamp() }}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">productionDeployedAt</span>: <span style="color:#ae81ff">${{ timestamp() }}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">componentVersions</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &#34;frontend&#34;: &#34;${{ imageFrom(&#39;myapp/frontend&#39;).Tag }}&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &#34;backend&#34;: &#34;${{ imageFrom(&#39;myapp/backend&#39;).Tag }}&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &#34;chart&#34;: &#34;${{ chartFrom(&#39;my-chart&#39;).Version }}&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          }</span></span></span></code></pre></div><p><strong>Access later:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># In subsequent stages, you can read this metadata</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">bash</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">script</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      echo &#34;Previous production release: ${{ freightMetadata(&#39;productionReleaseTag&#39;) }}&#34;</span></span></span></code></pre></div><hr>
+<h3 id="approach-4-external-release-tracking-system"><strong>Approach 4: External Release Tracking System</strong><a class="anchor" href="#approach-4-external-release-tracking-system">#</a></h3>
+<p>Use Kargo&rsquo;s notification capabilities or webhooks to record releases externally:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># ... promotion steps ...</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Send release info to external system</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">http-post</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">url</span>: <span style="color:#ae81ff">https://your-release-tracker.com/api/releases</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">body</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          &#34;stage&#34;: &#34;${{ ctx.stage }}&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          &#34;freight&#34;: &#34;${{ ctx.freight.name }}&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          &#34;timestamp&#34;: &#34;${{ timestamp() }}&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          &#34;components&#34;: {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &#34;frontend&#34;: {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              &#34;tag&#34;: &#34;${{ imageFrom(&#39;myapp/frontend&#39;).Tag }}&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              &#34;digest&#34;: &#34;${{ imageFrom(&#39;myapp/frontend&#39;).Digest }}&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            },
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &#34;backend&#34;: {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              &#34;tag&#34;: &#34;${{ imageFrom(&#39;myapp/backend&#39;).Tag }}&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              &#34;digest&#34;: &#34;${{ imageFrom(&#39;myapp/backend&#39;).Digest }}&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        }</span></span></span></code></pre></div><p><strong>Or send to Slack:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>- <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">send-message</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">destination</span>: <span style="color:#ae81ff">slack</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">channel</span>: <span style="color:#e6db74">&#34;#releases&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">message</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      🚀 Production Release Complete
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      Freight: ${{ ctx.freight.alias }}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      Components:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      • Frontend: ${{ imageFrom(&#39;myapp/frontend&#39;).Tag }}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      • Backend: ${{ imageFrom(&#39;myapp/backend&#39;).Tag }}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      • Chart: ${{ chartFrom(&#39;my-chart&#39;).Version }}</span></span></span></code></pre></div><hr>
+<h2 id="comparison-kargo"><strong>Comparison: Kargo&rsquo;s Approach vs. Traditional Versioning</strong><a class="anchor" href="#comparison-kargo">#</a></h2>
+<table>
+  <thead>
+      <tr>
+          <th>Aspect</th>
+          <th>Traditional Tagging</th>
+          <th>Kargo Built-in</th>
+          <th>Custom Kargo Implementation</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Unified version tag</strong></td>
+          <td>✅ Yes (v1.5.0 everywhere)</td>
+          <td>❌ No automatic tags</td>
+          <td>✅ Can create custom tags</td>
+      </tr>
+      <tr>
+          <td><strong>Component-level versions</strong></td>
+          <td>❌ Often lost</td>
+          <td>✅ Freight tracks each</td>
+          <td>✅ Can expose in tags/manifests</td>
+      </tr>
+      <tr>
+          <td><strong>Traceability</strong></td>
+          <td>⚠️ Requires external tracking</td>
+          <td>✅ Freight + Git commits</td>
+          <td>✅✅ Tags + Freight + commits</td>
+      </tr>
+      <tr>
+          <td><strong>External visibility</strong></td>
+          <td>✅ Easy (just check tags)</td>
+          <td>⚠️ Need Kargo access</td>
+          <td>✅ Custom tags visible externally</td>
+      </tr>
+      <tr>
+          <td><strong>Rollback ease</strong></td>
+          <td>✅ Simple (checkout v1.4.0)</td>
+          <td>✅ Promote old Freight</td>
+          <td>✅ Checkout tag or Freight</td>
+      </tr>
+      <tr>
+          <td><strong>Audit trail</strong></td>
+          <td>⚠️ Tags can be deleted/moved</td>
+          <td>✅ Immutable Freight</td>
+          <td>✅ Git tags + Freight</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="best-practice-recommendation"><strong>Best Practice Recommendation</strong><a class="anchor" href="#best-practice-recommendation">#</a></h2>
+<p>For <strong>maximum traceability</strong> outside of Kargo, I recommend a <strong>hybrid approach</strong>:</p>
+<h3 id="1-let-kargo-do-what-it-does-best"><strong>1. Let Kargo do what it does best:</strong><a class="anchor" href="#1-let-kargo-do-what-it-does-best">#</a></h3>
+<ul>
+<li>Track component versions in Freight</li>
+<li>Create Git commits for every promotion</li>
+<li>Use Freight metadata for runtime tracking</li>
+</ul>
+<h3 id="2-add-custom-tagging-for-external-visibility"><strong>2. Add custom tagging for external visibility:</strong><a class="anchor" href="#2-add-custom-tagging-for-external-visibility">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">kargo.akuity.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">PromotionTask</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">production-release-with-tagging</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">vars</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">releaseVersion</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># Generate semantic version or use custom format</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">value</span>: <span style="color:#ae81ff">v${{ timestamp(&#39;2006.01.02&#39;) }}-${{ ctx.freight.alias }}</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Standard promotion steps</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">git-clone</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># ... clone repo</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">yaml-update</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># ... update manifests</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">git-commit</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">as</span>: <span style="color:#ae81ff">commit</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./repo</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">message</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          Release ${{ vars.releaseVersion }} to production
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          Freight: ${{ ctx.freight.name }} (${{ ctx.freight.alias }})
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          Component Versions:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          - Frontend: ${{ imageFrom(&#39;myapp/frontend&#39;).Tag }} @ ${{ imageFrom(&#39;myapp/frontend&#39;).Digest }}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          - Backend: ${{ imageFrom(&#39;myapp/backend&#39;).Tag }} @ ${{ imageFrom(&#39;myapp/backend&#39;).Digest }}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          - Chart: ${{ chartFrom(&#39;my-chart&#39;).Version }}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          - Config: ${{ commitFrom(&#39;github.com/myorg/config&#39;).ID }}</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Create release tag</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">bash</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">script</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          #!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          cd ./repo
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          # Create comprehensive annotated tag
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          git tag -a &#34;${{ vars.releaseVersion }}&#34; \
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            -m &#34;Production Release ${{ vars.releaseVersion }}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          Kargo Freight: ${{ ctx.freight.name }}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          Freight Alias: ${{ ctx.freight.alias }}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          Deployed: $(date -u +%Y-%m-%dT%H:%M:%SZ)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          Component Manifest:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          ==================
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          Frontend Image:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            Repository: myapp/frontend
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            Tag: ${{ imageFrom(&#39;myapp/frontend&#39;).Tag }}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            Digest: ${{ imageFrom(&#39;myapp/frontend&#39;).Digest }}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          Backend Image:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            Repository: myapp/backend
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            Tag: ${{ imageFrom(&#39;myapp/backend&#39;).Tag }}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            Digest: ${{ imageFrom(&#39;myapp/backend&#39;).Digest }}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          Helm Chart:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            Name: my-chart
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            Version: ${{ chartFrom(&#39;my-chart&#39;).Version }}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          Configuration:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            Repo: github.com/myorg/config
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            Commit: ${{ commitFrom(&#39;github.com/myorg/config&#39;).ID }}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          &#34;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">git-push</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./repo</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Push tags</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">bash</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">script</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          cd ./repo
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          git push origin &#34;${{ vars.releaseVersion }}&#34;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Also create release manifest file</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">bash</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">script</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          cat &gt; ./repo/releases/${{ vars.releaseVersion }}.json &lt;&lt;EOF
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &#34;version&#34;: &#34;${{ vars.releaseVersion }}&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &#34;freight&#34;: {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              &#34;name&#34;: &#34;${{ ctx.freight.name }}&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              &#34;alias&#34;: &#34;${{ ctx.freight.alias }}&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            },
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &#34;stage&#34;: &#34;${{ ctx.stage }}&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &#34;timestamp&#34;: &#34;$(date -u +%Y-%m-%dT%H:%M:%SZ)&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &#34;components&#34;: {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              &#34;frontend&#34;: {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &#34;image&#34;: &#34;myapp/frontend&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &#34;tag&#34;: &#34;${{ imageFrom(&#39;myapp/frontend&#39;).Tag }}&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &#34;digest&#34;: &#34;${{ imageFrom(&#39;myapp/frontend&#39;).Digest }}&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              },
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              &#34;backend&#34;: {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &#34;image&#34;: &#34;myapp/backend&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &#34;tag&#34;: &#34;${{ imageFrom(&#39;myapp/backend&#39;).Tag }}&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &#34;digest&#34;: &#34;${{ imageFrom(&#39;myapp/backend&#39;).Digest }}&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              },
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              &#34;chart&#34;: {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &#34;name&#34;: &#34;my-chart&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &#34;version&#34;: &#34;${{ chartFrom(&#39;my-chart&#39;).Version }}&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              },
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              &#34;config&#34;: {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &#34;repo&#34;: &#34;github.com/myorg/config&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &#34;commit&#34;: &#34;${{ commitFrom(&#39;github.com/myorg/config&#39;).ID }}&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          EOF
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          git add releases/${{ vars.releaseVersion }}.json
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          git commit -m &#34;Add release manifest for ${{ vars.releaseVersion }}&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          git push</span></span></span></code></pre></div><hr>
+<h2 id="what-this-gives-you"><strong>What This Gives You</strong><a class="anchor" href="#what-this-gives-you">#</a></h2>
+<p><strong>Inside Kargo:</strong></p>
+<ul>
+<li>✅ Full Freight tracking with all component versions</li>
+<li>✅ Immutable audit trail</li>
+<li>✅ Easy promotion/rollback via UI</li>
+</ul>
+<p><strong>Outside Kargo:</strong></p>
+<ul>
+<li>✅ Git tags anyone can see: <code>git tag -l</code></li>
+<li>✅ Detailed tag annotations: <code>git show v2025.01.15-brave-eagle</code></li>
+<li>✅ Release manifest files for programmatic access</li>
+<li>✅ Standard Git operations work: <code>git checkout v2025.01.15-brave-eagle</code></li>
+</ul>
+<p><strong>External Systems Can:</strong></p>
+<ul>
+<li>Query Git tags to see what&rsquo;s in production</li>
+<li>Parse release manifest JSON files</li>
+<li>Build dashboards from Git history</li>
+<li>Integrate with existing release processes that expect tags</li>
+</ul>
+<hr>
+<h2 id="summary"><strong>Summary</strong><a class="anchor" href="#summary">#</a></h2>
+<p><strong>Direct Answer:</strong></p>
+<ul>
+<li>Kargo doesn&rsquo;t automatically create Git tags for component combinations</li>
+<li>BUT you can easily add this yourself using bash steps in promotion templates</li>
+<li>Kargo DOES track everything in Freight objects and Git commits</li>
+</ul>
+<p><strong>Recommended Approach:</strong></p>
+<ol>
+<li>Use Kargo&rsquo;s Freight for internal tracking (it&rsquo;s excellent at this)</li>
+<li>Add custom Git tags in your promotion process for external visibility</li>
+<li>Optionally create release manifest files for programmatic access</li>
+<li>Use Freight metadata for runtime tracking between stages</li>
+</ol>
+<p>This hybrid approach gives you the best of both worlds: Kargo&rsquo;s powerful promotion orchestration PLUS traditional Git tags for external systems that expect them.</p>
+<p><strong>Does this answer your question? Would you like me to provide a complete working example for your specific multi-repo setup?</strong></p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+  
+  <div class="flex flex-wrap justify-between">
+    <span>
+    
+      <a href="/musings/docs/misc/backstage-kratix-crossplane-argocd-blueprint/" class="flex align-center">
+        <img src="/musings/icons/backward.svg" class="book-icon" alt="Backward" />
+        <span>Implementation Blueprint: Crossplane &#43; Kratix &#43; Backstage &#43; ArgoCD</span>
+      </a>
+    
+    </span>
+    <span>
+    
+      <a href="/musings/docs/misc/in-browser-editing-tools/" class="flex align-center">
+        <span>In-Browser Editing Documentation Solutions</span>
+        <img src="/musings/icons/forward.svg" class="book-icon" alt="Forward" />
+      </a>
+    
+    </span>
+  </div>
+  
+
+
+ 
+        
+  
+ 
+        
+        
+  
+ 
+        
+  
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#can-kargo-create-tags-for-all-components-when-freight-reaches-a-stage">Can Kargo Create Tags for All Components When Freight Reaches a Stage?</a></li>
+        <li><a href="#what-kargo-does-provide"><strong>What Kargo Does Provide</strong></a>
+          <ul>
+            <li><a href="#1-git-commits-built-in"><strong>1. Git Commits (Built-in)</strong></a></li>
+            <li><a href="#2-freight-and-stage-metadata"><strong>2. Freight and Stage Metadata</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#how-to-create-tags-for-component-tracking"><strong>How to Create Tags for Component Tracking</strong></a>
+          <ul>
+            <li><a href="#approach-1-create-git-tags-in-your-promotion-process-recommended"><strong>Approach 1: Create Git Tags in Your Promotion Process (Recommended)</strong></a></li>
+            <li><a href="#approach-2-store-component-manifest-in-git"><strong>Approach 2: Store Component Manifest in Git</strong></a></li>
+            <li><a href="#approach-3-use-freight-metadata-to-track-releases"><strong>Approach 3: Use Freight Metadata to Track Releases</strong></a></li>
+            <li><a href="#approach-4-external-release-tracking-system"><strong>Approach 4: External Release Tracking System</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#comparison-kargo"><strong>Comparison: Kargo’s Approach vs. Traditional Versioning</strong></a></li>
+        <li><a href="#best-practice-recommendation"><strong>Best Practice Recommendation</strong></a>
+          <ul>
+            <li><a href="#1-let-kargo-do-what-it-does-best"><strong>1. Let Kargo do what it does best:</strong></a></li>
+            <li><a href="#2-add-custom-tagging-for-external-visibility"><strong>2. Add custom tagging for external visibility:</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#what-this-gives-you"><strong>What This Gives You</strong></a></li>
+        <li><a href="#summary"><strong>Summary</strong></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
