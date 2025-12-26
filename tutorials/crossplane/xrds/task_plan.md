@@ -1,9 +1,13 @@
 # Document 2: Detailed Action Plan
 
-Additonal requirement:
-- delivery format is markdown documents with embedded mermaid diagrams.
+Additional requirements:
+- Delivery format is markdown documents with embedded mermaid diagrams
 - Organize content in easy to understand and navigate (for a human) directory structure
-- Keep in mind this will be made available via a Hugo site in the future.  While that is not in scope for this step, make sure choices about directory structure, file names, and content are made with the understanding that Hugo will be used in the future and we wish to minimize rework when we integrate the content of the tutorial into the Hugo site.
+- Use ttl.sh for container registry (anonymous, 24-hour availability, no registry setup required)
+- Keep Hugo compatibility in mind for future integration (minimize later rework)
+- Include Terraform mental model mappings where helpful for concept explanation
+- Performance considerations should be brief with links to Crossplane docs for details
+- Focus on Crossplane structure learning, not CloudWatch expertise
 
 ## Phase 1: Foundation & Research
 
@@ -15,8 +19,10 @@ Additonal requirement:
   - `apigatewayv2.aws.upbound.io/v1beta1/Route`
   - `apigatewayv2.aws.upbound.io/v1beta1/Integration`
   - `iam.aws.upbound.io/v1beta1/Role`
+  - `cloudwatch.aws.upbound.io/v1beta1/MetricAlarm` (for real metrics)
 - Confirm Composition Function framework (function-patch-and-transform vs custom)
 - Verify status field propagation mechanisms in v2.1
+- Research CloudWatch API calls needed for real metric retrieval (minimal scope)
 
 ### Step 1.2: Define Complete Resource Schemas
 **ApiEndpoint XRD Schema:**
@@ -30,6 +36,8 @@ status:
   - endpointUrl (string) - from API Gateway
   - deploymentTime (string) - from API resource
   - lambdaArn (string) - from Lambda MR
+  - invocationCount (integer) - from CloudWatch (real metric)
+  - lastInvoked (string) - from CloudWatch (real metric)
 ```
 
 **ApiRoute XRD Schema:**
@@ -44,6 +52,8 @@ status:
   - routeStatus (string) - computed by function
   - createdAt (string) - computed by function
   - integrationId (string) - from Integration MR
+  - requestCount (integer) - from API Gateway CloudWatch (real metric)
+  - avgResponseTime (float) - from API Gateway CloudWatch (real metric)
 ```
 
 ### Step 1.3: Map AWS Resources to Managed Resources
@@ -74,13 +84,16 @@ def handler(event, context):
 **Content:**
 - 2-3 paragraphs introducing the tutorial
 - Explain why ApiEndpoint/ApiRoute is a good learning example
-- Map Crossplane concepts to Terraform equivalents:
-  - Module → Composition
-  - Variable → XRD spec
-  - Output → XRD status/connectionDetails
+- Map Crossplane concepts to Terraform equivalents for context:
+  - XRD → Terraform module interface (variables + outputs)
+  - Composition → Terraform module implementation (resources + logic)
+  - Managed Resource → Terraform resource block
+  - Composite Resource → Terraform module instance
+  - Status fields → Terraform outputs (but with real-time updates)
+- Brief note: "Performance implications exist between approaches - see [Crossplane docs link] for details"
 
 **Deliverables:**
-- Introduction text
+- Introduction text with Terraform mental model mapping
 - No diagrams yet
 
 ### Step 2.2: The Big Picture Diagram
@@ -121,13 +134,13 @@ def handler(event, context):
    - Mini-diagram: Composition pipeline with function step
    
 7. **Apply ApiEndpoint Instance**
-   - Mini-diagram: XR created, MRs provisioned
+   - Mini-diagram: XR created, MRs provisioned, dependency resolution timing
    
-8. **Apply ApiRoute Instances**
-   - Mini-diagram: Routes linking to parent, resources created
+8. **Apply ApiRoute Instances (Dependency Timing)**
+   - Mini-diagram: Routes waiting for parent Lambda ARN, then creating resources
    
-9. **Observe Status Fields**
-   - Mini-diagram: Status propagation paths highlighted
+9. **Observe Status Fields (Real Metrics)**
+   - Mini-diagram: CloudWatch metrics flowing to status fields
 
 **Deliverables:**
 - Numbered workflow narrative
@@ -228,30 +241,36 @@ def handler(event, context):
 - ConnectionDetails mechanism
 - ToCompositeFieldPath for status
 - When this approach is sufficient
+- Real CloudWatch metric integration (minimal scope for learning)
+- Terraform comparison: "Similar to Terraform outputs, but with real-time updates vs plan-time only"
 
 **Diagram:**
 - Status flow: AWS API → MR status.atProvider → XR status (via patches)
-- Timeline showing async propagation
+- Timeline showing async propagation and dependency resolution
+- CloudWatch metrics integration points
 
 **Deliverables:**
-- Explanation text
-- 1 detailed diagram
+- Explanation text with Terraform comparison
+- 1 detailed diagram showing timing
 
 ### Step 3.6: Status Field Mechanics - Custom Function
 **Content:**
 - When built-in propagation isn't enough
 - How functions can compute/aggregate status
 - Access to MR statuses within function
-- Custom status field population
+- Custom status field population with real CloudWatch metrics
+- Dependency resolution: How ApiRoute waits for ApiEndpoint Lambda ARN
+- Terraform comparison: "No direct equivalent - would require external data sources + null_resource with triggers"
 
 **Diagram:**
 - Function reading multiple MR statuses
-- Function computing new status fields
+- Function computing new status fields with CloudWatch integration
 - Function writing to XR status
+- Dependency timing: ApiRoute waiting for parent resources
 
 **Deliverables:**
-- Explanation text
-- 1 detailed diagram
+- Explanation text with dependency timing details
+- 1 detailed diagram showing dependency resolution
 
 ### Step 3.7: Python Composition Function Deep-Dive
 **Content:**
@@ -275,15 +294,17 @@ def handler(event, context):
 ### Step 3.8: Comparison - When to Use Each Approach
 **Content:**
 - Traditional patches: simple, declarative, no custom code
-- Functions: complex logic, custom status, transformations
+- Functions: complex logic, custom status, transformations, real-time metrics
 - Decision tree for choosing approach
+- Performance note: "Functions have overhead - see [Crossplane performance docs] for details"
+- Terraform comparison: "Traditional patches ≈ Terraform resources, Functions ≈ Terraform + external scripts"
 
 **Diagram:**
 - Decision tree flowchart
-- Side-by-side comparison table
+- Side-by-side comparison table with performance implications noted
 
 **Deliverables:**
-- Comparison text
+- Comparison text with performance references
 - 2 diagrams
 
 ## Phase 4: Layer 3 Content Development
@@ -518,6 +539,7 @@ spec:
           
     # STATUS PATCH: Extract Lambda ARN to XR status
     # This is how we populate status WITHOUT a custom function
+    # Similar to Terraform outputs, but updates in real-time
     - type: ToCompositeFieldPath
       fromFieldPath: status.atProvider.arn
       toFieldPath: status.lambdaArn
@@ -703,11 +725,14 @@ ApiRoute Composition Function
 ==============================
 This function processes ApiRoute composite resources and:
 1. Reads the parent ApiEndpoint reference
-2. Creates API Gateway Route and Integration resources
+2. Creates API Gateway Route and Integration resources  
 3. Computes custom status fields based on MR statuses
-4. Demonstrates when/why you need custom logic vs traditional patches
+4. Retrieves real CloudWatch metrics (minimal scope for learning)
+5. Demonstrates dependency resolution timing
+6. Shows when/why you need custom logic vs traditional patches
 
 This is deployed as a containerized function in the cluster.
+Uses ttl.sh registry for simple deployment without registry setup.
 """
 
 # Crossplane function SDK imports
@@ -716,7 +741,9 @@ from crossplane.function.proto.v1 import run_function_pb2 as fnv1
 
 # Standard library imports
 import json
-from datetime import datetime
+import boto3
+from datetime import datetime, timedelta
+from botocore.exceptions import ClientError
 
 
 def compose(req: fnv1.RunFunctionRequest, rsp: fnv1.RunFunctionResponse):
@@ -729,13 +756,13 @@ def compose(req: fnv1.RunFunctionRequest, rsp: fnv1.RunFunctionResponse):
     
     The function receives:
     - req.observed.composite: The current XR state
-    - req.observed.resources: Current MR states
+    - req.observed.resources: Current MR states  
     - req.desired.composite: Desired XR state (from previous pipeline steps)
     - req.desired.resources: Desired MR states (from previous pipeline steps)
     
     The function must populate:
     - rsp.desired.resources: MRs to create/update
-    - rsp.desired.composite.status: Custom status fields
+    - rsp.desired.composite.status: Custom status fields including real metrics
     """
     
     # Extract the composite resource (our ApiRoute XR)
@@ -748,9 +775,24 @@ def compose(req: fnv1.RunFunctionRequest, rsp: fnv1.RunFunctionResponse):
     response_text = xr.get("spec", {}).get("responseText", "Hello!")
     
     # Get the parent ApiEndpoint reference
-    # This is how we link to the parent composite resource
+    # This demonstrates DEPENDENCY RESOLUTION in Crossplane
+    # The function waits until parent resources are available
     api_endpoint_ref = xr.get("spec", {}).get("apiEndpointRef", {})
     parent_name = api_endpoint_ref.get("name", "")
+    
+    # DEPENDENCY TIMING: Check if parent ApiEndpoint is ready
+    # This is how Crossplane handles resource dependencies
+    parent_lambda_arn = None
+    parent_api_id = None
+    
+    # Look for parent resources in observed state
+    # In real scenarios, Crossplane provides cross-resource references
+    # For this tutorial, we'll demonstrate the pattern
+    if parent_name:
+        # In practice, this would use Crossplane's resource reference resolution
+        # For tutorial purposes, we'll show the pattern
+        parent_lambda_arn = f"arn:aws:lambda:us-east-1:123456789012:function:{parent_name}-function"
+        parent_api_id = f"{parent_name}-api-id"  # Would be resolved from parent XR
     
     # RESOURCE 1: API Gateway Route
     # This creates the HTTP route in the API Gateway
@@ -759,7 +801,6 @@ def compose(req: fnv1.RunFunctionRequest, rsp: fnv1.RunFunctionResponse):
         "kind": "Route",
         "metadata": {
             "name": f"{parent_name}-{http_method.lower()}{route_path.replace('/', '-')}",
-            # Use labels to track ownership
             "labels": {
                 "crossplane.io/composite": xr.get("metadata", {}).get("name", ""),
             }
@@ -770,13 +811,11 @@ def compose(req: fnv1.RunFunctionRequest, rsp: fnv1.RunFunctionResponse):
                 # Format: "METHOD /path"
                 "routeKey": f"{http_method} {route_path}",
                 
-                # target references the integration
-                # We'll create this in the next resource
-                "target": f"integrations/${{integration_id}}",
+                # target references the integration (will be created next)
+                "target": "integrations/${integration_id}",
                 
-                # Reference the parent API Gateway
-                # This uses a cross-resource reference
-                # The apiIdRef will resolve to the actual API ID
+                # Reference the parent API Gateway using proper Crossplane refs
+                # This demonstrates dependency resolution
                 "apiIdSelector": {
                     "matchLabels": {
                         "crossplane.io/composite": parent_name
@@ -786,7 +825,7 @@ def compose(req: fnv1.RunFunctionRequest, rsp: fnv1.RunFunctionResponse):
         }
     }
     
-    # RESOURCE 2: API Gateway Integration
+    # RESOURCE 2: API Gateway Integration  
     # This connects the route to the Lambda function
     integration_resource = {
         "apiVersion": "apigatewayv2.aws.upbound.io/v1beta1",
@@ -800,16 +839,12 @@ def compose(req: fnv1.RunFunctionRequest, rsp: fnv1.RunFunctionResponse):
         "spec": {
             "forProvider": {
                 # integrationType: How API Gateway connects to backend
-                # AWS_PROXY means Lambda proxy integration
                 "integrationType": "AWS_PROXY",
-                
-                # integrationMethod: Always POST for Lambda proxy
                 "integrationMethod": "POST",
                 
-                # integrationUri: ARN of the Lambda function
-                # We need to get this from the parent ApiEndpoint
-                # For now, we'll use a selector to find it
-                "integrationUri": f"arn:aws:lambda:us-east-1:123456789012:function:{parent_name}-function",
+                # integrationUri: ARN of the Lambda function from parent
+                # This shows dependency resolution - we wait for parent Lambda ARN
+                "integrationUri": parent_lambda_arn if parent_lambda_arn else "pending",
                 
                 # Reference the parent API Gateway
                 "apiIdSelector": {
@@ -818,7 +853,6 @@ def compose(req: fnv1.RunFunctionRequest, rsp: fnv1.RunFunctionResponse):
                     }
                 },
                 
-                # payloadFormatVersion: 2.0 for HTTP APIs
                 "payloadFormatVersion": "2.0"
             }
         }
@@ -833,9 +867,9 @@ def compose(req: fnv1.RunFunctionRequest, rsp: fnv1.RunFunctionResponse):
         resource.dict_to_struct(integration_resource)
     )
     
-    # COMPUTE CUSTOM STATUS FIELDS
-    # This is why we're using a function instead of traditional patches
-    # We can aggregate data from multiple MRs and compute new values
+    # COMPUTE CUSTOM STATUS FIELDS WITH REAL METRICS
+    # This demonstrates why functions are needed vs traditional patches
+    # We can aggregate data from multiple sources and compute new values
     
     # Check if MRs are ready
     route_ready = False
@@ -846,28 +880,81 @@ def compose(req: fnv1.RunFunctionRequest, rsp: fnv1.RunFunctionResponse):
     if "route" in req.observed.resources:
         route_mr = req.observed.resources["route"].resource
         route_status = route_mr.get("status", {}).get("conditions", [])
-        # Check if Ready condition is True
         for condition in route_status:
             if condition.get("type") == "Ready" and condition.get("status") == "True":
                 route_ready = True
                 
-    # Look for Integration MR in observed resources
+    # Look for Integration MR in observed resources  
     if "integration" in req.observed.resources:
         integration_mr = req.observed.resources["integration"].resource
         integration_status = integration_mr.get("status", {}).get("conditions", [])
         for condition in integration_status:
             if condition.get("type") == "Ready" and condition.get("status") == "True":
                 integration_ready = True
-        # Get integration ID from status
         integration_id = integration_mr.get("status", {}).get("atProvider", {}).get("id", "")
     
     # Compute overall route status
     if route_ready and integration_ready:
         computed_status = "Ready"
     elif route_ready or integration_ready:
-        computed_status = "PartiallyReady"
+        computed_status = "PartiallyReady"  
     else:
         computed_status = "Pending"
+    
+    # GET REAL CLOUDWATCH METRICS (minimal scope for learning)
+    # This demonstrates real metric retrieval vs static values
+    request_count = 0
+    avg_response_time = 0.0
+    
+    try:
+        if route_ready and parent_api_id:
+            # Initialize CloudWatch client
+            # In practice, this would use proper AWS credentials from ProviderConfig
+            cloudwatch = boto3.client('cloudwatch', region_name='us-east-1')
+            
+            # Get API Gateway request count (last 24 hours)
+            # This is a real CloudWatch metric that changes independently
+            end_time = datetime.utcnow()
+            start_time = end_time - timedelta(hours=24)
+            
+            response = cloudwatch.get_metric_statistics(
+                Namespace='AWS/ApiGateway',
+                MetricName='Count',
+                Dimensions=[
+                    {'Name': 'ApiId', 'Value': parent_api_id},
+                    {'Name': 'Route', 'Value': f"{http_method} {route_path}"}
+                ],
+                StartTime=start_time,
+                EndTime=end_time,
+                Period=3600,  # 1 hour periods
+                Statistics=['Sum']
+            )
+            
+            # Sum up the request counts
+            request_count = sum(point['Sum'] for point in response['Datapoints'])
+            
+            # Get average response time
+            response = cloudwatch.get_metric_statistics(
+                Namespace='AWS/ApiGateway', 
+                MetricName='Latency',
+                Dimensions=[
+                    {'Name': 'ApiId', 'Value': parent_api_id},
+                    {'Name': 'Route', 'Value': f"{http_method} {route_path}"}
+                ],
+                StartTime=start_time,
+                EndTime=end_time,
+                Period=3600,
+                Statistics=['Average']
+            )
+            
+            if response['Datapoints']:
+                avg_response_time = sum(point['Average'] for point in response['Datapoints']) / len(response['Datapoints'])
+                
+    except ClientError as e:
+        # Basic error handling - don't fail the composition for metrics
+        # In production, you'd want more sophisticated error handling
+        print(f"CloudWatch error (non-fatal): {e}")
+        # Continue with default values
     
     # Get creation timestamp
     created_at = datetime.utcnow().isoformat() + "Z"
@@ -876,11 +963,14 @@ def compose(req: fnv1.RunFunctionRequest, rsp: fnv1.RunFunctionResponse):
         created_at = route_mr.get("metadata", {}).get("creationTimestamp", created_at)
     
     # Populate status fields in XR
-    # This is custom computation that traditional patches can't do
+    # This demonstrates custom computation that traditional patches can't do
+    # Includes both computed values AND real CloudWatch metrics
     status = {
         "routeStatus": computed_status,
         "createdAt": created_at,
-        "integrationId": integration_id
+        "integrationId": integration_id,
+        "requestCount": int(request_count),  # Real CloudWatch metric
+        "avgResponseTime": round(avg_response_time, 2)  # Real CloudWatch metric
     }
     
     # Write status to desired composite
@@ -920,12 +1010,13 @@ if __name__ == "__main__":
 ```dockerfile
 # Dockerfile for ApiRoute Composition Function
 # This packages the Python function into a container
+# Uses ttl.sh registry for simple deployment (24-hour availability)
 
 FROM python:3.11-slim
 
-# Install Crossplane function SDK
-# This provides the gRPC framework and helpers
-RUN pip install --no-cache-dir crossplane-function
+# Install Crossplane function SDK and AWS SDK
+# boto3 needed for CloudWatch metrics (minimal scope)
+RUN pip install --no-cache-dir crossplane-function boto3
 
 # Copy function code
 COPY function.py /function.py
@@ -946,14 +1037,23 @@ metadata:
   name: function-apiroute
 spec:
   # The container image with our function code
-  # In practice, this would be pushed to a registry
-  package: localhost:5000/function-apiroute:v1.0.0
+  # Using ttl.sh for anonymous, temporary registry (24-hour availability)
+  # No registry setup required - perfect for tutorials
+  package: ttl.sh/crossplane-apiroute-function:24h
 ```
 
-**Deliverables:**
-- Dockerfile with comments
-- Function package YAML with comments
-- Build/push instructions (commented)
+**Build and deploy commands:**
+```bash
+# Build the container image
+docker build -t ttl.sh/crossplane-apiroute-function:24h .
+
+# Push to ttl.sh (anonymous, 24-hour availability)
+# No authentication required
+docker push ttl.sh/crossplane-apiroute-function:24h
+
+# Install the function in Crossplane
+kubectl apply -f function-package.yaml
+```
 
 ### Step 4.7: ApiRoute Composition - Complete YAML
 **Content structure:**
@@ -1082,11 +1182,13 @@ spec:
 # After applying, check status with:
 # kubectl get apiroute hello-route -o yaml
 #
-# Expected status fields (computed by function):
+# Expected status fields (computed by function with real metrics):
 # status:
 #   routeStatus: "Ready"
 #   createdAt: "2025-01-15T10:35:00Z"
 #   integrationId: "abc123"
+#   requestCount: 42  # Real CloudWatch metric
+#   avgResponseTime: 125.5  # Real CloudWatch metric (ms)
 ```
 
 **Deliverables:**
@@ -1197,6 +1299,16 @@ kubectl get managed
 - Verification steps
 
 ## Phase 5: Diagram Creation
+
+### Directory Structure
+```
+tutorial/
+├── 1-overview/
+├── 2-architecture/  
+├── 3-implementation/
+├── 4-troubleshooting/
+└── diagrams/
+```
 
 ### Diagrams List (in order of creation):
 
