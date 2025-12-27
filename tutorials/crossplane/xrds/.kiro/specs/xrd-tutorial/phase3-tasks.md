@@ -18,16 +18,19 @@ Validate core technical assumptions through proof-of-concept implementation befo
   - Validation: via Crossplane status fields showing Ready
   - Status: COMPLETED - All core infrastructure ready (VPC, subnet, IGW, route table, route)
   - Note: Route table association has selector resolution issue but core networking is functional
-- [ ] 3.1.2 Determine division between tutorial manifests vs. assumed prerequisites
+- [x] 3.1.2 Determine division between tutorial manifests vs. assumed prerequisites
   - Method: Document what tutorial teaches vs. what environment provides
   - Output: Clear list in markdown format
-- [ ] 3.1.3 Create Crossplane manifests for prerequisite infrastructure
+  - Status: COMPLETED - Created tutorial-prerequisites-division.md with clear separation
+- [x] 3.1.3 Create Crossplane manifests for prerequisite infrastructure
   - Method: Write YAML manifests for required AWS infrastructure
   - Validation: via Crossplane status fields showing Ready
-- [ ] 3.1.4 Build AWS CLI verification script as secondary confirmation
+  - Status: COMPLETED - All 13 prerequisite resources deployed and showing Ready status
+- [x] 3.1.4 Build AWS CLI verification script as secondary confirmation
   - Method: Shell script using AWS CLI with "present/missing" output
   - Purpose: Secondary verification after Crossplane status confirms Ready
   - Language: Shell script only
+  - Status: COMPLETED - Both scripts working correctly with deployed infrastructure
 
 ### 3.2 ApiEndpoint Proof-of-Concept (Traditional Patches)
 - [ ] 3.2.1 Implement minimal working ApiEndpoint XRD
