@@ -1,0 +1,159 @@
+# ApiEndpoint Composition - Traditional Patch-and-Transform Pattern
+# This Composition demonstrates Crossplane's built-in declarative composition
+# It creates Lambda + API Gateway + IAM resources using Pipeline mode with P&T function
+
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: apiendpoint-traditional
+  labels:
+    tutorial.crossplane.io/component: composition
+    tutorial.crossplane.io/pattern: traditional-patches
+    tutorial.crossplane.io/layer: poc
+spec:
+  compositeTypeRef:
+    apiVersion: tutorial.crossplane.io/v1alpha1
+    kind: XApiEndpoint
+  
+  mode: Pipeline
+  
+  pipeline:
+  - step: patch-and-transform
+    functionRef:
+      name: function-patch-and-transform
+    input:
+      apiVersion: pt.fn.crossplane.io/v1beta1
+      kind: Resources
+      resources:
+      # IAM Role for Lambda execution
+      - name: lambda-role
+        base:
+          apiVersion: iam.aws.upbound.io/v1beta1
+          kind: Role
+          spec:
+            forProvider:
+              assumeRolePolicy: |
+                {
+                  "Version": "2012-10-17",
+                  "Statement": [
+                    {
+                      "Effect": "Allow",
+                      "Principal": {
+                        "Service": "lambda.amazonaws.com"
+                      },
+                      "Action": "sts:AssumeRole"
+                    }
+                  ]
+                }
+              tags:
+                Purpose: xrd-tutorial-poc
+                Component: lambda-role
+            providerConfigRef:
+              name: default
+        patches:
+        - type: FromCompositeFieldPath
+          fromFieldPath: spec.apiName
+          toFieldPath: metadata.name
+          transforms:
+          - type: string
+            string:
+              fmt: "xrd-tutorial-%s-lambda-role"
+        - type: FromCompositeFieldPath
+          fromFieldPath: spec.apiName
+          toFieldPath: spec.forProvider.tags.ApiName
+
+      # Lambda Function
+      - name: lambda-function
+        base:
+          apiVersion: lambda.aws.upbound.io/v1beta1
+          kind: Function
+          spec:
+            forProvider:
+              handler: index.handler
+              region: us-east-1
+              runtime: python3.11
+              code:
+                zipFile: |
+                  import json
+                  def handler(event, context):
+                      return {
+                          'statusCode': 200,
+                          'headers': {
+                              'Content-Type': 'application/json',
+                              'Access-Control-Allow-Origin': '*'
+                          },
+                          'body': json.dumps({
+                              'message': 'Hello from XRD Tutorial POC!',
+                              'timestamp': context.aws_request_id
+                          })
+                      }
+              tags:
+                Purpose: xrd-tutorial-poc
+                Component: lambda-function
+            providerConfigRef:
+              name: default
+        patches:
+        - type: FromCompositeFieldPath
+          fromFieldPath: spec.apiName
+          toFieldPath: metadata.name
+          transforms:
+          - type: string
+            string:
+              fmt: "xrd-tutorial-%s-lambda"
+        - type: FromCompositeFieldPath
+          fromFieldPath: spec.description
+          toFieldPath: spec.forProvider.description
+        - type: FromCompositeFieldPath
+          fromFieldPath: spec.lambdaRuntime
+          toFieldPath: spec.forProvider.runtime
+        - type: FromCompositeFieldPath
+          fromFieldPath: spec.apiName
+          toFieldPath: spec.forProvider.tags.ApiName
+        - type: FromCompositeFieldPath
+          fromFieldPath: spec.apiName
+          toFieldPath: spec.forProvider.roleSelector.matchLabels.ApiName
+        - type: ToCompositeFieldPath
+          fromFieldPath: status.atProvider.arn
+          toFieldPath: status.lambdaArn
+        - type: ToCompositeFieldPath
+          fromFieldPath: status.atProvider.lastModified
+          toFieldPath: status.deploymentTime
+
+      # API Gateway HTTP API
+      - name: api-gateway
+        base:
+          apiVersion: apigatewayv2.aws.upbound.io/v1beta1
+          kind: API
+          spec:
+            forProvider:
+              protocolType: HTTP
+              region: us-east-1
+              tags:
+                Purpose: xrd-tutorial-poc
+                Component: api-gateway
+            providerConfigRef:
+              name: default
+        patches:
+        - type: FromCompositeFieldPath
+          fromFieldPath: spec.apiName
+          toFieldPath: metadata.name
+          transforms:
+          - type: string
+            string:
+              fmt: "xrd-tutorial-%s-api"
+        - type: FromCompositeFieldPath
+          fromFieldPath: spec.apiName
+          toFieldPath: spec.forProvider.name
+          transforms:
+          - type: string
+            string:
+              fmt: "xrd-tutorial-%s-api"
+        - type: FromCompositeFieldPath
+          fromFieldPath: spec.description
+          toFieldPath: spec.forProvider.description
+        - type: FromCompositeFieldPath
+          fromFieldPath: spec.apiName
+          toFieldPath: spec.forProvider.tags.ApiName
+        - type: ToCompositeFieldPath
+          fromFieldPath: status.atProvider.apiEndpoint
+          toFieldPath: status.endpointUrl
