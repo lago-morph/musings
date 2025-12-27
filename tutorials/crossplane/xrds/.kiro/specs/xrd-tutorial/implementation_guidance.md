@@ -103,18 +103,57 @@ This document captures the gap analysis between the detailed task planning docum
 
 **API Version Confirmation**: Based on current Upbound marketplace documentation as of December 2025, AWS provider resources still use `v1beta1` API versions. These are the current and appropriate versions to use.
 
-### CloudWatch Metrics Integration
-- Namespace: AWS/ApiGateway
-- Metrics: Count (request count), Latency (response time)
-- Dimensions: ApiId, Route
-- Time range: Last 24 hours with 1-hour periods
-- Error handling: Graceful failure with default values
+### CloudWatch Integration Specifications
 
-### Container Strategy
-- Registry: ttl.sh for anonymous 24-hour availability
-- Image naming: ttl.sh/crossplane-apiroute-function:24h
-- No authentication required
-- Automatic cleanup after 24 hours
+**Detailed CloudWatch Configuration:**
+- **API Gateway Metrics:**
+  - Namespace: `AWS/ApiGateway`
+  - Metrics: `Count` (request count), `Latency` (response time)
+  - Dimensions: `ApiId`, `Route`
+- **Lambda Metrics:**
+  - Namespace: `AWS/Lambda`
+  - Metrics: `Invocations` (Lambda calls)
+  - Dimensions: `FunctionName`
+- **Time Range Configuration:**
+  - Period: Last 24 hours with 1-hour aggregation periods
+  - Aggregation: Sum for Count/Invocations, Average for Latency
+- **Error Handling Strategy:**
+  - Graceful failure with default values when CloudWatch API calls fail
+  - No composition failure - continue with empty/default metric values
+  - Log errors without breaking the composition process
+  - Ensure composition process completes successfully even with CloudWatch failures
+
+**Implementation Notes:**
+- Wrap all CloudWatch calls in try/catch blocks
+- Use boto3 CloudWatch client with appropriate IAM permissions
+- Handle rate limiting and API throttling gracefully
+- Provide meaningful default values when metrics are unavailable
+
+### Container Registry Implementation Specifications
+
+**Registry Configuration:**
+- **Registry Domain:** `ttl.sh` for all container references
+- **Availability:** 24-hour automatic cleanup
+- **Authentication:** None required (anonymous push/pull)
+- **Naming Convention:** `ttl.sh/crossplane-apiroute-function:24h` format
+
+**Implementation Details:**
+- **Build Command:** `docker build -t ttl.sh/crossplane-apiroute-function:24h .`
+- **Push Command:** `docker push ttl.sh/crossplane-apiroute-function:24h`
+- **Function Package Reference:** Use `package: ttl.sh/crossplane-apiroute-function:24h` in Function manifests
+- **No Registry Setup Required:** Eliminates container registry management from tutorial scope
+
+**Educational Benefits:**
+- Focuses learners on Crossplane concepts rather than container registry management
+- Provides working examples without infrastructure prerequisites
+- Demonstrates real container deployment patterns
+- Automatic cleanup prevents registry pollution
+
+**Usage in Tutorial Layers:**
+- Layer 1: High-level container strategy explanation
+- Layer 2: Container integration architecture
+- Layer 3: Complete build and deployment commands
+- Layer 4: Container-related troubleshooting scenarios
 
 ### Directory Structure
 ```
