@@ -1,0 +1,147 @@
+# CRITICAL WORKFLOW RULES
+
+## MANDATORY USER CONFIRMATION REQUIREMENTS
+
+### ⚠️ MANDATORY TASK REQUIREMENT VERIFICATION
+
+**RULE**: AI agents MUST read the complete task description and verify ALL requirements are satisfied before asking for completion approval.
+
+**Required verification steps**:
+1. **Read Complete Description**: Review the entire task including:
+   - Method (how to do the work)
+   - Validation criteria (how to verify success)
+   - Purpose (why the task exists)
+   - Language requirements (if specified)
+   - Output requirements (if specified)
+   - Any other listed requirements
+
+2. **Self-Check All Requirements**: Before asking for approval, verify:
+   - ✅ Method requirements satisfied
+   - ✅ Validation criteria met
+   - ✅ Purpose fulfilled
+   - ✅ All deliverables created
+   - ✅ All testing/verification completed
+
+3. **Present Complete Results**: Show the user:
+   - What was accomplished
+   - How each requirement was satisfied
+   - Evidence that validation criteria are met
+
+**Example of proper verification**:
+```
+Task: "Create Crossplane manifests for prerequisite infrastructure"
+- Method: Write YAML manifests for required AWS infrastructure ✅
+- Validation: via Crossplane status fields showing Ready ❌ (not applied yet)
+
+Result: Cannot ask for completion approval until manifests are applied and show Ready status.
+```
+
+### ⚠️ NEVER MARK TASKS COMPLETE WITHOUT USER CONFIRMATION
+
+**RULE**: AI agents MUST NEVER mark any task as complete without explicit user confirmation first.
+
+**Process**:
+1. **READ THE COMPLETE TASK DESCRIPTION** including method, validation criteria, purpose, and any other requirements
+2. Complete the work for a task
+3. **DOUBLE-CHECK ALL REQUIREMENTS** - verify that you have satisfied every single requirement listed in the task description
+4. Present the results to the user
+5. **WAIT** for explicit user confirmation before marking task complete
+6. Only after user says "yes", "approved", "looks good", or equivalent, then mark the task as complete
+
+**Examples of what requires confirmation**:
+- Completing any numbered task (3.1.1, 3.2.1, etc.)
+- Completing any major task group (3.1, 3.2, 3.3, etc.)
+- Any task status change from "in progress" to "completed"
+
+**What NOT to do**:
+- ❌ Mark task complete immediately after doing the work
+- ❌ Assume the user approves without asking
+- ❌ Mark multiple tasks complete in sequence without individual confirmation
+- ❌ Skip reading the complete task description
+- ❌ Ignore validation criteria or other requirements
+- ❌ Ask for approval when requirements are not fully satisfied
+
+### ⚠️ NEVER COMMIT TO GIT WITHOUT USER CONFIRMATION
+
+**RULE**: AI agents MUST NEVER commit code to git without explicit user confirmation first.
+
+**Process**:
+1. Complete code changes
+2. Present the changes to the user
+3. **WAIT** for explicit user confirmation before committing
+4. Only after user says "commit this", "looks good to commit", or equivalent, then commit
+
+**Examples of what requires confirmation**:
+- Any `git add` and `git commit` operations
+- Any `git push` operations
+- Any git repository modifications
+
+**What NOT to do**:
+- ❌ Automatically commit after completing work
+- ❌ Assume the user wants changes committed
+- ❌ Commit without showing the user what will be committed
+
+## ENFORCEMENT
+
+These rules are **MANDATORY** and **NON-NEGOTIABLE**.
+
+**Violation consequences**:
+- User will stop the agent and require restart
+- Work may need to be redone
+- Trust in the agent's workflow adherence is damaged
+
+**Compliance verification**:
+- Always ask "Should I mark this task as complete?" before changing task status
+- Always ask "Should I commit these changes?" before any git operations
+- Wait for explicit user response before proceeding
+
+## EXAMPLES
+
+### ✅ CORRECT Task Completion Flow
+```
+Agent: I've completed task 3.2.1 by creating the ApiEndpoint XRD. The XRD validates successfully and includes the required spec and status schemas. Should I mark task 3.2.1 as complete?
+
+User: Yes, looks good.
+
+Agent: [marks task complete]
+```
+
+### ❌ INCORRECT Task Completion Flow
+```
+Agent: I've completed task 3.2.1 by creating the ApiEndpoint XRD. [immediately marks task complete without asking]
+```
+
+### ✅ CORRECT Git Commit Flow
+```
+Agent: I've created the ApiEndpoint XRD and verification scripts. Here are the files that would be committed:
+- xrd-apiendpoint.yaml
+- test-apiendpoint.sh
+
+Should I commit these changes?
+
+User: Yes, commit them.
+
+Agent: [commits to git]
+```
+
+### ❌ INCORRECT Git Commit Flow
+```
+Agent: I've created the ApiEndpoint XRD. [immediately commits without asking]
+```
+
+## SUMMARY
+
+**ALWAYS VERIFY FIRST**:
+- Read the complete task description including all requirements
+- Double-check that ALL requirements are satisfied before asking for approval
+- "Should I mark this task as complete?" (only after full verification)
+- "Should I commit these changes?"
+
+**NEVER ASSUME**:
+- That partial completion satisfies the task
+- That work is acceptable without user review
+- That the user wants tasks marked complete
+- That the user wants changes committed
+- That you understand requirements without reading them completely
+
+This ensures proper user control over the workflow and prevents unwanted automatic actions.
