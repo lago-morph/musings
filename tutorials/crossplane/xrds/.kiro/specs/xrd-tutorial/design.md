@@ -104,11 +104,15 @@ The tutorial uses specific upbound AWS provider resources with current API versi
 
 **Required Managed Resources:**
 - `lambda.aws.upbound.io/v1beta1/Function` - Lambda function with inline code
+- `lambda.aws.upbound.io/v1beta1/Permission` - API Gateway invoke permissions
 - `apigatewayv2.aws.upbound.io/v1beta1/API` - HTTP API Gateway
 - `apigatewayv2.aws.upbound.io/v1beta1/Route` - API Gateway routes
 - `apigatewayv2.aws.upbound.io/v1beta1/Integration` - Lambda integrations
 - `iam.aws.upbound.io/v1beta1/Role` - Lambda execution role
-- `lambda.aws.upbound.io/v1beta1/Permission` - API Gateway invoke permissions
+
+**Provider Family:**
+- Use `provider-family-aws@v2.3.0` for comprehensive AWS resource management
+- Individual providers: `provider-aws-lambda@v2.3.0`, `provider-aws-apigatewayv2@v2.3.0`, `provider-aws-iam@v2.3.0`
 
 **CloudWatch Integration Specifications:**
 - Namespace: `AWS/ApiGateway` for API Gateway metrics
@@ -131,13 +135,6 @@ When concepts are difficult to explain succinctly, the tutorial provides Terrafo
 - Focus: Conceptual descriptions only, no Terraform code examples
 - Usage: Supplementary explanation for complex Crossplane concepts
 - Examples: XRD ≈ Terraform module interface, Composition ≈ module implementation
-
-**Container Registry Strategy:**
-The tutorial uses ttl.sh registry for anonymous, temporary container storage:
-- Registry: `ttl.sh` domain for all container references
-- Availability: 24-hour automatic cleanup
-- Authentication: None required (anonymous push/pull)
-- Naming: `ttl.sh/crossplane-apiroute-function:24h` format
 
 The ApiEndpoint XRD demonstrates Crossplane's traditional patch-and-transform composition pattern. It encapsulates the creation of a complete API endpoint including Lambda function, API Gateway, and IAM role.
 
@@ -373,6 +370,14 @@ Based on the prework analysis, I'll convert the testable acceptance criteria int
 *For any* composition implementation, it should create the correct AWS resource types: ApiEndpoint creates Lambda/API Gateway/IAM resources, ApiRoute creates Route/Integration resources
 **Validates: Requirements 3.1, 4.1**
 
+**Property 13: Security Simplification Compliance**
+*For any* tutorial content, it should ignore RBAC and security concerns, assume administrative privileges, and explicitly note educational simplifications
+**Validates: Requirements 11.1, 11.2, 11.4**
+
+**Property 14: Educational Methodology Compliance**
+*For any* tutorial layer, it should follow read-through format with Layer 3 using code-as-narrative approach and no alternating text/code blocks
+**Validates: Requirements 12.1, 12.2, 12.3**
+
 ## Error Handling
 
 ### Composition Function Error Handling
@@ -491,6 +496,26 @@ Property-based tests verify universal properties across all tutorial content usi
 - Generate Layer 3 directory structures
 - Verify complete file presence across all valid structures
 - **Tag: Feature: xrd-tutorial, Property 10: Layer 3 Implementation Completeness**
+
+**Property Test 11: Container Registry Validation**
+- Generate container references in tutorial content
+- Verify ttl.sh registry usage across all container references
+- **Tag: Feature: xrd-tutorial, Property 11: Container Registry Configuration**
+
+**Property Test 12: Resource Creation Validation**
+- Generate composition implementations
+- Verify correct AWS resource type creation across all compositions
+- **Tag: Feature: xrd-tutorial, Property 12: Composition Resource Creation**
+
+**Property Test 13: Security Simplification Validation**
+- Generate tutorial content variations
+- Verify security simplification compliance across all content
+- **Tag: Feature: xrd-tutorial, Property 13: Security Simplification Compliance**
+
+**Property Test 14: Educational Methodology Validation**
+- Generate tutorial layer content variations
+- Verify read-through format and code-as-narrative compliance across all layers
+- **Tag: Feature: xrd-tutorial, Property 14: Educational Methodology Compliance**
 
 **Testing Framework Selection:**
 For Python-based validation, use Hypothesis for property-based testing. For YAML/content validation, use custom generators that create valid tutorial content variations while maintaining the universal properties being tested.

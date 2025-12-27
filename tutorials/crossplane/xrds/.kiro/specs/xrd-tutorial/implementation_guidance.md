@@ -89,11 +89,19 @@ This document captures the gap analysis between the detailed task planning docum
 
 ### AWS Resource Specifications
 - `lambda.aws.upbound.io/v1beta1/Function`
+- `lambda.aws.upbound.io/v1beta1/Permission`
 - `apigatewayv2.aws.upbound.io/v1beta1/API`
 - `apigatewayv2.aws.upbound.io/v1beta1/Route`
 - `apigatewayv2.aws.upbound.io/v1beta1/Integration`
 - `iam.aws.upbound.io/v1beta1/Role`
-- `cloudwatch.aws.upbound.io/v1beta1/MetricAlarm`
+
+**Provider Versions (December 2025):**
+- `provider-family-aws@v2.3.0` (recommended for comprehensive management)
+- `provider-aws-lambda@v2.3.0`
+- `provider-aws-apigatewayv2@v2.3.0`
+- `provider-aws-iam@v2.3.0`
+
+**API Version Confirmation**: Based on current Upbound marketplace documentation as of December 2025, AWS provider resources still use `v1beta1` API versions. These are the current and appropriate versions to use.
 
 ### CloudWatch Metrics Integration
 - Namespace: AWS/ApiGateway
