@@ -36,6 +36,26 @@ Task: "Create Crossplane manifests for prerequisite infrastructure"
 Result: Cannot ask for completion approval until manifests are applied and show Ready status.
 ```
 
+### ⚠️ NEVER START TASKS WITHOUT USER PERMISSION
+
+**RULE**: AI agents MUST NEVER start any new task without explicit user permission first.
+
+**Process**:
+1. Complete current task work
+2. Present results to user
+3. **WAIT** for explicit instruction on what to do next
+4. Only start new tasks when user explicitly says "start task X" or equivalent
+
+**Examples of what requires permission**:
+- Starting any numbered task (3.1.1, 3.2.1, etc.)
+- Beginning work on the next sequential task
+- Reading task requirements for tasks not explicitly assigned
+
+**What NOT to do**:
+- ❌ Automatically start the next task after completing one
+- ❌ Assume the user wants you to continue to the next task
+- ❌ Begin working on tasks without explicit instruction
+
 ### ⚠️ NEVER MARK TASKS COMPLETE WITHOUT USER CONFIRMATION
 
 **RULE**: AI agents MUST NEVER mark any task as complete without explicit user confirmation first.
