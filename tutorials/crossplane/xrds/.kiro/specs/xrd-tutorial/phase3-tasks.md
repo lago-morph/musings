@@ -33,9 +33,10 @@ Validate core technical assumptions through proof-of-concept implementation befo
   - Status: COMPLETED - Both scripts working correctly with deployed infrastructure
 
 ### 3.2 ApiEndpoint Proof-of-Concept (Traditional Patches)
-- [ ] 3.2.1 Implement minimal working ApiEndpoint XRD
+- [x] 3.2.1 Implement minimal working ApiEndpoint XRD
   - Method: Create XRD YAML with spec and status schema
   - Validation: via kubectl apply and Crossplane CRD registration
+  - Status: COMPLETED - XRD created, applied successfully, and registered with Crossplane
 - [ ] 3.2.2 Create basic Composition with Lambda + API Gateway + IAM resources
   - Method: Write Composition YAML using traditional patches
   - Resources: Lambda Function, API Gateway API, IAM Role, Lambda Permission

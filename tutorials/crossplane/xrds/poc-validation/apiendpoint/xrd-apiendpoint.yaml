@@ -1,0 +1,61 @@
+# ApiEndpoint XRD - Traditional Patch-and-Transform Pattern
+# This XRD demonstrates Crossplane's built-in declarative composition capabilities
+# It encapsulates API Gateway + Lambda + IAM resources using traditional patches
+
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  name: xapiendpoints.tutorial.crossplane.io
+  labels:
+    tutorial.crossplane.io/component: xrd
+    tutorial.crossplane.io/pattern: traditional-patches
+    tutorial.crossplane.io/layer: poc
+spec:
+  group: tutorial.crossplane.io
+  names:
+    kind: XApiEndpoint
+    plural: xapiendpoints
+  versions:
+  - name: v1alpha1
+    served: true
+    referenceable: true
+    schema:
+      openAPIV3Schema:
+        type: object
+        properties:
+          spec:
+            type: object
+            properties:
+              apiName:
+                type: string
+                description: "Name of the API Gateway API"
+              description:
+                type: string
+                description: "Description of the API"
+              lambdaRuntime:
+                type: string
+                description: "Lambda runtime version"
+                default: "python3.11"
+            required:
+            - apiName
+          status:
+            type: object
+            properties:
+              endpointUrl:
+                type: string
+                description: "Live API Gateway endpoint URL"
+              deploymentTime:
+                type: string
+                description: "Deployment timestamp"
+              lambdaArn:
+                type: string
+                description: "ARN of the Lambda function"
+              invocationCount:
+                type: integer
+                description: "CloudWatch invocation count"
+              lastInvoked:
+                type: string
+                description: "CloudWatch last invocation timestamp"
+  claimNames:
+    kind: ApiEndpoint
+    plural: apiendpoints
