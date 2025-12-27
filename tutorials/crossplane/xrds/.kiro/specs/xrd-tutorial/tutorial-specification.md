@@ -109,4 +109,135 @@ This learning architecture ensures that expert practitioners can efficiently acq
 
 ---
 
-*[Sections 2-4 to be completed in subsequent tasks]*
+## 2. Content Design
+
+### 2.1 Topic Selection and Scope
+
+**Core Topics Included**:
+- **Composite Resource Definitions (XRDs)**: Schema design, API versioning, and user interface creation
+- **Traditional Patch-and-Transform Compositions**: Declarative resource orchestration using built-in Crossplane capabilities
+- **Python Composition Functions**: Custom logic implementation for complex scenarios requiring imperative approaches
+- **Status Field Mechanics**: Both built-in propagation and custom computation patterns
+- **Dependency Resolution**: Parent-child resource relationships and timing patterns in Crossplane v2
+- **Real External Integration**: CloudWatch metrics integration demonstrating external data source patterns
+
+**Scope Boundaries (Explicitly Excluded)**:
+- **Crossplane v1 Patterns**: No Claims or deprecated APIs to avoid confusion with modern approaches
+- **Production Security**: RBAC, authentication, and authorization complexity that distracts from architectural learning
+- **Advanced CloudWatch**: Deep CloudWatch expertise beyond basic metric retrieval for status fields
+- **Container Registry Management**: Complex registry setup that doesn't serve Crossplane learning objectives
+- **Performance Optimization**: Detailed performance tuning that belongs in operational rather than architectural education
+
+**Rationale for Scope Decisions**: The tutorial focuses on Crossplane architectural patterns and design decisions rather than operational complexity. This allows learners to understand the fundamental concepts without being overwhelmed by production concerns that can be addressed separately after mastering the core patterns.
+
+### 2.2 Example System Rationale
+
+**ApiEndpoint and ApiRoute System Design**: The tutorial uses a two-tier API system to demonstrate Crossplane concepts through a realistic but focused example.
+
+**Why ApiEndpoint (Traditional Patches)**:
+- **Appropriate Complexity**: Encapsulates multiple AWS resources (Lambda + API Gateway + IAM) without overwhelming cognitive load
+- **Real Dependencies**: Demonstrates actual resource relationships and timing that learners encounter in practice
+- **Status Propagation**: Shows built-in Crossplane capabilities for status field population without custom code
+- **Familiar Pattern**: API endpoints are universally understood by the target audience
+- **Terraform Mapping**: Clear conceptual bridge to Terraform modules that target audience already understands
+
+**Why ApiRoute (Composition Functions)**:
+- **Justifies Custom Logic**: Parent-child dependencies and status aggregation provide legitimate reasons for custom functions
+- **Demonstrates Advanced Patterns**: Shows when declarative approaches are insufficient and imperative logic is needed
+- **Real Integration**: CloudWatch metrics retrieval demonstrates external API integration patterns
+- **Dependency Showcase**: ApiRoute waiting for ApiEndpoint demonstrates Crossplane's dependency resolution timing
+- **Complexity Contrast**: Provides clear comparison point with traditional patches to understand trade-offs
+
+**System Architecture Benefits**:
+- **Progressive Complexity**: Start with simpler declarative patterns, progress to more complex imperative patterns
+- **Realistic Scale**: Complex enough to demonstrate real concepts, simple enough to maintain focus on Crossplane rather than domain complexity
+- **Complete Workflow**: End-to-end example from XRD design through working API endpoints with real metrics
+
+### 2.3 Content Organization Structure
+
+**Four-Layer Progressive Disclosure**:
+
+**Layer 1 (Overview - Conceptual Foundation)**:
+- **Content Focus**: Pure conceptual understanding through diagrams and narrative
+- **Code Exposure**: Zero code to eliminate syntax distractions
+- **Learning Objective**: Big picture understanding of Crossplane workflow and component relationships
+- **Deliverables**: System architecture diagrams, workflow mini-diagrams, concept comparison tables
+- **Cognitive Load**: Minimal - focus entirely on mental model formation
+
+**Layer 2 (Architecture - Pattern Understanding)**:
+- **Content Focus**: Architectural patterns with controlled code exposure
+- **Code Exposure**: 5-15 line snippets maximum showing structure only, not complete implementations
+- **Learning Objective**: Understanding of how components interact and why design decisions were made
+- **Deliverables**: Schema diagrams, patch flow diagrams, dependency resolution explanations
+- **Cognitive Load**: Moderate - introduce syntax within architectural context
+
+**Layer 3 (Implementation - Complete Examples)**:
+- **Content Focus**: Complete, executable code with extensive inline comments serving as teaching narrative
+- **Code Exposure**: Full YAML manifests, Python functions, and deployment scripts
+- **Learning Objective**: Practical implementation capability with deep understanding of each component
+- **Deliverables**: Complete XRDs, Compositions, function code, verification scripts, cleanup instructions
+- **Cognitive Load**: High but scaffolded - extensive comments provide continuous guidance
+
+**Layer 4 (Troubleshooting - Problem Solving)**:
+- **Content Focus**: How-to guide format for resolving common issues
+- **Code Exposure**: Diagnostic commands and fix procedures
+- **Learning Objective**: Problem-solving competency for real-world application
+- **Deliverables**: Troubleshooting scenarios with diagnosis and resolution steps
+- **Cognitive Load**: Task-focused - direct problem-solving without learning narrative
+
+### 2.4 Scaffolding Strategy
+
+**Terraform Mental Model Bridges**: When Crossplane concepts are difficult to explain succinctly, provide optional Terraform context to leverage existing knowledge:
+- **XRD ≈ Terraform Module Interface**: Variables and outputs define the user-facing API
+- **Composition ≈ Terraform Module Implementation**: Resources and logic that fulfill the interface
+- **Managed Resource ≈ Terraform Resource Block**: Individual cloud resources with provider-specific configuration
+- **Composite Resource ≈ Terraform Module Instance**: User's instantiation of the abstraction
+- **Status Fields ≈ Terraform Outputs**: Information flowing back to users, but with real-time updates
+
+**Format for Terraform Context**: "For instance, when using Terraform you would do similar operations by..." followed by brief conceptual description without code examples.
+
+**Code-as-Narrative Scaffolding**: Layer 3 transforms code into teaching material through extensive inline comments:
+- **WHY Comments**: Explain the reasoning behind each design decision
+- **HOW Comments**: Describe the mechanism by which each component works
+- **WHAT Comments**: Identify the purpose of each configuration element
+- **CONTEXT Comments**: Connect individual elements to the broader architectural pattern
+
+**Visual Scaffolding**: Mermaid diagrams throughout all layers provide visual reinforcement:
+- **System Architecture**: Overall component relationships and data flow
+- **Dependency Timing**: Sequence diagrams showing resource creation order
+- **Status Propagation**: Flow diagrams showing how information moves through the system
+- **Decision Trees**: Flowcharts for choosing between different approaches
+
+### 2.5 Assessment Integration
+
+**Layer 1 Assessment**: Conceptual understanding validation through diagram interpretation and workflow explanation. Learners should be able to explain the Crossplane workflow and identify when different approaches are appropriate.
+
+**Layer 2 Assessment**: Architectural pattern recognition through schema analysis and design decision evaluation. Learners should understand why specific patterns were chosen and how they serve the learning objectives.
+
+**Layer 3 Assessment**: Implementation validation through optional hands-on execution:
+- **Status Field Verification**: Scripts to confirm status fields populate correctly with real CloudWatch metrics
+- **Live API Testing**: Verification that deployed examples create working API Gateway endpoints with proper responses
+- **Dependency Timing Observation**: Watching ApiRoute resources wait for ApiEndpoint readiness before proceeding
+
+**Layer 4 Assessment**: Problem-solving competency validation through troubleshooting scenario navigation. Learners should be able to diagnose and resolve common issues using the provided guidance.
+
+**Expert Validation Approach**: The tutorial is designed to be validated by AWS/Kubernetes/Terraform experts learning Crossplane, ensuring the pedagogical approach effectively serves the target audience's existing knowledge and learning needs.
+
+### 2.6 Knowledge Transfer Mechanisms
+
+**Concept Anchoring**: Each new Crossplane concept is anchored to familiar infrastructure patterns from the target audience's existing Kubernetes, AWS, and Terraform experience.
+
+**Pattern Recognition Development**: The tutorial explicitly teaches learners to recognize when to use different Crossplane approaches:
+- **Traditional Patches**: When declarative resource orchestration is sufficient
+- **Composition Functions**: When custom logic, external integration, or complex status computation is needed
+- **Status Field Design**: When to use built-in propagation versus custom computation
+
+**Mental Model Formation**: The progression from ApiEndpoint (simple) to ApiRoute (complex) helps learners build accurate mental models of Crossplane's capabilities and appropriate application scenarios.
+
+**Transfer Validation**: Layer 4 troubleshooting scenarios help learners apply their understanding to realistic problems they'll encounter when implementing their own XRDs and Compositions.
+
+This content design ensures that expert practitioners can efficiently acquire Crossplane knowledge through a carefully structured curriculum that builds on their existing expertise while following sound pedagogical principles for complex technical concept acquisition.
+
+---
+
+*[Sections 3-4 to be completed in subsequent tasks]*
