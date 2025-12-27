@@ -208,6 +208,37 @@ This learning architecture ensures that expert practitioners can efficiently acq
 - **Status Propagation**: Flow diagrams showing how information moves through the system
 - **Decision Trees**: Flowcharts for choosing between different approaches
 
+**Optional Exercise Integration**: The tutorial includes optional exercises designed to reinforce learning through progressive cognitive engagement:
+
+**Minor Exercises (4 total)**:
+- **Scope**: Enhance existing tutorial objects without breaking compatibility with subsequent steps
+- **Domain**: Limited to tutorial's AWS services (API Gateway, Lambda, IAM, CloudWatch)
+- **Placement**: ApiEndpoint section, ApiRoute section, Status fields section, Layer summary
+- **Examples**: Add logging capabilities, mix patch-based and function-based status aggregation, add ConfigMap integration
+- **Complexity**: 15-30 minutes at Layer 3 implementation level
+- **Independence**: Each exercise stands alone, no building or dependencies
+
+**Major Exercises (2 total)**:
+- **Scope**: Create new XRDs from scratch using same concepts but different AWS services
+- **Domain**: Foundational AWS services (S3, IAM, EC2 basic, DynamoDB, Systems Manager Parameter Store, Secrets Manager, Lambda, Step Functions)
+- **Pattern**: Typically pair two services, often with Lambda or Step Functions for status updates
+- **Placement**: End of Layer 1 and Layer 2 summaries
+- **Examples**: S3+Lambda file existence checking, DynamoDB+Step Functions data validation
+- **Complexity**: 2-4 hours maximum at Layer 3 (includes learning new AWS service details)
+- **Independence**: Completely unrelated to each other and to minor exercises
+
+**Progressive Cognitive Engagement**:
+Each exercise appears at the same conceptual point across all layers with appropriate cognitive depth:
+- **Layer 1**: "Think about how you would..." (conceptual design level)
+- **Layer 2**: "How would you handle this specific aspect..." (architectural details level)
+- **Layer 3**: "Implement this..." (full implementation level)
+
+**Integration Strategy**:
+- **100% Optional**: Exercises do not disrupt the read-through tutorial flow
+- **Natural Placement**: Appear at pause points or to illustrate broader concept applications
+- **Conceptual Examples**: Used within tutorial text to demonstrate alternative applications of patterns
+- **No Solutions Provided**: Exercises focus on thinking and application rather than validation
+
 ### 2.5 Assessment Integration
 
 **Layer 1 Assessment**: Conceptual understanding validation through diagram interpretation and workflow explanation. Learners should be able to explain the Crossplane workflow and identify when different approaches are appropriate.
@@ -629,16 +660,34 @@ This tutorial specification follows an extended Kiro workflow designed specifica
 - **Approval Mechanism**: Use `userInput` tool with reason 'spec-design-review'
 - **Success Criteria**: Technical specifications serve learning objectives, implementation is feasible
 
-**Phase 3 (Tasks)**: Standard Kiro task creation referencing unified specification
-- **Scope**: Create tasks.md based on complete tutorial-specification.md
+**Phase 3 (Technical Validation)**: Proof-of-Concept and Technical Risk Mitigation
+- **Scope**: Validate core technical assumptions before major content investment
+- **Deliverables**: 
+  - Working ApiEndpoint XRD with traditional patches
+  - Working ApiRoute XRD with Python Composition Function
+  - Basic CloudWatch integration (simplified for validation)
+  - Prerequisite infrastructure manifests
+  - AWS verification scripts
+  - Evidence that dependency resolution works as expected
+- **Testing Environment**: Sandbox AWS account with Crossplane cluster, 4-hour auto-cleanup
+- **Risk Mitigation**: Address 30% chance of significant technical rework through early validation
+- **Success Criteria**: Core technical patterns proven to work, assumptions validated
+
+**Phase 4 (Tasks)**: Standard Kiro task creation with validated technical foundation
+- **Scope**: Create tasks.md based on complete tutorial-specification.md and validated PoC
 - **Review Focus**: Actionability, quality assurance, deliverable clarity
 - **Approval Mechanism**: Use `userInput` tool with reason 'spec-tasks-review'
 - **Success Criteria**: Tasks are implementable and produce desired educational outcomes
 
-**Phase 4 (Implementation)**: Standard Kiro task execution
-- **Scope**: Execute tasks as normal using tutorial-specification.md as reference
+**Phase 5 (Implementation)**: Full tutorial development using proven patterns
+- **Scope**: Execute tasks using tutorial-specification.md and PoC as reference
 - **Review Focus**: Educational effectiveness and technical accuracy during implementation
 - **Success Criteria**: Implemented tutorial achieves learning objectives with technical correctness
+
+**Phase 6 (Final Validation)**: Comprehensive testing and review
+- **Scope**: Complete tutorial validation and educational effectiveness assessment
+- **Review Focus**: End-to-end tutorial experience and learning outcome achievement
+- **Success Criteria**: Tutorial ready for learner use with validated educational effectiveness
 
 ### 5.2 Integration with Standard Kiro Capabilities
 
@@ -674,7 +723,71 @@ This tutorial specification follows an extended Kiro workflow designed specifica
 - Content maintains appropriate cognitive context boundaries
 - Implementation produces effective educational outcomes
 
-### 5.4 Future Tutorial Project Guidance
+### 5.4 Phase 3 Technical Validation Plan
+
+**Objective**: Validate core technical assumptions through proof-of-concept implementation before major tutorial content investment.
+
+**Environment Setup**:
+- Kubernetes cluster with Crossplane v2.1 installed
+- AWS provider configured with sandbox AWS account (4-hour auto-cleanup)
+- kubectl access configured for cluster operations
+- AWS CLI configured for verification scripts
+
+**Technical Validation Tasks**:
+
+**Task 3.1: Infrastructure Prerequisites**
+- Create basic VPC configuration for testing
+- Determine division between tutorial manifests vs. assumed prerequisites
+- Provide Crossplane manifests for prerequisite infrastructure
+- Create AWS CLI verification script with "present/missing" output format
+
+**Task 3.2: ApiEndpoint Proof-of-Concept**
+- Implement minimal working ApiEndpoint XRD using traditional patches
+- Create basic Composition with Lambda + API Gateway + IAM resources
+- Validate status field propagation using `ToCompositeFieldPath` patches
+- Test resource creation and verify AWS resources are created correctly
+- Confirm Crossplane status shows "Ready" without errors
+
+**Task 3.3: ApiRoute Proof-of-Concept**
+- Implement minimal working ApiRoute XRD using Python Composition Function
+- Create basic Python function for dependency resolution and status computation
+- Deploy function using ttl.sh registry (anonymous, 24-hour availability)
+- Validate parent-child resource references work correctly
+- Test custom status field computation and CloudWatch integration (simplified)
+
+**Task 3.4: Dependency Resolution Validation**
+- Create ApiRoute instance that references ApiEndpoint
+- Verify ApiRoute waits for ApiEndpoint Lambda ARN before proceeding
+- Confirm dependency timing works as specified in technical specification
+- Test resource cleanup in correct order
+
+**Task 3.5: Integration Testing**
+- Deploy complete working example (ApiEndpoint + ApiRoute)
+- Test live API endpoints respond correctly
+- Verify status fields populate with real data
+- Confirm CloudWatch metrics integration works (basic level)
+- Validate error handling for CloudWatch API failures
+
+**Success Criteria**:
+- All XRDs and Compositions deploy without Crossplane errors
+- AWS resources are created as specified
+- Status fields populate correctly (both built-in and custom)
+- Dependency resolution timing works as designed
+- Basic CloudWatch integration functions with graceful error handling
+- Live API endpoints respond correctly
+
+**Risk Assessment Validation**:
+- **If successful**: Proceed to Phase 4 (Task Creation) with confidence
+- **If minor issues**: Document fixes needed and proceed with modifications
+- **If major issues**: Revise technical specification and repeat validation
+
+**Deliverables**:
+- Working proof-of-concept manifests
+- AWS verification scripts
+- Technical validation report
+- Any specification updates needed based on findings
+
+### 5.5 Future Tutorial Project Guidance
 
 **Reusable Pattern**: This extended workflow creates a reusable pattern for future tutorial specification projects that require integration of pedagogical design with technical implementation.
 
@@ -686,7 +799,7 @@ This tutorial specification follows an extended Kiro workflow designed specifica
 
 **Methodology Evolution**: As tutorial development practices evolve, updates should be made to `tutorial-spec-methodology.md` to capture new insights while maintaining the core principles of integrated pedagogical and technical decision-making.
 
-### 5.5 Success Indicators for Extended Workflow
+### 5.6 Success Indicators for Extended Workflow
 
 **Process Success**:
 - Specification sections can be reviewed efficiently in appropriate cognitive contexts

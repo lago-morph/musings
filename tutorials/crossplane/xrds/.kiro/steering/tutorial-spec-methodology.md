@@ -191,6 +191,54 @@ This methodology can be adapted for different types of technical tutorials:
 - Minimize technical implementation details
 - Focus on mental model formation and knowledge transfer
 
+## Optional Exercise Integration
+
+Tutorial specifications can be enhanced with optional exercises that reinforce learning through progressive cognitive engagement. This enhancement is particularly valuable for complex technical tutorials where learners benefit from applying concepts immediately after introduction.
+
+### Exercise Types
+
+**Minor Exercises**:
+- **Purpose**: Scaffolded application of just-learned concepts
+- **Scope**: Enhance existing tutorial objects without breaking compatibility
+- **Cognitive Process**: Guided modification and extension
+- **Domain**: Limited to tutorial's technical domain
+- **Complexity**: 15-30 minutes at implementation level
+- **Examples**: Add logging, integrate additional services, modify configurations
+
+**Major Exercises**:
+- **Purpose**: Independent creation using learned patterns
+- **Scope**: Create new implementations from scratch using same concepts
+- **Cognitive Process**: Transfer and synthesis to new domains
+- **Domain**: Related but different technical services
+- **Complexity**: 2-4 hours maximum at implementation level
+- **Examples**: Apply same patterns to different service combinations
+
+### Progressive Cognitive Engagement
+
+Each exercise should appear at the same conceptual point across tutorial layers with appropriate cognitive depth:
+
+**Conceptual Layer**: "Think about how you would..." (design-level thinking)
+**Architectural Layer**: "How would you handle this specific aspect..." (implementation details)
+**Implementation Layer**: "Implement this..." (full technical execution)
+
+### Integration Principles
+
+- **100% Optional**: Must not disrupt main tutorial flow for read-through learners
+- **Natural Placement**: Appear at pause points or to illustrate concept applications
+- **Independence**: Each exercise stands alone, no building or dependencies
+- **Consistency**: Same difficulty level within each exercise type
+- **No Solutions**: Focus on thinking and application rather than validation
+
+### Design Considerations
+
+- **Exercise Selection**: Choose exercises that reinforce core learning objectives
+- **Domain Boundaries**: Define appropriate technical scope for each exercise type
+- **Complexity Calibration**: Ensure exercises match learner capability at each point
+- **Integration Strategy**: Embed exercises as conceptual examples within tutorial text
+- **Flexibility**: Design exercises to be modifiable without rearchitecting tutorial
+
+This optional enhancement can significantly improve learning outcomes by providing immediate application opportunities while maintaining the tutorial's primary pedagogical approach.
+
 ## Kiro Workflow Integration
 
 ### Extended Workflow for Tutorial Projects
