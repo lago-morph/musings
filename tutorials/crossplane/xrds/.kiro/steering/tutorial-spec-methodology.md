@@ -261,18 +261,50 @@ Tutorial projects using this methodology follow an extended Kiro workflow that a
 - **Approval Mechanism**: Use `userInput` tool with reason 'spec-design-review'
 - **Success Criteria**: Technical specifications serve learning objectives, implementation is feasible, all technical choices have pedagogical rationale
 
-**Phase 3 (Tasks): Standard Implementation Planning**
-- **Scope**: Create tasks.md based on complete tutorial-specification.md
+**Phase 3 (Technical Validation): Proof-of-Concept and Risk Mitigation**
+- **Scope**: Validate core technical assumptions before major content investment
+- **Mental Context**: Technical validation and risk assessment mindset
+- **Objective**: Validate core technical assumptions through proof-of-concept implementation before major tutorial content investment
+- **Environment Setup**: 
+  - Kubernetes cluster with required platform installed
+  - Cloud provider configured with sandbox account and auto-cleanup
+  - CLI access configured for cluster operations and verification scripts
+- **Deliverables**: 
+  - Working proof-of-concept implementations of key technical patterns
+  - Basic integration testing with external services
+  - Prerequisite infrastructure manifests
+  - Division determination between tutorial manifests vs. assumed prerequisites
+  - Verification scripts using CLI tools with simple output format
+  - Evidence that core technical patterns work as specified
+  - Technical validation report with any specification updates needed
+- **Testing Framework**:
+  - AI agent creates basic infrastructure configuration for testing
+  - AI agent determines what should be tutorial content vs. environmental prerequisites
+  - Verification scripts provide clear "present/missing" or "working/failing" output
+  - Instantiate tutorial manifests and verify platform status shows no errors
+  - Test resources as they would be used in tutorial context
+  - Focus on ensuring manifests work for educational purposes
+- **Risk Mitigation**: Address potential technical rework through early validation of assumptions
+- **Success Criteria**: Core technical patterns proven to work, assumptions validated, implementation risks identified and mitigated
+
+**Phase 4 (Tasks): Standard Implementation Planning**
+- **Scope**: Create tasks.md based on complete tutorial-specification.md and validated technical foundation
 - **Mental Context**: Project manager mindset
 - **Review Focus**: Actionability, quality assurance, deliverable clarity, educational outcome alignment
 - **Approval Mechanism**: Use `userInput` tool with reason 'spec-tasks-review'
-- **Success Criteria**: Tasks are implementable, produce desired educational outcomes, maintain quality standards
+- **Success Criteria**: Tasks are implementable with validated technical foundation, produce desired educational outcomes, maintain quality standards
 
-**Phase 4 (Implementation): Standard Execution**
-- **Scope**: Execute tasks using tutorial-specification.md as authoritative reference
+**Phase 5 (Implementation): Full Tutorial Development**
+- **Scope**: Execute tasks using tutorial-specification.md and proof-of-concept as reference
 - **Mental Context**: Developer and educator mindsets
 - **Review Focus**: Educational effectiveness and technical accuracy during implementation
-- **Success Criteria**: Implemented tutorial achieves learning objectives with technical correctness
+- **Success Criteria**: Implemented tutorial achieves learning objectives with technical correctness using proven patterns
+
+**Phase 6 (Final Validation): Comprehensive Testing and Review**
+- **Scope**: Complete tutorial validation and educational effectiveness assessment
+- **Mental Context**: Quality assurance and educational assessment mindset
+- **Review Focus**: End-to-end tutorial experience and learning outcome achievement
+- **Success Criteria**: Tutorial ready for learner use with validated educational effectiveness and technical accuracy
 
 ### Integration with Standard Kiro
 
@@ -300,7 +332,9 @@ Tutorial projects using this methodology follow an extended Kiro workflow that a
 **Workflow Execution**: AI assistants should:
 - Treat Sections 1-2 as "requirements equivalent" focusing on pedagogical foundation
 - Treat Sections 3-4 as "design equivalent" focusing on technical implementation with pedagogical rationale
-- Use standard Kiro task creation and execution for implementation phases
+- Execute Phase 3 technical validation to mitigate implementation risks before major content investment
+- Use standard Kiro task creation and execution for implementation phases (Phases 4-5)
+- Conduct comprehensive validation in Phase 6 to ensure educational effectiveness
 - Maintain focus on educational outcomes throughout all phases
 - Ensure learning objectives drive technical implementation choices
 
@@ -331,12 +365,13 @@ Tutorial projects using this methodology follow an extended Kiro workflow that a
 - Documentation supports both learning and practical implementation
 
 **Integration Success**:
-- Educational goals and technical implementation mutually reinforce each other
+- Educational goals and technical implementation are mutually reinforcing
+- Technical validation (Phase 3) effectively mitigates implementation risks
 - Cognitive context boundaries improve review efficiency without sacrificing pedagogical-technical integration
 - Future AI assistants can effectively continue work using established patterns and guidelines
 - Tutorial development becomes more systematic, predictable, and reusable across projects
 
-This extended workflow maintains all benefits of Kiro's systematic approach while accommodating the unique requirements of educational content that must balance pedagogical effectiveness with technical precision.
+This extended 6-phase workflow maintains all benefits of Kiro's systematic approach while accommodating the unique requirements of educational content that must balance pedagogical effectiveness with technical precision, and includes risk mitigation through early technical validation.
 
 ## Conclusion
 
@@ -344,4 +379,4 @@ This methodology recognizes that tutorial development requires both pedagogical 
 
 The key insight is that learning objectives should drive technical choices, but technical constraints must inform pedagogical decisions. This methodology provides a framework for managing this interdependency while maintaining clarity and reviewability.
 
-The extended Kiro workflow integration ensures that this pedagogical approach can be systematically applied within existing development processes, creating a reusable pattern for future educational content development that maintains both educational effectiveness and technical rigor.
+The extended Kiro workflow integration ensures that this pedagogical approach can be systematically applied within existing development processes, creating a reusable pattern for future educational content development that maintains both educational effectiveness and technical rigor. The 6-phase approach specifically addresses the risk of late-stage technical discoveries through early validation while preserving the systematic development benefits of the standard Kiro methodology.
