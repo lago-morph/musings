@@ -37,13 +37,15 @@ Validate core technical assumptions through proof-of-concept implementation befo
   - Method: Create XRD YAML with spec and status schema
   - Validation: via kubectl apply and Crossplane CRD registration
   - Status: COMPLETED - XRD created, applied successfully, and registered with Crossplane
-- [ ] 3.2.2 Create basic Composition with Lambda + API Gateway + IAM resources
+- [x] 3.2.2 Create basic Composition with Lambda + API Gateway + IAM resources
   - Method: Write Composition YAML using traditional patches
   - Resources: Lambda Function, API Gateway API, IAM Role, Lambda Permission
   - Validation: via Crossplane status fields showing Ready
+  - Status: COMPLETED - Composition created using Pipeline mode with patch-and-transform function
 - [ ] 3.2.3 Test ToCompositeFieldPath status propagation
   - Method: Deploy composition and check status field population
   - Validation: via kubectl get commands on composite resource
+  - Status: IN PROGRESS
 - [ ] 3.2.4 Create ApiEndpoint instance and verify AWS resources
   - Method: Apply ApiEndpoint CR and check resource creation
   - Validation: via Crossplane status fields and AWS CLI verification
