@@ -1,0 +1,66 @@
+# Individual Upbound AWS Providers for XRD Tutorial
+# This installs specific AWS services needed for the tutorial
+
+# EC2 Provider (VPC, Subnets, Security Groups, etc.)
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-aws-ec2
+spec:
+  package: xpkg.upbound.io/upbound/provider-aws-ec2:v1.14.0
+  packagePullPolicy: IfNotPresent
+
+---
+# Lambda Provider (Functions, Permissions, etc.)
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-aws-lambda
+spec:
+  package: xpkg.upbound.io/upbound/provider-aws-lambda:v1.14.0
+  packagePullPolicy: IfNotPresent
+
+---
+# API Gateway v2 Provider (HTTP APIs, Routes, Integrations, etc.)
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-aws-apigatewayv2
+spec:
+  package: xpkg.upbound.io/upbound/provider-aws-apigatewayv2:v1.14.0
+  packagePullPolicy: IfNotPresent
+
+---
+# IAM Provider (Roles, Policies, etc.)
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-aws-iam
+spec:
+  package: xpkg.upbound.io/upbound/provider-aws-iam:v1.14.0
+  packagePullPolicy: IfNotPresent
+
+---
+# CloudWatch Provider (for metrics integration)
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-aws-cloudwatch
+spec:
+  package: xpkg.upbound.io/upbound/provider-aws-cloudwatch:v1.14.0
+  packagePullPolicy: IfNotPresent
+
+---
+# ProviderConfig for upbound providers
+# This will be managed by the auto-installed family provider
+apiVersion: aws.upbound.io/v1beta1
+kind: ProviderConfig
+metadata:
+  name: default
+spec:
+  credentials:
+    source: Secret
+    secretRef:
+      namespace: crossplane-system
+      name: aws-secret
+      key: credentials

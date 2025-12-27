@@ -1,0 +1,80 @@
+# Upbound AWS Provider Configuration for XRD Tutorial
+# This replaces the older crossplane-contrib provider with the newer upbound providers
+
+# Install the upbound AWS provider family (includes all AWS services)
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-family-aws
+spec:
+  package: xpkg.upbound.io/upbound/provider-family-aws:v1.14.0
+  packagePullPolicy: IfNotPresent
+
+---
+# Alternative: Install individual providers if you prefer granular control
+# Uncomment these if you want to use individual providers instead of the family
+
+# apiVersion: pkg.crossplane.io/v1
+# kind: Provider
+# metadata:
+#   name: provider-aws-ec2
+# spec:
+#   package: xpkg.upbound.io/upbound/provider-aws-ec2:v1.14.0
+#   packagePullPolicy: IfNotPresent
+
+# ---
+# apiVersion: pkg.crossplane.io/v1
+# kind: Provider
+# metadata:
+#   name: provider-aws-lambda
+# spec:
+#   package: xpkg.upbound.io/upbound/provider-aws-lambda:v1.14.0
+#   packagePullPolicy: IfNotPresent
+
+# ---
+# apiVersion: pkg.crossplane.io/v1
+# kind: Provider
+# metadata:
+#   name: provider-aws-apigatewayv2
+# spec:
+#   package: xpkg.upbound.io/upbound/provider-aws-apigatewayv2:v1.14.0
+#   packagePullPolicy: IfNotPresent
+
+# ---
+# apiVersion: pkg.crossplane.io/v1
+# kind: Provider
+# metadata:
+#   name: provider-aws-iam
+# spec:
+#   package: xpkg.upbound.io/upbound/provider-aws-iam:v1.14.0
+#   packagePullPolicy: IfNotPresent
+
+---
+# ProviderConfig for upbound providers
+# This uses the same AWS credentials as the existing provider
+apiVersion: aws.upbound.io/v1beta1
+kind: ProviderConfig
+metadata:
+  name: default
+spec:
+  credentials:
+    source: Secret
+    secretRef:
+      namespace: crossplane-system
+      name: aws-secret
+      key: credentials
+
+---
+# Optional: Keep the old provider config for backward compatibility during transition
+# You can remove this after migrating all resources to upbound providers
+apiVersion: aws.crossplane.io/v1beta1
+kind: ProviderConfig
+metadata:
+  name: legacy-default
+spec:
+  credentials:
+    source: Secret
+    secretRef:
+      namespace: crossplane-system
+      name: aws-secret
+      key: credentials

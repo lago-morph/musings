@@ -1,5 +1,6 @@
 # Basic VPC Infrastructure for XRD Tutorial Testing
 # This provides the foundational AWS networking for the proof-of-concept
+# Uses upbound AWS provider APIs
 
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: VPC
