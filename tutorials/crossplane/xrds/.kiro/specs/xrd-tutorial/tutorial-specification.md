@@ -568,6 +568,15 @@ tutorial/
 - **Comment Density**: Every significant configuration element must have explanatory comments
 - **Educational Focus**: Comments serve as teaching narrative, not just documentation
 
+**Content Identification and Traceability**:
+- **Unique Identifiers**: Every tutorial component must have a unique identifier for feedback traceability
+- **Section Numbering**: Use hierarchical section numbering (1.1, 1.2, 2.1.1, etc.) for all content sections
+- **Code Block IDs**: Each code block must have a unique identifier (e.g., CB-1.1, CB-2.3, CB-3.1.2)
+- **Diagram Numbers**: All diagrams must be numbered sequentially within each layer (D-1.1, D-2.1, D-3.2)
+- **Paragraph References**: Major paragraphs should be referenceable through section numbering
+- **Cross-Reference Format**: Use consistent format for internal references (e.g., "see Section 2.1.3", "refer to Code Block CB-3.2")
+- **Feedback Mapping**: Identifiers must enable precise mapping of user feedback to specific tutorial components
+
 ### 4.5 Validation Requirements
 
 **YAML Validation**:
