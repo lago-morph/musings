@@ -609,4 +609,117 @@ This technical specification provides complete implementation guidance while ser
 
 ---
 
-*[Extended Kiro Workflow Integration to be added in Task 6]*
+## 5. Extended Kiro Workflow Integration
+
+### 5.1 Tutorial-Specific Workflow Definition
+
+This tutorial specification follows an extended Kiro workflow designed specifically for educational content development. The standard Kiro workflow (requirements → design → tasks → implementation) is adapted to accommodate the integrated pedagogical and technical decision-making required for effective tutorial development.
+
+**Extended Workflow Phases**:
+
+**Phase 1 (Requirements Equivalent)**: Learning Architecture and Content Design
+- **Scope**: Complete Sections 1-2 of tutorial-specification.md
+- **Review Focus**: Educational effectiveness, learner needs alignment, curriculum coherence
+- **Approval Mechanism**: Use `userInput` tool with reason 'spec-requirements-review'
+- **Success Criteria**: Learning objectives are clear, content design serves pedagogical goals
+
+**Phase 2 (Design Equivalent)**: Implementation Bridge and Technical Specification  
+- **Scope**: Complete Sections 3-4 of tutorial-specification.md
+- **Review Focus**: Technical feasibility, pedagogical-technical alignment, implementation completeness
+- **Approval Mechanism**: Use `userInput` tool with reason 'spec-design-review'
+- **Success Criteria**: Technical specifications serve learning objectives, implementation is feasible
+
+**Phase 3 (Tasks)**: Standard Kiro task creation referencing unified specification
+- **Scope**: Create tasks.md based on complete tutorial-specification.md
+- **Review Focus**: Actionability, quality assurance, deliverable clarity
+- **Approval Mechanism**: Use `userInput` tool with reason 'spec-tasks-review'
+- **Success Criteria**: Tasks are implementable and produce desired educational outcomes
+
+**Phase 4 (Implementation)**: Standard Kiro task execution
+- **Scope**: Execute tasks as normal using tutorial-specification.md as reference
+- **Review Focus**: Educational effectiveness and technical accuracy during implementation
+- **Success Criteria**: Implemented tutorial achieves learning objectives with technical correctness
+
+### 5.2 Integration with Standard Kiro Capabilities
+
+**Maintained Kiro Features**:
+- **Incremental Approval**: Each phase requires explicit user approval before proceeding
+- **Task Management**: Standard task creation, status tracking, and execution capabilities
+- **Quality Assurance**: Built-in validation and testing approaches
+- **Version Control**: Standard git integration and change management
+
+**Extended Capabilities for Tutorial Projects**:
+- **Cognitive Context Grouping**: Specification sections organized for appropriate mental frameworks
+- **Pedagogical-Technical Integration**: Explicit connections between learning goals and implementation choices
+- **Educational Validation**: Success criteria include both technical accuracy and learning effectiveness
+- **Expert Audience Adaptation**: Workflow accommodates experienced practitioners learning new concepts
+
+### 5.3 AI Assistant Guidance Integration
+
+**Methodology Reference**: AI assistants working on tutorial projects should reference `tutorial-spec-methodology.md` for:
+- Understanding the 4-section structure and cognitive context principles
+- Following pedagogical design principles for technical content
+- Maintaining appropriate separation between learning and technical concerns
+- Validating educational effectiveness alongside technical accuracy
+
+**Workflow Execution**: AI assistants should follow this extended workflow by:
+- Treating Sections 1-2 as "requirements equivalent" for pedagogical foundation
+- Treating Sections 3-4 as "design equivalent" for technical implementation
+- Using standard task creation and execution for implementation phases
+- Maintaining focus on educational outcomes throughout all phases
+
+**Quality Assurance**: AI assistants should validate:
+- Learning objectives drive technical implementation choices
+- Technical specifications serve pedagogical purposes
+- Content maintains appropriate cognitive context boundaries
+- Implementation produces effective educational outcomes
+
+### 5.4 Future Tutorial Project Guidance
+
+**Reusable Pattern**: This extended workflow creates a reusable pattern for future tutorial specification projects that require integration of pedagogical design with technical implementation.
+
+**Adaptation Guidelines**: Future tutorial projects can adapt this workflow by:
+- Maintaining the 4-section structure while adjusting content to specific domains
+- Following cognitive context grouping principles for their technical area
+- Ensuring pedagogical decisions drive technical choices rather than vice versa
+- Using appropriate source document hierarchies for their content domains
+
+**Methodology Evolution**: As tutorial development practices evolve, updates should be made to `tutorial-spec-methodology.md` to capture new insights while maintaining the core principles of integrated pedagogical and technical decision-making.
+
+### 5.5 Success Indicators for Extended Workflow
+
+**Process Success**:
+- Specification sections can be reviewed efficiently in appropriate cognitive contexts
+- Pedagogical and technical decisions are traceable and well-reasoned
+- Implementation tasks are clear and actionable
+- Quality can be validated against both educational and technical criteria
+
+**Educational Success**:
+- Learning objectives are specific, measurable, and achievable
+- Content progression follows sound pedagogical principles
+- Examples effectively demonstrate target concepts
+- Learners can transfer knowledge to their own contexts
+
+**Technical Success**:
+- All code examples are syntactically correct and functional
+- Technical specifications are complete and implementable
+- Integration points are well-defined and tested
+- Documentation supports both learning and implementation
+
+**Integration Success**:
+- Educational goals and technical implementation are mutually reinforcing
+- Cognitive context boundaries improve review efficiency without sacrificing integration
+- Future AI assistants can effectively continue work using established patterns
+- Tutorial development becomes more systematic and predictable
+
+This extended Kiro workflow maintains the benefits of incremental approval and systematic development while accommodating the unique requirements of educational content that must balance pedagogical effectiveness with technical accuracy.
+
+---
+
+## Conclusion
+
+This tutorial specification demonstrates a new approach to educational content development that integrates pedagogical design principles with technical implementation requirements. By organizing content according to cognitive context boundaries while maintaining explicit connections between learning objectives and technical choices, we create specifications that produce more effective educational outcomes.
+
+The specification serves as both a complete implementation guide and a demonstration of methodology that can be applied to future tutorial development projects. The extended Kiro workflow ensures systematic development while accommodating the unique requirements of educational content creation.
+
+**Next Steps**: This specification is ready for task creation (Phase 3) using the standard Kiro task workflow, with tasks.md referencing this unified specification as the authoritative source for both pedagogical and technical requirements.
