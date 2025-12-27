@@ -359,4 +359,254 @@ This Implementation Bridge ensures that every technical choice serves clear peda
 
 ---
 
-*[Section 4 to be completed in subsequent task]*
+## 4. Technical Specification
+
+### 4.1 API Versions and Dependencies
+
+**Crossplane Core Requirements**:
+- **Crossplane Version**: v2.1 API structures and syntax required
+- **Forbidden Patterns**: No Crossplane v1 patterns, especially Claims
+- **Operations Features**: Crossplane v2.1 when needed, v2.0 acceptable when Operations features not required
+- **API Validation**: All YAML syntax must validate against Crossplane v2.1 compatibility
+
+**AWS Provider Requirements**:
+- **Provider Family**: `provider-family-aws@v2.3.0` (recommended for comprehensive management)
+- **Individual Providers**: 
+  - `provider-aws-lambda@v2.3.0`
+  - `provider-aws-apigatewayv2@v2.3.0` 
+  - `provider-aws-iam@v2.3.0`
+- **API Versions**: All AWS provider resources use `v1beta1` API versions as of December 2025
+- **Provider Configuration**: Assumes administrative AWS credentials via ProviderConfig
+
+### 4.2 Resource Specifications
+
+**ApiEndpoint XRD Schema**:
+```yaml
+spec:
+  type: object
+  properties:
+    apiName:
+      type: string
+      description: "Name of the API Gateway API"
+    description:
+      type: string
+      description: "Description of the API"
+    lambdaRuntime:
+      type: string
+      description: "Lambda runtime version"
+      default: "python3.11"
+  required:
+  - apiName
+
+status:
+  type: object
+  properties:
+    endpointUrl:
+      type: string
+      description: "Live API Gateway endpoint URL"
+    deploymentTime:
+      type: string
+      description: "Deployment timestamp"
+    lambdaArn:
+      type: string
+      description: "ARN of the Lambda function"
+    invocationCount:
+      type: integer
+      description: "CloudWatch invocation count"
+    lastInvoked:
+      type: string
+      description: "CloudWatch last invocation timestamp"
+```
+
+**ApiRoute XRD Schema**:
+```yaml
+spec:
+  type: object
+  properties:
+    routePath:
+      type: string
+      description: "HTTP path for the route"
+      pattern: '^/.*'
+    httpMethod:
+      type: string
+      description: "HTTP method for the route"
+      enum: [GET, POST, PUT, DELETE, PATCH]
+    responseText:
+      type: string
+      description: "Text response for this route"
+    apiEndpointRef:
+      type: object
+      description: "Reference to the parent ApiEndpoint"
+      properties:
+        name:
+          type: string
+          description: "Name of the ApiEndpoint XR"
+      required:
+      - name
+  required:
+  - routePath
+  - httpMethod
+  - responseText
+  - apiEndpointRef
+
+status:
+  type: object
+  properties:
+    routeStatus:
+      type: string
+      description: "Route health status"
+    createdAt:
+      type: string
+      description: "Route creation timestamp"
+    integrationId:
+      type: string
+      description: "API Gateway Integration ID"
+    requestCount:
+      type: integer
+      description: "CloudWatch request count"
+    avgResponseTime:
+      type: number
+      description: "CloudWatch average response time"
+```
+
+**AWS Managed Resource Requirements**:
+
+*ApiEndpoint Composition Creates*:
+- `lambda.aws.upbound.io/v1beta1/Function` - Lambda function with inline code
+- `lambda.aws.upbound.io/v1beta1/Permission` - API Gateway invoke permissions
+- `apigatewayv2.aws.upbound.io/v1beta1/API` - HTTP API Gateway
+- `iam.aws.upbound.io/v1beta1/Role` - Lambda execution role
+
+*ApiRoute Composition Creates*:
+- `apigatewayv2.aws.upbound.io/v1beta1/Route` - API Gateway routes
+- `apigatewayv2.aws.upbound.io/v1beta1/Integration` - Lambda integrations
+
+### 4.3 Integration Specifications
+
+**CloudWatch Integration Configuration**:
+- **API Gateway Metrics**:
+  - Namespace: `AWS/ApiGateway`
+  - Metrics: `Count` (request count), `Latency` (response time)
+  - Dimensions: `ApiId`, `Route`
+- **Lambda Metrics**:
+  - Namespace: `AWS/Lambda`
+  - Metrics: `Invocations` (Lambda calls)
+  - Dimensions: `FunctionName`
+- **Time Range Configuration**:
+  - Period: Last 24 hours with 1-hour aggregation periods
+  - Aggregation: Sum for Count/Invocations, Average for Latency
+- **Error Handling Strategy**:
+  - Graceful failure with default values when CloudWatch API calls fail
+  - No composition failure - continue with empty/default metric values
+  - Log errors without breaking the composition process
+  - Ensure composition process completes successfully even with CloudWatch failures
+
+**Container Registry Configuration**:
+- **Registry Domain**: `ttl.sh` for all container references
+- **Availability**: 24-hour automatic cleanup
+- **Authentication**: None required (anonymous push/pull)
+- **Naming Convention**: `ttl.sh/crossplane-apiroute-function:24h` format
+- **Build Commands**:
+  - Build: `docker build -t ttl.sh/crossplane-apiroute-function:24h .`
+  - Push: `docker push ttl.sh/crossplane-apiroute-function:24h`
+- **Function Package Reference**: Use `package: ttl.sh/crossplane-apiroute-function:24h` in Function manifests
+
+### 4.4 Code Structure and Organization
+
+**Directory Structure**:
+```
+tutorial/
+├── 1-overview/
+├── 2-architecture/  
+├── 3-implementation/
+├── 4-troubleshooting/
+└── diagrams/
+```
+
+**Layer 3 Implementation Requirements**:
+- **Complete YAML Manifests**: All XRDs, Compositions, and example instances (80-120 lines for XRDs)
+- **Python Composition Function**: Complete code with extensive inline comments (200+ lines with comments)
+- **Container Deployment**: Dockerfile, Function package YAML, build and deployment instructions
+- **Verification Scripts**: Status field checking, live API testing, dependency timing observation
+- **Cleanup Instructions**: Proper resource deletion order and verification steps
+
+**Code Comment Requirements**:
+- **Layer 1**: Zero code exposure
+- **Layer 2**: 5-15 line code snippets maximum showing structure only
+- **Layer 3**: Extensive inline comments explaining WHY and HOW, not just WHAT
+- **Comment Density**: Every significant configuration element must have explanatory comments
+- **Educational Focus**: Comments serve as teaching narrative, not just documentation
+
+### 4.5 Validation Requirements
+
+**YAML Validation**:
+- All manifests must pass Kubernetes YAML validation
+- Crossplane-specific validation using CRD schemas
+- AWS provider resource validation against current API versions
+
+**Functional Testing**:
+- **Status Field Population**: Both built-in propagation (ApiEndpoint) and custom computation (ApiRoute)
+- **Dependency Resolution**: ApiRoute waits for ApiEndpoint Lambda ARN availability
+- **Live API Endpoints**: Deployed examples produce working API Gateway endpoints with real Lambda responses
+- **CloudWatch Integration**: Real metrics populate status fields with graceful error handling
+- **Container Deployment**: Function containers build and deploy successfully using ttl.sh registry
+
+**Code Syntax Validation**:
+- Python function code must pass syntax checking
+- Docker build validation for container images
+- Shell script validation for deployment/cleanup scripts
+
+**Link and Reference Validation**:
+- External documentation links must be accessible
+- Cross-references between tutorial layers must be valid
+- Container registry references must use correct ttl.sh format
+
+### 4.6 Composition Strategies
+
+**Traditional Patch-and-Transform (ApiEndpoint)**:
+- **Composition Mode**: `Resources` (not Pipeline)
+- **Patch Types**: `FromCompositeFieldPath` for spec propagation, `ToCompositeFieldPath` for status propagation
+- **Status Mechanism**: Built-in Crossplane status propagation from Managed Resources to Composite Resource
+- **Resource Dependencies**: IAM Role → Lambda Function → API Gateway → Lambda Permission
+- **Error Handling**: Relies on Crossplane's built-in error handling and retry mechanisms
+
+**Python Composition Function (ApiRoute)**:
+- **Composition Mode**: `Pipeline` with function steps
+- **Function Framework**: Uses crossplane/function-sdk-python
+- **Input Processing**: `RunFunctionRequest` with observed and desired state
+- **Output Generation**: `RunFunctionResponse` with updated desired state and status
+- **Custom Logic**: Dependency resolution, status aggregation, CloudWatch metrics retrieval
+- **Error Handling**: Basic error handling without retry logic, graceful CloudWatch failure handling
+
+**Dependency Resolution Pattern**:
+- ApiRoute → ApiEndpoint dependency using composite resource references
+- Child resources automatically wait for parent resources to reach Ready status
+- Proper composite resource reference patterns demonstrated in Layer 2 architecture section
+- Timing diagrams showing dependency resolution flow
+
+### 4.7 Security and Complexity Constraints
+
+**Security Simplifications (Educational Purpose)**:
+- Ignore RBAC and security concerns throughout all examples
+- Assume administrative privileges for all operations
+- Use simplified configurations optimized for learning rather than production
+- Explicitly note when simplifications are made for educational purposes
+- Focus on legal syntax while avoiding production-ready complexity
+
+**Complexity Management**:
+- CloudWatch integration limited to learning Crossplane concepts, not CloudWatch expertise
+- Container registry strategy eliminates infrastructure setup requirements
+- Lambda code minimal but complete for demonstration purposes
+- Error handling basic but sufficient to demonstrate patterns
+
+**Performance Considerations**:
+- Brief mentions (1-3 sentences) with links to external Crossplane documentation
+- Note function overhead implications when comparing traditional patches versus Composition Functions
+- Maintain focus on Crossplane architectural understanding as primary objective
+- Reference external Crossplane documentation for performance details
+
+This technical specification provides complete implementation guidance while serving the pedagogical objectives established in Sections 1-3. All technical choices are made to support effective learning of Crossplane architectural patterns rather than production optimization.
+
+---
+
+*[Extended Kiro Workflow Integration to be added in Task 6]*
