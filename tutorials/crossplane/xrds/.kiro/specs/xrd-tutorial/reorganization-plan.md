@@ -153,7 +153,7 @@ Create `tutorial-specification.md` with four sections:
 - Kiro compatibility maintained
 - Document is complete and self-contained
 
-### [ ] Task 7: Correctness Check and Validation
+### [x] Task 7: Correctness Check and Validation
 **Objective**: Verify no information lost, added, or misrepresented in transformation
 
 **Actions**:
@@ -177,7 +177,7 @@ Create `tutorial-specification.md` with four sections:
 - Confirmation of reference preservation
 - Validation of completeness and consistency
 
-### [ ] Task 8: Summary and Cleanup
+### [x] Task 8: Summary and Cleanup
 **Objective**: Summarize transformation and handle original document cleanup
 
 **Actions**:
