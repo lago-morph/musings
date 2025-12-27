@@ -53,53 +53,29 @@ spec:
         patches:
         - type: FromCompositeFieldPath
           fromFieldPath: spec.apiName
-          toFieldPath: metadata.name
-          transforms:
-          - type: string
-            string:
-              fmt: "xrd-tutorial-%s-lambda-role"
-        - type: FromCompositeFieldPath
-          fromFieldPath: spec.apiName
           toFieldPath: spec.forProvider.tags.ApiName
+        - type: ToCompositeFieldPath
+          fromFieldPath: status.atProvider.arn
+          toFieldPath: status.iamRoleArn
 
       # Lambda Function
       - name: lambda-function
         base:
-          apiVersion: lambda.aws.upbound.io/v1beta1
+          apiVersion: lambda.aws.upbound.io/v1beta2
           kind: Function
           spec:
             forProvider:
               handler: index.handler
               region: us-east-1
               runtime: python3.11
-              code:
-                zipFile: |
-                  import json
-                  def handler(event, context):
-                      return {
-                          'statusCode': 200,
-                          'headers': {
-                              'Content-Type': 'application/json',
-                              'Access-Control-Allow-Origin': '*'
-                          },
-                          'body': json.dumps({
-                              'message': 'Hello from XRD Tutorial POC!',
-                              'timestamp': context.aws_request_id
-                          })
-                      }
+              s3Bucket: "crossplane-tutorial-lambda-code"
+              s3Key: "lambda.zip"
               tags:
                 Purpose: xrd-tutorial-poc
                 Component: lambda-function
             providerConfigRef:
               name: default
         patches:
-        - type: FromCompositeFieldPath
-          fromFieldPath: spec.apiName
-          toFieldPath: metadata.name
-          transforms:
-          - type: string
-            string:
-              fmt: "xrd-tutorial-%s-lambda"
         - type: FromCompositeFieldPath
           fromFieldPath: spec.description
           toFieldPath: spec.forProvider.description
@@ -109,9 +85,6 @@ spec:
         - type: FromCompositeFieldPath
           fromFieldPath: spec.apiName
           toFieldPath: spec.forProvider.tags.ApiName
-        - type: FromCompositeFieldPath
-          fromFieldPath: spec.apiName
-          toFieldPath: spec.forProvider.roleSelector.matchLabels.ApiName
         - type: ToCompositeFieldPath
           fromFieldPath: status.atProvider.arn
           toFieldPath: status.lambdaArn
@@ -134,20 +107,6 @@ spec:
             providerConfigRef:
               name: default
         patches:
-        - type: FromCompositeFieldPath
-          fromFieldPath: spec.apiName
-          toFieldPath: metadata.name
-          transforms:
-          - type: string
-            string:
-              fmt: "xrd-tutorial-%s-api"
-        - type: FromCompositeFieldPath
-          fromFieldPath: spec.apiName
-          toFieldPath: spec.forProvider.name
-          transforms:
-          - type: string
-            string:
-              fmt: "xrd-tutorial-%s-api"
         - type: FromCompositeFieldPath
           fromFieldPath: spec.description
           toFieldPath: spec.forProvider.description
