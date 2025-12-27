@@ -1,5 +1,34 @@
 # CRITICAL WORKFLOW RULES
 
+## ⚠️ CROSSPLANE VERSION REQUIREMENTS
+
+**RULE**: This project uses Crossplane v2.1+ EXCLUSIVELY. NEVER use Crossplane v1 patterns or APIs.
+
+**Critical Requirements**:
+- **NO Claims**: Crossplane v2 does not use Claims - use direct XR instances instead
+- **NO claimNames**: XRDs in v2 do not have claimNames sections
+- **Use XRs directly**: Users interact with composite resources (XRs) directly, not through claims
+- **Pipeline mode**: Always use Pipeline mode compositions, not legacy Resources mode
+- **Function-based**: Prefer composition functions over patch-and-transform when possible
+
+**Web Search Requirement**:
+- Crossplane v2.1 was released after the AI model's training cutoff
+- **MUST use web search** to verify current Crossplane v2.1 syntax and patterns
+- **MUST search** for official Crossplane v2 documentation before implementing
+- **NEVER assume** v1 patterns work in v2 - they often don't
+
+**Examples of FORBIDDEN v1 patterns**:
+- ❌ Claims (ApiEndpoint claims)
+- ❌ claimNames in XRDs
+- ❌ Resources mode compositions
+- ❌ Old patch syntax without Pipeline mode
+
+**Required v2 patterns**:
+- ✅ Direct XR usage (XApiEndpoint instances)
+- ✅ Pipeline mode compositions
+- ✅ Function-based composition when possible
+- ✅ Modern XRD syntax without claimNames
+
 ## MANDATORY USER CONFIRMATION REQUIREMENTS
 
 ### ⚠️ MANDATORY TASK REQUIREMENT VERIFICATION

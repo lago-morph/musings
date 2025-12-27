@@ -1,0 +1,12 @@
+# Test XApiEndpoint Instance - Crossplane v2.1 Pattern
+# In Crossplane v2, users interact directly with composite resources (XRs)
+# No Claims are used - this is a direct XApiEndpoint instance
+
+apiVersion: tutorial.crossplane.io/v1alpha1
+kind: XApiEndpoint
+metadata:
+  name: test-apiendpoint
+spec:
+  apiName: "test-api"
+  description: "Test API for status propagation validation"
+  lambdaRuntime: "python3.9"

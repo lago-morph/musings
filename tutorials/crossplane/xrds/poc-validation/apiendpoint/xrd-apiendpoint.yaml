@@ -1,6 +1,6 @@
-# ApiEndpoint XRD - Traditional Patch-and-Transform Pattern
-# This XRD demonstrates Crossplane's built-in declarative composition capabilities
-# It encapsulates API Gateway + Lambda + IAM resources using traditional patches
+# ApiEndpoint XRD - Crossplane v2.1 Pattern
+# This XRD demonstrates Crossplane v2.1 direct composite resource usage
+# Users interact directly with XApiEndpoint resources, no Claims in v2
 
 apiVersion: apiextensions.crossplane.io/v1
 kind: CompositeResourceDefinition
@@ -50,12 +50,12 @@ spec:
               lambdaArn:
                 type: string
                 description: "ARN of the Lambda function"
+              iamRoleArn:
+                type: string
+                description: "ARN of the IAM role"
               invocationCount:
                 type: integer
                 description: "CloudWatch invocation count"
               lastInvoked:
                 type: string
                 description: "CloudWatch last invocation timestamp"
-  claimNames:
-    kind: ApiEndpoint
-    plural: apiendpoints
