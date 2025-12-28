@@ -70,6 +70,7 @@ spec:
               runtime: python3.11
               s3Bucket: "crossplane-tutorial-lambda-code-1766890187"
               s3Key: "lambda.zip"
+              description: "ApiEndpoint Lambda - Updated for custom 404 response"
               tags:
                 Purpose: xrd-tutorial-poc
                 Component: lambda-function
@@ -122,3 +123,51 @@ spec:
         - type: ToCompositeFieldPath
           fromFieldPath: status.atProvider.apiEndpoint
           toFieldPath: status.endpointUrl
+        - type: ToCompositeFieldPath
+          fromFieldPath: status.atProvider.id
+          toFieldPath: status.apiId
+
+      # Default Integration - connects all unmatched requests to Lambda
+      - name: default-integration
+        base:
+          apiVersion: apigatewayv2.aws.upbound.io/v1beta1
+          kind: Integration
+          spec:
+            forProvider:
+              integrationType: AWS_PROXY
+              integrationMethod: POST
+              region: us-east-1
+            providerConfigRef:
+              name: default
+        patches:
+        - type: FromCompositeFieldPath
+          fromFieldPath: status.apiId
+          toFieldPath: spec.forProvider.apiId
+        - type: FromCompositeFieldPath
+          fromFieldPath: status.lambdaArn
+          toFieldPath: spec.forProvider.integrationUri
+
+      # Lambda Permission for API Gateway
+      - name: lambda-permission
+        base:
+          apiVersion: lambda.aws.upbound.io/v1beta1
+          kind: Permission
+          spec:
+            forProvider:
+              action: lambda:InvokeFunction
+              principal: apigateway.amazonaws.com
+              region: us-east-1
+            providerConfigRef:
+              name: default
+        patches:
+        - type: FromCompositeFieldPath
+          fromFieldPath: status.lambdaArn
+          toFieldPath: spec.forProvider.functionName
+        - type: FromCompositeFieldPath
+          fromFieldPath: status.apiId
+          toFieldPath: spec.forProvider.sourceArn
+          transforms:
+          - type: string
+            string:
+              type: Format
+              fmt: "arn:aws:execute-api:us-east-1:*:%s/*/*"

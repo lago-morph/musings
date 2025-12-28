@@ -53,6 +53,9 @@ spec:
               iamRoleArn:
                 type: string
                 description: "ARN of the IAM role"
+              apiId:
+                type: string
+                description: "API Gateway API ID"
               invocationCount:
                 type: integer
                 description: "CloudWatch invocation count"

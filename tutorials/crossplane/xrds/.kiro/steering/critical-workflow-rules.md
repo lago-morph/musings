@@ -178,6 +178,27 @@ Agent: [commits to git]
 Agent: I've created the ApiEndpoint XRD. [immediately commits without asking]
 ```
 
+## ⚠️ AWS CLI PAGER SUPPRESSION
+
+**RULE**: AWS CLI commands MUST disable the pager to prevent interactive prompts that block execution.
+
+**Required Usage**:
+- **ALWAYS** use `--no-cli-pager` flag with AWS CLI commands
+- **NEVER** allow AWS CLI to use interactive pager in automated scripts
+
+**Examples**:
+```bash
+# ✅ CORRECT - Pager disabled
+aws apigatewayv2 get-routes --api-id 0cgxu4ot6e --no-cli-pager
+
+# ❌ INCORRECT - May trigger interactive pager
+aws apigatewayv2 get-routes --api-id 0cgxu4ot6e
+```
+
+**Alternative Methods**:
+- Set environment variable: `export AWS_PAGER=""`
+- Use `--no-cli-pager` flag (recommended for individual commands)
+
 ## SUMMARY
 
 **ALWAYS VERIFY FIRST**:

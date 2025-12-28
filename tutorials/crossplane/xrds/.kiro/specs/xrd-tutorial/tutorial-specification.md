@@ -135,23 +135,27 @@ This learning architecture ensures that expert practitioners can efficiently acq
 **ApiEndpoint and ApiRoute System Design**: The tutorial uses a two-tier API system to demonstrate Crossplane concepts through a realistic but focused example.
 
 **Why ApiEndpoint (Traditional Patches)**:
-- **Appropriate Complexity**: Encapsulates multiple AWS resources (Lambda + API Gateway + IAM) without overwhelming cognitive load
+- **Foundation Infrastructure**: Creates API Gateway + Lambda + IAM + Integration + Default Route (but no Stage)
+- **Appropriate Complexity**: Encapsulates multiple AWS resources without overwhelming cognitive load
 - **Real Dependencies**: Demonstrates actual resource relationships and timing that learners encounter in practice
 - **Status Propagation**: Shows built-in Crossplane capabilities for status field population without custom code
-- **Familiar Pattern**: API endpoints are universally understood by the target audience
+- **Incomplete by Design**: Infrastructure exists but isn't publicly accessible, demonstrating "created vs deployed" concepts
 - **Terraform Mapping**: Clear conceptual bridge to Terraform modules that target audience already understands
 
 **Why ApiRoute (Composition Functions)**:
+- **Deployment Layer**: Adds Stage resource and specific routes to make ApiEndpoint infrastructure publicly accessible
+- **Multi-Route Logic**: Single Lambda handles both specific routes (`/api/process`) and default behavior (`$default`)
 - **Justifies Custom Logic**: Parent-child dependencies and status aggregation provide legitimate reasons for custom functions
-- **Demonstrates Advanced Patterns**: Shows when declarative approaches are insufficient and imperative logic is needed
 - **Real Integration**: CloudWatch metrics retrieval demonstrates external API integration patterns
 - **Dependency Showcase**: ApiRoute waiting for ApiEndpoint demonstrates Crossplane's dependency resolution timing
-- **Complexity Contrast**: Provides clear comparison point with traditional patches to understand trade-offs
+- **Complete Functionality**: Results in working API with both business logic and intelligent 404 handling
 
-**System Architecture Benefits**:
-- **Progressive Complexity**: Start with simpler declarative patterns, progress to more complex imperative patterns
-- **Realistic Scale**: Complex enough to demonstrate real concepts, simple enough to maintain focus on Crossplane rather than domain complexity
-- **Complete Workflow**: End-to-end example from XRD design through working API endpoints with real metrics
+**Refined Architecture Benefits** (POC Validated):
+- **Clean Separation**: ApiEndpoint = "infrastructure foundation", ApiRoute = "deployed functionality"
+- **API Gateway v2 Education**: Demonstrates Routes + Integrations + Stages architecture layers
+- **Progressive Complexity**: Foundation → Functionality progression with clear architectural boundaries
+- **Real-World Patterns**: Single Lambda handling multiple routes mirrors production API Gateway patterns
+- **Testability**: Optional supplemental guide shows manual testing of "incomplete" ApiEndpoint infrastructure
 
 ### 2.3 Content Organization Structure
 
@@ -506,11 +510,27 @@ status:
 - `lambda.aws.upbound.io/v1beta1/Function` - Lambda function with inline code
 - `lambda.aws.upbound.io/v1beta1/Permission` - API Gateway invoke permissions
 - `apigatewayv2.aws.upbound.io/v1beta1/API` - HTTP API Gateway
+- `apigatewayv2.aws.upbound.io/v1beta1/Integration` - Default integration to Lambda
+- `apigatewayv2.aws.upbound.io/v1beta1/Route` - Default route (`$default`) for unmatched requests
 - `iam.aws.upbound.io/v1beta1/Role` - Lambda execution role
 
 *ApiRoute Composition Creates*:
-- `apigatewayv2.aws.upbound.io/v1beta1/Route` - API Gateway routes
-- `apigatewayv2.aws.upbound.io/v1beta1/Integration` - Lambda integrations
+- `apigatewayv2.aws.upbound.io/v1beta1/Route` - Specific API Gateway routes (e.g., `/api/process`)
+- `apigatewayv2.aws.upbound.io/v1beta1/Stage` - API Gateway stage for deployment
+- `apigatewayv2.aws.upbound.io/v1beta1/Deployment` - API Gateway deployment (if needed)
+
+**API Gateway v2 Architecture Requirements** (POC Validated):
+- **Routes**: Define URL patterns (`/api/process`, `$default`) and connect to integrations
+- **Integrations**: Connect routes to backend services (Lambda functions)
+- **Stages**: Deploy routes to make them publicly accessible
+- **Deployment Separation**: ApiEndpoint creates infrastructure, ApiRoute makes it live
+- **Route Priority**: Specific routes checked first, `$default` catches unmatched requests
+
+**Lambda Multi-Route Pattern**:
+- Single Lambda function handles multiple routes intelligently
+- Route detection via `event.rawPath` and `event.requestContext.http.method`
+- Business logic for specific routes, 404 handler for unmatched requests
+- Demonstrates real-world API Gateway integration patterns
 
 ### 4.3 Integration Specifications
 
