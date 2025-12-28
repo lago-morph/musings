@@ -22,11 +22,20 @@
 When you return with a fresh environment:
 
 ```bash
+# 1. Set up Crossplane v2.1 + AWS providers + configure authentication
+source ~/.config/env-mk8-aws
+./scripts/setup-complete-environment.sh
+
+# 2. Verify current state
+./scripts/show-current-status.sh
+```
+
+Alternative manual approach:
+```bash
 # 1. Set up Crossplane v2.1 + AWS providers (see SETUP-GUIDE.md)
-# 2. Configure AWS authentication
+# 2. Configure AWS authentication manually
 # 3. Run restoration script
 ./scripts/restore-poc-environment.sh
-
 # 4. Verify current state
 ./scripts/show-current-status.sh
 ```
