@@ -18,7 +18,7 @@ if ! kubectl get providers | grep -q "provider-aws"; then
     exit 1
 fi
 
-if ! kubectl get providerconfig default >/dev/null 2>&1; then
+if ! kubectl get providerconfigs.aws.upbound.io default >/dev/null 2>&1; then
     echo "❌ Default ProviderConfig not found. Please configure AWS authentication first."
     exit 1
 fi
@@ -55,7 +55,7 @@ spec:
 EOF
     
     echo "⏳ Waiting for function-patch-and-transform to be ready..."
-    kubectl wait --for=condition=Healthy function function-patch-and-transform --timeout=120s
+    kubectl wait --for=condition=Healthy function.pkg.crossplane.io function-patch-and-transform --timeout=120s
 fi
 
 echo "✅ Crossplane functions ready"

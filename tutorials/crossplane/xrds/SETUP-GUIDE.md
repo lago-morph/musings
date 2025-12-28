@@ -2,6 +2,28 @@
 
 This guide helps you recreate the complete POC environment for the XRD tutorial project.
 
+## Quick Start (Automated Setup)
+
+For a fully automated setup, use the complete environment setup script:
+
+```bash
+# Option 1: Use existing AWS config file (recommended)
+source ~/.config/env-mk8-aws
+./scripts/setup-complete-environment.sh
+
+# Option 2: Set AWS credentials manually
+export AWS_ACCESS_KEY_ID="your_access_key_here"
+export AWS_SECRET_ACCESS_KEY="your_secret_key_here"
+export AWS_DEFAULT_REGION="us-east-1"
+./scripts/setup-complete-environment.sh
+```
+
+This script automates all the manual steps below. See `./scripts/example-usage.sh` for detailed usage examples.
+
+## Manual Setup (Step by Step)
+
+If you prefer to set up manually or need to troubleshoot, follow these detailed steps:
+
 ## Prerequisites
 
 Before running the restoration script, you need:
@@ -66,7 +88,7 @@ Configure AWS credentials for Crossplane:
 # Create AWS credentials secret
 kubectl create secret generic aws-secret \
   -n crossplane-system \
-  --from-literal=creds='[default]
+  --from-literal=credentials='[default]
 aws_access_key_id = YOUR_ACCESS_KEY
 aws_secret_access_key = YOUR_SECRET_KEY'
 
@@ -82,7 +104,7 @@ spec:
     secretRef:
       namespace: crossplane-system
       name: aws-secret
-      key: creds
+      key: credentials
 EOF
 ```
 
