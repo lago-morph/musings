@@ -65,10 +65,10 @@ spec:
           kind: Function
           spec:
             forProvider:
-              handler: index.handler
+              handler: lambda_function.handler
               region: us-east-1
               runtime: python3.11
-              s3Bucket: "crossplane-tutorial-lambda-code"
+              s3Bucket: "crossplane-tutorial-lambda-code-1766890187"
               s3Key: "lambda.zip"
               tags:
                 Purpose: xrd-tutorial-poc
@@ -85,6 +85,9 @@ spec:
         - type: FromCompositeFieldPath
           fromFieldPath: spec.apiName
           toFieldPath: spec.forProvider.tags.ApiName
+        - type: FromCompositeFieldPath
+          fromFieldPath: status.iamRoleArn
+          toFieldPath: spec.forProvider.role
         - type: ToCompositeFieldPath
           fromFieldPath: status.atProvider.arn
           toFieldPath: status.lambdaArn
@@ -107,6 +110,9 @@ spec:
             providerConfigRef:
               name: default
         patches:
+        - type: FromCompositeFieldPath
+          fromFieldPath: spec.apiName
+          toFieldPath: spec.forProvider.name
         - type: FromCompositeFieldPath
           fromFieldPath: spec.description
           toFieldPath: spec.forProvider.description

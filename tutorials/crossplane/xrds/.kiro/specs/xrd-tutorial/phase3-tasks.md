@@ -46,9 +46,10 @@ Validate core technical assumptions through proof-of-concept implementation befo
   - Method: Deploy composition and check status field population
   - Validation: via kubectl get commands on composite resource
   - Status: COMPLETED - ToCompositeFieldPath patches working correctly, iamRoleArn populated
-- [ ] 3.2.4 Create ApiEndpoint instance and verify AWS resources
+- [x] 3.2.4 Create ApiEndpoint instance and verify AWS resources
   - Method: Apply ApiEndpoint CR and check resource creation
   - Validation: via Crossplane status fields and AWS CLI verification
+  - Status: COMPLETED - ApiEndpoint instance created, all AWS resources verified via CLI and curl
 - [ ] 3.2.5 Test API Gateway endpoint responds correctly
   - Method: Use curl over internet to endpoint URL (uses $default route)
   - Note: API Gateway creates default route that accepts all HTTP methods/paths
