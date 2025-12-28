@@ -68,22 +68,74 @@ aws apigatewayv2 delete-stage --api-id <api-id> --stage-name '$default' --no-cli
 
 **API Version Compliance** (Commit: bc21694):
 - **Discovery**: Crossplane v2.1 eliminates Claims pattern entirely
-- **Issue**: Initial XRD included `claimNames` section (v1 pattern)
+- **Specific v1 Patterns Removed**:
+  - `claimNames` section completely removed from XRD spec
+  - Claims-based resource access (`ApiEndpoint` claims) replaced with direct XR usage
+  - Added explicit v2.1 compliance rules to prevent v1 pattern usage
 - **Solution**: Direct XR usage only (`XApiEndpoint` instances, no Claims)
-- **Tutorial Impact**: Emphasize v2.1 patterns, avoid v1 references
+  - Created `test-apiendpoint-instance.yaml` showing direct XR pattern
+  - Updated XRD to include `iamRoleArn` status field for better status propagation
+  - Added comprehensive steering rules requiring web search for v2.1 syntax verification
+- **Tutorial Impact**: Emphasize v2.1 patterns, avoid v1 references, include explicit warnings about v1/v2 differences
 
 ### Composition Implementation Lessons
 
 **Patch Syntax Evolution** (Commit: 26bd699):
 - **Discovery**: String transform syntax errors in patch-and-transform functions
-- **Issue**: Complex inline transformations caused composition failures
+- **Specific Issues Found**:
+  - Complex `fmt: "xrd-tutorial-%s-lambda-role"` transforms in metadata.name patches caused failures
+  - Inline Lambda code using `zipFile` with multi-line YAML caused parsing errors
+  - `roleSelector.matchLabels` patches referencing non-existent label selectors
 - **Solution**: Simplified patches focusing on core status propagation
-- **Tutorial Impact**: Use straightforward patch patterns for educational clarity
+  - Removed complex string transforms for resource naming
+  - Switched from inline `zipFile` to S3 bucket reference (`s3Bucket: "crossplane-tutorial-lambda-code"`)
+  - Eliminated problematic selector-based patches
+  - Updated Lambda API from v1beta1 to v1beta2
+- **Tutorial Impact**: Use straightforward patch patterns for educational clarity, avoid complex inline transformations
 
-**Status Propagation Validation** (Commit: 72d8738):
-- **Discovery**: ToCompositeFieldPath patches work correctly in v2.1
-- **Validation**: IAM Role ARN successfully propagated to composite resource status
-- **Tutorial Impact**: Traditional patches are reliable for status field population
+**Initial Composition Architecture** (Commit: 951ea2e):
+- **Discovery**: Traditional patch-and-transform approach works well for educational purposes
+- **Architecture Decisions**:
+  - Used Pipeline mode with `function-patch-and-transform` (not legacy Resources mode)
+  - Implemented three-resource pattern: IAM Role → Lambda Function → API Gateway
+  - Included comprehensive status propagation: `endpointUrl`, `deploymentTime`, `lambdaArn`
+  - Used inline Lambda code initially for simplicity (later moved to S3 for reliability)
+- **Patch Patterns Established**:
+  - `FromCompositeFieldPath` for spec → managed resource field mapping
+  - `ToCompositeFieldPath` for managed resource status → composite status
+  - String transforms for resource naming (later simplified due to complexity)
+- **Tutorial Impact**: Demonstrates progression from simple inline code to production S3 patterns
+
+**Comprehensive Infrastructure Patterns** (Commit: fcf8191):
+- **Discovery**: Complete prerequisite infrastructure requires careful provider architecture
+- **Provider Architecture Insights**:
+  - Must use individual Upbound family providers (`provider-aws-ec2`, `provider-aws-lambda`, etc.)
+  - Cannot use monolithic `provider-aws` with family providers
+  - Each provider requires specific version pinning (`v1.14.0`)
+  - ProviderConfig automatically managed by family provider architecture
+- **Infrastructure Completeness Requirements**:
+  - VPC with dual-AZ public subnets (10.0.2.0/24, 10.0.3.0/24) for Lambda deployment
+  - Internet Gateway and route tables for Lambda internet access
+  - Security groups with explicit egress rules (Lambda needs outbound internet)
+  - Base IAM role with both `AWSLambdaBasicExecutionRole` and `AWSLambdaVPCAccessExecutionRole`
+- **Verification Script Patterns**:
+  - Simple present/missing checks using AWS CLI with `--no-cli-pager`
+  - Comprehensive verification with detailed status reporting
+  - Error handling for missing resources with specific remediation steps
+- **Tutorial Impact**: Provide complete foundational infrastructure, include verification scripts for troubleshooting
+
+**Initial Composition Architecture** (Commit: 951ea2e):
+- **Discovery**: Traditional patch-and-transform approach works well for educational purposes
+- **Architecture Decisions**:
+  - Used Pipeline mode with `function-patch-and-transform` (not legacy Resources mode)
+  - Implemented three-resource pattern: IAM Role → Lambda Function → API Gateway
+  - Included comprehensive status propagation: `endpointUrl`, `deploymentTime`, `lambdaArn`
+  - Used inline Lambda code initially for simplicity (later moved to S3 for reliability)
+- **Patch Patterns Established**:
+  - `FromCompositeFieldPath` for spec → managed resource field mapping
+  - `ToCompositeFieldPath` for managed resource status → composite status
+  - String transforms for resource naming (later simplified due to complexity)
+- **Tutorial Impact**: Demonstrates progression from simple inline code to production S3 patterns
 
 ### Infrastructure Setup Discoveries
 
