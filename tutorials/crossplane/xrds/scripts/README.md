@@ -42,6 +42,20 @@ export AWS_DEFAULT_REGION="us-east-1"
 
 ## 📊 Status and Verification Scripts
 
+### `diagnose-setup-issues.sh`
+**Comprehensive setup diagnostics and troubleshooting**
+
+- Validates AWS credentials and Kubernetes access
+- Checks Crossplane installation and provider status
+- Identifies common authentication and configuration issues
+- Provides actionable solutions and quick fixes
+- **Run this first when experiencing setup problems**
+
+**Usage:**
+```bash
+./scripts/diagnose-setup-issues.sh
+```
+
 ### `show-current-status.sh`
 **Display real-time environment status**
 
@@ -171,6 +185,13 @@ graph TB
 - Kubernetes secrets are created in crossplane-system namespace
 
 ## 🐛 Troubleshooting
+
+### 🚨 **First Step: Run Diagnostics**
+When experiencing any setup issues, always run the diagnostic tool first:
+```bash
+./scripts/diagnose-setup-issues.sh
+```
+This script will identify common problems and provide specific solutions.
 
 ### Common Issues
 

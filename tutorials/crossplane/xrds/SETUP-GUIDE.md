@@ -2,6 +2,8 @@
 
 This guide helps you recreate the complete POC environment for the XRD tutorial project.
 
+> 🔧 **Having setup issues?** Run `./scripts/diagnose-setup-issues.sh` for comprehensive troubleshooting and solutions.
+
 ## Quick Start (Automated Setup)
 
 For a fully automated setup, use the complete environment setup script:

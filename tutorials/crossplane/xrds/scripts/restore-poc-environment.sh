@@ -15,11 +15,13 @@ echo "📋 Checking prerequisites..."
 if ! kubectl get providers | grep -q "provider-aws"; then
     echo "❌ AWS providers not found. Please install Upbound AWS providers first."
     echo "   Refer to poc-manifests/README.md for provider installation instructions."
+    echo "   💡 For troubleshooting: ./scripts/diagnose-setup-issues.sh"
     exit 1
 fi
 
 if ! kubectl get providerconfigs.aws.upbound.io default >/dev/null 2>&1; then
     echo "❌ Default ProviderConfig not found. Please configure AWS authentication first."
+    echo "   💡 For troubleshooting: ./scripts/diagnose-setup-issues.sh"
     exit 1
 fi
 

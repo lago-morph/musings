@@ -27,34 +27,40 @@ echo "📋 Checking AWS credentials from environment variables..."
 if [ -z "$AWS_ACCESS_KEY_ID" ]; then
     echo "❌ ERROR: AWS_ACCESS_KEY_ID environment variable is not set"
     echo "   Please set: export AWS_ACCESS_KEY_ID=your_access_key"
+    echo "   💡 For troubleshooting: ./scripts/diagnose-setup-issues.sh"
     exit 1
 fi
 
 if [ -z "$AWS_SECRET_ACCESS_KEY" ]; then
     echo "❌ ERROR: AWS_SECRET_ACCESS_KEY environment variable is not set"
     echo "   Please set: export AWS_SECRET_ACCESS_KEY=your_secret_key"
+    echo "   💡 For troubleshooting: ./scripts/diagnose-setup-issues.sh"
     exit 1
 fi
 
 if [ -z "$AWS_DEFAULT_REGION" ]; then
     echo "❌ ERROR: AWS_DEFAULT_REGION environment variable is not set"
     echo "   Please set: export AWS_DEFAULT_REGION=us-east-1"
+    echo "   💡 For troubleshooting: ./scripts/diagnose-setup-issues.sh"
     exit 1
 fi
 
 # Validate AWS credentials format (basic check)
 if [[ ! "$AWS_ACCESS_KEY_ID" =~ ^[A-Z0-9]{20}$ ]]; then
     echo "❌ ERROR: AWS_ACCESS_KEY_ID format appears invalid (should be 20 alphanumeric characters)"
+    echo "   💡 For troubleshooting: ./scripts/diagnose-setup-issues.sh"
     exit 1
 fi
 
 if [[ ! "$AWS_SECRET_ACCESS_KEY" =~ ^[A-Za-z0-9/+=]{40}$ ]]; then
     echo "❌ ERROR: AWS_SECRET_ACCESS_KEY format appears invalid (should be 40 characters)"
+    echo "   💡 For troubleshooting: ./scripts/diagnose-setup-issues.sh"
     exit 1
 fi
 
 if [[ ! "$AWS_DEFAULT_REGION" =~ ^[a-z0-9-]+$ ]]; then
     echo "❌ ERROR: AWS_DEFAULT_REGION format appears invalid (e.g., us-east-1)"
+    echo "   💡 For troubleshooting: ./scripts/diagnose-setup-issues.sh"
     exit 1
 fi
 
@@ -68,6 +74,7 @@ echo "🔧 Checking Kubernetes cluster access..."
 if ! kubectl cluster-info >/dev/null 2>&1; then
     echo "❌ ERROR: Cannot access Kubernetes cluster"
     echo "   Please ensure kubectl is configured and cluster is accessible"
+    echo "   💡 For troubleshooting: ./scripts/diagnose-setup-issues.sh"
     exit 1
 fi
 echo "✅ Kubernetes cluster access confirmed"
@@ -269,3 +276,4 @@ echo "💡 Troubleshooting:"
 echo "   - If providers show as not Healthy, wait a few more minutes"
 echo "   - If AWS resources fail to create, check AWS permissions"
 echo "   - For detailed logs: kubectl logs -n crossplane-system -l app=crossplane"
+echo "   - Run diagnostics: ./scripts/diagnose-setup-issues.sh"

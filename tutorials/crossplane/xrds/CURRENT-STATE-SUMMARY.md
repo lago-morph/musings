@@ -4,6 +4,8 @@
 **Status**: Task 3.2.3 Complete, Ready for Task 3.2.4  
 **Environment**: Sandbox (4-hour auto-cleanup)
 
+> 🔧 **Having setup issues?** Run `./scripts/diagnose-setup-issues.sh` for comprehensive troubleshooting and solutions.
+
 ## 🎯 Where We Are
 
 ### Completed Tasks
