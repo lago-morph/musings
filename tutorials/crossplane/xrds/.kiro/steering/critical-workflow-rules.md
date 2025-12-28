@@ -1,217 +1,47 @@
 # CRITICAL WORKFLOW RULES
 
-## ⚠️ CROSSPLANE VERSION REQUIREMENTS
+## 🚨 MANDATORY USER CONFIRMATIONS (MOST CRITICAL)
 
-**RULE**: This project uses Crossplane v2.1+ EXCLUSIVELY. NEVER use Crossplane v1 patterns or APIs.
+### Never Start Tasks Without Permission
+**WAIT for explicit "start task X" instruction. NEVER auto-continue to next task.**
 
-**Critical Requirements**:
-- **NO Claims**: Crossplane v2 does not use Claims - use direct XR instances instead
-- **NO claimNames**: XRDs in v2 do not have claimNames sections
-- **Use XRs directly**: Users interact with composite resources (XRs) directly, not through claims
-- **Pipeline mode**: Always use Pipeline mode compositions, not legacy Resources mode
-- **Function-based**: Prefer composition functions over patch-and-transform when possible
+### Never Mark Complete Without Confirmation
+**Process:** Complete work → Present results → **WAIT** for "yes/approved" → Mark complete
+**NEVER:** Mark complete immediately, assume approval, skip requirement verification
 
-**Web Search Requirement**:
-- Crossplane v2.1 was released after the AI model's training cutoff
-- **MUST use web search** to verify current Crossplane v2.1 syntax and patterns
-- **MUST search** for official Crossplane v2 documentation before implementing
-- **NEVER assume** v1 patterns work in v2 - they often don't
+### Never Commit Without Confirmation
+**Process:** Complete changes → Present changes → **WAIT** for "commit this" → Commit
+**NEVER:** Auto-commit, assume user wants commit
 
-**Examples of FORBIDDEN v1 patterns**:
-- ❌ Claims (ApiEndpoint claims)
-- ❌ claimNames in XRDs
-- ❌ Resources mode compositions
-- ❌ Old patch syntax without Pipeline mode
+### Task Verification Protocol
+**MUST read complete task description and verify ALL requirements before asking approval.**
+1. Read: method, validation criteria, purpose, language/output requirements
+2. Self-check: ✅ method, validation, purpose, deliverables, testing complete
+3. Present: what accomplished, how requirements satisfied, evidence criteria met
 
-**Required v2 patterns**:
-- ✅ Direct XR usage (XApiEndpoint instances)
-- ✅ Pipeline mode compositions
-- ✅ Function-based composition when possible
-- ✅ Modern XRD syntax without claimNames
+## ⚠️ CROSSPLANE V2 SAFETY (CRITICAL)
+**Your training data is for v1. Assume all Crossplane knowledge is WRONG.**
 
-## MANDATORY USER CONFIRMATION REQUIREMENTS
+**FORBIDDEN v1:** ❌ Claims, claimNames, Resources mode, old patch syntax
+**REQUIRED v2:** ✅ Direct XRs, Pipeline mode, composition functions, modern XRD syntax
 
-### ⚠️ MANDATORY TASK REQUIREMENT VERIFICATION
+### Before Writing Any Crossplane Content:
+1. **Start here**: `.kiro/reference/crossplane/danger-checklist.md` (30 seconds)
+2. **Think in v2**: `.kiro/reference/crossplane/mental-models.md` (2 minutes)
+3. **Web search**: "Crossplane v2.1 [resource-type] syntax"
+4. **Reference index**: `.kiro/reference/crossplane/index.md` (navigation hub)
 
-**RULE**: AI agents MUST read the complete task description and verify ALL requirements are satisfied before asking for completion approval.
+### When Crossplane Isn't Working:
+- **Providers not installing**: `.kiro/reference/crossplane/provider-troubleshooting.md`
+- **Missing CRDs/APIs**: Check provider-troubleshooting.md first
+- **"No matches for kind" errors**: Provider architecture issue - see troubleshooting
 
-**Required verification steps**:
-1. **Read Complete Description**: Review the entire task including:
-   - Method (how to do the work)
-   - Validation criteria (how to verify success)
-   - Purpose (why the task exists)
-   - Language requirements (if specified)
-   - Output requirements (if specified)
-   - Any other listed requirements
+## 📋 ADDITIONAL RULES
 
-2. **Self-Check All Requirements**: Before asking for approval, verify:
-   - ✅ Method requirements satisfied
-   - ✅ Validation criteria met
-   - ✅ Purpose fulfilled
-   - ✅ All deliverables created
-   - ✅ All testing/verification completed
+### AWS CLI Pager
+**ALWAYS use `--no-cli-pager` flag. NEVER allow interactive pager.**
 
-3. **Present Complete Results**: Show the user:
-   - What was accomplished
-   - How each requirement was satisfied
-   - Evidence that validation criteria are met
-
-**Example of proper verification**:
-```
-Task: "Create Crossplane manifests for prerequisite infrastructure"
-- Method: Write YAML manifests for required AWS infrastructure ✅
-- Validation: via Crossplane status fields showing Ready ❌ (not applied yet)
-
-Result: Cannot ask for completion approval until manifests are applied and show Ready status.
-```
-
-### ⚠️ NEVER START TASKS WITHOUT USER PERMISSION
-
-**RULE**: AI agents MUST NEVER start any new task without explicit user permission first.
-
-**Process**:
-1. Complete current task work
-2. Present results to user
-3. **WAIT** for explicit instruction on what to do next
-4. Only start new tasks when user explicitly says "start task X" or equivalent
-
-**Examples of what requires permission**:
-- Starting any numbered task (3.1.1, 3.2.1, etc.)
-- Beginning work on the next sequential task
-- Reading task requirements for tasks not explicitly assigned
-
-**What NOT to do**:
-- ❌ Automatically start the next task after completing one
-- ❌ Assume the user wants you to continue to the next task
-- ❌ Begin working on tasks without explicit instruction
-
-### ⚠️ NEVER MARK TASKS COMPLETE WITHOUT USER CONFIRMATION
-
-**RULE**: AI agents MUST NEVER mark any task as complete without explicit user confirmation first.
-
-**Process**:
-1. **READ THE COMPLETE TASK DESCRIPTION** including method, validation criteria, purpose, and any other requirements
-2. Complete the work for a task
-3. **DOUBLE-CHECK ALL REQUIREMENTS** - verify that you have satisfied every single requirement listed in the task description
-4. Present the results to the user
-5. **WAIT** for explicit user confirmation before marking task complete
-6. Only after user says "yes", "approved", "looks good", or equivalent, then mark the task as complete
-
-**Examples of what requires confirmation**:
-- Completing any numbered task (3.1.1, 3.2.1, etc.)
-- Completing any major task group (3.1, 3.2, 3.3, etc.)
-- Any task status change from "in progress" to "completed"
-
-**What NOT to do**:
-- ❌ Mark task complete immediately after doing the work
-- ❌ Assume the user approves without asking
-- ❌ Mark multiple tasks complete in sequence without individual confirmation
-- ❌ Skip reading the complete task description
-- ❌ Ignore validation criteria or other requirements
-- ❌ Ask for approval when requirements are not fully satisfied
-
-### ⚠️ NEVER COMMIT TO GIT WITHOUT USER CONFIRMATION
-
-**RULE**: AI agents MUST NEVER commit code to git without explicit user confirmation first.
-
-**Process**:
-1. Complete code changes
-2. Present the changes to the user
-3. **WAIT** for explicit user confirmation before committing
-4. Only after user says "commit this", "looks good to commit", or equivalent, then commit
-
-**Examples of what requires confirmation**:
-- Any `git add` and `git commit` operations
-- Any `git push` operations
-- Any git repository modifications
-
-**What NOT to do**:
-- ❌ Automatically commit after completing work
-- ❌ Assume the user wants changes committed
-- ❌ Commit without showing the user what will be committed
-
-## ENFORCEMENT
-
-These rules are **MANDATORY** and **NON-NEGOTIABLE**.
-
-**Violation consequences**:
-- User will stop the agent and require restart
-- Work may need to be redone
-- Trust in the agent's workflow adherence is damaged
-
-**Compliance verification**:
-- Always ask "Should I mark this task as complete?" before changing task status
-- Always ask "Should I commit these changes?" before any git operations
+### Enforcement
+**MANDATORY. NON-NEGOTIABLE.**
+- Always ask: "Should I mark this task complete?" and "Should I commit these changes?"
 - Wait for explicit user response before proceeding
-
-## EXAMPLES
-
-### ✅ CORRECT Task Completion Flow
-```
-Agent: I've completed task 3.2.1 by creating the ApiEndpoint XRD. The XRD validates successfully and includes the required spec and status schemas. Should I mark task 3.2.1 as complete?
-
-User: Yes, looks good.
-
-Agent: [marks task complete]
-```
-
-### ❌ INCORRECT Task Completion Flow
-```
-Agent: I've completed task 3.2.1 by creating the ApiEndpoint XRD. [immediately marks task complete without asking]
-```
-
-### ✅ CORRECT Git Commit Flow
-```
-Agent: I've created the ApiEndpoint XRD and verification scripts. Here are the files that would be committed:
-- xrd-apiendpoint.yaml
-- test-apiendpoint.sh
-
-Should I commit these changes?
-
-User: Yes, commit them.
-
-Agent: [commits to git]
-```
-
-### ❌ INCORRECT Git Commit Flow
-```
-Agent: I've created the ApiEndpoint XRD. [immediately commits without asking]
-```
-
-## ⚠️ AWS CLI PAGER SUPPRESSION
-
-**RULE**: AWS CLI commands MUST disable the pager to prevent interactive prompts that block execution.
-
-**Required Usage**:
-- **ALWAYS** use `--no-cli-pager` flag with AWS CLI commands
-- **NEVER** allow AWS CLI to use interactive pager in automated scripts
-
-**Examples**:
-```bash
-# ✅ CORRECT - Pager disabled
-aws apigatewayv2 get-routes --api-id 0cgxu4ot6e --no-cli-pager
-
-# ❌ INCORRECT - May trigger interactive pager
-aws apigatewayv2 get-routes --api-id 0cgxu4ot6e
-```
-
-**Alternative Methods**:
-- Set environment variable: `export AWS_PAGER=""`
-- Use `--no-cli-pager` flag (recommended for individual commands)
-
-## SUMMARY
-
-**ALWAYS VERIFY FIRST**:
-- Read the complete task description including all requirements
-- Double-check that ALL requirements are satisfied before asking for approval
-- "Should I mark this task as complete?" (only after full verification)
-- "Should I commit these changes?"
-
-**NEVER ASSUME**:
-- That partial completion satisfies the task
-- That work is acceptable without user review
-- That the user wants tasks marked complete
-- That the user wants changes committed
-- That you understand requirements without reading them completely
-
-This ensures proper user control over the workflow and prevents unwanted automatic actions.
