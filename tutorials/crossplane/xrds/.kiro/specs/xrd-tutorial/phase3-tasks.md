@@ -42,10 +42,10 @@ Validate core technical assumptions through proof-of-concept implementation befo
   - Resources: Lambda Function, API Gateway API, IAM Role, Lambda Permission
   - Validation: via Crossplane status fields showing Ready
   - Status: COMPLETED - Composition using Pipeline mode with function-patch-and-transform, function installed and healthy
-- [ ] 3.2.3 Test ToCompositeFieldPath status propagation
+- [x] 3.2.3 Test ToCompositeFieldPath status propagation
   - Method: Deploy composition and check status field population
   - Validation: via kubectl get commands on composite resource
-  - Status: RE-TESTING - Manifests updated with correct Crossplane API versions
+  - Status: COMPLETED - Status fields (iamRoleArn, apiId) propagating correctly with namespace-scoped resources
 - [ ] 3.2.4 Create ApiEndpoint instance and verify AWS resources
   - Method: Apply ApiEndpoint CR and check resource creation
   - Validation: via Crossplane status fields and AWS CLI verification
