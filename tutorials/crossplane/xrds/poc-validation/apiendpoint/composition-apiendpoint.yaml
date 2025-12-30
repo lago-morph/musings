@@ -1,6 +1,7 @@
 # ApiEndpoint Composition - Traditional Patch-and-Transform Pattern
 # This Composition demonstrates Crossplane's built-in declarative composition
-# It creates Lambda + API Gateway + IAM resources using Pipeline mode with P&T function
+# It creates Lambda + API Gateway + IAM resources using Pipeline mode with patch-and-transform function
+# Note: Crossplane v2 requires Pipeline mode even for "traditional" patches - Resources mode is deprecated
 
 apiVersion: apiextensions.crossplane.io/v1
 kind: Composition
@@ -14,9 +15,9 @@ spec:
   compositeTypeRef:
     apiVersion: tutorial.crossplane.io/v1alpha1
     kind: XApiEndpoint
-  
+
   mode: Pipeline
-  
+
   pipeline:
   - step: patch-and-transform
     functionRef:

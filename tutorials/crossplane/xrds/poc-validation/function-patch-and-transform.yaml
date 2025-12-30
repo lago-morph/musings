@@ -1,0 +1,10 @@
+# Crossplane Function: Patch and Transform
+# This is the built-in function required for traditional patch-based compositions in v2
+# Even "traditional" patches require Pipeline mode with this function in Crossplane v2
+
+apiVersion: pkg.crossplane.io/v1
+kind: Function
+metadata:
+  name: function-patch-and-transform
+spec:
+  package: xpkg.upbound.io/crossplane-contrib/function-patch-and-transform:v0.7.0
