@@ -624,11 +624,13 @@ tutorial/
 ### 4.6 Composition Strategies
 
 **Traditional Patch-and-Transform (ApiEndpoint)**:
-- **Composition Mode**: `Resources` (not Pipeline)
+- **Composition Mode**: `Pipeline` with `function-patch-and-transform` (v2 requirement - Resources mode deprecated)
+- **Function Used**: Built-in `function-patch-and-transform` for declarative patch-based composition
 - **Patch Types**: `FromCompositeFieldPath` for spec propagation, `ToCompositeFieldPath` for status propagation
 - **Status Mechanism**: Built-in Crossplane status propagation from Managed Resources to Composite Resource
 - **Resource Dependencies**: IAM Role → Lambda Function → API Gateway → Lambda Permission
 - **Error Handling**: Relies on Crossplane's built-in error handling and retry mechanisms
+- **Note**: Even "traditional" patches require Pipeline mode in v2; the distinction is using built-in patch-and-transform vs custom functions
 
 **Python Composition Function (ApiRoute)**:
 - **Composition Mode**: `Pipeline` with function steps
