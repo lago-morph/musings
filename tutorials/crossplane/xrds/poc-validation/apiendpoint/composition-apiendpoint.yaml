@@ -29,7 +29,7 @@ spec:
       # IAM Role for Lambda execution
       - name: lambda-role
         base:
-          apiVersion: iam.aws.upbound.io/v1beta1
+          apiVersion: iam.aws.m.upbound.io/v1beta1
           kind: Role
           spec:
             forProvider:
@@ -51,6 +51,7 @@ spec:
                 Component: lambda-role
             providerConfigRef:
               name: default
+              kind: ProviderConfig
         patches:
         - type: FromCompositeFieldPath
           fromFieldPath: spec.apiName
@@ -62,7 +63,7 @@ spec:
       # Lambda Function
       - name: lambda-function
         base:
-          apiVersion: lambda.aws.upbound.io/v1beta2
+          apiVersion: lambda.aws.m.upbound.io/v1beta1
           kind: Function
           spec:
             forProvider:
@@ -77,6 +78,7 @@ spec:
                 Component: lambda-function
             providerConfigRef:
               name: default
+              kind: ProviderConfig
         patches:
         - type: FromCompositeFieldPath
           fromFieldPath: spec.description
@@ -100,7 +102,7 @@ spec:
       # API Gateway HTTP API
       - name: api-gateway
         base:
-          apiVersion: apigatewayv2.aws.upbound.io/v1beta1
+          apiVersion: apigatewayv2.aws.m.upbound.io/v1beta1
           kind: API
           spec:
             forProvider:
@@ -111,6 +113,7 @@ spec:
                 Component: api-gateway
             providerConfigRef:
               name: default
+              kind: ProviderConfig
         patches:
         - type: FromCompositeFieldPath
           fromFieldPath: spec.apiName
@@ -131,7 +134,7 @@ spec:
       # Default Integration - connects all unmatched requests to Lambda
       - name: default-integration
         base:
-          apiVersion: apigatewayv2.aws.upbound.io/v1beta1
+          apiVersion: apigatewayv2.aws.m.upbound.io/v1beta1
           kind: Integration
           spec:
             forProvider:
@@ -140,6 +143,7 @@ spec:
               region: us-east-1
             providerConfigRef:
               name: default
+              kind: ProviderConfig
         patches:
         - type: FromCompositeFieldPath
           fromFieldPath: status.apiId
@@ -151,7 +155,7 @@ spec:
       # Lambda Permission for API Gateway
       - name: lambda-permission
         base:
-          apiVersion: lambda.aws.upbound.io/v1beta1
+          apiVersion: lambda.aws.m.upbound.io/v1beta1
           kind: Permission
           spec:
             forProvider:
@@ -160,6 +164,7 @@ spec:
               region: us-east-1
             providerConfigRef:
               name: default
+              kind: ProviderConfig
         patches:
         - type: FromCompositeFieldPath
           fromFieldPath: status.lambdaArn
