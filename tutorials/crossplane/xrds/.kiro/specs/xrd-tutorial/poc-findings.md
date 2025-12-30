@@ -56,6 +56,86 @@ aws apigatewayv2 delete-stage --api-id <api-id> --stage-name '$default' --no-cli
 - API Gateway may need new deployment after Lambda changes
 - CloudWatch logs only appear after successful Lambda invocation
 
+### 5. Crossplane v2 API Version Requirements (CRITICAL)
+
+**Finding**: Crossplane v2 deprecates Resources mode and requires Pipeline mode for all compositions, even "traditional" patch-based patterns.
+
+**Resources Mode Deprecation**:
+- ❌ **v1 Pattern (FORBIDDEN)**: `spec.resources` directly under composition spec
+- ✅ **v2 Pattern (REQUIRED)**: `spec.mode: Pipeline` with function pipeline
+- Even "traditional patches" must use the `function-patch-and-transform` within a Pipeline
+- The `resources` array moves inside the function `input`, not directly under `spec`
+
+**Correct v2 Composition Structure**:
+```yaml
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+spec:
+  mode: Pipeline  # REQUIRED in v2
+  pipeline:
+  - step: patch-and-transform
+    functionRef:
+      name: function-patch-and-transform  # Must be installed separately
+    input:
+      apiVersion: pt.fn.crossplane.io/v1beta1
+      kind: Resources
+      resources:  # Resources go here, not under spec
+      - name: example-resource
+        base:
+          # Resource definition
+```
+
+**Required Function Installation**:
+```yaml
+apiVersion: pkg.crossplane.io/v1
+kind: Function
+metadata:
+  name: function-patch-and-transform
+spec:
+  package: xpkg.upbound.io/crossplane-contrib/function-patch-and-transform:v0.7.0
+```
+
+**Tutorial Impact**:
+- Update tutorial specification section 4.6 to reflect Pipeline mode requirement
+- Emphasize that "traditional patches" refers to using built-in patch-and-transform function, not Resources mode
+- Include function installation as prerequisite step
+- Explain that Resources mode is a v1 pattern that no longer exists in v2
+
+### 6. API Version Mixing Prevention (CRITICAL)
+
+**Finding**: Crossplane manifests must use consistent v2 API versions across all resources to avoid validation errors and runtime failures.
+
+**API Version Matrix**:
+| Resource Type | Correct v2 API | Deprecated v1 API |
+|---------------|----------------|-------------------|
+| CompositeResourceDefinition | `apiextensions.crossplane.io/v2` | `apiextensions.crossplane.io/v1` |
+| Composition | `apiextensions.crossplane.io/v1` | N/A (stable) |
+| Function | `pkg.crossplane.io/v1` | N/A (stable) |
+
+**Common Mixing Errors**:
+- Using XRD `apiextensions.crossplane.io/v1` (deprecated) with v2 Composition patterns
+- Attempting Resources mode with v2 XRD definitions
+- Missing function installations when using Pipeline mode
+
+**Validation Process During POC**:
+1. Initial manifests used mixed v1/v2 patterns causing validation errors
+2. Updated XRD to `apiextensions.crossplane.io/v2` for proper v2 compliance
+3. Updated Composition from Resources mode to Pipeline mode with function
+4. Installed required `function-patch-and-transform` package
+5. All manifests now use consistent v2 API patterns
+
+**Prevention Strategy**:
+- Always check `.kiro/reference/crossplane/api-versions/current.md` for correct versions
+- Use web search with "Crossplane v2.1" prefix to verify syntax
+- Be especially cautious with content published before August 2025 (v2.0 release)
+- Cross-reference official Crossplane v2 documentation
+
+**Tutorial Impact**:
+- Explicitly document correct v2 API versions in all examples
+- Include warnings about v1 patterns in troubleshooting section
+- Reference the API versions table throughout tutorial
+- Add validation steps to verify API version consistency
+
 ## Historical Development Insights
 
 ### Crossplane v2.1 Migration Challenges
