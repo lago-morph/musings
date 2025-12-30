@@ -48,7 +48,7 @@ spec:
   package: xpkg.upbound.io/upbound/provider-aws-cloudwatch:v2.3.0
   packagePullPolicy: IfNotPresent
 
-# ProviderConfig - automatically managed by family provider
+# ProviderConfig - cluster-scoped (legacy for v1 compatibility)
 ---
 apiVersion: aws.upbound.io/v1beta1
 kind: ProviderConfig
@@ -62,11 +62,27 @@ spec:
       name: aws-secret
       key: credentials
 
+# ProviderConfig - namespace-scoped for v2 managed resources
+---
+apiVersion: aws.m.upbound.io/v1beta1
+kind: ProviderConfig
+metadata:
+  name: default
+  namespace: default
+spec:
+  credentials:
+    source: Secret
+    secretRef:
+      namespace: default
+      name: aws-secret
+      key: credentials
+
 # VPC Infrastructure - foundational networking
 ---
-apiVersion: ec2.aws.upbound.io/v1beta1
+apiVersion: ec2.aws.m.upbound.io/v1beta1
 kind: VPC
 metadata:
+  namespace: default
   name: xrd-tutorial-vpc
   labels:
     tutorial.crossplane.io/component: infrastructure
@@ -83,11 +99,13 @@ spec:
       Layer: prerequisite
   providerConfigRef:
     name: default
+    kind: ProviderConfig
 
 ---
-apiVersion: ec2.aws.upbound.io/v1beta1
+apiVersion: ec2.aws.m.upbound.io/v1beta1
 kind: Subnet
 metadata:
+  namespace: default
   name: xrd-tutorial-subnet-public-1a
   labels:
     tutorial.crossplane.io/component: infrastructure
@@ -110,11 +128,13 @@ spec:
       AZ: us-east-1a
   providerConfigRef:
     name: default
+    kind: ProviderConfig
 
 ---
-apiVersion: ec2.aws.upbound.io/v1beta1
+apiVersion: ec2.aws.m.upbound.io/v1beta1
 kind: Subnet
 metadata:
+  namespace: default
   name: xrd-tutorial-subnet-public-1b
   labels:
     tutorial.crossplane.io/component: infrastructure
@@ -137,11 +157,13 @@ spec:
       AZ: us-east-1b
   providerConfigRef:
     name: default
+    kind: ProviderConfig
 
 ---
-apiVersion: ec2.aws.upbound.io/v1beta1
+apiVersion: ec2.aws.m.upbound.io/v1beta1
 kind: InternetGateway
 metadata:
+  namespace: default
   name: xrd-tutorial-igw
   labels:
     tutorial.crossplane.io/component: infrastructure
@@ -159,11 +181,13 @@ spec:
       Layer: prerequisite
   providerConfigRef:
     name: default
+    kind: ProviderConfig
 
 ---
-apiVersion: ec2.aws.upbound.io/v1beta1
+apiVersion: ec2.aws.m.upbound.io/v1beta1
 kind: RouteTable
 metadata:
+  namespace: default
   name: xrd-tutorial-rt-public
   labels:
     tutorial.crossplane.io/component: infrastructure
@@ -181,11 +205,13 @@ spec:
       Layer: prerequisite
   providerConfigRef:
     name: default
+    kind: ProviderConfig
 
 ---
-apiVersion: ec2.aws.upbound.io/v1beta1
+apiVersion: ec2.aws.m.upbound.io/v1beta1
 kind: Route
 metadata:
+  namespace: default
   name: xrd-tutorial-route-public
   labels:
     tutorial.crossplane.io/component: infrastructure
@@ -204,11 +230,13 @@ spec:
         tutorial.crossplane.io/layer: prerequisite
   providerConfigRef:
     name: default
+    kind: ProviderConfig
 
 ---
-apiVersion: ec2.aws.upbound.io/v1beta1
+apiVersion: ec2.aws.m.upbound.io/v1beta1
 kind: RouteTableAssociation
 metadata:
+  namespace: default
   name: xrd-tutorial-rta-public-1a
   labels:
     tutorial.crossplane.io/component: infrastructure
@@ -227,11 +255,13 @@ spec:
         tutorial.crossplane.io/az: us-east-1a
   providerConfigRef:
     name: default
+    kind: ProviderConfig
 
 ---
-apiVersion: ec2.aws.upbound.io/v1beta1
+apiVersion: ec2.aws.m.upbound.io/v1beta1
 kind: RouteTableAssociation
 metadata:
+  namespace: default
   name: xrd-tutorial-rta-public-1b
   labels:
     tutorial.crossplane.io/component: infrastructure
@@ -250,12 +280,14 @@ spec:
         tutorial.crossplane.io/az: us-east-1b
   providerConfigRef:
     name: default
+    kind: ProviderConfig
 
 # Security Group for Lambda functions - allows outbound internet access
 ---
-apiVersion: ec2.aws.upbound.io/v1beta1
+apiVersion: ec2.aws.m.upbound.io/v1beta1
 kind: SecurityGroup
 metadata:
+  namespace: default
   name: xrd-tutorial-lambda-sg
   labels:
     tutorial.crossplane.io/component: infrastructure
@@ -276,11 +308,13 @@ spec:
       Component: lambda-security
   providerConfigRef:
     name: default
+    kind: ProviderConfig
 
 ---
-apiVersion: ec2.aws.upbound.io/v1beta1
+apiVersion: ec2.aws.m.upbound.io/v1beta1
 kind: SecurityGroupRule
 metadata:
+  namespace: default
   name: xrd-tutorial-lambda-egress-all
   labels:
     tutorial.crossplane.io/component: infrastructure
@@ -301,12 +335,14 @@ spec:
         tutorial.crossplane.io/purpose: lambda
   providerConfigRef:
     name: default
+    kind: ProviderConfig
 
 # Basic IAM role for Lambda execution - will be extended by tutorial compositions
 ---
-apiVersion: iam.aws.upbound.io/v1beta1
+apiVersion: iam.aws.m.upbound.io/v1beta1
 kind: Role
 metadata:
+  namespace: default
   name: xrd-tutorial-lambda-base-role
   labels:
     tutorial.crossplane.io/component: infrastructure
@@ -333,11 +369,13 @@ spec:
       Layer: prerequisite
   providerConfigRef:
     name: default
+    kind: ProviderConfig
 
 ---
-apiVersion: iam.aws.upbound.io/v1beta1
+apiVersion: iam.aws.m.upbound.io/v1beta1
 kind: RolePolicyAttachment
 metadata:
+  namespace: default
   name: xrd-tutorial-lambda-base-vpc-execution
   labels:
     tutorial.crossplane.io/component: infrastructure
@@ -352,11 +390,13 @@ spec:
         tutorial.crossplane.io/purpose: lambda-base
   providerConfigRef:
     name: default
+    kind: ProviderConfig
 
 ---
-apiVersion: iam.aws.upbound.io/v1beta1
+apiVersion: iam.aws.m.upbound.io/v1beta1
 kind: RolePolicyAttachment
 metadata:
+  namespace: default
   name: xrd-tutorial-lambda-base-basic-execution
   labels:
     tutorial.crossplane.io/component: infrastructure
@@ -371,3 +411,4 @@ spec:
         tutorial.crossplane.io/purpose: lambda-base
   providerConfigRef:
     name: default
+    kind: ProviderConfig
