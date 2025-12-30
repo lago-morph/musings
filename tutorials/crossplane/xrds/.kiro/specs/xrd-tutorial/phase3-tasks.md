@@ -36,23 +36,23 @@ Validate core technical assumptions through proof-of-concept implementation befo
 - [x] 3.2.1 Implement minimal working ApiEndpoint XRD
   - Method: Create XRD YAML with spec and status schema
   - Validation: via kubectl apply and Crossplane CRD registration
-  - Status: COMPLETED - XRD created, applied successfully, and registered with Crossplane
+  - Status: COMPLETED - XRD using apiextensions.crossplane.io/v2, ESTABLISHED=True, CRD created
 - [x] 3.2.2 Create basic Composition with Lambda + API Gateway + IAM resources
   - Method: Write Composition YAML using traditional patches
   - Resources: Lambda Function, API Gateway API, IAM Role, Lambda Permission
   - Validation: via Crossplane status fields showing Ready
-  - Status: COMPLETED - Composition created using Pipeline mode with patch-and-transform function
-- [x] 3.2.3 Test ToCompositeFieldPath status propagation
+  - Status: COMPLETED - Composition using Pipeline mode with function-patch-and-transform, function installed and healthy
+- [ ] 3.2.3 Test ToCompositeFieldPath status propagation
   - Method: Deploy composition and check status field population
   - Validation: via kubectl get commands on composite resource
-  - Status: COMPLETED - ToCompositeFieldPath patches working correctly, iamRoleArn populated
-- [x] 3.2.4 Create ApiEndpoint instance and verify AWS resources
+  - Status: RE-TESTING - Manifests updated with correct Crossplane API versions
+- [ ] 3.2.4 Create ApiEndpoint instance and verify AWS resources
   - Method: Apply ApiEndpoint CR and check resource creation
   - Validation: via Crossplane status fields and AWS CLI verification
-  - Status: COMPLETED - ApiEndpoint instance created, all AWS resources verified via CLI and curl
-- [x] 3.2.5 Test API Gateway endpoint responds correctly
+  - Status: RE-TESTING - Manifests updated with correct Crossplane API versions
+- [ ] 3.2.5 Test API Gateway endpoint responds correctly
   - Method: POC validation using temporary AWS CLI stage creation, curl testing, then cleanup
-  - Technical Details: 
+  - Technical Details:
     * API Gateway v2 requires both routes AND stages to serve traffic
     * The composition creates the $default route automatically via Integration resource
     * However, no stage exists by default, so API Gateway returns generic 404
@@ -63,7 +63,7 @@ Validate core technical assumptions through proof-of-concept implementation befo
     * Cleaned up temporary stage after validation
   - Validation: HTTP 404 response with custom Lambda message confirming full stack connectivity
   - Key Finding: ApiEndpoint composition needs a Stage resource for complete functionality
-  - Status: COMPLETED - End-to-end connectivity validated, custom 404 response confirmed
+  - Status: RE-TESTING - Manifests updated with correct Crossplane API versions
   - Documentation: Created poc-findings.md and supplemental-testing-guide.md to capture learnings
 - [ ] 3.2.6 Verify Lambda function executes
   - Method: Check CloudWatch logs after API call
