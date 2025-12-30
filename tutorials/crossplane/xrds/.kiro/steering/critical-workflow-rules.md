@@ -24,6 +24,7 @@
 
 **FORBIDDEN v1:** ❌ Claims, claimNames, Resources mode, old patch syntax
 **REQUIRED v2:** ✅ Direct XRs, Pipeline mode, composition functions, modern XRD syntax
+**Cluster scoped is (typically) deprecated** ❌ if you are thinking something should be cluster-scoped, you are probably thinking in crossplane v1.  Crossplane v2 allows things to be cluster scoped, which is what we want and use in this tutorial.
 
 ### Web Search Content Validation (CRITICAL)
 **Crossplane v2.0 was released August 2025. Treat ALL content published before August 2025 with extreme skepticism.**
