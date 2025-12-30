@@ -136,6 +136,73 @@ spec:
 - Reference the API versions table throughout tutorial
 - Add validation steps to verify API version consistency
 
+### 7. Namespace-Scoped Managed Resources (CRITICAL)
+
+**Finding**: Crossplane v2 introduces namespace-scoped managed resources using the `.m.` API group pattern, which is a fundamental architectural shift and key feature of v2.
+
+**The `.m.` Pattern for Namespace Scoping**:
+- **Legacy cluster-scoped (v1)**: `iam.aws.upbound.io`, `lambda.aws.upbound.io`, `ec2.aws.upbound.io`
+- **Modern namespace-scoped (v2)**: `iam.aws.m.upbound.io`, `lambda.aws.m.upbound.io`, `ec2.aws.m.upbound.io`
+- The `.m.` infix indicates "modern" namespace-scoped managed resources
+- All upbound provider families support both patterns for compatibility
+
+**Key Architectural Differences**:
+
+**Cluster-Scoped Resources (Legacy)**:
+```yaml
+apiVersion: iam.aws.upbound.io/v1beta1
+kind: Role
+metadata:
+  name: my-role  # No namespace - cluster-wide
+spec:
+  providerConfigRef:
+    name: default  # References cluster-scoped ProviderConfig
+```
+
+**Namespace-Scoped Resources (v2 Preferred)**:
+```yaml
+apiVersion: iam.aws.m.upbound.io/v1beta1
+kind: Role
+metadata:
+  name: my-role
+  namespace: default  # REQUIRED - resource lives in namespace
+spec:
+  providerConfigRef:
+    name: default
+    kind: ProviderConfig  # REQUIRED for namespace-scoped
+```
+
+**ProviderConfig Requirements**:
+- Namespace-scoped resources require namespace-scoped ProviderConfig (`aws.m.upbound.io/v1beta1`)
+- ProviderConfig must be in the same namespace as the managed resources
+- Credentials secret must also be in the same namespace (cannot cross-reference namespaces)
+- Each namespace needing AWS resources needs its own ProviderConfig and credentials secret
+
+**Migration Impact During POC**:
+1. Initially used cluster-scoped APIs (`.upbound.io`) based on v1 assumptions
+2. Discovered namespace scoping as a core v2 feature, not optional enhancement
+3. Converted all managed resources to `.m.upbound.io` APIs
+4. Created namespace-scoped ProviderConfig in `default` namespace
+5. Copied AWS credentials secret from `crossplane-system` to `default` namespace
+6. Updated prerequisite infrastructure and composition to use namespace-scoped resources
+7. Verified ToCompositeFieldPath status propagation works with namespace-scoped resources
+
+**Benefits of Namespace-Scoped Resources**:
+- **Multi-tenancy**: Different teams/projects can manage their own cloud resources in separate namespaces
+- **Access Control**: RBAC can restrict who can create/modify resources per namespace
+- **Resource Isolation**: Namespace deletion removes all managed resources in that namespace
+- **Credential Separation**: Each namespace can have its own cloud credentials
+- **Standard Kubernetes Patterns**: Aligns with native Kubernetes resource scoping
+
+**Tutorial Impact**:
+- **Use namespace-scoped resources exclusively** (`.m.upbound.io` APIs)
+- Document the `.m.` pattern prominently in introduction
+- Explain ProviderConfig and credentials setup per namespace
+- Show XRD with `scope: Namespaced` (the v2 default and recommended approach)
+- Include namespace in all example manifests
+- Emphasize this as a key v2 improvement over v1's cluster-scoped-only model
+- Add troubleshooting section for common namespace-scoping issues
+
 ## Historical Development Insights
 
 ### Crossplane v2.1 Migration Challenges
