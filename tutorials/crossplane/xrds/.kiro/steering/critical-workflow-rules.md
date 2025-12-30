@@ -25,10 +25,28 @@
 **FORBIDDEN v1:** ❌ Claims, claimNames, Resources mode, old patch syntax
 **REQUIRED v2:** ✅ Direct XRs, Pipeline mode, composition functions, modern XRD syntax
 
+### Web Search Content Validation (CRITICAL)
+**Crossplane v2.0 was released August 2025. Treat ALL content published before August 2025 with extreme skepticism.**
+
+**RED FLAGS - Likely Outdated:**
+- Published before August 2025
+- References Claims or claimNames
+- Shows Resources mode compositions
+- Uses old patch syntax
+- Examples from 2024 or earlier
+- Blog posts from early 2025
+
+**VALIDATION REQUIRED:**
+- Always check publication dates on web search results
+- Cross-reference with official Crossplane v2+ documentation
+- When in doubt, search specifically for "Crossplane v2 [topic]"
+- Prefer official docs over blog posts for syntax
+- Be especially skeptical of Upbound provider examples from before August 2025
+
 ### Before Writing Any Crossplane Content:
 1. **Start here**: `.kiro/reference/crossplane/danger-checklist.md` (30 seconds)
 2. **Think in v2**: `.kiro/reference/crossplane/mental-models.md` (2 minutes)
-3. **Web search**: "Crossplane v2.1 [resource-type] syntax"
+3. **Web search**: "Crossplane v2 [resource-type] syntax" - CHECK PUBLICATION DATES
 4. **Reference index**: `.kiro/reference/crossplane/index.md` (navigation hub)
 
 ### When Crossplane Isn't Working:
