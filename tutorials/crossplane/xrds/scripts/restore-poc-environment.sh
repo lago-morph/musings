@@ -48,12 +48,12 @@ echo "🔧 Step 2: Installing Crossplane functions..."
 if ! kubectl get functions function-patch-and-transform >/dev/null 2>&1; then
     echo "Installing function-patch-and-transform..."
     kubectl apply -f - <<EOF
-apiVersion: pkg.crossplane.io/v1beta1
+apiVersion: pkg.crossplane.io/v1
 kind: Function
 metadata:
   name: function-patch-and-transform
 spec:
-  package: xpkg.upbound.io/crossplane-contrib/function-patch-and-transform:v0.2.1
+  package: xpkg.crossplane.io/crossplane-contrib/function-patch-and-transform:v0.8.2
 EOF
     
     echo "⏳ Waiting for function-patch-and-transform to be ready..."

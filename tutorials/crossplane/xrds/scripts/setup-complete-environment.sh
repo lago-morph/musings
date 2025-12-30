@@ -120,28 +120,28 @@ kind: Provider
 metadata:
   name: provider-aws-ec2
 spec:
-  package: xpkg.upbound.io/upbound/provider-aws-ec2:v1.14.0
+  package: xpkg.upbound.io/upbound/provider-aws-ec2:v2.3.0
 ---
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
 metadata:
   name: provider-aws-iam
 spec:
-  package: xpkg.upbound.io/upbound/provider-aws-iam:v1.14.0
+  package: xpkg.upbound.io/upbound/provider-aws-iam:v2.3.0
 ---
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
 metadata:
   name: provider-aws-lambda
 spec:
-  package: xpkg.upbound.io/upbound/provider-aws-lambda:v1.14.0
+  package: xpkg.upbound.io/upbound/provider-aws-lambda:v2.3.0
 ---
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
 metadata:
   name: provider-aws-apigatewayv2
 spec:
-  package: xpkg.upbound.io/upbound/provider-aws-apigatewayv2:v1.14.0
+  package: xpkg.upbound.io/upbound/provider-aws-apigatewayv2:v2.3.0
 EOF
 
 echo "   ⏳ Waiting for AWS providers to be ready (this may take 2-3 minutes)..."

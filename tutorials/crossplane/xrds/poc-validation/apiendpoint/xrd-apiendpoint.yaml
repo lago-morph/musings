@@ -2,7 +2,7 @@
 # This XRD demonstrates Crossplane v2.1 direct composite resource usage
 # Users interact directly with XApiEndpoint resources, no Claims in v2
 
-apiVersion: apiextensions.crossplane.io/v1
+apiVersion: apiextensions.crossplane.io/v2
 kind: CompositeResourceDefinition
 metadata:
   name: xapiendpoints.tutorial.crossplane.io
