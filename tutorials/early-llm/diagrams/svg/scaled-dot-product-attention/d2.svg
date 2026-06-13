@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 420" role="img" aria-label="The soft-lookup intuition: a query blends all values in proportion to how well it matches each key.">
+  <title>Attention as a soft lookup</title>
+  <desc>A single query connects to several keys at once with bands of varying thickness, thicker meaning a stronger match. Behind each key is a value. The result on the right is a blend of all the values, weighted by match strength — not a single hard selection.</desc>
+  <style>
+    .board { fill: #FDFCF8; }
+    text { font-family: "Comic Sans MS","Comic Neue","Patrick Hand","Segoe Print",system-ui,sans-serif; fill: #222222; }
+    .box   { fill: #FDFCF8; stroke-width: 2; stroke-linejoin: round; }
+    .blue  { stroke: #2F6FED; }
+    .red   { stroke: #E5484D; }
+    .green { stroke: #2E9E5B; }
+    .muted { stroke: #8A8A85; }
+    .flow  { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .h     { font-size: 19px; text-anchor: middle; }
+    .s     { font-size: 14px; text-anchor: middle; }
+    .note  { font-size: 13px; fill: #8A8A85; text-anchor: middle; }
+    .blueT { fill: #2F6FED; } .redT { fill: #E5484D; } .greenT { fill: #2E9E5B; }
+  </style>
+  <rect class="board" x="0" y="0" width="940" height="420"/>
+  <defs>
+    <marker id="ahg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#2E9E5B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- query -->
+  <g transform="rotate(-1 120 210)">
+    <rect class="box blue" x="40" y="168" width="160" height="86" rx="6"/>
+  </g>
+  <text class="h blueT" x="120" y="200">query</text>
+  <text class="s" x="120" y="226">“what am I</text>
+  <text class="s" x="120" y="244">looking for?”</text>
+
+  <!-- match bands: thicker = stronger match -->
+  <path class="flow blue" d="M200,206 C300,180 360,90 432,70"   stroke-width="16" opacity="0.30"/>
+  <path class="flow blue" d="M200,210 C300,200 360,175 432,160" stroke-width="3"  opacity="0.30"/>
+  <path class="flow blue" d="M200,214 C300,225 360,245 432,250" stroke-width="10" opacity="0.30"/>
+  <path class="flow blue" d="M200,218 C300,255 360,320 432,340" stroke-width="2"  opacity="0.30"/>
+  <text class="note" x="312" y="120">thicker band = stronger match</text>
+
+  <!-- four key+value pairs; value sits behind each key -->
+  <!-- row template -->
+  <g>
+    <!-- row 1 (strong) -->
+    <rect class="box green" x="452" y="34"  width="150" height="56" rx="6"/>
+    <rect class="box red"   x="432" y="44"  width="150" height="56" rx="6"/>
+    <text class="s redT"   x="507" y="68">key — “what I offer”</text>
+    <text class="s greenT" x="592" y="52" text-anchor="end">value</text>
+
+    <!-- row 2 (weak) -->
+    <rect class="box green" x="452" y="124" width="150" height="56" rx="6"/>
+    <rect class="box red"   x="432" y="134" width="150" height="56" rx="6"/>
+    <text class="s redT"   x="507" y="158">key — “what I offer”</text>
+    <text class="s greenT" x="592" y="142" text-anchor="end">value</text>
+
+    <!-- row 3 (medium) -->
+    <rect class="box green" x="452" y="214" width="150" height="56" rx="6"/>
+    <rect class="box red"   x="432" y="224" width="150" height="56" rx="6"/>
+    <text class="s redT"   x="507" y="248">key — “what I offer”</text>
+    <text class="s greenT" x="592" y="232" text-anchor="end">value</text>
+
+    <!-- row 4 (very weak) -->
+    <rect class="box green" x="452" y="304" width="150" height="56" rx="6"/>
+    <rect class="box red"   x="432" y="314" width="150" height="56" rx="6"/>
+    <text class="s redT"   x="507" y="338">key — “what I offer”</text>
+    <text class="s greenT" x="592" y="322" text-anchor="end">value</text>
+  </g>
+
+  <!-- values converge into the blended result, weight ~ match strength -->
+  <path class="flow green" d="M602,62  C660,90  690,160 726,196" stroke-width="3" opacity="0.7" marker-end="url(#ahg)"/>
+  <path class="flow green" d="M602,152 C660,170 690,185 726,202" stroke-width="1.4" opacity="0.5" marker-end="url(#ahg)"/>
+  <path class="flow green" d="M602,242 C660,235 690,222 726,210" stroke-width="2.4" opacity="0.6" marker-end="url(#ahg)"/>
+  <path class="flow green" d="M602,332 C660,300 690,250 726,218" stroke-width="1.2" opacity="0.4" marker-end="url(#ahg)"/>
+
+  <!-- result -->
+  <g transform="rotate(1 818 207)">
+    <rect class="box green" x="730" y="160" width="176" height="94" rx="6" stroke-width="3"/>
+  </g>
+  <text class="h greenT" x="818" y="194">blended value</text>
+  <text class="note" x="818" y="218">a mixture of all values,</text>
+  <text class="note" x="818" y="234">weighted by match — not</text>
+  <text class="note" x="818" y="250">a single hard pick</text>
+</svg>

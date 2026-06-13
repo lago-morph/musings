@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lago-morph.dev/musings/early-llm/node.schema.json",
+  "title": "Early-LLM tutorial node",
+  "description": "One concept/contrast/intro node of the early-LLM learning graph. One file per node, stored in nodes/. Edges are declared on BOTH endpoint files and cross-checked by ci/lint_nodes.mjs.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "title",
+    "type",
+    "oneLineScope",
+    "prose",
+    "wordCount",
+    "edges",
+    "diagrams",
+    "bibliography"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Stable slug, lowercase kebab-case. MUST equal the filename minus its NN- ordering prefix and .json extension.",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "type": {
+      "type": "string",
+      "enum": ["concept", "contrast", "intro"]
+    },
+    "oneLineScope": {
+      "type": "string",
+      "description": "One sentence, shown on hover/map and as the node subtitle.",
+      "minLength": 1
+    },
+    "prose": {
+      "type": "string",
+      "description": "Main body as an HTML string. Inline math in \\( \\) and display math in \\[ \\] for KaTeX. No <script>, no external resources.",
+      "minLength": 1
+    },
+    "wordCount": {
+      "type": "integer",
+      "description": "Approximate prose word count (text only, excluding HTML tags and math source). Authored value; the linter recomputes and warns on large divergence.",
+      "minimum": 0
+    },
+    "edges": {
+      "type": "array",
+      "description": "Every edge incident to this node (both incoming and outgoing). Each edge MUST also appear, identically, in the file at its other endpoint.",
+      "items": { "$ref": "#/$defs/edge" }
+    },
+    "diagrams": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/diagram" }
+    },
+    "bibliography": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/bibEntry" }
+    },
+    "expansion": {
+      "type": "string",
+      "description": "OPTIONAL. Outline of the deeper treatment the prose deliberately omits (derivations, complexity, edge cases). Citation-dense; complementary to the prose, not a duplicate. Feeds the deferred 'copy expansion prompt' affordance."
+    }
+  },
+  "$defs": {
+    "edge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["from", "to", "type"],
+      "properties": {
+        "from": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+        },
+        "to": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["prerequisite", "contrast", "leads-to"],
+          "description": "prerequisite = understand `from` before `to`; leads-to = `from` sets up `to` (narrative arc); contrast = `from` and `to` are siblings worth comparing (treat as undirected; store with the lexicographically smaller id as `from`)."
+        }
+      }
+    },
+    "diagram": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "caption", "altText", "prompt"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique within the node, e.g. d1, d2.",
+          "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+        },
+        "kind": {
+          "type": "string",
+          "enum": ["structural", "conceptual"],
+          "description": "structural = precision matters (data flow, tensor shapes, stacks); the hand-built SVG is authoritative. conceptual = analogy/intuition; the SVG is a placeholder a generated image may supplement."
+        },
+        "caption": {
+          "type": "string",
+          "minLength": 1
+        },
+        "altText": {
+          "type": "string",
+          "description": "Accessible description of the diagram's content.",
+          "minLength": 1
+        },
+        "prompt": {
+          "type": "string",
+          "description": "Content-only generation prompt. Describes WHAT to depict and all labels, NOT the visual style. The image-generation agent prepends authoring/diagram-style.md to this. Also shown verbatim in the tap-to-reveal popup in the UI.",
+          "minLength": 1
+        },
+        "svg": {
+          "type": ["string", "null"],
+          "description": "Repo-relative path to the hand-built SVG (e.g. diagrams/svg/<node-id>/<diagram-id>.svg), or null if not yet built."
+        },
+        "generatedImage": {
+          "type": ["string", "null"],
+          "description": "Repo-relative path to the generated raster image, or null. Written by the image-generation agent; left null by authors."
+        }
+      }
+    },
+    "bibEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tier", "citation", "annotation"],
+      "properties": {
+        "tier": {
+          "type": "string",
+          "enum": ["primary", "exposition"],
+          "description": "primary = original research paper (authority/detail). exposition = secondary source chosen for teaching quality."
+        },
+        "citation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "annotation": {
+          "type": "string",
+          "description": "What it is, what it's good for, how deep it goes, and (for primary papers) which section to read for which point.",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "early-llm-lint",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Schema + edge-consistency linter for the early-LLM tutorial node graph.",
+  "scripts": {
+    "lint": "node lint_nodes.mjs"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1"
+  }
+}
