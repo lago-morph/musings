@@ -113,6 +113,13 @@ const TEMPLATE = String.raw`<!doctype html>
   .navlink .nl-scope{display:none}
   .typebadge{font-size:.68rem;color:var(--muted);border:1px solid var(--line);border-radius:20px;padding:0 .4rem;margin-left:.35rem}
 
+  .railtools{display:flex;gap:.4rem;margin:.7rem 0 .3rem}
+  .railtools button{flex:1;padding:.45rem .3rem;border:1px solid var(--line);background:#fff;border-radius:8px;font-size:.82rem;cursor:pointer;color:var(--ink)}
+  .railtools button:hover{border-color:var(--blue)}
+  .railtools button.active{border-color:var(--blue);background:#e9eefc;color:var(--blue);font-weight:600}
+  .mapvisual{border:1px solid var(--line);border-radius:12px;background:var(--paper);padding:.6rem;margin:1rem 0 1.4rem}
+  .mapvisual svg{display:block;width:100%;height:auto}
+
   /* node body */
   .node-scope{color:var(--muted);font-style:italic;margin:.1rem 0 1.4rem;font-size:1.02rem}
   .node h1{font-size:1.7rem;margin:.2rem 0 .1rem}
@@ -228,6 +235,11 @@ const TEMPLATE = String.raw`<!doctype html>
   <!-- persistent rail (wide screens) -->
   <aside class="rail" id="rail">
     <div class="brand">Early-LLM Tutorial <small>UI prototype · tap a diagram to see its prompt</small></div>
+    <div class="railtools">
+      <button id="rtIntro">Start</button>
+      <button id="rtMap">Map</button>
+      <button id="rtPath">Path</button>
+    </div>
     <nav id="railnav"></nav>
   </aside>
 
@@ -399,6 +411,10 @@ function renderMap(into){
   const legend=el('div','legend');
   legend.innerHTML='<span><i class="lg prereq"></i>prerequisite</span><span><i class="lg leadsto"></i>leads-to</span><span><i class="lg contrast"></i>contrast</span>';
   into.appendChild(legend);
+  const intro=NODES['how-to-read-this-graph'];
+  if(intro && intro.diagrams[0] && intro.diagrams[0].svgInline){
+    const mv=el('div','mapvisual'); mv.innerHTML=intro.diagrams[0].svgInline; into.appendChild(mv);
+  }
   const grid=el('div','mapgrid');
   for(const p of PHASES){
     const col=el('div','mapcol'); col.appendChild(el('h3',null,p.label));
@@ -459,6 +475,8 @@ function typeset(node){ if(window.renderMathInElement){renderMathInElement(node,
 function showView(name){
   for(const v of ['landing','map','path','node']) document.getElementById('view-'+v).classList.toggle('show',v===name);
   document.querySelectorAll('.tabbar button').forEach(b=>b.classList.toggle('active', b.dataset.tab===name || (name==='landing'&&b.dataset.tab==='node')));
+  const rt={landing:'rtIntro',map:'rtMap',path:'rtPath'}[name];
+  ['rtIntro','rtMap','rtPath'].forEach(id=>{const b=document.getElementById(id);if(b)b.classList.toggle('active',id===rt);});
   if(name==='map') renderMap(document.getElementById('view-map'));
   if(name==='path') renderPath(document.getElementById('view-path'));
   if(name==='landing'){renderLanding(document.getElementById('view-landing'));typeset(document.getElementById('view-landing'));}
@@ -544,6 +562,10 @@ function init(){
   document.querySelectorAll('.tabbar button').forEach(b=>b.onclick=()=>{
     const t=b.dataset.tab; if(t==='node'){ current?showView('node'):landingForIntro(); } else showView(t);
   });
+  // rail tools (always visible on wide screens)
+  document.getElementById('rtIntro').onclick=()=>landingForIntro();
+  document.getElementById('rtMap').onclick=()=>showView('map');
+  document.getElementById('rtPath').onclick=()=>showView('path');
   // top bar
   document.getElementById('tbMenu').onclick=()=>openSheet('rail');
   document.getElementById('tbMap').onclick=()=>openSheet('map');
