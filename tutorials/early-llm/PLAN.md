@@ -55,16 +55,24 @@ This plan implements the changes requested on 2026-06-13 to the design in `SPEC.
       expected "missing endpoint" notices that resolve once all nodes exist. Phase 1 committed.
 
 ### Phase 2 — Content authoring (subagents)
-- [ ] Author remaining 19 node JSON files via briefed subagents (with diagram prompts)
-- [ ] Reconcile cross-node references; ensure all `edges[]` copied verbatim from `node-graph.md`
-- [ ] Linter green across all nodes; commit + push
+- ✅ Authored remaining 19 node JSON files via 11 briefed subagents (Opus: 05,07,08,09,10,15,16,18;
+      Sonnet: 01,02,03,04,11,12,13,14,17,19,20), each with diagram prompts
+- ✅ Reconciled cross-node references; all `edges[]` copied verbatim from `node-graph.md`
+- ✅ Linter GREEN across all 20 nodes: 0 errors, 0 warnings (schema + 27 bidirectional edges).
+      Total prose ≈ 22,960 words (target ~20k; 11/12 run slightly tight, left unpadded as total is met).
 
 ### Phase 3 — Diagrams (SVG)
-- [ ] Hand-build a simple SVG for every diagram (structural = precise; conceptual = placeholder)
-- [ ] Wire `svg` paths into each node; linter green; commit + push
+- ✅ Subagents hand-built a whiteboard SVG for every diagram (37 total) alongside their nodes;
+      all `svg` paths wired in and resolving; all SVGs well-formed XML (xmllint clean).
+- ◻ TODO: visual spot-review of agent-built SVGs for style consistency (do during prototype review).
+
+### CI note
+- ✅ Linter + workflow authored. Workflow shipped as `ci/github-workflow.early-llm-lint.yml`
+      (plain file) because the OAuth token lacks GitHub `workflow` scope; README documents the
+      one-time activation copy into `.github/workflows/`.
 
 ### Phase 4 — UI prototype
-- [ ] `prototypes/ui-prototype.html` — toggleable intro + iPad-nav options, KaTeX, inline SVGs,
+- 🔄 `prototypes/ui-prototype.html` — toggleable intro + iPad-nav options, KaTeX, inline SVGs,
       tap-to-reveal diagram-prompt popup; wire in 2–3 real nodes
 - [ ] Commit + push; open PR; reviewer tries on iPad; iterate
 

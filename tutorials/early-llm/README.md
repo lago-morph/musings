@@ -34,12 +34,25 @@ tutorials/early-llm/
     ui-prototype.html          Self-contained UI prototype (intro + iPad-nav options) [Phase 4]
 
   ci/
-    lint_nodes.mjs             Schema + edge-consistency linter (Node 22 + ajv)
-    package.json               Linter dependencies
+    lint_nodes.mjs                       Schema + edge-consistency linter (Node 22 + ajv)
+    package.json                         Linter dependencies
+    github-workflow.early-llm-lint.yml   CI workflow (see activation note below)
 ```
 
-CI: `.github/workflows/early-llm-lint.yml` runs the linter on every push/PR that touches this
-directory.
+### CI activation (one-time)
+
+The linter is meant to run in CI on every push/PR touching this directory. The workflow definition
+lives at `ci/github-workflow.early-llm-lint.yml`. It ships as a plain file because the automation
+token used to author this branch lacks GitHub's `workflow` scope and cannot create files under
+`.github/workflows/`. To activate it, a maintainer with normal push access copies it into place once:
+
+```bash
+mkdir -p .github/workflows
+cp tutorials/early-llm/ci/github-workflow.early-llm-lint.yml .github/workflows/early-llm-lint.yml
+git add .github/workflows/early-llm-lint.yml && git commit -m "ci: activate early-llm node lint" && git push
+```
+
+Until then, run the linter locally (below) — it is the same command CI uses.
 
 ## Authoring a node (quick start)
 

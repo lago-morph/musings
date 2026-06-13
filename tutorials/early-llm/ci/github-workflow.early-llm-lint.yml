@@ -1,0 +1,27 @@
+name: early-llm node lint
+
+on:
+  push:
+    paths:
+      - "tutorials/early-llm/**"
+      - ".github/workflows/early-llm-lint.yml"
+  pull_request:
+    paths:
+      - "tutorials/early-llm/**"
+      - ".github/workflows/early-llm-lint.yml"
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: tutorials/early-llm/ci
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install linter dependencies
+        run: npm install --no-audit --no-fund
+      - name: Validate node schema and edge consistency
+        run: node lint_nodes.mjs
