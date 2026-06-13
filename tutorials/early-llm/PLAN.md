@@ -72,9 +72,17 @@ This plan implements the changes requested on 2026-06-13 to the design in `SPEC.
       one-time activation copy into `.github/workflows/`.
 
 ### Phase 4 — UI prototype
-- 🔄 `prototypes/ui-prototype.html` — toggleable intro + iPad-nav options, KaTeX, inline SVGs,
-      tap-to-reveal diagram-prompt popup; wire in 2–3 real nodes
-- [ ] Commit + push; open PR; reviewer tries on iPad; iterate
+- ✅ `prototypes/build.mjs` — reproducible builder: inlines all 20 nodes + 37 SVGs into one
+      self-contained HTML (re-run after editing nodes/SVGs).
+- ✅ `prototypes/ui-prototype.html` (703 KB) — live-toggleable intro landing (hybrid / map-first /
+      path-first) and iPad navigation (bottom tabs+drawer / swipe+overlay / slide-in rail) via a ⚙
+      panel; real KaTeX math (CDN for the prototype), all whiteboard SVGs inline, and the
+      tap-a-diagram → prompt popup (dismiss via × or outside click / Esc). Defaults = recommendations.
+- 🔄 Commit + push; open PR; reviewer tries on iPad; iterate.
+
+### Phase 5 — Image-generation handoff
+- ✅ `authoring/image-generation-agent.md` brief complete (delivered in Phase 1). Actual image
+      generation is a later, separate session.
 
 ### Phase 5 — Image-generation handoff
 - [ ] Finalize `authoring/image-generation-agent.md` (clone → extract prompts → prepend style →
