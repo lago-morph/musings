@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 440" role="img" aria-label="The Adam update: a raw gradient becomes a smoothed direction (momentum) divided by per-coordinate variance, yielding the step.">
+  <title>The Adam update as momentum divided by per-coordinate variance</title>
+  <desc>A gradient g_t splits into a first moment m_t (momentum, smoothed direction) and a second moment v_t (per-coordinate variance). Each is bias-corrected to m-hat and v-hat. The step divides the momentum direction by the square root of the variance plus epsilon, scaled by the base learning rate, to update the parameters. Plain SGD with momentum would step along m alone with one global rate.</desc>
+  <style>
+    .board { fill: #FDFCF8; }
+    text { font-family: "Comic Sans MS","Comic Neue","Patrick Hand","Segoe Print",system-ui,sans-serif; fill: #222222; }
+    .ink   { stroke: #222222; }
+    .blue  { stroke: #2F6FED; }
+    .red   { stroke: #E5484D; }
+    .green { stroke: #2E9E5B; }
+    .muted { stroke: #8A8A85; }
+    .box   { fill: #FDFCF8; stroke-width: 2; stroke-linejoin: round; }
+    .flow  { fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .h     { font-size: 16px; text-anchor: middle; }
+    .s     { font-size: 13px; text-anchor: middle; }
+    .note  { font-size: 12px; fill: #8A8A85; text-anchor: middle; }
+    .title { font-size: 15px; fill: #8A8A85; }
+    .blueT { fill: #2F6FED; } .redT { fill: #E5484D; } .greenT { fill: #2E9E5B; } .mutedF { fill: #8A8A85; }
+  </style>
+  <rect class="board" x="0" y="0" width="1000" height="440"/>
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#222222" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <text class="title" x="24" y="28">Adam update — momentum, rescaled per coordinate by 1/√v̂</text>
+
+  <!-- gradient -->
+  <rect class="box ink" x="30" y="180" width="110" height="60" rx="5"/>
+  <text class="h" x="85" y="206">gradient</text>
+  <text class="h" x="85" y="226">g_t</text>
+
+  <!-- split arrows -->
+  <path class="flow ink" d="M140,196 C175,170 195,120 224,110" marker-end="url(#ah)"/>
+  <path class="flow ink" d="M140,224 C175,250 195,300 224,310" marker-end="url(#ah)"/>
+
+  <!-- first moment (momentum) -->
+  <rect class="box blue" x="226" y="78" width="190" height="66" rx="5"/>
+  <text class="s blueT" x="321" y="104">first moment  m_t</text>
+  <text class="s" x="321" y="122">β1·m + (1−β1)·g</text>
+  <text class="note" x="321" y="60">momentum: smoothed direction</text>
+
+  <!-- second moment (variance) -->
+  <rect class="box red" x="226" y="276" width="190" height="66" rx="5"/>
+  <text class="s redT" x="321" y="302">second moment  v_t</text>
+  <text class="s" x="321" y="320">β2·v + (1−β2)·g²</text>
+  <text class="note" x="321" y="362">per-coordinate variance</text>
+
+  <!-- bias correct -->
+  <path class="flow ink" d="M416,111 L452,111" marker-end="url(#ah)"/>
+  <path class="flow ink" d="M416,309 L452,309" marker-end="url(#ah)"/>
+  <rect class="box ink" x="454" y="84" width="120" height="54" rx="5"/>
+  <text class="s" x="514" y="106">bias-correct</text>
+  <text class="s" x="514" y="124">÷ (1−β1ᵗ)</text>
+  <rect class="box ink" x="454" y="282" width="120" height="54" rx="5"/>
+  <text class="s" x="514" y="304">bias-correct</text>
+  <text class="s" x="514" y="322">÷ (1−β2ᵗ)</text>
+
+  <!-- m-hat / v-hat -->
+  <path class="flow blue" d="M574,111 C620,111 640,150 660,182" marker-end="url(#ah)"/>
+  <text class="s blueT" x="610" y="128">m̂_t</text>
+  <path class="flow red" d="M574,309 C620,309 640,270 660,238" marker-end="url(#ah)"/>
+  <text class="s redT" x="610" y="300">v̂_t</text>
+
+  <!-- combine box -->
+  <rect class="box green" x="662" y="176" width="180" height="68" rx="5" stroke-width="3"/>
+  <text class="s greenT" x="752" y="198">Δθ = −η · m̂_t</text>
+  <line class="green" x1="700" y1="208" x2="804" y2="208" stroke-width="1.4"/>
+  <text class="s greenT" x="752" y="230">√v̂_t + ε</text>
+
+  <!-- updated params -->
+  <path class="flow ink" d="M842,210 L884,210" marker-end="url(#ah)"/>
+  <rect class="box ink" x="886" y="182" width="96" height="56" rx="5"/>
+  <text class="h" x="934" y="206">params</text>
+  <text class="h" x="934" y="226">θ</text>
+
+  <!-- heart-of-it note -->
+  <text class="note" x="752" y="266">divide momentum direction by per-coordinate √variance</text>
+  <text class="note" x="752" y="282">= a diagonal preconditioner</text>
+
+  <!-- SGD contrast -->
+  <rect class="box muted" x="640" y="330" width="230" height="56" rx="5"/>
+  <text class="s mutedF" x="755" y="354">plain SGD + momentum:</text>
+  <text class="note" x="755" y="372">step along m̂ alone, one global rate</text>
+</svg>

@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" role="img" aria-label="One sentence under three objectives: next-token (causal), masked-token (MLM), and span corruption (T5) — what each hides and what each predicts.">
+  <title>Three pretraining objectives on one sentence</title>
+  <desc>The sentence 'the cat sat on the warm mat' under three objectives. Causal LM predicts the next token from left context. Masked LM hides about 15 percent of tokens with [MASK] and predicts them from both sides. Span corruption replaces a contiguous span with one sentinel and generates the missing span as a sequence.</desc>
+  <style>
+    .board { fill: #FDFCF8; }
+    text { font-family: "Comic Sans MS","Comic Neue","Patrick Hand","Segoe Print",system-ui,sans-serif; fill: #222222; }
+    .ink   { stroke: #222222; }
+    .blue  { stroke: #2F6FED; }
+    .red   { stroke: #E5484D; }
+    .green { stroke: #2E9E5B; }
+    .muted { stroke: #8A8A85; }
+    .box   { fill: #FDFCF8; stroke-width: 2; stroke-linejoin: round; }
+    .flow  { fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .tok   { font-size: 17px; text-anchor: middle; }
+    .row   { font-size: 17px; }
+    .note  { font-size: 13px; fill: #8A8A85; }
+    .title { font-size: 15px; fill: #8A8A85; }
+    .blueT  { fill: #2F6FED; }
+    .redT   { fill: #E5484D; }
+    .greenT { fill: #2E9E5B; }
+    .mutedF { fill: #8A8A85; }
+  </style>
+  <rect class="board" x="0" y="0" width="1000" height="560"/>
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#222222" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#2E9E5B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <text class="title" x="24" y="28">same sentence, three objectives — what is hidden vs. predicted</text>
+
+  <!-- ===================== ROW 1: Causal LM ===================== -->
+  <text class="row blueT" x="24" y="78">Causal LM (GPT) — predict the NEXT token</text>
+  <!-- tokens -->
+  <g transform="translate(40,96)">
+    <g><rect class="box ink" x="0"   y="0" width="64" height="40" rx="4"/><text class="tok" x="32"  y="26">the</text></g>
+    <g><rect class="box ink" x="72"  y="0" width="64" height="40" rx="4"/><text class="tok" x="104" y="26">cat</text></g>
+    <g><rect class="box ink" x="144" y="0" width="64" height="40" rx="4"/><text class="tok" x="176" y="26">sat</text></g>
+    <g><rect class="box ink" x="216" y="0" width="64" height="40" rx="4"/><text class="tok" x="248" y="26">on</text></g>
+    <g><rect class="box ink" x="288" y="0" width="64" height="40" rx="4"/><text class="tok" x="320" y="26">the</text></g>
+    <g><rect class="box ink" x="360" y="0" width="64" height="40" rx="4"/><text class="tok" x="392" y="26">warm</text></g>
+    <!-- predicted next token -->
+    <g><rect class="box green" x="470" y="0" width="76" height="40" rx="4" stroke-width="3"/><text class="tok greenT" x="508" y="26">mat ?</text></g>
+  </g>
+  <!-- arrow from 'warm' up-right to predicted -->
+  <path class="flow ink" d="M432,116 C460,116 478,116 502,120" marker-end="url(#ah)" transform="translate(0,0)"/>
+  <text class="note" x="600" y="120">predict next token</text>
+  <text class="note" x="600" y="138">p(x_t | x_&lt;t)</text>
+  <text class="note" x="40" y="170">left context only — causal mask, no peeking ahead</text>
+
+  <!-- ===================== ROW 2: Masked LM ===================== -->
+  <text class="row redT" x="24" y="232">Masked LM (BERT) — predict the MASKED tokens (~15%)</text>
+  <g transform="translate(40,250)">
+    <g><rect class="box ink"  x="0"   y="0" width="64" height="40" rx="4"/><text class="tok" x="32"  y="26">the</text></g>
+    <g><rect class="box ink"  x="72"  y="0" width="64" height="40" rx="4"/><text class="tok" x="104" y="26">cat</text></g>
+    <!-- masked 'sat' -->
+    <g><rect class="box muted" x="144" y="0" width="64" height="40" rx="4"/><text class="tok mutedF" x="176" y="25">[MASK]</text></g>
+    <g><rect class="box ink"  x="216" y="0" width="64" height="40" rx="4"/><text class="tok" x="248" y="26">on</text></g>
+    <g><rect class="box ink"  x="288" y="0" width="64" height="40" rx="4"/><text class="tok" x="320" y="26">the</text></g>
+    <!-- masked 'warm' -->
+    <g><rect class="box muted" x="360" y="0" width="64" height="40" rx="4"/><text class="tok mutedF" x="392" y="25">[MASK]</text></g>
+    <g><rect class="box ink"  x="432" y="0" width="64" height="40" rx="4"/><text class="tok" x="464" y="26">mat</text></g>
+  </g>
+  <!-- predictions above the two masks -->
+  <g><rect class="box green" x="184" y="206" width="64" height="34" rx="4" stroke-width="3"/><text class="tok greenT" x="216" y="228">sat</text></g>
+  <g><rect class="box green" x="400" y="206" width="64" height="34" rx="4" stroke-width="3"/><text class="tok greenT" x="432" y="228">warm</text></g>
+  <!-- up arrows from mask boxes to predictions -->
+  <path class="flow green" d="M216,250 L216,242" marker-end="url(#ahg)"/>
+  <path class="flow green" d="M432,250 L432,242" marker-end="url(#ahg)"/>
+  <!-- context-from-both-sides leaders into mask 1 -->
+  <path class="flow muted" d="M136,278 C150,290 168,290 176,282" stroke-dasharray="3 3" marker-end="url(#ah)"/>
+  <path class="flow muted" d="M280,278 C260,290 220,290 208,282" stroke-dasharray="3 3" marker-end="url(#ah)"/>
+  <text class="note" x="40" y="332">context flows in from BOTH sides; loss only on the masked positions</text>
+
+  <!-- ===================== ROW 3: Span corruption ===================== -->
+  <text class="row greenT" x="24" y="396">Span corruption (T5) — replace a SPAN with one sentinel, generate it back</text>
+  <text class="note" x="40" y="418">corrupted input:</text>
+  <g transform="translate(40,428)">
+    <g><rect class="box ink"  x="0"   y="0" width="64" height="40" rx="4"/><text class="tok" x="32"  y="26">the</text></g>
+    <g><rect class="box ink"  x="72"  y="0" width="64" height="40" rx="4"/><text class="tok" x="104" y="26">cat</text></g>
+    <g><rect class="box ink"  x="144" y="0" width="64" height="40" rx="4"/><text class="tok" x="176" y="26">sat</text></g>
+    <!-- sentinel replacing the span 'on the warm' -->
+    <g><rect class="box red" x="216" y="0" width="76" height="40" rx="4" stroke-width="3"/><text class="tok redT" x="254" y="26">&lt;X&gt;</text></g>
+    <g><rect class="box ink"  x="300" y="0" width="64" height="40" rx="4"/><text class="tok" x="332" y="26">mat</text></g>
+  </g>
+  <text class="note" x="160" y="500" text-anchor="middle">&lt;X&gt; replaced the span "on the warm"</text>
+  <!-- target sequence -->
+  <text class="note" x="470" y="418">target to generate:</text>
+  <g transform="translate(470,428)">
+    <g><rect class="box red"   x="0"   y="0" width="60" height="40" rx="4"/><text class="tok redT" x="30"  y="26">&lt;X&gt;</text></g>
+    <g><rect class="box green" x="68"  y="0" width="64" height="40" rx="4" stroke-width="3"/><text class="tok greenT" x="100" y="26">on</text></g>
+    <g><rect class="box green" x="140" y="0" width="64" height="40" rx="4" stroke-width="3"/><text class="tok greenT" x="172" y="26">the</text></g>
+    <g><rect class="box green" x="212" y="0" width="76" height="40" rx="4" stroke-width="3"/><text class="tok greenT" x="250" y="26">warm</text></g>
+  </g>
+  <path class="flow ink" d="M332,448 C400,448 420,448 466,448" marker-end="url(#ah)"/>
+  <text class="note" x="470" y="500">encoder reads input both ways; decoder emits the missing span</text>
+</svg>

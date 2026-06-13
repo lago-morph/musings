@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 430" role="img" aria-label="An LSTM cell: cell state C_t runs as a highway across the top receiving a forget-gate erase (multiply by f_t, sigmoid) and an input-gate write (add i_t times c-tilde). Inputs h_{t-1} and x_t on the left fan out to three sigmoid gates (forget f_t, input i_t, output o_t) and one tanh candidate c-tilde. The output gate multiplies tanh(C_t) to emit h_t on the right.">
+  <title>LSTM cell — cell state highway and three gates</title>
+  <desc>Left side: boxes for h_{t-1} (previous hidden state) and x_t (current input), joined into a single bus [h,x] that fans out to four operations: forget gate sigma, input gate sigma, candidate tanh, and output gate sigma. Top: a thick horizontal highway labeled C_{t-1} on the left and C_t on the right. On the highway, a multiply circle applies the forget gate (keeping or erasing old memory), then an add circle writes new candidate information scaled by the input gate. At the right, the output gate multiplies tanh of C_t to produce h_t. A bottom note reads: cell state C_t updates additively — the constant error carousel.</desc>
+  <style>
+    .board { fill: #FDFCF8; }
+    text { font-family: "Comic Sans MS","Comic Neue","Patrick Hand","Segoe Print",system-ui,sans-serif; fill: #222222; }
+    .ink   { stroke: #222222; }
+    .blue  { stroke: #2F6FED; }
+    .red   { stroke: #E5484D; }
+    .green { stroke: #2E9E5B; }
+    .muted { stroke: #8A8A85; }
+    .box   { fill: #FDFCF8; stroke-width: 2; stroke-linejoin: round; }
+    .flow  { fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .lbl   { font-size: 19px; text-anchor: middle; }
+    .dim   { font-size: 13px; text-anchor: middle; fill: #8A8A85; }
+    .note  { font-size: 13px; fill: #8A8A85; }
+    .title { font-size: 15px; fill: #8A8A85; }
+    .blueT  { fill: #2F6FED; }
+    .redT   { fill: #E5484D; }
+    .greenT { fill: #2E9E5B; }
+  </style>
+  <rect class="board" x="0" y="0" width="1060" height="430"/>
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#222222" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahblue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#2F6FED" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahgreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#2E9E5B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahred" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#E5484D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <text class="title" x="24" y="26">LSTM cell — cell state highway + three gates</text>
+
+  <!-- ===== Cell state highway across the top ===== -->
+  <!-- C_{t-1} input box -->
+  <rect class="box ink" x="24" y="90" width="86" height="46" rx="4"/>
+  <text class="lbl" x="67" y="118">C_{t-1}</text>
+  <!-- highway line: bold, runs full width -->
+  <path class="flow ink" d="M110,113 L980,113" stroke-width="3" marker-end="url(#ah)"/>
+
+  <!-- Forget-gate multiply on highway -->
+  <circle class="box ink" cx="290" cy="113" r="18" stroke-width="2"/>
+  <text class="lbl" x="290" y="121" font-size="18">⊙</text>
+
+  <!-- Input-gate add on highway -->
+  <circle class="box ink" cx="530" cy="113" r="18" stroke-width="2"/>
+  <text class="lbl" x="530" y="121" font-size="18">⊕</text>
+
+  <!-- C_t label midway right of add node -->
+  <text class="lbl" x="760" y="108">C_t</text>
+  <text class="note" x="760" y="84" text-anchor="middle">additive updates</text>
+  <text class="note" x="760" y="99" text-anchor="middle">→ gradient flows freely</text>
+
+  <!-- ===== Inputs: h_{t-1} and x_t ===== -->
+  <rect class="box ink" x="24" y="212" width="86" height="46" rx="4"/>
+  <text class="lbl" x="67" y="240">h_{t-1}</text>
+  <rect class="box ink" x="24" y="272" width="86" height="46" rx="4"/>
+  <text class="lbl" x="67" y="300">x_t</text>
+
+  <!-- vertical bus joining h and x -->
+  <line class="flow ink" x1="110" y1="235" x2="148" y2="235" stroke-width="1.4"/>
+  <line class="flow ink" x1="110" y1="295" x2="148" y2="295" stroke-width="1.4"/>
+  <line class="flow ink" x1="148" y1="235" x2="148" y2="295" stroke-width="1.4"/>
+  <text class="note" x="130" y="268">[h,x]</text>
+
+  <!-- fan-out to four gate/op boxes -->
+  <!-- → forget gate (f_t) -->
+  <path class="flow red" d="M148,265 C180,265 220,230 248,222" marker-end="url(#ahred)"/>
+  <!-- → input gate (i_t) -->
+  <path class="flow blue" d="M148,265 C200,265 300,265 348,254" marker-end="url(#ahblue)"/>
+  <!-- → candidate tanh (c̃_t) -->
+  <path class="flow blue" d="M148,265 C200,280 300,305 348,310" marker-end="url(#ahblue)"/>
+  <!-- → output gate (o_t) -->
+  <path class="flow green" d="M148,265 C200,290 560,336 648,330" marker-end="url(#ahgreen)"/>
+
+  <!-- ===== Forget gate f_t (red) ===== -->
+  <rect class="box red" x="248" y="196" width="80" height="46" rx="4"/>
+  <text class="lbl redT" x="288" y="226">σ</text>
+  <text class="note" x="288" y="188" text-anchor="middle" style="fill:#E5484D;">forget gate f_t</text>
+  <text class="note" x="288" y="258" text-anchor="middle" style="fill:#E5484D;">erase old memory?</text>
+  <!-- f_t up to multiply on highway -->
+  <path class="flow red" d="M288,196 L290,131" marker-end="url(#ahred)"/>
+
+  <!-- ===== Input gate i_t and candidate c̃_t (blue) ===== -->
+  <rect class="box blue" x="348" y="228" width="80" height="46" rx="4"/>
+  <text class="lbl blueT" x="388" y="258">σ</text>
+  <text class="note" x="388" y="220" text-anchor="middle" style="fill:#2F6FED;">input gate i_t</text>
+
+  <rect class="box blue" x="348" y="290" width="80" height="46" rx="4"/>
+  <text class="lbl blueT" x="388" y="320">tanh</text>
+  <text class="note" x="388" y="352" text-anchor="middle" style="fill:#2F6FED;">candidate c̃_t</text>
+
+  <!-- i_t ⊙ c̃_t multiply node -->
+  <circle class="box blue" cx="476" cy="270" r="18" stroke-width="2"/>
+  <text class="lbl blueT" x="476" y="278" font-size="18">⊙</text>
+  <path class="flow blue" d="M428,251 L458,264" marker-end="url(#ahblue)"/>
+  <path class="flow blue" d="M428,313 L458,276" marker-end="url(#ahblue)"/>
+
+  <!-- i_t * c̃_t up to add on highway -->
+  <path class="flow blue" d="M476,252 C476,200 522,148 524,131" marker-end="url(#ahblue)"/>
+  <text class="note" x="498" y="196" style="fill:#2F6FED;">write new info</text>
+
+  <!-- ===== Output gate o_t (green) ===== -->
+  <rect class="box green" x="648" y="304" width="80" height="46" rx="4"/>
+  <text class="lbl greenT" x="688" y="334">σ</text>
+  <text class="note" x="688" y="296" text-anchor="middle" style="fill:#2E9E5B;">output gate o_t</text>
+  <text class="note" x="688" y="364" text-anchor="middle" style="fill:#2E9E5B;">what to expose?</text>
+
+  <!-- tanh(C_t) node -->
+  <rect class="box green" x="760" y="194" width="80" height="46" rx="4"/>
+  <text class="lbl greenT" x="800" y="224">tanh</text>
+  <!-- C_t highway branch down into tanh -->
+  <path class="flow green" d="M800,131 L800,194" marker-end="url(#ahgreen)"/>
+
+  <!-- output gate multiply node -->
+  <circle class="box green" cx="860" cy="270" r="18" stroke-width="2"/>
+  <text class="lbl greenT" x="860" y="278" font-size="18">⊙</text>
+  <path class="flow green" d="M728,327 C780,327 830,290 842,278" marker-end="url(#ahgreen)"/>
+  <path class="flow green" d="M840,217 C845,240 850,255 843,262" marker-end="url(#ahgreen)"/>
+
+  <!-- h_t output -->
+  <path class="flow green" d="M878,270 L920,270" marker-end="url(#ahgreen)"/>
+  <rect class="box green" x="920" y="244" width="80" height="52" rx="4" stroke-width="2"/>
+  <text class="lbl greenT" x="960" y="276">h_t</text>
+
+  <!-- bottom annotation -->
+  <text class="note" x="530" y="408" text-anchor="middle">Cell state C_t updated additively — the "constant error carousel" that lets gradients flow across many steps without vanishing</text>
+</svg>

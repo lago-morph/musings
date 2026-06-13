@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 480" role="img" aria-label="Analogy arithmetic as parallel vector offsets in 2-D embedding space: man and king form one parallel pair, woman and queen form another, with the offset from man to king equal to the offset from woman to queen, illustrating the royalty direction.">
+  <title>Word embedding analogy arithmetic — parallel vector offsets</title>
+  <desc>Four word points in 2-D space form a parallelogram: man (lower-left), woman (lower-right), king (upper-left), queen (upper-right). Arrows from man to king and from woman to queen are parallel and labeled 'royalty offset'. A dashed arrow represents king minus man plus woman pointing to queen. A margin note warns that the effect is real but corpus- and parameter-sensitive.</desc>
+  <style>
+    .board { fill: #FDFCF8; }
+    text { font-family: "Comic Sans MS","Comic Neue","Patrick Hand","Segoe Print",system-ui,sans-serif; fill: #222222; }
+    .ink   { stroke: #222222; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .blue  { stroke: #2F6FED; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .red   { stroke: #E5484D; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .green { stroke: #2E9E5B; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .muted { stroke: #8A8A85; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .lbl   { font-size: 19px; text-anchor: middle; }
+    .dim   { font-size: 13px; text-anchor: middle; fill: #8A8A85; }
+    .note  { font-size: 13px; fill: #8A8A85; }
+    .arrowlbl { font-size: 14px; fill: #222222; text-anchor: middle; }
+    .title { font-size: 15px; fill: #8A8A85; }
+    .blueT  { fill: #2F6FED; }
+    .redT   { fill: #E5484D; }
+    .greenT { fill: #2E9E5B; }
+    .mutedT { fill: #8A8A85; }
+  </style>
+  <rect class="board" x="0" y="0" width="820" height="480"/>
+
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9" fill="none" stroke="#222222" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9" fill="none" stroke="#2F6FED" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahm" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9" fill="none" stroke="#8A8A85" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9" fill="none" stroke="#2E9E5B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <text class="title" x="28" y="28">analogy arithmetic — parallel vector offsets</text>
+
+  <!-- Light coordinate axes -->
+  <line class="muted" x1="80" y1="420" x2="80" y2="60" stroke-width="1.2" marker-end="url(#ahm)"/>
+  <line class="muted" x1="70" y1="410" x2="700" y2="410" stroke-width="1.2" marker-end="url(#ahm)"/>
+  <text class="note" x="72" y="56" text-anchor="middle">royalty</text>
+  <text class="note" x="700" y="426">gender →</text>
+
+  <!-- Four word points -->
+  <!-- man: lower-left -->
+  <circle cx="200" cy="340" r="8" fill="#222222" stroke="none"/>
+  <text class="lbl" x="200" y="328" text-anchor="middle">man</text>
+
+  <!-- woman: lower-right -->
+  <circle cx="480" cy="332" r="8" fill="#222222" stroke="none"/>
+  <text class="lbl" x="480" y="318" text-anchor="middle">woman</text>
+
+  <!-- king: upper-left (man + royalty offset) -->
+  <circle cx="220" cy="140" r="8" fill="#2F6FED" stroke="none"/>
+  <text class="lbl blueT" x="220" y="126" text-anchor="middle">king</text>
+
+  <!-- queen: upper-right (woman + same royalty offset) -->
+  <circle cx="500" cy="132" r="8" fill="#2F6FED" stroke="none"/>
+  <text class="lbl blueT" x="500" y="118" text-anchor="middle">queen</text>
+
+  <!-- Arrow: man → king (royalty offset, left side) -->
+  <path class="blue" d="M202,330 L218,152" stroke-width="2.2" marker-end="url(#ahb)"/>
+  <text class="arrowlbl blueT" x="178" y="240">royalty</text>
+  <text class="arrowlbl blueT" x="178" y="256">offset</text>
+
+  <!-- Arrow: woman → queen (same royalty offset, right side) -->
+  <path class="blue" d="M482,322 L498,144" stroke-width="2.2" marker-end="url(#ahb)"/>
+  <text class="arrowlbl blueT" x="526" y="240">royalty</text>
+  <text class="arrowlbl blueT" x="526" y="256">offset</text>
+
+  <!-- Horizontal parallelogram sides: man — woman (lower base) -->
+  <line class="muted" x1="209" y1="340" x2="471" y2="333" stroke-width="1.4" stroke-dasharray="6 4"/>
+  <text class="dim" x="340" y="372" text-anchor="middle">gender direction →</text>
+
+  <!-- Horizontal parallelogram side: king — queen (upper base) -->
+  <line class="muted" x1="229" y1="140" x2="491" y2="133" stroke-width="1.4" stroke-dasharray="6 4"/>
+
+  <!-- Dashed result arrow: king − man + woman → queen -->
+  <path class="green" d="M228,145 C320,100 420,112 490,126" stroke-width="1.8" stroke-dasharray="8 4" marker-end="url(#ahg)"/>
+  <text class="arrowlbl greenT" x="358" y="92">king − man + woman ≈ queen</text>
+
+  <!-- Right panel: annotation box -->
+  <rect x="580" y="200" width="218" height="148" rx="6" fill="#FDFCF8" stroke="#8A8A85" stroke-width="1.2" stroke-dasharray="5 3"/>
+  <text class="note" x="590" y="224">Offsets encode relations:</text>
+  <text class="note" x="590" y="242">king − man = queen − woman</text>
+  <text class="note" x="590" y="268">Effect is real but</text>
+  <text class="note" x="590" y="284">corpus- and parameter-</text>
+  <text class="note" x="590" y="300">sensitive; treat as a</text>
+  <text class="note" x="590" y="316">statistical tendency,</text>
+  <text class="note" x="590" y="332">not an algebraic law.</text>
+
+  <!-- Legend -->
+  <circle cx="96" cy="442" r="6" fill="#2F6FED" stroke="none"/>
+  <text class="note" x="110" y="447" text-anchor="start">royalty-dimension words</text>
+  <circle cx="310" cy="442" r="6" fill="#222222" stroke="none"/>
+  <text class="note" x="324" y="447" text-anchor="start">baseline words</text>
+
+</svg>

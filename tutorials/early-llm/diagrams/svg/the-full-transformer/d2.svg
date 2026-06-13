@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 480" role="img" aria-label="Encoder-decoder cross-attention: queries come from the decoder, keys and values from the top encoder output, producing a context output by soft target-to-source alignment.">
+  <title>Encoder–decoder cross-attention — where Q, K, V come from</title>
+  <desc>The decoder hidden state (n_target by d_model) is projected by W_Q into queries Q (n_target by d_k). The top encoder output (n_source by d_model) is projected by W_K and W_V into keys K (n_source by d_k) and values V (n_source by d_v). Q and K multiply into a rectangular score matrix (n_target by n_source), scaled by one over root d_k and passed through a row-wise softmax to attention weights A (n_target by n_source), then multiplied by V to give the context output (n_target by d_v). This is the same soft target-to-source alignment as Bahdanau attention.</desc>
+  <style>
+    .board { fill: #FDFCF8; }
+    text { font-family: "Comic Sans MS","Comic Neue","Patrick Hand","Segoe Print",system-ui,sans-serif; fill: #222222; }
+    .ink   { stroke: #222222; }
+    .blue  { stroke: #2F6FED; }
+    .red   { stroke: #E5484D; }
+    .green { stroke: #2E9E5B; }
+    .muted { stroke: #8A8A85; }
+    .box   { fill: #FDFCF8; stroke-width: 2; stroke-linejoin: round; }
+    .flow  { fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .lbl   { font-size: 21px; text-anchor: middle; }
+    .lblc  { font-size: 21px; text-anchor: middle; }
+    .src   { font-size: 14px; text-anchor: middle; }
+    .dim   { font-size: 13px; text-anchor: middle; fill: #8A8A85; }
+    .tag   { font-size: 14px; text-anchor: middle; fill: #8A8A85; }
+    .note  { font-size: 13px; fill: #8A8A85; }
+    .title { font-size: 15px; fill: #8A8A85; }
+    .blueT  { fill: #2F6FED; }
+    .redT   { fill: #E5484D; }
+    .greenT { fill: #2E9E5B; }
+  </style>
+  <rect class="board" x="0" y="0" width="1080" height="480"/>
+  <defs>
+    <marker id="caah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#222222" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <text class="title" x="24" y="28">encoder–decoder cross-attention</text>
+
+  <!-- ENCODER SIDE (keys & values), top-left -->
+  <g transform="rotate(-0.6 96 86)">
+    <rect class="box red" x="40" y="50" width="112" height="72" rx="4"/>
+  </g>
+  <text class="src redT" x="96" y="82">encoder output</text>
+  <text class="src redT" x="96" y="100">(top block)</text>
+  <text class="dim" x="96" y="138">n_source × d_model</text>
+
+  <!-- K and V projections -->
+  <path class="flow ink" d="M152,76 C200,62 230,52 262,50" marker-end="url(#caah)"/>
+  <text class="note" x="200" y="44">× W_K</text>
+  <path class="flow ink" d="M152,104 C200,140 230,180 262,206" marker-end="url(#caah)"/>
+  <text class="note" x="206" y="160">× W_V</text>
+
+  <!-- K -->
+  <g transform="rotate(0.6 312 50)"><rect class="box red" x="264" y="22" width="96" height="56" rx="4"/></g>
+  <text class="lbl redT" x="312" y="58">K</text>
+  <text class="dim" x="312" y="94">n_source × d_k</text>
+
+  <!-- V -->
+  <g transform="rotate(-0.5 312 234)"><rect class="box green" x="264" y="206" width="96" height="56" rx="4"/></g>
+  <text class="lbl greenT" x="312" y="242">V</text>
+  <text class="dim" x="312" y="278">n_source × d_v</text>
+
+  <!-- DECODER SIDE (queries), bottom-left -->
+  <g transform="rotate(0.6 96 396)">
+    <rect class="box blue" x="40" y="360" width="112" height="72" rx="4"/>
+  </g>
+  <text class="src blueT" x="96" y="392">decoder</text>
+  <text class="src blueT" x="96" y="410">hidden state</text>
+  <text class="dim" x="96" y="448">n_target × d_model</text>
+
+  <path class="flow ink" d="M152,388 C200,380 230,372 262,368" marker-end="url(#caah)"/>
+  <text class="note" x="200" y="362">× W_Q</text>
+
+  <!-- Q -->
+  <g transform="rotate(-0.5 312 384)"><rect class="box blue" x="264" y="356" width="96" height="56" rx="4"/></g>
+  <text class="lbl blueT" x="312" y="392">Q</text>
+  <text class="dim" x="312" y="428">n_target × d_k</text>
+
+  <!-- matmul 1: Q K^T -->
+  <circle class="box ink" cx="448" cy="216" r="18"/>
+  <text class="lbl" x="448" y="224" font-size="20">×</text>
+  <path class="flow ink" d="M360,50 C400,90 420,160 436,200" marker-end="url(#caah)"/>
+  <path class="flow ink" d="M360,384 C400,330 420,260 436,232" marker-end="url(#caah)"/>
+
+  <!-- scores (rectangular, emphasized) -->
+  <text class="tag" x="556" y="158">scores (rectangular!)</text>
+  <g transform="rotate(-0.5 556 216)"><rect class="box red" x="496" y="178" width="120" height="76" rx="4" stroke-width="3"/></g>
+  <text class="lblc redT" x="556" y="212">Q Kᵀ</text>
+  <text class="dim" x="556" y="238">n_target × n_source</text>
+  <path class="flow ink" d="M466,216 L494,216" marker-end="url(#caah)"/>
+
+  <!-- scale + softmax -->
+  <path class="flow ink" d="M616,216 L662,216" marker-end="url(#caah)"/>
+  <text class="note" x="639" y="204" text-anchor="middle">÷ √d_k</text>
+  <rect class="box ink" x="664" y="178" width="132" height="76" rx="4"/>
+  <text class="lblc" x="730" y="212" font-size="19">softmax</text>
+  <text class="dim" x="730" y="236">row-wise</text>
+  <path class="flow muted" d="M730,254 L730,284" marker-end="url(#caah)" stroke-dasharray="3 3"/>
+  <text class="note" x="730" y="302" text-anchor="middle">each row sums to 1</text>
+
+  <!-- A weights -->
+  <path class="flow ink" d="M796,216 L842,216" marker-end="url(#caah)"/>
+  <text class="tag" x="892" y="158">weights</text>
+  <g transform="rotate(0.6 892 216)"><rect class="box red" x="844" y="178" width="96" height="76" rx="4"/></g>
+  <text class="lblc redT" x="892" y="212">A</text>
+  <text class="dim" x="892" y="238">n_target × n_source</text>
+
+  <!-- matmul 2: A V -->
+  <circle class="box ink" cx="1006" cy="320" r="18"/>
+  <text class="lbl" x="1006" y="328" font-size="20">×</text>
+  <path class="flow ink" d="M918,254 C960,286 980,300 992,310" marker-end="url(#caah)"/>
+  <!-- V routed to matmul 2 -->
+  <path class="flow green" d="M360,234 C560,330 820,346 992,330" marker-end="url(#caah)"/>
+
+  <!-- output context -->
+  <path class="flow ink" d="M1024,320 L1024,360" marker-end="url(#caah)"/>
+  <g transform="rotate(-0.6 1006 400)"><rect class="box green" x="956" y="362" width="100" height="62" rx="4"/></g>
+  <text class="lblc greenT" x="1006" y="392" font-size="17">context</text>
+  <text class="dim" x="1006" y="412">n_target × d_v</text>
+
+  <!-- margin note: Bahdanau -->
+  <path class="flow muted" d="M556,178 C556,140 556,120 556,104" marker-end="url(#caah)" stroke-dasharray="3 3"/>
+  <text class="note" x="430" y="74">queries from the decoder, keys &amp; values from the encoder —</text>
+  <text class="note" x="430" y="92">soft target-to-source alignment, exactly Bahdanau attention</text>
+</svg>

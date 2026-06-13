@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 380" role="img" aria-label="An RNN unrolled across time: shared weight matrices W_x and W_h connect inputs x_1 through x_T to hidden states h_1 through h_T chained left to right, with outputs y_1 through y_T above each hidden state. A long red dashed arrow beneath the chain shows the gradient path back through T steps, labeled vanishing or exploding.">
+  <title>RNN unrolled across time</title>
+  <desc>Inputs x_1 to x_T feed upward into hidden states h_1 to h_T. Each hidden state receives a recurrent arrow from the previous state via W_h (shared), and an input arrow via W_x (shared). Outputs y_1 to y_T emerge above each h_t. An ellipsis represents the middle steps. A long red dashed arrow runs below the chain from h_T back to h_1, labeled gradient path through T steps — shrinks or explodes.</desc>
+  <style>
+    .board { fill: #FDFCF8; }
+    text { font-family: "Comic Sans MS","Comic Neue","Patrick Hand","Segoe Print",system-ui,sans-serif; fill: #222222; }
+    .ink   { stroke: #222222; }
+    .blue  { stroke: #2F6FED; }
+    .red   { stroke: #E5484D; }
+    .green { stroke: #2E9E5B; }
+    .muted { stroke: #8A8A85; }
+    .box   { fill: #FDFCF8; stroke-width: 2; stroke-linejoin: round; }
+    .flow  { fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .lbl   { font-size: 20px; text-anchor: middle; }
+    .dim   { font-size: 13px; text-anchor: middle; fill: #8A8A85; }
+    .note  { font-size: 13px; fill: #8A8A85; }
+    .title { font-size: 15px; fill: #8A8A85; }
+    .blueT  { fill: #2F6FED; }
+    .redT   { fill: #E5484D; }
+    .greenT { fill: #2E9E5B; }
+  </style>
+  <rect class="board" x="0" y="0" width="1060" height="380"/>
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#222222" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahblue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#2F6FED" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahgreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#2E9E5B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahred" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#E5484D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <text class="title" x="24" y="26">RNN unrolled across time — shared weights, sequential computation</text>
+
+  <!-- ====== Column positions: t=1 at x=130, t=2 at x=300, t=3 at x=470, t=T at x=780 ====== -->
+  <!-- layout: input y=300, hidden y=200, output y=88 -->
+
+  <!-- === t=1 === -->
+  <!-- input x_1 -->
+  <rect class="box ink" x="94" y="272" width="72" height="46" rx="4"/>
+  <text class="lbl" x="130" y="302">x₁</text>
+  <!-- x_1 → h_1 -->
+  <path class="flow ink" d="M130,272 L130,232" marker-end="url(#ah)"/>
+  <text class="note" x="142" y="258">W_x</text>
+  <!-- hidden h_1 -->
+  <g transform="rotate(-0.7 130 200)">
+    <rect class="box blue" x="94" y="168" width="72" height="56" rx="4" stroke-width="2"/>
+  </g>
+  <text class="lbl blueT" x="130" y="202">h₁</text>
+  <!-- h_1 → y_1 -->
+  <path class="flow green" d="M130,168 L130,134" marker-end="url(#ahgreen)"/>
+  <!-- output y_1 -->
+  <rect class="box green" x="94" y="60" width="72" height="44" rx="4"/>
+  <text class="lbl greenT" x="130" y="88">y₁</text>
+
+  <!-- === t=1 → t=2 recurrent === -->
+  <path class="flow blue" d="M166,196 L228,196" marker-end="url(#ahblue)" stroke-width="2"/>
+  <text class="note" x="196" y="186" style="fill:#2F6FED;">W_h</text>
+
+  <!-- === t=2 === -->
+  <rect class="box ink" x="264" y="272" width="72" height="46" rx="4"/>
+  <text class="lbl" x="300" y="302">x₂</text>
+  <path class="flow ink" d="M300,272 L300,232" marker-end="url(#ah)"/>
+  <text class="note" x="312" y="258">W_x</text>
+  <g transform="rotate(0.6 300 200)">
+    <rect class="box blue" x="264" y="168" width="72" height="56" rx="4" stroke-width="2"/>
+  </g>
+  <text class="lbl blueT" x="300" y="202">h₂</text>
+  <path class="flow green" d="M300,168 L300,134" marker-end="url(#ahgreen)"/>
+  <rect class="box green" x="264" y="60" width="72" height="44" rx="4"/>
+  <text class="lbl greenT" x="300" y="88">y₂</text>
+
+  <!-- === t=2 → t=3 recurrent === -->
+  <path class="flow blue" d="M336,196 L398,196" marker-end="url(#ahblue)" stroke-width="2"/>
+  <text class="note" x="366" y="186" style="fill:#2F6FED;">W_h</text>
+
+  <!-- === t=3 === -->
+  <rect class="box ink" x="434" y="272" width="72" height="46" rx="4"/>
+  <text class="lbl" x="470" y="302">x₃</text>
+  <path class="flow ink" d="M470,272 L470,232" marker-end="url(#ah)"/>
+  <text class="note" x="482" y="258">W_x</text>
+  <g transform="rotate(-0.5 470 200)">
+    <rect class="box blue" x="434" y="168" width="72" height="56" rx="4" stroke-width="2"/>
+  </g>
+  <text class="lbl blueT" x="470" y="202">h₃</text>
+  <path class="flow green" d="M470,168 L470,134" marker-end="url(#ahgreen)"/>
+  <rect class="box green" x="434" y="60" width="72" height="44" rx="4"/>
+  <text class="lbl greenT" x="470" y="88">y₃</text>
+
+  <!-- === ellipsis === -->
+  <path class="flow blue" d="M506,196 L574,196" marker-end="url(#ahblue)" stroke-width="2" opacity="0.5"/>
+  <text class="lbl" x="610" y="204" style="fill:#8A8A85;" font-size="26">…</text>
+  <path class="flow blue" d="M634,196 L700,196" marker-end="url(#ahblue)" stroke-width="2" opacity="0.5"/>
+
+  <!-- === t=T === -->
+  <path class="flow blue" d="M700,196 L742,196" marker-end="url(#ahblue)" stroke-width="2"/>
+  <text class="note" x="720" y="186" style="fill:#2F6FED;">W_h</text>
+  <rect class="box ink" x="744" y="272" width="72" height="46" rx="4"/>
+  <text class="lbl" x="780" y="302">x_T</text>
+  <path class="flow ink" d="M780,272 L780,232" marker-end="url(#ah)"/>
+  <text class="note" x="792" y="258">W_x</text>
+  <g transform="rotate(0.8 780 200)">
+    <rect class="box blue" x="744" y="168" width="72" height="56" rx="4" stroke-width="2"/>
+  </g>
+  <text class="lbl blueT" x="780" y="202">h_T</text>
+  <path class="flow green" d="M780,168 L780,134" marker-end="url(#ahgreen)"/>
+  <rect class="box green" x="744" y="60" width="72" height="44" rx="4"/>
+  <text class="lbl greenT" x="780" y="88">y_T</text>
+
+  <!-- === shared-weight note === -->
+  <text class="note" x="892" y="196">same W_x, W_h</text>
+  <text class="note" x="892" y="212">used at every step</text>
+
+  <!-- === long backward gradient path (Problem 1) === -->
+  <path class="flow red" d="M780,320 C680,348 380,348 130,320" stroke-dasharray="6 3" stroke-width="2" marker-end="url(#ahred)"/>
+  <text class="note" x="455" y="367" text-anchor="middle" style="fill:#E5484D;">gradient path through T steps — shrinks or explodes (vanishing / exploding gradients)</text>
+</svg>

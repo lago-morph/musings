@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 440" role="img" aria-label="The distributional hypothesis illustrated: the target word 'bank' appears in several different sentence contexts, and its meaning emerges from the union of neighbors — finance neighbors in some contexts, river neighbors in others.">
+  <title>Distributional hypothesis — meaning from context neighbors</title>
+  <desc>The word 'bank' sits in the center. Three sentence contexts radiate outward: 'river bank erodes', 'deposit at the bank', and 'bank lends money'. Each context window highlights the neighbors. The diagram shows that the word's meaning is built from the company it keeps — different neighbors in different contexts, forming the full distributional signature.</desc>
+  <style>
+    .board { fill: #FDFCF8; }
+    text { font-family: "Comic Sans MS","Comic Neue","Patrick Hand","Segoe Print",system-ui,sans-serif; fill: #222222; }
+    .ink   { stroke: #222222; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .blue  { stroke: #2F6FED; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .green { stroke: #2E9E5B; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .muted { stroke: #8A8A85; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .box   { fill: #FDFCF8; stroke: #222222; stroke-width: 2; stroke-linejoin: round; }
+    .boxB  { fill: #FDFCF8; stroke: #2F6FED; stroke-width: 2; stroke-linejoin: round; }
+    .boxG  { fill: #FDFCF8; stroke: #2E9E5B; stroke-width: 2; stroke-linejoin: round; }
+    .lbl   { font-size: 17px; text-anchor: middle; }
+    .ctxlbl { font-size: 14px; text-anchor: middle; fill: #8A8A85; }
+    .note  { font-size: 13px; fill: #8A8A85; }
+    .blueT  { fill: #2F6FED; }
+    .greenT { fill: #2E9E5B; }
+    .mutedT { fill: #8A8A85; }
+  </style>
+  <rect class="board" x="0" y="0" width="900" height="440"/>
+
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9" fill="none" stroke="#222222" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9" fill="none" stroke="#2F6FED" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9" fill="none" stroke="#2E9E5B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- Central target word -->
+  <g transform="rotate(-0.8 450 220)">
+    <rect class="box" x="390" y="188" width="120" height="56" rx="6" stroke-width="2.5"/>
+  </g>
+  <text class="lbl" x="450" y="222" font-size="22" font-weight="bold">bank</text>
+  <text class="note" x="450" y="262" text-anchor="middle">target word</text>
+
+  <!-- ===== CONTEXT 1: nature / river ===== -->
+  <!-- phrase box -->
+  <rect class="boxG" x="30" y="60" width="280" height="100" rx="8"/>
+  <text class="lbl greenT" x="170" y="90" font-size="15">context A</text>
+  <!-- token sequence -->
+  <rect class="boxG" x="46" y="100" width="64" height="34" rx="4"/>
+  <text class="lbl" x="78" y="122" font-size="14">river</text>
+  <rect style="fill:#2E9E5B; opacity:0.15;" x="116" y="100" width="64" height="34" rx="4"/>
+  <rect class="boxG" x="116" y="100" width="64" height="34" rx="4"/>
+  <text class="lbl" x="148" y="122" font-size="14">bank</text>
+  <rect class="boxG" x="186" y="100" width="74" height="34" rx="4"/>
+  <text class="lbl" x="223" y="122" font-size="14">erodes</text>
+  <text class="ctxlbl" x="170" y="152">neighbors: river, erodes</text>
+
+  <!-- arrow from context 1 to center -->
+  <path class="green" d="M312,110 C355,120 390,160 415,196" stroke-width="1.6" marker-end="url(#ahg)"/>
+
+  <!-- ===== CONTEXT 2: finance / deposit ===== -->
+  <rect class="boxB" x="30" y="220" width="290" height="100" rx="8"/>
+  <text class="lbl blueT" x="175" y="248" font-size="15">context B</text>
+  <rect class="boxB" x="46" y="258" width="74" height="34" rx="4"/>
+  <text class="lbl" x="83" y="280" font-size="14">deposit</text>
+  <rect style="fill:#2F6FED; opacity:0.15;" x="126" y="258" width="64" height="34" rx="4"/>
+  <rect class="boxB" x="126" y="258" width="64" height="34" rx="4"/>
+  <text class="lbl" x="158" y="280" font-size="14">bank</text>
+  <rect class="boxB" x="196" y="258" width="68" height="34" rx="4"/>
+  <text class="lbl" x="230" y="280" font-size="14">teller</text>
+  <text class="ctxlbl" x="175" y="308" fill="#2F6FED">neighbors: deposit, teller</text>
+
+  <!-- arrow from context 2 to center -->
+  <path class="blue" d="M322,270 C358,264 390,248 412,234" stroke-width="1.6" marker-end="url(#ahb)"/>
+
+  <!-- ===== CONTEXT 3: finance / loan ===== -->
+  <rect class="boxB" x="30" y="340" width="300" height="90" rx="8"/>
+  <text class="lbl blueT" x="180" y="365" font-size="15">context C</text>
+  <rect class="boxB" x="46" y="375" width="60" height="34" rx="4"/>
+  <text class="lbl" x="76" y="396" font-size="14">bank</text>
+  <rect class="boxB" x="112" y="375" width="60" height="34" rx="4"/>
+  <text class="lbl" x="142" y="396" font-size="14">lends</text>
+  <rect class="boxB" x="178" y="375" width="70" height="34" rx="4"/>
+  <text class="lbl" x="213" y="396" font-size="14">money</text>
+  <text class="ctxlbl" x="180" y="424" fill="#2F6FED">neighbors: lends, money</text>
+
+  <!-- arrow from context 3 to center -->
+  <path class="blue" d="M332,382 C370,370 400,320 420,268" stroke-width="1.6" marker-end="url(#ahb)"/>
+
+  <!-- ===== Right panel: distributional signature ===== -->
+  <rect class="box" x="580" y="80" width="290" height="280" rx="8" stroke-width="1.5"/>
+  <text class="lbl" x="725" y="108" font-size="16">distributional signature</text>
+  <text class="note" x="725" y="126" text-anchor="middle">of "bank"</text>
+
+  <!-- Accumulated neighbors list -->
+  <text class="lbl greenT" x="725" y="160" font-size="14">from nature contexts:</text>
+  <text class="note" x="725" y="180" text-anchor="middle">river, erodes, current, flows, ...</text>
+
+  <line class="muted" x1="600" y1="192" x2="852" y2="192" stroke-width="1" stroke-dasharray="3 3"/>
+
+  <text class="lbl blueT" x="725" y="216" font-size="14">from finance contexts:</text>
+  <text class="note" x="725" y="236" text-anchor="middle">deposit, money, lend, loan, interest, ...</text>
+
+  <line class="muted" x1="600" y1="248" x2="852" y2="248" stroke-width="1" stroke-dasharray="3 3"/>
+
+  <text class="lbl" x="725" y="278" font-size="13">Co-occurrence vector captures both.</text>
+  <text class="note" x="725" y="298" text-anchor="middle">Ambiguity lives in the merged profile.</text>
+  <text class="note" x="725" y="318" text-anchor="middle">(Static vectors conflate senses —</text>
+  <text class="note" x="725" y="334" text-anchor="middle">attention later resolves per-context.)</text>
+
+  <!-- arrow from center to signature box -->
+  <path class="ink" d="M512,214 L574,214" stroke-width="1.8" marker-end="url(#ah)"/>
+
+  <!-- Firth quote at bottom -->
+  <text class="note" x="450" y="422" text-anchor="middle">"You shall know a word by the company it keeps." — Firth, 1957</text>
+
+</svg>

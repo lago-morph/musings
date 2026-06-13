@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" role="img" aria-label="Decoder-only stack: input tokens feed through L causal-masked self-attention blocks, then a linear projection and softmax produce a next-token probability distribution.">
+  <title>Autoregressive LM — decoder-only stack, left-shifted input / right-shifted targets</title>
+  <desc>Input token embeddings (right-shifted) enter a stack of L transformer decoder blocks, each containing causal (masked) self-attention and a feed-forward network. The top block feeds a linear projection (n by V) then a row-wise softmax to yield the next-token distribution. A dashed arrow shows the right-shifted target alignment: position t predicts token t+1.</desc>
+  <style>
+    .board { fill: #FDFCF8; }
+    text { font-family: "Comic Sans MS","Comic Neue","Patrick Hand","Segoe Print",system-ui,sans-serif; fill: #222222; }
+    .ink   { stroke: #222222; fill: none; }
+    .blue  { stroke: #2F6FED; fill: none; }
+    .green { stroke: #2E9E5B; fill: none; }
+    .red   { stroke: #E5484D; fill: none; }
+    .muted { stroke: #8A8A85; fill: none; }
+    .boxfill { fill: #FDFCF8; }
+    .flow  { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .lbl   { font-size: 20px; text-anchor: middle; }
+    .dim   { font-size: 13px; text-anchor: middle; fill: #8A8A85; }
+    .note  { font-size: 13px; fill: #8A8A85; }
+    .notem { font-size: 13px; fill: #8A8A85; text-anchor: middle; }
+    .title { font-size: 14px; fill: #8A8A85; }
+    .blueT  { fill: #2F6FED; }
+    .greenT { fill: #2E9E5B; }
+    .redT   { fill: #E5484D; }
+  </style>
+  <rect class="board" x="0" y="0" width="1000" height="520"/>
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#222222" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#2F6FED" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#2E9E5B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahm" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#8A8A85" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <text class="title" x="24" y="26">autoregressive LM — decoder-only stack</text>
+
+  <!-- Input tokens (right-shifted) -->
+  <g transform="rotate(-0.5 120 460)">
+    <rect class="boxfill ink" x="50" y="430" width="140" height="52" rx="4" stroke-width="2"/>
+  </g>
+  <text class="lbl" x="120" y="462">x₁ x₂ … xₙ</text>
+  <text class="dim" x="120" y="498">input tokens (right-shifted)</text>
+
+  <!-- Arrow up to embeddings -->
+  <path class="flow ink" d="M120,430 L120,396" stroke-width="1.6" marker-end="url(#ah)"/>
+
+  <!-- Embeddings + positional encoding -->
+  <g transform="rotate(0.4 120 372)">
+    <rect class="boxfill ink" x="50" y="352" width="140" height="44" rx="4" stroke-width="2"/>
+  </g>
+  <text class="lbl" x="120" y="380" font-size="16">embed + pos enc</text>
+  <text class="dim" x="120" y="414">X ∈ ℝⁿ ˣ ᵈmodel</text>
+
+  <!-- Arrow up into block stack -->
+  <path class="flow ink" d="M120,352 L120,318" stroke-width="1.6" marker-end="url(#ah)"/>
+
+  <!-- Decoder block (bottom / block 1) -->
+  <g transform="rotate(-0.4 370 260)">
+    <rect class="boxfill blue" x="200" y="200" width="340" height="140" rx="6" stroke-width="2.5"/>
+  </g>
+  <text class="lbl blueT" x="370" y="232" font-size="17">decoder block × L</text>
+
+  <!-- inner: masked self-attention -->
+  <g transform="rotate(0.3 310 254)">
+    <rect class="boxfill red" x="216" y="238" width="188" height="38" rx="4" stroke-width="1.6"/>
+  </g>
+  <text class="lbl redT" x="310" y="263" font-size="14">causal self-attention</text>
+  <text class="notem redT" x="310" y="282" font-size="11">(masked — no peeking right)</text>
+
+  <!-- inner: FFN -->
+  <g transform="rotate(-0.3 440 284)">
+    <rect class="boxfill ink" x="420" y="238" width="104" height="38" rx="4" stroke-width="1.6"/>
+  </g>
+  <text class="lbl" x="472" y="263" font-size="14">FFN</text>
+
+  <!-- residual arrows inside block -->
+  <path class="flow ink" d="M404,257 L420,257" stroke-width="1.4" marker-end="url(#ah)"/>
+
+  <!-- Arrow from embed into bottom block -->
+  <path class="flow blue" d="M190,300 C200,295 210,290 218,280" stroke-width="1.6" marker-end="url(#ahb)"/>
+  <text class="note" x="148" y="300">X enters</text>
+  <text class="note" x="148" y="315">block 1</text>
+
+  <!-- Ellipsis between blocks -->
+  <text class="lbl" x="370" y="178" font-size="22">⋮</text>
+  <text class="notem" x="370" y="194">L blocks total</text>
+
+  <!-- Arrow from top of block stack to linear -->
+  <path class="flow ink" d="M370,200 L370,166" stroke-width="1.6" marker-end="url(#ah)"/>
+
+  <!-- Linear projection -->
+  <g transform="rotate(0.5 370 140)">
+    <rect class="boxfill ink" x="270" y="118" width="200" height="48" rx="4" stroke-width="2"/>
+  </g>
+  <text class="lbl" x="370" y="148">linear  (n × V)</text>
+  <text class="dim" x="370" y="180">projects to vocab logits</text>
+
+  <!-- Arrow to softmax -->
+  <path class="flow ink" d="M370,118 L370,86" stroke-width="1.6" marker-end="url(#ah)"/>
+
+  <!-- Softmax / output -->
+  <g transform="rotate(-0.4 370 62)">
+    <rect class="boxfill green" x="270" y="40" width="200" height="48" rx="4" stroke-width="2.5"/>
+  </g>
+  <text class="lbl greenT" x="370" y="70">softmax → p(xₜ₊₁ | x₁…xₜ)</text>
+
+  <!-- dim label -->
+  <text class="dim" x="370" y="104">next-token distribution  (n × V)</text>
+
+  <!-- Right-shift annotation -->
+  <text class="note" x="620" y="450">target = input shifted left by one:</text>
+  <text class="note" x="620" y="468">position t predicts token t+1</text>
+  <path class="flow muted" d="M620,440 C600,420 560,380 530,340" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#ahm)"/>
+
+  <!-- Cross-entropy loss label -->
+  <text class="note" x="620" y="80">loss: −Σ log p_θ(xₜ | x₁…xₜ₋₁)</text>
+  <path class="flow muted" d="M618,72 C580,66 540,64 474,64" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#ahm)"/>
+
+  <!-- Causal mask reminder -->
+  <text class="note" x="620" y="270">causal mask: each position</text>
+  <text class="note" x="620" y="286">sees only x₁…xₜ (no future)</text>
+  <path class="flow muted" d="M618,262 C590,258 540,258 410,258" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#ahm)"/>
+</svg>

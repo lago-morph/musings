@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 500" role="img" aria-label="A small term-context co-occurrence matrix on the left, and the resulting word vectors plotted in a 2-D semantic space on the right, showing similar words clustering together.">
+  <title>Distributional semantics — co-occurrence matrix and vector space</title>
+  <desc>Left panel: a term-context matrix with rows for words (bank, river, money, water, loan) and columns for context words (flows, interest, deposit, current). Counts fill the cells. Right panel: the five word vectors plotted as points in 2-D space; bank, money, and loan cluster together; river and water cluster together, illustrating that similar contexts produce nearby vectors.</desc>
+  <style>
+    .board { fill: #FDFCF8; }
+    text { font-family: "Comic Sans MS","Comic Neue","Patrick Hand","Segoe Print",system-ui,sans-serif; fill: #222222; }
+    .ink   { stroke: #222222; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .blue  { stroke: #2F6FED; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .red   { stroke: #E5484D; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .green { stroke: #2E9E5B; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .muted { stroke: #8A8A85; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .box   { fill: #FDFCF8; stroke: #222222; stroke-width: 2; stroke-linejoin: round; }
+    .lbl   { font-size: 18px; text-anchor: middle; }
+    .hdr   { font-size: 15px; text-anchor: middle; fill: #8A8A85; }
+    .cell  { font-size: 15px; text-anchor: middle; }
+    .dim   { font-size: 13px; text-anchor: middle; fill: #8A8A85; }
+    .note  { font-size: 13px; fill: #8A8A85; }
+    .title { font-size: 15px; fill: #8A8A85; }
+    .blueT  { fill: #2F6FED; }
+    .redT   { fill: #E5484D; }
+    .greenT { fill: #2E9E5B; }
+    .mutedT { fill: #8A8A85; }
+  </style>
+  <rect class="board" x="0" y="0" width="960" height="500"/>
+
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9" fill="none" stroke="#222222" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahm" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9" fill="none" stroke="#8A8A85" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- ===== LEFT PANEL: Co-occurrence matrix ===== -->
+  <text class="title" x="24" y="30">term–context co-occurrence matrix</text>
+
+  <!-- Column headers -->
+  <text class="hdr" x="238" y="68">flows</text>
+  <text class="hdr" x="316" y="68">interest</text>
+  <text class="hdr" x="394" y="68">deposit</text>
+  <text class="hdr" x="472" y="68">current</text>
+  <text class="hdr" x="355" y="90">context words →</text>
+
+  <!-- Row labels -->
+  <text class="lbl blueT" x="160" y="130">bank</text>
+  <text class="lbl" x="160" y="170">river</text>
+  <text class="lbl blueT" x="160" y="210">money</text>
+  <text class="lbl" x="160" y="250">water</text>
+  <text class="lbl blueT" x="160" y="290">loan</text>
+  <text class="note" x="80" y="210">words (rows)</text>
+
+  <!-- Grid lines (matrix border) -->
+  <rect class="box" x="198" y="100" width="312" height="210" rx="3"/>
+  <!-- Internal column dividers -->
+  <line class="muted" x1="276" y1="100" x2="276" y2="310" stroke-width="1"/>
+  <line class="muted" x1="354" y1="100" x2="354" y2="310" stroke-width="1"/>
+  <line class="muted" x1="432" y1="100" x2="432" y2="310" stroke-width="1"/>
+  <!-- Internal row dividers -->
+  <line class="muted" x1="198" y1="142" x2="510" y2="142" stroke-width="1"/>
+  <line class="muted" x1="198" y1="182" x2="510" y2="182" stroke-width="1"/>
+  <line class="muted" x1="198" y1="222" x2="510" y2="222" stroke-width="1"/>
+  <line class="muted" x1="198" y1="262" x2="510" y2="262" stroke-width="1"/>
+
+  <!-- Cell values -->
+  <!-- bank row: flows=1, interest=8, deposit=6, current=2 -->
+  <text class="cell" x="238" y="128">1</text>
+  <text class="cell blueT" x="316" y="128">8</text>
+  <text class="cell blueT" x="394" y="128">6</text>
+  <text class="cell" x="472" y="128">2</text>
+  <!-- river row: flows=9, interest=1, deposit=0, current=5 -->
+  <text class="cell" x="238" y="168">9</text>
+  <text class="cell" x="316" y="168">1</text>
+  <text class="cell" x="394" y="168">0</text>
+  <text class="cell" x="472" y="168">5</text>
+  <!-- money row: flows=0, interest=7, deposit=8, current=1 -->
+  <text class="cell" x="238" y="208">0</text>
+  <text class="cell blueT" x="316" y="208">7</text>
+  <text class="cell blueT" x="394" y="208">8</text>
+  <text class="cell" x="472" y="208">1</text>
+  <!-- water row: flows=7, interest=0, deposit=0, current=6 -->
+  <text class="cell" x="238" y="248">7</text>
+  <text class="cell" x="316" y="248">0</text>
+  <text class="cell" x="394" y="248">0</text>
+  <text class="cell" x="472" y="248">6</text>
+  <!-- loan row: flows=0, interest=9, deposit=5, current=0 -->
+  <text class="cell" x="238" y="288">0</text>
+  <text class="cell blueT" x="316" y="288">9</text>
+  <text class="cell blueT" x="394" y="288">5</text>
+  <text class="cell" x="472" y="288">0</text>
+
+  <!-- "each row = one word's vector" annotation -->
+  <text class="note" x="200" y="350">each row is word's co-occurrence vector</text>
+  <path class="muted" d="M354,312 L354,340" stroke-width="1" marker-end="url(#ahm)"/>
+  <text class="note" x="200" y="370">(here, dim = 4; real matrices: dim = V)</text>
+
+  <!-- ===== ARROW between panels ===== -->
+  <path class="ink" d="M526,205 L574,205" stroke-width="2" marker-end="url(#ah)"/>
+  <text class="note" x="550" y="194" text-anchor="middle">cosine</text>
+  <text class="note" x="550" y="218" text-anchor="middle">similarity</text>
+
+  <!-- ===== RIGHT PANEL: 2-D vector space ===== -->
+  <text class="title" x="600" y="30">semantic vector space (2-D projection)</text>
+
+  <!-- Axes -->
+  <line class="muted" x1="600" y1="420" x2="600" y2="60" stroke-width="1.5" marker-end="url(#ahm)"/>
+  <line class="muted" x1="590" y1="410" x2="950" y2="410" stroke-width="1.5" marker-end="url(#ahm)"/>
+
+  <!-- FINANCIAL cluster: bank(700,160), money(740,200), loan(680,220) -->
+  <!-- Ellipse grouping the financial cluster -->
+  <ellipse cx="710" cy="195" rx="72" ry="60" fill="none" stroke="#2F6FED" stroke-width="1.2" stroke-dasharray="5 3" opacity="0.5"/>
+  <text class="note blueT" x="710" y="140">finance</text>
+
+  <!-- bank -->
+  <circle cx="698" cy="168" r="6" fill="#2F6FED" stroke="none"/>
+  <text class="lbl blueT" x="698" y="156" text-anchor="middle" font-size="16">bank</text>
+
+  <!-- money -->
+  <circle cx="742" cy="202" r="6" fill="#2F6FED" stroke="none"/>
+  <text class="lbl blueT" x="762" y="198" text-anchor="start" font-size="16">money</text>
+
+  <!-- loan -->
+  <circle cx="680" cy="228" r="6" fill="#2F6FED" stroke="none"/>
+  <text class="lbl blueT" x="656" y="244" text-anchor="middle" font-size="16">loan</text>
+
+  <!-- NATURE cluster: river(820,300), water(870,280) -->
+  <ellipse cx="845" cy="295" rx="58" ry="44" fill="none" stroke="#2E9E5B" stroke-width="1.2" stroke-dasharray="5 3" opacity="0.5"/>
+  <text class="note greenT" x="845" y="340">nature</text>
+
+  <!-- river -->
+  <circle cx="820" cy="298" r="6" fill="#2E9E5B" stroke="none"/>
+  <text class="lbl greenT" x="806" y="316" text-anchor="middle" font-size="16">river</text>
+
+  <!-- water -->
+  <circle cx="872" cy="278" r="6" fill="#2E9E5B" stroke="none"/>
+  <text class="lbl greenT" x="896" y="274" text-anchor="start" font-size="16">water</text>
+
+  <!-- cosine angle annotation between the two clusters -->
+  <path class="muted" d="M718,196 L826,294" stroke-width="1" stroke-dasharray="4 3"/>
+  <text class="note" x="785" y="238" text-anchor="middle">far apart</text>
+  <text class="note" x="785" y="252" text-anchor="middle">(cosine ≈ low)</text>
+
+  <!-- within-cluster annotation -->
+  <path class="muted" d="M704,170 L738,200" stroke-width="1" stroke-dasharray="4 3"/>
+  <text class="note" x="638" y="192" text-anchor="middle">close together</text>
+  <text class="note" x="638" y="206" text-anchor="middle">(cosine ≈ high)</text>
+
+</svg>

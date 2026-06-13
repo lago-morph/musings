@@ -1,0 +1,175 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440" role="img" aria-label="The lower-triangular causal mask and the autoregressive feedback loop: each token sees only its own past, and each generated token becomes the next input.">
+  <title>Autoregressive LM — causal mask and generation loop</title>
+  <desc>Left panel: a 5-by-5 attention score matrix with the upper triangle shaded grey and labeled minus-infinity (masked), and the lower triangle plus diagonal shown as dots indicating allowed attention. Right panel: an autoregressive decoding loop where the prompt feeds into the decoder model, which outputs a new token via sample-or-argmax, which is appended to the prompt and fed back.</desc>
+  <style>
+    .board { fill: #FDFCF8; }
+    text { font-family: "Comic Sans MS","Comic Neue","Patrick Hand","Segoe Print",system-ui,sans-serif; fill: #222222; }
+    .ink   { stroke: #222222; fill: none; }
+    .blue  { stroke: #2F6FED; fill: none; }
+    .green { stroke: #2E9E5B; fill: none; }
+    .red   { stroke: #E5484D; fill: none; }
+    .muted { stroke: #8A8A85; fill: none; }
+    .boxfill { fill: #FDFCF8; }
+    .cellfill { fill: #FDFCF8; }
+    .maskfill { fill: #E8E8E4; }
+    .flow  { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .lbl   { font-size: 18px; text-anchor: middle; }
+    .dim   { font-size: 13px; text-anchor: middle; fill: #8A8A85; }
+    .note  { font-size: 13px; fill: #8A8A85; }
+    .notem { font-size: 13px; fill: #8A8A85; text-anchor: middle; }
+    .title { font-size: 14px; fill: #8A8A85; }
+    .blueT  { fill: #2F6FED; }
+    .greenT { fill: #2E9E5B; }
+    .redT   { fill: #E5484D; }
+    .mutedT { fill: #8A8A85; }
+  </style>
+  <rect class="board" x="0" y="0" width="960" height="440"/>
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#222222" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#2E9E5B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahm" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#8A8A85" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <text class="title" x="24" y="24">autoregressive LM — causal mask and generation loop</text>
+
+  <!-- ===== LEFT PANEL: causal attention mask ===== -->
+  <!-- Panel label -->
+  <text class="lbl" x="228" y="54" font-size="16">causal attention mask (5-token example)</text>
+
+  <!-- Axis labels -->
+  <text class="dim" x="94" y="102" text-anchor="end">query (t)</text>
+  <text class="dim" x="106" y="92">↓</text>
+  <text class="dim" x="228" y="390">key position (j) →</text>
+
+  <!-- Row labels -->
+  <text class="dim" x="94" y="148" text-anchor="end">t=1</text>
+  <text class="dim" x="94" y="204" text-anchor="end">t=2</text>
+  <text class="dim" x="94" y="260" text-anchor="end">t=3</text>
+  <text class="dim" x="94" y="316" text-anchor="end">t=4</text>
+  <text class="dim" x="94" y="372" text-anchor="end">t=5</text>
+
+  <!-- Col labels -->
+  <text class="dim" x="128" y="114" text-anchor="middle">j=1</text>
+  <text class="dim" x="184" y="114" text-anchor="middle">j=2</text>
+  <text class="dim" x="240" y="114" text-anchor="middle">j=3</text>
+  <text class="dim" x="296" y="114" text-anchor="middle">j=4</text>
+  <text class="dim" x="352" y="114" text-anchor="middle">j=5</text>
+
+  <!-- Grid cells: 5x5, cell size 56x56, top-left at (100,120) -->
+  <!-- Row 1: t=1 — only j=1 allowed -->
+  <rect class="cellfill ink" x="100" y="120" width="56" height="56" rx="2" stroke-width="1.2"/>
+  <text class="notem" x="128" y="153" font-size="16">•</text>
+
+  <rect class="maskfill muted" x="156" y="120" width="56" height="56" rx="2" stroke-width="1"/>
+  <text class="mutedT" x="184" y="153" font-size="13" text-anchor="middle">−∞</text>
+  <rect class="maskfill muted" x="212" y="120" width="56" height="56" rx="2" stroke-width="1"/>
+  <text class="mutedT" x="240" y="153" font-size="13" text-anchor="middle">−∞</text>
+  <rect class="maskfill muted" x="268" y="120" width="56" height="56" rx="2" stroke-width="1"/>
+  <text class="mutedT" x="296" y="153" font-size="13" text-anchor="middle">−∞</text>
+  <rect class="maskfill muted" x="324" y="120" width="56" height="56" rx="2" stroke-width="1"/>
+  <text class="mutedT" x="352" y="153" font-size="13" text-anchor="middle">−∞</text>
+
+  <!-- Row 2: t=2 — j=1,2 allowed -->
+  <rect class="cellfill ink" x="100" y="176" width="56" height="56" rx="2" stroke-width="1.2"/>
+  <text class="notem" x="128" y="209" font-size="16">•</text>
+  <rect class="cellfill ink" x="156" y="176" width="56" height="56" rx="2" stroke-width="1.2"/>
+  <text class="notem" x="184" y="209" font-size="16">•</text>
+  <rect class="maskfill muted" x="212" y="176" width="56" height="56" rx="2" stroke-width="1"/>
+  <text class="mutedT" x="240" y="209" font-size="13" text-anchor="middle">−∞</text>
+  <rect class="maskfill muted" x="268" y="176" width="56" height="56" rx="2" stroke-width="1"/>
+  <text class="mutedT" x="296" y="209" font-size="13" text-anchor="middle">−∞</text>
+  <rect class="maskfill muted" x="324" y="176" width="56" height="56" rx="2" stroke-width="1"/>
+  <text class="mutedT" x="352" y="209" font-size="13" text-anchor="middle">−∞</text>
+
+  <!-- Row 3: t=3 — j=1,2,3 allowed -->
+  <rect class="cellfill ink" x="100" y="232" width="56" height="56" rx="2" stroke-width="1.2"/>
+  <text class="notem" x="128" y="265" font-size="16">•</text>
+  <rect class="cellfill ink" x="156" y="232" width="56" height="56" rx="2" stroke-width="1.2"/>
+  <text class="notem" x="184" y="265" font-size="16">•</text>
+  <rect class="cellfill ink" x="212" y="232" width="56" height="56" rx="2" stroke-width="1.2"/>
+  <text class="notem" x="240" y="265" font-size="16">•</text>
+  <rect class="maskfill muted" x="268" y="232" width="56" height="56" rx="2" stroke-width="1"/>
+  <text class="mutedT" x="296" y="265" font-size="13" text-anchor="middle">−∞</text>
+  <rect class="maskfill muted" x="324" y="232" width="56" height="56" rx="2" stroke-width="1"/>
+  <text class="mutedT" x="352" y="265" font-size="13" text-anchor="middle">−∞</text>
+
+  <!-- Row 4: t=4 — j=1,2,3,4 allowed -->
+  <rect class="cellfill ink" x="100" y="288" width="56" height="56" rx="2" stroke-width="1.2"/>
+  <text class="notem" x="128" y="321" font-size="16">•</text>
+  <rect class="cellfill ink" x="156" y="288" width="56" height="56" rx="2" stroke-width="1.2"/>
+  <text class="notem" x="184" y="321" font-size="16">•</text>
+  <rect class="cellfill ink" x="212" y="288" width="56" height="56" rx="2" stroke-width="1.2"/>
+  <text class="notem" x="240" y="321" font-size="16">•</text>
+  <rect class="cellfill ink" x="268" y="288" width="56" height="56" rx="2" stroke-width="1.2"/>
+  <text class="notem" x="296" y="321" font-size="16">•</text>
+  <rect class="maskfill muted" x="324" y="288" width="56" height="56" rx="2" stroke-width="1"/>
+  <text class="mutedT" x="352" y="321" font-size="13" text-anchor="middle">−∞</text>
+
+  <!-- Row 5: t=5 — all allowed -->
+  <rect class="cellfill ink" x="100" y="344" width="56" height="56" rx="2" stroke-width="1.2"/>
+  <text class="notem" x="128" y="377" font-size="16">•</text>
+  <rect class="cellfill ink" x="156" y="344" width="56" height="56" rx="2" stroke-width="1.2"/>
+  <text class="notem" x="184" y="377" font-size="16">•</text>
+  <rect class="cellfill ink" x="212" y="344" width="56" height="56" rx="2" stroke-width="1.2"/>
+  <text class="notem" x="240" y="377" font-size="16">•</text>
+  <rect class="cellfill ink" x="268" y="344" width="56" height="56" rx="2" stroke-width="1.2"/>
+  <text class="notem" x="296" y="377" font-size="16">•</text>
+  <rect class="cellfill ink" x="324" y="344" width="56" height="56" rx="2" stroke-width="1.2"/>
+  <text class="notem" x="352" y="377" font-size="16">•</text>
+
+  <!-- Legend for mask panel -->
+  <rect x="100" y="400" width="14" height="14" fill="#FDFCF8" stroke="#222222" stroke-width="1.2" rx="2"/>
+  <text class="note" x="120" y="413">allowed</text>
+  <rect x="190" y="400" width="14" height="14" fill="#E8E8E4" stroke="#8A8A85" stroke-width="1" rx="2"/>
+  <text class="note" x="210" y="413">masked (−∞ → weight = 0)</text>
+
+  <!-- Caption under matrix -->
+  <text class="notem" x="228" y="428" font-size="12">position t attends only to j ≤ t</text>
+
+  <!-- ===== RIGHT PANEL: autoregressive generation loop ===== -->
+  <!-- Panel label -->
+  <text class="lbl" x="700" y="54" font-size="16">autoregressive generation loop</text>
+
+  <!-- Prompt box -->
+  <g transform="rotate(-0.4 620 148)">
+    <rect class="boxfill blue" x="520" y="112" width="200" height="72" rx="6" stroke-width="2"/>
+  </g>
+  <text class="lbl blueT" x="620" y="148" font-size="17">prompt</text>
+  <text class="dim" x="620" y="172">x₁ x₂ … xₜ</text>
+
+  <!-- Arrow right to model -->
+  <path class="flow ink" d="M720,148 L770,148" stroke-width="1.6" marker-end="url(#ah)"/>
+
+  <!-- Model box -->
+  <g transform="rotate(0.5 840 148)">
+    <rect class="boxfill ink" x="772" y="112" width="136" height="72" rx="6" stroke-width="2"/>
+  </g>
+  <text class="lbl" x="840" y="144" font-size="16">decoder</text>
+  <text class="lbl" x="840" y="166" font-size="16">model</text>
+
+  <!-- Arrow down to new token -->
+  <path class="flow ink" d="M840,184 L840,244" stroke-width="1.6" marker-end="url(#ah)"/>
+  <text class="note" x="848" y="222">sample or</text>
+  <text class="note" x="848" y="238">argmax</text>
+
+  <!-- New token box -->
+  <g transform="rotate(0.4 840 288)">
+    <rect class="boxfill green" x="768" y="256" width="144" height="64" rx="6" stroke-width="2.5"/>
+  </g>
+  <text class="lbl greenT" x="840" y="286" font-size="17">new token</text>
+  <text class="dim" x="840" y="310">xₜ₊₁</text>
+
+  <!-- Feedback loop: curved arrow from new token back to prompt -->
+  <path class="flow muted" d="M768,292 C700,320 620,340 560,320 C520,306 516,290 518,242 C518,212 518,192 520,185" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#ahm)"/>
+  <text class="note" x="640" y="348">append and repeat</text>
+
+  <!-- Annotation: t+1 becomes new end of prompt -->
+  <text class="note" x="530" y="360">new prompt: x₁ … xₜ xₜ₊₁</text>
+
+</svg>

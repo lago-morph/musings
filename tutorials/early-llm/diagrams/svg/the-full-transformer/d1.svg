@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 780" role="img" aria-label="The full encoder-decoder transformer: an N-deep encoder feeds the cross-attention of an N-deep decoder; both start from embeddings plus positional encoding, and the decoder ends in a linear projection and softmax over the vocabulary.">
+  <title>The full encoder–decoder transformer (Figure-1 style)</title>
+  <desc>Two towers, data flowing bottom to top. Left, the encoder: input embeddings with positional encoding added flow up through N identical blocks of self-attention then feed-forward, each with Add and Norm. Right, the decoder: right-shifted output embeddings with positional encoding added flow up through N blocks of masked self-attention, then encoder-decoder cross-attention, then feed-forward, each with Add and Norm. The top encoder output feeds the cross-attention sublayer of the decoder as keys and values, while queries come from the decoder. The decoder ends in a linear projection to V logits and a softmax giving the next-token probabilities.</desc>
+  <style>
+    .board { fill: #FDFCF8; }
+    text { font-family: "Comic Sans MS","Comic Neue","Patrick Hand","Segoe Print",system-ui,sans-serif; fill: #222222; }
+    .ink   { stroke: #222222; }
+    .blue  { stroke: #2F6FED; }
+    .red   { stroke: #E5484D; }
+    .green { stroke: #2E9E5B; }
+    .muted { stroke: #8A8A85; }
+    .box   { fill: #FDFCF8; stroke-width: 2; stroke-linejoin: round; }
+    .flow  { fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    .lbl   { font-size: 16px; text-anchor: middle; }
+    .sub   { font-size: 14px; text-anchor: middle; }
+    .dim   { font-size: 12px; text-anchor: middle; fill: #8A8A85; }
+    .note  { font-size: 13px; fill: #8A8A85; }
+    .title { font-size: 15px; fill: #8A8A85; }
+    .blueT  { fill: #2F6FED; }
+    .redT   { fill: #E5484D; }
+    .greenT { fill: #2E9E5B; }
+  </style>
+  <rect class="board" x="0" y="0" width="880" height="780"/>
+  <defs>
+    <marker id="ftah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#222222" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ftahr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#E5484D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <text class="title" x="24" y="28">the full transformer — encoder (left) + decoder (right), flow bottom→top</text>
+
+  <!-- ===================== ENCODER TOWER ===================== -->
+  <!-- input plumbing at the bottom -->
+  <text class="lbl" x="210" y="730">Inputs</text>
+  <text class="dim" x="210" y="748">source tokens</text>
+  <rect class="box ink" x="110" y="640" width="200" height="42" rx="6"/>
+  <text class="sub" x="210" y="666">Input Embedding</text>
+  <path class="flow ink" d="M210,714 L210,684" marker-end="url(#ftah)"/>
+  <!-- + positional encoding -->
+  <circle class="box ink" cx="210" cy="600" r="15"/>
+  <text class="lbl" x="210" y="606" font-size="18">+</text>
+  <path class="flow ink" d="M210,640 L210,617" marker-end="url(#ftah)"/>
+  <text class="note" x="232" y="596">Positional</text>
+  <text class="note" x="232" y="612">Encoding</text>
+  <path class="flow muted" d="M300,600 L227,600" marker-end="url(#ftah)" stroke-dasharray="3 3"/>
+  <!-- into stack -->
+  <path class="flow ink" d="M210,585 L210,548" marker-end="url(#ftah)"/>
+  <text class="dim" x="262" y="566">n × d_model</text>
+
+  <!-- stack enclosure -->
+  <rect class="muted" x="70" y="100" width="280" height="448" rx="10" fill="none" stroke-dasharray="4 4" stroke-width="1.3"/>
+  <text class="note" x="210" y="92">encoder block  × N (= 6)</text>
+
+  <!-- self-attention (bottom of stack) -->
+  <rect class="box blue" x="100" y="468" width="220" height="48" rx="6"/>
+  <text class="sub blueT" x="210" y="488">multi-head</text>
+  <text class="sub blueT" x="210" y="506">self-attention</text>
+  <!-- add&norm 1 -->
+  <rect class="box red" x="120" y="414" width="180" height="32" rx="6"/>
+  <text class="sub redT" x="210" y="435">Add &amp; Norm</text>
+  <path class="flow ink" d="M210,468 L210,448" marker-end="url(#ftah)"/>
+  <!-- ffn -->
+  <rect class="box blue" x="100" y="346" width="220" height="48" rx="6"/>
+  <text class="sub blueT" x="210" y="376">feed-forward (FFN)</text>
+  <path class="flow ink" d="M210,414 L210,396" marker-end="url(#ftah)"/>
+  <!-- add&norm 2 (top of stack) -->
+  <rect class="box red" x="120" y="292" width="180" height="32" rx="6"/>
+  <text class="sub redT" x="210" y="313">Add &amp; Norm</text>
+  <path class="flow ink" d="M210,346 L210,326" marker-end="url(#ftah)"/>
+  <!-- encoder output stub -->
+  <path class="flow ink" d="M210,292 L210,250"/>
+  <text class="note redT" x="84" y="246">encoder top output</text>
+
+  <!-- ===================== DECODER TOWER ===================== -->
+  <!-- input plumbing at the bottom -->
+  <text class="lbl" x="670" y="730">Outputs</text>
+  <text class="dim" x="670" y="748">(shifted right)</text>
+  <rect class="box ink" x="570" y="640" width="200" height="42" rx="6"/>
+  <text class="sub" x="670" y="666">Output Embedding</text>
+  <path class="flow ink" d="M670,714 L670,684" marker-end="url(#ftah)"/>
+  <circle class="box ink" cx="670" cy="600" r="15"/>
+  <text class="lbl" x="670" y="606" font-size="18">+</text>
+  <path class="flow ink" d="M670,640 L670,617" marker-end="url(#ftah)"/>
+  <text class="note" x="692" y="596">Positional</text>
+  <text class="note" x="692" y="612">Encoding</text>
+  <path class="flow muted" d="M780,600 L687,600" marker-end="url(#ftah)" stroke-dasharray="3 3"/>
+  <path class="flow ink" d="M670,585 L670,548" marker-end="url(#ftah)"/>
+
+  <rect class="muted" x="520" y="100" width="300" height="448" rx="10" fill="none" stroke-dasharray="4 4" stroke-width="1.3"/>
+  <text class="note" x="670" y="92">decoder block  × N (= 6)</text>
+
+  <!-- masked self-attention (bottom) -->
+  <rect class="box blue" x="550" y="490" width="240" height="48" rx="6"/>
+  <text class="sub blueT" x="670" y="510">masked multi-head</text>
+  <text class="sub blueT" x="670" y="528">self-attention</text>
+  <text class="note" x="800" y="510">causal</text>
+  <text class="note" x="800" y="526">mask</text>
+  <path class="flow muted" d="M794,512 L790,512" marker-end="url(#ftah)" stroke-dasharray="3 3"/>
+  <!-- add&norm -->
+  <rect class="box red" x="570" y="442" width="200" height="30" rx="6"/>
+  <text class="sub redT" x="670" y="462">Add &amp; Norm</text>
+  <path class="flow ink" d="M670,490 L670,474" marker-end="url(#ftah)"/>
+  <!-- cross-attention -->
+  <rect class="box blue" x="550" y="372" width="240" height="48" rx="6" stroke-width="3"/>
+  <text class="sub blueT" x="670" y="392">encoder–decoder</text>
+  <text class="sub blueT" x="670" y="410">cross-attention</text>
+  <path class="flow ink" d="M670,442 L670,422" marker-end="url(#ftah)"/>
+  <!-- add&norm -->
+  <rect class="box red" x="570" y="324" width="200" height="30" rx="6"/>
+  <text class="sub redT" x="670" y="344">Add &amp; Norm</text>
+  <path class="flow ink" d="M670,372 L670,356" marker-end="url(#ftah)"/>
+  <!-- ffn -->
+  <rect class="box blue" x="550" y="256" width="240" height="46" rx="6"/>
+  <text class="sub blueT" x="670" y="284">feed-forward (FFN)</text>
+  <path class="flow ink" d="M670,324 L670,304" marker-end="url(#ftah)"/>
+  <!-- add&norm (top) -->
+  <rect class="box red" x="570" y="202" width="200" height="30" rx="6"/>
+  <text class="sub redT" x="670" y="222">Add &amp; Norm</text>
+  <path class="flow ink" d="M670,256 L670,234" marker-end="url(#ftah)"/>
+
+  <!-- ===================== CROSS-ATTENTION BRIDGE ===================== -->
+  <!-- encoder top output -> decoder cross-attention (K & V) -->
+  <path class="flow red" d="M210,250 C360,250 360,396 548,396" marker-end="url(#ftahr)" stroke-width="2.4"/>
+  <text class="note redT" x="372" y="320">keys &amp; values</text>
+  <text class="note redT" x="372" y="336">from encoder</text>
+  <text class="note" x="556" y="468" text-anchor="start">queries from decoder ↑</text>
+
+  <!-- ===================== OUTPUT HEAD ===================== -->
+  <path class="flow ink" d="M670,202 L670,174" marker-end="url(#ftah)"/>
+  <rect class="box ink" x="590" y="138" width="160" height="34" rx="6"/>
+  <text class="sub" x="670" y="160">Linear → V logits</text>
+  <path class="flow ink" d="M670,138 L670,114" marker-end="url(#ftah)"/>
+  <rect class="box ink" x="600" y="80" width="140" height="32" rx="6"/>
+  <text class="sub" x="670" y="101">Softmax</text>
+  <path class="flow green" d="M670,80 L670,56" marker-end="url(#ftah)"/>
+  <text class="lbl greenT" x="670" y="48">output probabilities</text>
+  <text class="dim" x="670" y="66">P(next token), size V</text>
+</svg>

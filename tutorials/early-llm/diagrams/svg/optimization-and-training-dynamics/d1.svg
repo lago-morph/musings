@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 500" role="img" aria-label="The original transformer learning-rate schedule: linear warmup to a peak at warmup_steps, then inverse-square-root decay.">
+  <title>Transformer learning-rate schedule: warmup then inverse-sqrt decay</title>
+  <desc>Learning rate against training step. The curve rises linearly during warmup to a peak at warmup_steps = 4000, then decays proportionally to one over the square root of the step. The peak is marked with a dashed vertical line at the crossover of the two arms of the min function.</desc>
+  <style>
+    .board { fill: #FDFCF8; }
+    text { font-family: "Comic Sans MS","Comic Neue","Patrick Hand","Segoe Print",system-ui,sans-serif; fill: #222222; }
+    .ink   { stroke: #222222; }
+    .blue  { stroke: #2F6FED; }
+    .red   { stroke: #E5484D; }
+    .muted { stroke: #8A8A85; }
+    .flow  { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .axis  { stroke: #222222; stroke-width: 1.6; stroke-linecap: round; }
+    .curve { fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .lbl   { font-size: 15px; }
+    .lblc  { font-size: 15px; text-anchor: middle; }
+    .note  { font-size: 13px; fill: #8A8A85; }
+    .notec { font-size: 13px; fill: #8A8A85; text-anchor: middle; }
+    .title { font-size: 15px; fill: #8A8A85; }
+    .blueT { fill: #2F6FED; } .redT { fill: #E5484D; }
+  </style>
+  <rect class="board" x="0" y="0" width="880" height="500"/>
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#222222" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <text class="title" x="24" y="28">transformer LR schedule — warmup, then 1/√step decay</text>
+
+  <!-- axes -->
+  <line class="axis" x1="90" y1="80"  x2="90"  y2="380" marker-end="url(#ah)"/>
+  <line class="axis" x1="90" y1="380" x2="820" y2="380" marker-end="url(#ah)"/>
+  <text class="lbl" x="40" y="80">η</text>
+  <text class="note" x="40" y="96">learning</text>
+  <text class="note" x="40" y="110">rate</text>
+  <text class="lbl" x="780" y="404">training step</text>
+
+  <!-- warmup region shading bracket -->
+  <line class="muted" x1="90" y1="392" x2="300" y2="392" stroke-width="1.4"/>
+  <text class="notec" x="195" y="410">warmup — linear rise</text>
+  <line class="muted" x1="300" y1="392" x2="800" y2="392" stroke-width="1.4"/>
+  <text class="notec" x="550" y="410">decay ∝ 1/√step</text>
+
+  <!-- the curve: linear up from (90,380) to peak (300,120), then inverse-sqrt decay -->
+  <!-- peak at x=300 (warmup_steps), y=120 -->
+  <path class="curve blue" d="M90,380 L300,120
+    C360,150 410,180 470,212
+    C540,248 620,282 720,308
+    C760,318 790,324 800,326"/>
+
+  <!-- dashed vertical at peak -->
+  <line class="muted" x1="300" y1="120" x2="300" y2="380" stroke-width="1.4" stroke-dasharray="4 3"/>
+  <circle class="red" cx="300" cy="120" r="4" fill="#E5484D"/>
+  <text class="lblc redT" x="300" y="106">peak</text>
+  <text class="notec" x="300" y="398" font-size="13" fill="#222222">warmup_steps = 4000</text>
+
+  <!-- crossover annotation -->
+  <text class="note" x="330" y="138">crossover: the two arms of</text>
+  <text class="note" x="330" y="154">min(·) meet here</text>
+
+  <!-- warmup margin note -->
+  <text class="note" x="110" y="300">small LR while Adam's variance</text>
+  <text class="note" x="110" y="316">estimates are still noisy →</text>
+  <text class="note" x="110" y="332">grow it gently to avoid divergence</text>
+
+  <!-- formula caption -->
+  <text class="lblc" x="440" y="450" font-size="15">η(step) = d_model^(−0.5) · min( step^(−0.5),  step · warmup^(−1.5) )</text>
+</svg>

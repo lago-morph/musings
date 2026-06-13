@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 520" role="img" aria-label="The split-into-heads, attend-in-parallel, concatenate, and project pipeline, with every tensor shape labeled.">
+  <title>Multi-head attention — split, attend in parallel, concatenate, project</title>
+  <desc>Input X (n by d_model) fans out into h parallel heads; each head applies its own learned projections W_Q-i, W_K-i, W_V-i and runs scaled dot-product attention, emitting head_i of shape n by d_v. The h outputs are concatenated to n by (h times d_v) and projected by W_O back to n by d_model. A note records that d_k equals d_v equals d_model over h, so total compute is about one full-width attention.</desc>
+  <style>
+    .board { fill: #FDFCF8; }
+    text { font-family: "Comic Sans MS","Comic Neue","Patrick Hand","Segoe Print",system-ui,sans-serif; fill: #222222; }
+    .ink   { stroke: #222222; }
+    .blue  { stroke: #2F6FED; }
+    .red   { stroke: #E5484D; }
+    .green { stroke: #2E9E5B; }
+    .muted { stroke: #8A8A85; }
+    .box   { fill: #FDFCF8; stroke-width: 2; stroke-linejoin: round; }
+    .flow  { fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .lbl   { font-size: 22px; text-anchor: middle; }
+    .dim   { font-size: 13px; text-anchor: middle; fill: #8A8A85; }
+    .note  { font-size: 13px; fill: #8A8A85; }
+    .title { font-size: 15px; fill: #8A8A85; }
+    .grp   { fill: none; stroke: #8A8A85; stroke-width: 1.4; stroke-dasharray: 5 4; }
+    .blueT  { fill: #2F6FED; }
+    .redT   { fill: #E5484D; }
+    .greenT { fill: #2E9E5B; }
+  </style>
+  <rect class="board" x="0" y="0" width="1080" height="520"/>
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#222222" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <text class="title" x="24" y="28">multi-head attention</text>
+
+  <!-- X: input -->
+  <g transform="rotate(-0.6 70 250)">
+    <rect class="box ink" x="28" y="200" width="84" height="116" rx="4"/>
+    <line class="ink" x1="28" y1="232" x2="112" y2="232" stroke-width="1"/>
+    <line class="ink" x1="28" y1="262" x2="112" y2="262" stroke-width="1"/>
+    <line class="ink" x1="28" y1="292" x2="112" y2="292" stroke-width="1"/>
+  </g>
+  <text class="lbl" x="70" y="194">X</text>
+  <text class="dim" x="70" y="336">n × d_model</text>
+
+  <!-- fan-out into heads -->
+  <path class="flow ink" d="M112,222 C160,150 200,108 244,96"  marker-end="url(#ah)"/>
+  <path class="flow ink" d="M112,252 C160,230 200,222 244,220" marker-end="url(#ah)"/>
+  <path class="flow ink" d="M112,294 C160,360 200,398 244,408" marker-end="url(#ah)"/>
+
+  <!-- head group enclosure -->
+  <rect class="grp" x="240" y="60" width="396" height="392" rx="10"/>
+  <text class="note" x="438" y="80" text-anchor="middle">h heads in parallel</text>
+
+  <!-- head 1 -->
+  <g>
+    <rect class="box ink" x="256" y="92" width="364" height="74" rx="5"/>
+    <text class="lbl" x="284" y="136" font-size="15">head 1</text>
+    <text class="note blueT" x="356" y="118" text-anchor="middle">× W_Q¹</text>
+    <text class="note redT"  x="356" y="136" text-anchor="middle">× W_K¹</text>
+    <text class="note greenT" x="356" y="154" text-anchor="middle">× W_V¹</text>
+    <rect class="box ink" x="420" y="106" width="118" height="46" rx="4"/>
+    <text class="note" x="479" y="126" text-anchor="middle">scaled dot-product</text>
+    <text class="note" x="479" y="143" text-anchor="middle">attention</text>
+    <text class="greenT" x="578" y="126" text-anchor="middle" font-size="14">head₁</text>
+    <text class="dim" x="578" y="143">n × d_v</text>
+  </g>
+
+  <!-- head 2 -->
+  <g>
+    <rect class="box ink" x="256" y="192" width="364" height="74" rx="5"/>
+    <text class="lbl" x="284" y="236" font-size="15">head 2</text>
+    <text class="note blueT" x="356" y="218" text-anchor="middle">× W_Q²</text>
+    <text class="note redT"  x="356" y="236" text-anchor="middle">× W_K²</text>
+    <text class="note greenT" x="356" y="254" text-anchor="middle">× W_V²</text>
+    <rect class="box ink" x="420" y="206" width="118" height="46" rx="4"/>
+    <text class="note" x="479" y="226" text-anchor="middle">scaled dot-product</text>
+    <text class="note" x="479" y="243" text-anchor="middle">attention</text>
+    <text class="greenT" x="578" y="226" text-anchor="middle" font-size="14">head₂</text>
+    <text class="dim" x="578" y="243">n × d_v</text>
+  </g>
+
+  <!-- ellipsis -->
+  <text class="lbl" x="438" y="300" font-size="22" fill="#8A8A85">⋮</text>
+
+  <!-- head h -->
+  <g>
+    <rect class="box ink" x="256" y="318" width="364" height="74" rx="5"/>
+    <text class="lbl" x="284" y="362" font-size="15">head h</text>
+    <text class="note blueT" x="356" y="344" text-anchor="middle">× W_Qʰ</text>
+    <text class="note redT"  x="356" y="362" text-anchor="middle">× W_Kʰ</text>
+    <text class="note greenT" x="356" y="380" text-anchor="middle">× W_Vʰ</text>
+    <rect class="box ink" x="420" y="332" width="118" height="46" rx="4"/>
+    <text class="note" x="479" y="352" text-anchor="middle">scaled dot-product</text>
+    <text class="note" x="479" y="369" text-anchor="middle">attention</text>
+    <text class="greenT" x="578" y="352" text-anchor="middle" font-size="14">headₕ</text>
+    <text class="dim" x="578" y="369">n × d_v</text>
+  </g>
+
+  <!-- per-head Q/K/V shape note -->
+  <text class="dim" x="356" y="172">Q,K: n × d_k   V: n × d_v</text>
+
+  <!-- heads -> concat -->
+  <path class="flow ink" d="M620,129 C680,135 700,200 730,236" marker-end="url(#ah)"/>
+  <path class="flow ink" d="M620,229 C672,232 700,236 730,250" marker-end="url(#ah)"/>
+  <path class="flow ink" d="M620,355 C680,349 700,290 730,264" marker-end="url(#ah)"/>
+
+  <!-- concat -->
+  <rect class="box ink" x="732" y="216" width="118" height="74" rx="5"/>
+  <text class="lbl" x="791" y="258" font-size="18">Concat</text>
+  <text class="dim" x="791" y="306">n × (h · d_v)</text>
+
+  <!-- concat -> W_O -->
+  <path class="flow ink" d="M850,253 L912,253" marker-end="url(#ah)"/>
+  <text class="note" x="881" y="240" text-anchor="middle">× W_O</text>
+
+  <!-- output -->
+  <g transform="rotate(-0.6 968 253)">
+    <rect class="box green" x="914" y="214" width="108" height="78" rx="4"/>
+  </g>
+  <text class="lbl greenT" x="968" y="250" font-size="16">output</text>
+  <text class="dim" x="968" y="272">n × d_model</text>
+
+  <!-- budget note -->
+  <text class="note" x="28" y="468">d_k = d_v = d_model / h</text>
+  <text class="note" x="28" y="486">→ total compute ≈ one full-width attention</text>
+</svg>

@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 420" role="img" aria-label="Skip-gram architecture: center word looks up the V-by-d input embedding matrix producing a d-dimensional row vector, which is multiplied against the output embedding matrix to score all V vocabulary words; negative sampling replaces the full-vocabulary softmax with k-plus-one binary logistic decisions.">
+  <title>Skip-gram word2vec with negative sampling — data flow</title>
+  <desc>Left to right: a center word index feeds a lookup into the input embedding matrix E (V by d), extracting one row e_center (1 by d). That row multiplies the output embedding matrix E-prime (V by d) to produce a score vector (1 by V). Because a full softmax over V is intractable, negative sampling replaces it: one true context word and k noise-sampled words each receive a logistic comparison. Gradients flow back to update the embedding rows.</desc>
+  <style>
+    .board { fill: #FDFCF8; }
+    text { font-family: "Comic Sans MS","Comic Neue","Patrick Hand","Segoe Print",system-ui,sans-serif; fill: #222222; }
+    .ink   { stroke: #222222; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .blue  { stroke: #2F6FED; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .red   { stroke: #E5484D; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .green { stroke: #2E9E5B; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .muted { stroke: #8A8A85; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .box   { fill: #FDFCF8; stroke: #222222; stroke-width: 2; stroke-linejoin: round; }
+    .boxB  { fill: #FDFCF8; stroke: #2F6FED; stroke-width: 2; stroke-linejoin: round; }
+    .boxG  { fill: #FDFCF8; stroke: #2E9E5B; stroke-width: 2; stroke-linejoin: round; }
+    .boxR  { fill: #FDFCF8; stroke: #E5484D; stroke-width: 2; stroke-linejoin: round; }
+    .lbl   { font-size: 18px; text-anchor: middle; }
+    .dim   { font-size: 13px; text-anchor: middle; fill: #8A8A85; }
+    .note  { font-size: 13px; fill: #8A8A85; }
+    .arrowlbl { font-size: 14px; text-anchor: middle; }
+    .title { font-size: 15px; fill: #8A8A85; }
+    .blueT  { fill: #2F6FED; }
+    .redT   { fill: #E5484D; }
+    .greenT { fill: #2E9E5B; }
+  </style>
+  <rect class="board" x="0" y="0" width="1080" height="420"/>
+
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9" fill="none" stroke="#222222" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9" fill="none" stroke="#2E9E5B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahm" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9" fill="none" stroke="#8A8A85" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <text class="title" x="24" y="28">skip-gram word2vec with negative sampling</text>
+
+  <!-- Step 1: center word box -->
+  <g transform="rotate(-0.5 90 200)">
+    <rect class="boxB" x="24" y="162" width="132" height="76" rx="4"/>
+  </g>
+  <text class="lbl blueT" x="90" y="195">center word</text>
+  <text class="lbl blueT" x="90" y="217">(index)</text>
+
+  <!-- Arrow: lookup -->
+  <path class="ink" d="M157,200 L210,200" stroke-width="1.8" marker-end="url(#ah)"/>
+  <text class="arrowlbl" x="184" y="188">lookup</text>
+
+  <!-- Step 2: input embedding matrix E (tall rectangle, rows suggested) -->
+  <g transform="rotate(0.6 272 200)">
+    <rect class="boxB" x="212" y="80" width="120" height="240" rx="4" stroke-width="2.5"/>
+  </g>
+  <!-- row lines to suggest matrix -->
+  <line class="muted" x1="213" y1="140" x2="331" y2="140" stroke-width="0.8"/>
+  <line class="muted" x1="213" y1="168" x2="331" y2="168" stroke-width="0.8"/>
+  <line class="blue" x1="213" y1="196" x2="331" y2="196" stroke-width="2.2"/>
+  <line class="muted" x1="213" y1="224" x2="331" y2="224" stroke-width="0.8"/>
+  <line class="muted" x1="213" y1="252" x2="331" y2="252" stroke-width="0.8"/>
+  <text class="lbl blueT" x="272" y="118">E</text>
+  <text class="dim" x="272" y="342">V × d</text>
+  <text class="note" x="340" y="202" text-anchor="start">← selected row</text>
+
+  <!-- Arrow: extracted row -->
+  <path class="blue" d="M334,200 L398,200" stroke-width="1.8" marker-end="url(#ah)" stroke="#2F6FED"/>
+
+  <!-- Step 3: e_center row vector -->
+  <g transform="rotate(-0.4 448 200)">
+    <rect class="boxB" x="400" y="178" width="96" height="44" rx="4"/>
+  </g>
+  <text class="lbl blueT" x="448" y="205">e_center</text>
+  <text class="dim" x="448" y="238">1 × d</text>
+
+  <!-- Arrow: multiply by E' -->
+  <path class="ink" d="M497,200 L556,200" stroke-width="1.8" marker-end="url(#ah)"/>
+  <text class="arrowlbl" x="527" y="186">× E′</text>
+  <text class="dim" x="527" y="216">(V × d)</text>
+
+  <!-- Step 4: score vector (1 × V) -->
+  <g transform="rotate(0.5 618 200)">
+    <rect class="box" x="558" y="160" width="120" height="80" rx="4"/>
+  </g>
+  <text class="lbl" x="618" y="196">scores</text>
+  <text class="dim" x="618" y="220">1 × V</text>
+
+  <!-- Note: intractable softmax -->
+  <text class="note" x="618" y="268" text-anchor="middle">full softmax over V:</text>
+  <text class="note redT" x="618" y="284" text-anchor="middle">intractable (V ≈ 10⁵)</text>
+
+  <!-- Arrow down to negative sampling box -->
+  <path class="ink" d="M680,200 L740,200" stroke-width="1.8" marker-end="url(#ah)"/>
+  <text class="arrowlbl" x="710" y="186">neg.</text>
+  <text class="arrowlbl" x="710" y="202">sampling</text>
+
+  <!-- Step 5: negative sampling box -->
+  <g transform="rotate(-0.4 860 200)">
+    <rect class="box" x="742" y="118" width="240" height="164" rx="6"/>
+  </g>
+  <text class="lbl" x="862" y="152">negative sampling</text>
+
+  <!-- True context pair -->
+  <rect class="boxG" x="760" y="164" width="204" height="36" rx="4"/>
+  <text class="lbl greenT" x="862" y="187" font-size="15">1 true context (logistic +)</text>
+
+  <!-- k noise words -->
+  <rect class="boxR" x="760" y="210" width="204" height="36" rx="4"/>
+  <text class="lbl redT" x="862" y="233" font-size="15">k noise words (logistic −)</text>
+
+  <text class="dim" x="862" y="268">k = 5–20 in practice</text>
+
+  <!-- Arrow: output gradient -->
+  <path class="green" d="M862,284 L862,330" stroke-width="1.8" marker-end="url(#ahg)" stroke="#2E9E5B"/>
+  <text class="lbl greenT" x="862" y="356" font-size="15">gradient → update E rows</text>
+
+</svg>
