@@ -375,10 +375,20 @@ function renderNode(id){
   const n=NODES[id]; const root=el('div','node');
   root.appendChild(el('h1',null,n.title));
   root.appendChild(el('div','node-scope',n.oneLineScope));
-  const body=el('div'); body.innerHTML=n.prose; root.appendChild(body);
-  if(n.diagrams.length){
+  const body=el('div'); body.innerHTML=n.prose;
+  // place diagrams at their inline <figure data-dia="ID"> anchors
+  const placed=new Set();
+  body.querySelectorAll('figure[data-dia]').forEach(anchor=>{
+    const dia=n.diagrams.find(d=>d.id===anchor.getAttribute('data-dia'));
+    if(dia){ anchor.replaceWith(diagramFigure(n,dia)); placed.add(dia.id); }
+    else anchor.remove();
+  });
+  root.appendChild(body);
+  // fallback: any diagram without an inline anchor goes at the end
+  const rest=n.diagrams.filter(d=>!placed.has(d.id));
+  if(rest.length){
     root.appendChild(el('h3',null,'Diagrams'));
-    for(const d of n.diagrams) root.appendChild(diagramFigure(n,d));
+    for(const d of rest) root.appendChild(diagramFigure(n,d));
   }
   if(n.bibliography && n.bibliography.length){
     const b=el('div','bib'); b.appendChild(el('h3',null,'Bibliography'));

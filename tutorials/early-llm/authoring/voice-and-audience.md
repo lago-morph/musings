@@ -47,10 +47,22 @@ who respects the reader's intelligence, is precise, and is genuinely interested 
   need encouragement; he needs clarity and candor.
 - **Confident and direct.** Prefer the active voice and declarative sentences. State what is true,
   then qualify if needed — don't hedge preemptively.
-- **Earn every sentence.** No filler, no throat-clearing, no restating the heading. If a sentence
-  doesn't add information or motivation, cut it.
-- **Motivate before mechanizing.** Open a topic with the *problem it solves* before the machinery.
-  The reader wants to know *why* a thing exists before *how* it is built.
+- **Lead the reader in; never start mid-thought.** This is a tutorial, not a paper's body text. A
+  node must *open by orienting the reader* — see §5. Diving straight into machinery is the cardinal
+  sin here: the reader is smart but new to this material, and a wall of detail with no on-ramp reads
+  as worse than the original papers (which at least have abstracts and introductions). Respect his
+  intelligence by being *clear and grounded*, not by being terse.
+- **No filler — but orientation is not filler.** Cut empty throat-clearing ("In this section we
+  shall examine…") and sentences that merely restate the heading. Do *not* cut motivation, the
+  plain-language gist, the concrete example, or the connective tissue to other nodes — those are the
+  most valuable sentences in the node, not the most expendable.
+- **Motivate, then build, then formalize — in that order, every time.** Open a topic with the
+  *problem it solves* and a plain-language picture before any symbols. The reader wants to know
+  *why* a thing exists and *what it does in words* before *how it is written in math*. The equation
+  is the reward for understanding, not the starting gun.
+- **Show the connective tissue.** Constantly situate the node: what earlier idea it builds on, what
+  question the previous node left open that this one answers, and what it sets up next. The reader
+  should never wonder "why am I reading this and how does it relate to the rest?"
 - **Intellectual honesty over tidiness.** Where the field is messy, hand-wavy, or post-hoc
   (e.g. why √d_k exactly, why these hyperparameters, what "emergence" really means), say so. Mark
   the boundary between what is established and what is folklore. He will trust the prose *more* for
@@ -93,29 +105,70 @@ Consistency here is non-negotiable — the reader will notice a symbol that chan
   the *Annotated Transformer*, Karpathy's *Zero to Hero* / nanoGPT, and d2l.ai chapters.
 - Aim for **2–4 entries per concept node**, at least one of each tier where both exist.
 
-## 5. Per-node structure (target shape, not a rigid template)
+## 5. Per-node structure — the on-ramp is mandatory
 
-Each concept node's prose should generally move through:
-1. **The problem it solves** — why this exists, ideally framed against something he knows.
-2. **The idea** — the core mechanism in words and his analogies, before symbols.
-3. **The math, with dimensions** — the equation(s), every symbol and shape defined, one or two
-   sentences of intuition each.
-4. **The subtlety** — the one thing that is easy to get wrong, or the design choice worth
-   questioning (e.g. *why* scale by √d_k; *why* multiple heads).
-5. **Where it connects** — a sentence or two pointing along the graph's edges (forward and back),
-   reinforcing the navigation without duplicating the linked node.
+Every concept node MUST open with an orientation before any detail. This is the fix for the single
+biggest failure mode: nodes that start mid-stream and assume you already understand everything. The
+opening is not optional throat-clearing — it is the part that makes the rest readable.
 
-Contrast nodes compare siblings directly (a small comparison table in HTML is welcome). The intro
-node orients the reader to the graph and the edge-type legend. The SFT node is a **brief terminal
-bridge** — concept and supervised process only, naming InstructGPT/FLAN as the step into chatbots
-and mentioning RLHF only as "where it goes next."
+**The opening (≈120–220 words, before any equation), in this spirit:**
+1. **Where we are.** One or two sentences connecting to what came before: the question the
+   prerequisite node(s) left open, or the limitation this node removes. Name the prior node(s) in
+   plain words ("We just saw how a single attention head mixes information across positions; that
+   raises an obvious question…"). Assume the reader may have arrived from a different path, so make
+   the dependency explicit rather than implicit.
+2. **The gist, in plain language (the "abstract").** In two to four sentences and *no symbols*, say
+   what this node is about and what it does — the one-paragraph version someone could repeat back.
+   This is the abstract the reader is owed.
+3. **Why it matters.** Why this idea earns a node: what it unlocks, what would go wrong without it,
+   where it sits in the larger story.
+
+Only then proceed to the substance, still **intuition-first**:
+4. **The idea in words, with a concrete example and his analogies** — before symbols. Walk one small
+   concrete instance the reader can hold in their head.
+5. **The math, with dimensions** — every symbol and shape defined, each equation preceded by the
+   intuition for what it computes and followed by a sentence on how to read it. The formalism should
+   feel inevitable by the time it appears.
+6. **The subtlety** — the one thing easy to get wrong, or the design choice worth questioning
+   (e.g. *why* scale by √d_k; *why* multiple heads), with the honest established-vs-folklore line.
+7. **Where it leads.** Close by pointing along the graph's edges — what this sets up next and what
+   sibling it contrasts with — so the reader always has a next step. Don't duplicate the linked node;
+   hand off to it.
+
+Weave the connective tissue (1, 3, 7) through the body too, not only at the seams. A reader dropped
+into the middle of this node should, within a paragraph, know what it is, why they're here, and how
+it connects.
+
+**Contrast nodes** still open with the same orientation (what these siblings are, why comparing them
+matters), then compare directly — a small HTML comparison table is welcome. The **intro node**
+orients the reader to the whole graph and the edge-type legend. The **SFT node** is a brief terminal
+bridge — orientation, then concept and supervised process only, naming InstructGPT/FLAN as the step
+into chatbots and mentioning RLHF only as "where it goes next."
+
+### Diagram placement (inline anchors — required)
+
+Diagrams must appear *at the point in the prose where they are discussed*, not dumped at the end.
+Place an empty anchor in the `prose` HTML exactly where each diagram belongs:
+
+```html
+<figure data-dia="d1"></figure>
+```
+
+Use the diagram's `id` (`d1`, `d2`, …). The renderer replaces each anchor with the actual diagram
+(SVG + caption + tap-for-prompt). Every diagram in `diagrams[]` should have exactly one matching
+anchor in the prose, and vice versa. Put the anchor right after the paragraph that motivates or
+first refers to that figure (typically: the structural data-flow diagram after the mechanism is
+described; the conceptual/analogy diagram near the intuition that opens the node).
 
 ## 6. Length & diagram budget (per node)
 
-- **Total budget ≈ 20,000 words** across the ~20-node graph.
-- **Concept nodes:** ~1,200–1,500 words of prose. **Intro / contrast / SFT bridge:** ~600–900.
-- If a node would exceed ~1,600 words, that is a signal to **tighten**, not a license to sprawl;
-  flag it for a possible split rather than padding.
+- **Readability comes first; the word budget is secondary.** The on-ramp (§5) is worth the words.
+- **Total budget now ≈ 24,000–30,000 words** across the ~20-node graph (raised from 20k to pay for
+  the orientations). **Concept nodes:** ~1,400–1,800 words including the opening. **Intro / contrast
+  / SFT bridge:** ~800–1,100.
+- Length should buy *clarity* (orientation, intuition, examples, connective tissue), never padding
+  or repetition. If a node sprawls past ~1,900 words, tighten the detail or flag it for a split —
+  but never by cutting the opening.
 - **Diagrams scale with prose: roughly one diagram per ~800 words** (so ~2 for a big concept node,
   ~1 for a small node), *when a diagram genuinely earns its place*. A node that is pure comparison
   prose may carry fewer; do not invent diagrams to hit the ratio. Record `wordCount` honestly and
@@ -133,6 +186,8 @@ A single JSON file valid against `schema/node.schema.json`:
 - Math uses KaTeX delimiters as above.
 - Each diagram gets a `diagrams[]` entry with a content-only `prompt` (see `diagram-style.md`),
   `kind`, `caption`, `altText`, and an `svg` path (which the SVG pass fills/builds).
+- For each diagram, place a matching `<figure data-dia="ID"></figure>` anchor in the prose at the
+  point it is discussed (see §5, "Diagram placement"). One anchor per diagram, one diagram per anchor.
 - `edges[]` contains exactly the edges incident to this node, copied verbatim from `node-graph.md`
   so they match the other endpoint byte-for-byte (the linter enforces this).
 - Set `generatedImage` to `null`. Leave `expansion` out unless the node warrants one.
