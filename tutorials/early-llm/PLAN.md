@@ -95,3 +95,11 @@ This plan implements the changes requested on 2026-06-13 to the design in `SPEC.
 
 - 2026-06-13: Phase 1 foundations authored (schema, briefs, style bible, node-graph, linter, CI).
   Exemplar node + SVGs in progress.
+- 2026-06-13: Phases 2–3 complete — all 20 nodes + 37 SVGs; linter green; PR #1 opened; published to
+  GitHub Pages at /musings/early-llm/.
+- 2026-06-13: **Readability revision pass** (reviewer feedback: nodes dove into detail with no entry
+  point; diagrams dumped at the end). Reworked `voice-and-audience.md` to mandate an orientation
+  on-ramp (Where we are / The gist / Why it matters), intuition-before-math, connective tissue, and
+  inline `<figure data-dia>` diagram anchors. Prototype renderer updated to place diagrams inline.
+  All 20 nodes rewritten via subagents to the new standard (reviewer approved on the exemplar first).
+  Now ~28,100 words, 37 diagrams all inline; linter green.
