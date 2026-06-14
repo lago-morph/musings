@@ -1,6 +1,6 @@
 # Musings Repository
 
-A collection of technical research and documentation on cloud-native platform engineering, covering Kubernetes infrastructure, GitOps workflows, developer platforms, AI/ML agent frameworks, and DevOps domain modeling.
+A collection of technical research and documentation on cloud-native platform engineering, covering Kubernetes infrastructure, GitOps workflows, developer platforms, AI/ML agent frameworks, tutorials, and DevOps domain modeling.
 
 ## Repository Structure
 
