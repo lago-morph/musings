@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 420" role="img" aria-label="The position-wise feed-forward network applied to one token: a vector of width d_model is expanded to width d_ff by the first linear layer, passed through a ReLU, then projected back to width d_model by the second linear layer. The same network is applied independently to every position.">
+  <title>The position-wise feed-forward network (FFN), applied per token</title>
+  <desc>Left to right. One token's vector x of width d_model enters the first linear layer x W1 + b1 producing a hidden vector of width d_ff, which passes through a ReLU nonlinearity, then the second linear layer h W2 + b2 projects back to width d_model. The same FFN with shared weights is applied independently and identically at every position.</desc>
+  <style>
+    .board { fill: #FDFCF8; }
+    text { font-family: "Comic Sans MS","Comic Neue","Patrick Hand","Segoe Print",system-ui,sans-serif; fill: #222222; }
+    .ink   { stroke: #222222; }
+    .blue  { stroke: #2F6FED; }
+    .red   { stroke: #E5484D; }
+    .green { stroke: #2E9E5B; }
+    .muted { stroke: #8A8A85; }
+    .box   { fill: #FDFCF8; stroke-width: 2; stroke-linejoin: round; }
+    .flow  { fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    .lbl   { font-size: 21px; text-anchor: middle; }
+    .op    { font-size: 17px; text-anchor: middle; }
+    .dim   { font-size: 14px; text-anchor: middle; fill: #8A8A85; }
+    .note  { font-size: 14px; fill: #8A8A85; }
+    .title { font-size: 15px; fill: #8A8A85; }
+    .blueT  { fill: #2F6FED; }
+    .redT   { fill: #E5484D; }
+    .greenT { fill: #2E9E5B; }
+  </style>
+  <rect class="board" x="0" y="0" width="980" height="420"/>
+  <defs>
+    <marker id="tb2ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#222222" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <text class="title" x="24" y="30">position-wise feed-forward network — one token</text>
+
+  <!-- input vector x (width d_model) -->
+  <rect class="box blue" x="40" y="150" width="50" height="120" rx="4"/>
+  <text class="lbl blueT" x="65" y="135">x</text>
+  <text class="dim" x="65" y="292">d_model</text>
+  <text class="dim" x="65" y="310">(= 512)</text>
+
+  <!-- linear 1 -->
+  <path class="flow ink" d="M92,210 L170,210" marker-end="url(#tb2ah)"/>
+  <rect class="box ink" x="172" y="172" width="150" height="76" rx="6"/>
+  <text class="op" x="247" y="206">Linear 1</text>
+  <text class="dim" x="247" y="228">x W₁ + b₁</text>
+
+  <!-- hidden vector (width d_ff) -->
+  <path class="flow ink" d="M324,210 L382,210" marker-end="url(#tb2ah)"/>
+  <rect class="box red" x="384" y="100" width="50" height="220" rx="4"/>
+  <text class="lbl redT" x="409" y="88">h</text>
+  <text class="dim" x="409" y="342">d_ff</text>
+  <text class="dim" x="409" y="360">(= 2048)</text>
+
+  <!-- ReLU -->
+  <path class="flow ink" d="M436,210 L494,210" marker-end="url(#tb2ah)"/>
+  <rect class="box red" x="496" y="172" width="120" height="76" rx="6"/>
+  <text class="op redT" x="556" y="206">ReLU</text>
+  <text class="dim" x="556" y="228">max(0, ·)</text>
+
+  <!-- linear 2 -->
+  <path class="flow ink" d="M618,210 L676,210" marker-end="url(#tb2ah)"/>
+  <rect class="box ink" x="678" y="172" width="150" height="76" rx="6"/>
+  <text class="op" x="753" y="206">Linear 2</text>
+  <text class="dim" x="753" y="228">h W₂ + b₂</text>
+
+  <!-- output vector (width d_model) -->
+  <path class="flow ink" d="M830,210 L888,210" marker-end="url(#tb2ah)"/>
+  <rect class="box green" x="890" y="150" width="50" height="120" rx="4"/>
+  <text class="lbl greenT" x="915" y="135">y</text>
+  <text class="dim" x="915" y="292">d_model</text>
+  <text class="dim" x="915" y="310">(= 512)</text>
+
+  <!-- expand / project annotations -->
+  <text class="note" x="247" y="280">expand</text>
+  <text class="note" x="232" y="298">512 → 2048</text>
+  <text class="note" x="753" y="280">project back</text>
+  <text class="note" x="738" y="298">2048 → 512</text>
+
+  <!-- per-position note -->
+  <text class="note" x="490" y="392" text-anchor="middle">same weights W₁, b₁, W₂, b₂ applied independently at every position — no mixing across tokens</text>
+</svg>

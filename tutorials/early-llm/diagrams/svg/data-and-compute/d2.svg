@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 380" role="img" aria-label="The pretraining pipeline: raw text flows through cleaning and deduplication into a tokenized corpus, which feeds pretraining consuming compute C approximately equal to 6 times N times D, producing a pretrained model.">
+  <title>Pretraining pipeline — from raw text to pretrained model</title>
+  <desc>A left-to-right pipeline with four stages. Stage 1: raw text from web, books, and Wikipedia. Stage 2: cleaning and deduplication box with example steps listed. Stage 3: tokenized corpus with vocabulary size V and token count D labeled. Stage 4: pretraining box with the approximation C ≈ 6ND labeled; model parameter count N feeds in from below. An arrow leads to the pretrained model output on the right.</desc>
+  <style>
+    .board  { fill: #FDFCF8; }
+    text    { font-family: "Comic Sans MS","Comic Neue","Patrick Hand","Segoe Print",system-ui,sans-serif; fill: #222222; }
+    .ink    { stroke: #222222; }
+    .blue   { stroke: #2F6FED; }
+    .red    { stroke: #E5484D; }
+    .green  { stroke: #2E9E5B; }
+    .muted  { stroke: #8A8A85; }
+    .box    { fill: #FDFCF8; stroke-width: 2; stroke-linejoin: round; }
+    .flow   { fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .lbl    { font-size: 18px; text-anchor: middle; }
+    .sub    { font-size: 13px; text-anchor: middle; fill: #8A8A85; }
+    .note   { font-size: 12.5px; fill: #8A8A85; }
+    .notem  { font-size: 12.5px; fill: #8A8A85; text-anchor: middle; }
+    .title  { font-size: 15px; fill: #8A8A85; }
+    .blueT  { fill: #2F6FED; }
+    .redT   { fill: #E5484D; }
+    .greenT { fill: #2E9E5B; }
+    .eq     { font-size: 16px; text-anchor: middle; fill: #222222; }
+  </style>
+
+  <rect class="board" x="0" y="0" width="1100" height="380"/>
+
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#222222" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#2E9E5B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#2F6FED" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <text class="title" x="30" y="30">pretraining pipeline</text>
+
+  <!-- ── Stage 1: raw text ── -->
+  <rect class="box ink" x="30" y="100" width="160" height="120" rx="6" stroke-width="2"/>
+  <text class="lbl" x="110" y="132">raw text</text>
+  <text class="sub" x="110" y="155">web crawl</text>
+  <text class="sub" x="110" y="172">books</text>
+  <text class="sub" x="110" y="189">Wikipedia</text>
+  <!-- stage label -->
+  <text class="notem" x="110" y="86">1</text>
+
+  <!-- arrow 1→2 -->
+  <path class="flow ink" d="M192,160 L238,160" marker-end="url(#ah)"/>
+
+  <!-- ── Stage 2: cleaning & deduplication (RED = key gate) ── -->
+  <rect class="box red" x="240" y="88" width="200" height="144" rx="6" stroke-width="3"/>
+  <text class="lbl redT" x="340" y="118">cleaning &amp;</text>
+  <text class="lbl redT" x="340" y="138">deduplication</text>
+  <!-- bullet steps -->
+  <text class="note" x="258" y="160">· language filter</text>
+  <text class="note" x="258" y="177">· deduplication</text>
+  <text class="note" x="258" y="194">· quality filter</text>
+  <text class="note" x="258" y="211">· blocklist / boilerplate</text>
+  <!-- stage label -->
+  <text class="notem" x="340" y="74">2</text>
+  <!-- side note: consequential -->
+  <text class="note" x="248" y="245">consequential, not cosmetic</text>
+
+  <!-- arrow 2→3 -->
+  <path class="flow blue" d="M442,160 L488,160" marker-end="url(#ahb)"/>
+
+  <!-- ── Stage 3: tokenized corpus (BLUE = thing under construction) ── -->
+  <rect class="box blue" x="490" y="100" width="180" height="120" rx="6" stroke-width="2"/>
+  <text class="lbl blueT" x="580" y="134">tokenized</text>
+  <text class="lbl blueT" x="580" y="154">corpus</text>
+  <text class="sub" x="580" y="177">vocab size V</text>
+  <text class="sub" x="580" y="195">token count D</text>
+  <!-- stage label -->
+  <text class="notem" x="580" y="86">3</text>
+
+  <!-- arrow 3→4 -->
+  <path class="flow ink" d="M672,160 L718,160" marker-end="url(#ah)"/>
+
+  <!-- ── Stage 4: pretraining ── -->
+  <rect class="box ink" x="720" y="88" width="200" height="144" rx="6" stroke-width="2"/>
+  <text class="lbl" x="820" y="124">pretraining</text>
+  <!-- C ≈ 6ND equation -->
+  <text class="eq" x="820" y="156">C ≈ 6 N D</text>
+  <text class="sub" x="820" y="178">C = compute (FLOPs)</text>
+  <text class="sub" x="820" y="196">N = parameters</text>
+  <text class="sub" x="820" y="213">D = tokens</text>
+  <!-- stage label -->
+  <text class="notem" x="820" y="74">4</text>
+
+  <!-- N feeds in from below -->
+  <rect class="box ink" x="756" y="280" width="128" height="52" rx="5" stroke-width="1.5"/>
+  <text class="notem" x="820" y="302" style="font-size:14px;">model architecture</text>
+  <text class="notem" x="820" y="320" style="font-size:14px;">N parameters</text>
+  <path class="flow ink" d="M820,280 L820,234" marker-end="url(#ah)"/>
+
+  <!-- arrow 4→ output -->
+  <path class="flow green" d="M922,160 L968,160" marker-end="url(#ahg)"/>
+
+  <!-- ── output: pretrained model (GREEN = good end state) ── -->
+  <rect class="box green" x="970" y="112" width="100" height="96" rx="6" stroke-width="2"/>
+  <text class="lbl greenT" x="1020" y="152">pretrained</text>
+  <text class="lbl greenT" x="1020" y="172">model</text>
+
+  <!-- Kaplan et al. attribution -->
+  <text class="note" x="720" y="356">C ≈ 6ND approximation: Kaplan et al. 2020, §2.1 (arXiv:2001.08361)</text>
+</svg>

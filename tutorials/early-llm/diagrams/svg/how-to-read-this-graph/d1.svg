@@ -1,0 +1,272 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 800" role="img" aria-label="Node-link map of the full early-LLM tutorial graph, organised into five phases: prehistory and foundations, core architecture, encoder/decoder fork, training mechanics, and scaling and bridge. Entry points are marked at distributional semantics and scaled dot-product attention. Three edge types are shown: solid lines for prerequisite, dashed grey lines for contrast, and warm-orange lines for leads-to.">
+  <title>Tutorial graph — orientation map</title>
+  <desc>Twenty nodes arranged in five vertical phase bands. Solid black arrows: prerequisite. Orange arrows: leads-to. Dashed grey double-headed lines: contrast. Blue-outlined boxes mark the two entry points: distributional semantics (node 02) and scaled dot-product attention (node 06). A legend at the bottom-left identifies all three edge types and the entry-point style.</desc>
+  <style>
+    .board  { fill: #FDFCF8; }
+    text    { font-family: "Comic Sans MS","Comic Neue","Patrick Hand","Segoe Print",system-ui,sans-serif; fill: #222222; }
+    /* node boxes */
+    .nbox   { fill: #FDFCF8; stroke: #222222; stroke-width: 1.5; stroke-linejoin: round; }
+    .nentry { fill: #EEF4FF; stroke: #2F6FED; stroke-width: 2.2; stroke-linejoin: round; }
+    /* phase cluster outlines */
+    .cluster { fill: none; stroke: #CCCCCC; stroke-width: 1; stroke-dasharray: 4 3; }
+    /* edges */
+    .prereq  { fill: none; stroke: #222222; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .leadsTo { fill: none; stroke: #D97706; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .contrast{ fill: none; stroke: #8A8A85; stroke-width: 1.4; stroke-linecap: round; stroke-dasharray: 5 3; }
+    /* text sizes */
+    .nlbl   { font-size: 11px; text-anchor: middle; }
+    .phase  { font-size: 11px; fill: #888888; text-anchor: middle; }
+    .ttl    { font-size: 14px; fill: #444444; }
+    .llbl   { font-size: 11px; fill: #444444; }
+    .etag   { font-size: 9.5px; fill: #2F6FED; text-anchor: middle; }
+    .blueT  { fill: #2F6FED; }
+  </style>
+
+  <rect class="board" x="0" y="0" width="1100" height="800"/>
+
+  <defs>
+    <marker id="ahb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9" fill="none" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="aho" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9" fill="none" stroke="#D97706" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9" fill="none" stroke="#8A8A85" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- ── Title ── -->
+  <text class="ttl" x="24" y="26">How to read this graph — full map</text>
+
+  <!-- ══════════════════════════════════════
+       PHASE CLUSTER BANDS (vertical strips)
+       cx values: P1=132, P2=356, P3=580, P4=804, P5=1005
+       ══════════════════════════════════════ -->
+  <rect class="cluster" x="28"  y="44" width="208" height="600" rx="8"/>
+  <text class="phase" x="132"  y="58">Prehistory &amp; Foundations</text>
+
+  <rect class="cluster" x="252" y="44" width="208" height="600" rx="8"/>
+  <text class="phase" x="356"  y="58">Core Architecture</text>
+
+  <rect class="cluster" x="476" y="44" width="208" height="600" rx="8"/>
+  <text class="phase" x="580"  y="58">Encoder / Decoder Fork</text>
+
+  <rect class="cluster" x="700" y="44" width="208" height="600" rx="8"/>
+  <text class="phase" x="804"  y="58">Training Mechanics</text>
+
+  <rect class="cluster" x="924" y="44" width="162" height="600" rx="8"/>
+  <text class="phase" x="1005" y="58">Scaling &amp; Bridge</text>
+
+  <!-- ══════════════════════════════════════
+       NODES — each rect 88×28, cy = center-y of label
+       ══════════════════════════════════════ -->
+
+  <!-- Phase 1: Prehistory & Foundations (cx=132) -->
+  <!-- 02 distributional-semantics — ENTRY POINT, cy≈115 -->
+  <rect class="nentry" x="88"  y="99"  width="88" height="32" rx="4"/>
+  <text class="nlbl blueT" x="132" y="112">distributional</text>
+  <text class="nlbl blueT" x="132" y="125">semantics</text>
+  <text class="etag"        x="132" y="140">▶ entry point</text>
+
+  <!-- 03 word-embeddings, cy≈195 -->
+  <rect class="nbox" x="88" y="181" width="88" height="28" rx="4"/>
+  <text class="nlbl" x="132" y="194">word</text>
+  <text class="nlbl" x="132" y="206">embeddings</text>
+
+  <!-- 04 rnn-lstm-baseline, cy≈330 -->
+  <rect class="nbox" x="88" y="316" width="88" height="28" rx="4"/>
+  <text class="nlbl" x="132" y="329">RNN / LSTM</text>
+  <text class="nlbl" x="132" y="341">baseline</text>
+
+  <!-- 05 alignment-and-attention, cy≈420 -->
+  <rect class="nbox" x="88" y="406" width="88" height="28" rx="4"/>
+  <text class="nlbl" x="132" y="419">alignment &amp;</text>
+  <text class="nlbl" x="132" y="431">attention</text>
+
+  <!-- Phase 2: Core Architecture (cx=356) -->
+  <!-- 06 scaled-dot-product-attention — ENTRY POINT, cy≈265 -->
+  <rect class="nentry" x="312" y="251" width="88" height="28" rx="4"/>
+  <text class="nlbl blueT" x="356" y="264">scaled dot-</text>
+  <text class="nlbl blueT" x="356" y="276">product attn</text>
+  <text class="etag"        x="356" y="291">▶ entry point</text>
+
+  <!-- 07 multi-head-attention, cy≈370 -->
+  <rect class="nbox" x="312" y="356" width="88" height="28" rx="4"/>
+  <text class="nlbl" x="356" y="369">multi-head</text>
+  <text class="nlbl" x="356" y="381">attention</text>
+
+  <!-- 08 positional-encoding, cy≈440 -->
+  <rect class="nbox" x="312" y="426" width="88" height="28" rx="4"/>
+  <text class="nlbl" x="356" y="439">positional</text>
+  <text class="nlbl" x="356" y="451">encoding</text>
+
+  <!-- 09 the-transformer-block, cy≈514 -->
+  <rect class="nbox" x="312" y="500" width="88" height="28" rx="4"/>
+  <text class="nlbl" x="356" y="513">transformer</text>
+  <text class="nlbl" x="356" y="525">block</text>
+
+  <!-- 10 the-full-transformer, cy≈580 -->
+  <rect class="nbox" x="312" y="566" width="88" height="28" rx="4"/>
+  <text class="nlbl" x="356" y="579">full</text>
+  <text class="nlbl" x="356" y="591">transformer</text>
+
+  <!-- Phase 3: Encoder/Decoder Fork (cx=580) -->
+  <!-- 11 autoregressive-lm, cy≈185 -->
+  <rect class="nbox" x="536" y="171" width="88" height="28" rx="4"/>
+  <text class="nlbl" x="580" y="184">autoregressive</text>
+  <text class="nlbl" x="580" y="196">LM</text>
+
+  <!-- 13 encoder-decoder-contrast, cy≈275 -->
+  <rect class="nbox" x="536" y="261" width="88" height="28" rx="4"/>
+  <text class="nlbl" x="580" y="274">enc–dec</text>
+  <text class="nlbl" x="580" y="286">contrast</text>
+
+  <!-- 12 masked-lm, cy≈365 -->
+  <rect class="nbox" x="536" y="351" width="88" height="28" rx="4"/>
+  <text class="nlbl" x="580" y="364">masked</text>
+  <text class="nlbl" x="580" y="376">LM</text>
+
+  <!-- Phase 4: Training Mechanics (cx=804) -->
+  <!-- 14 tokenization-subword-units, cy≈120 -->
+  <rect class="nbox" x="760" y="106" width="88" height="28" rx="4"/>
+  <text class="nlbl" x="804" y="119">tokenization</text>
+  <text class="nlbl" x="804" y="131">/ subword</text>
+
+  <!-- 15 pretraining-objectives, cy≈230 -->
+  <rect class="nbox" x="760" y="216" width="88" height="28" rx="4"/>
+  <text class="nlbl" x="804" y="229">pretraining</text>
+  <text class="nlbl" x="804" y="241">objectives</text>
+
+  <!-- 16 optimization-and-training-dynamics, cy≈370 -->
+  <rect class="nbox" x="760" y="356" width="88" height="28" rx="4"/>
+  <text class="nlbl" x="804" y="369">optimization &amp;</text>
+  <text class="nlbl" x="804" y="381">training dyn.</text>
+
+  <!-- Phase 5: Scaling & Bridge (cx=1005) -->
+  <!-- 17 data-and-compute, cy≈165 -->
+  <rect class="nbox" x="961" y="151" width="88" height="28" rx="4"/>
+  <text class="nlbl" x="1005" y="164">data &amp;</text>
+  <text class="nlbl" x="1005" y="176">compute</text>
+
+  <!-- 18 scaling-laws, cy≈280 -->
+  <rect class="nbox" x="961" y="266" width="88" height="28" rx="4"/>
+  <text class="nlbl" x="1005" y="279">scaling</text>
+  <text class="nlbl" x="1005" y="291">laws</text>
+
+  <!-- 19 in-context-learning, cy≈390 -->
+  <rect class="nbox" x="961" y="376" width="88" height="28" rx="4"/>
+  <text class="nlbl" x="1005" y="389">in-context</text>
+  <text class="nlbl" x="1005" y="401">learning</text>
+
+  <!-- 20 supervised-fine-tuning, cy≈490 -->
+  <rect class="nbox" x="961" y="476" width="88" height="28" rx="4"/>
+  <text class="nlbl" x="1005" y="489">supervised</text>
+  <text class="nlbl" x="1005" y="501">fine-tuning</text>
+
+  <!-- ══════════════════════════════════════
+       PREREQUISITE EDGES (solid black arrows)
+       ══════════════════════════════════════ -->
+
+  <!-- distributional-semantics → word-embeddings -->
+  <line class="prereq" x1="132" y1="209" x2="132" y2="316" marker-end="url(#ahb)"/>
+
+  <!-- word-embeddings → scaled-dot-product-attention -->
+  <path class="prereq" d="M176,195 C220,195 270,240 312,264" marker-end="url(#ahb)"/>
+
+  <!-- rnn-lstm-baseline → alignment-and-attention -->
+  <line class="prereq" x1="132" y1="344" x2="132" y2="406" marker-end="url(#ahb)"/>
+
+  <!-- alignment-and-attention → scaled-dot-product-attention -->
+  <path class="prereq" d="M176,420 C230,420 280,320 312,270" marker-end="url(#ahb)"/>
+
+  <!-- scaled-dot-product-attention → multi-head-attention -->
+  <line class="prereq" x1="356" y1="279" x2="356" y2="356" marker-end="url(#ahb)"/>
+
+  <!-- scaled-dot-product-attention → positional-encoding -->
+  <path class="prereq" d="M370,279 C385,330 378,395 374,426" marker-end="url(#ahb)"/>
+
+  <!-- scaled-dot-product-attention → pretraining-objectives (long cross-phase) -->
+  <path class="prereq" d="M400,264 C510,200 680,200 760,225" marker-end="url(#ahb)" opacity="0.55"/>
+
+  <!-- multi-head-attention → the-transformer-block -->
+  <line class="prereq" x1="356" y1="384" x2="356" y2="500" marker-end="url(#ahb)"/>
+
+  <!-- positional-encoding → the-transformer-block -->
+  <path class="prereq" d="M344,454 C338,470 338,484 340,500" marker-end="url(#ahb)"/>
+
+  <!-- the-transformer-block → the-full-transformer -->
+  <line class="prereq" x1="356" y1="528" x2="356" y2="566" marker-end="url(#ahb)"/>
+
+  <!-- the-transformer-block → optimization-and-training-dynamics (cross-phase) -->
+  <path class="prereq" d="M400,514 C560,500 690,430 760,370" marker-end="url(#ahb)" opacity="0.55"/>
+
+  <!-- the-full-transformer → autoregressive-lm (cross-phase) -->
+  <path class="prereq" d="M400,575 C452,560 504,270 536,192" marker-end="url(#ahb)"/>
+
+  <!-- the-full-transformer → masked-lm (cross-phase) -->
+  <path class="prereq" d="M400,582 C452,580 504,380 536,368" marker-end="url(#ahb)"/>
+
+  <!-- tokenization → pretraining-objectives -->
+  <line class="prereq" x1="804" y1="134" x2="804" y2="216" marker-end="url(#ahb)"/>
+
+  <!-- autoregressive-lm → scaling-laws (cross-phase) -->
+  <path class="prereq" d="M624,185 C720,185 900,260 961,277" marker-end="url(#ahb)"/>
+
+  <!-- scaling-laws → in-context-learning -->
+  <line class="prereq" x1="1005" y1="294" x2="1005" y2="376" marker-end="url(#ahb)"/>
+
+  <!-- in-context-learning → supervised-fine-tuning -->
+  <line class="prereq" x1="1005" y1="404" x2="1005" y2="476" marker-end="url(#ahb)"/>
+
+  <!-- ══════════════════════════════════════
+       LEADS-TO EDGES (warm orange arrows)
+       ══════════════════════════════════════ -->
+
+  <!-- encoder-decoder-contrast → tokenization-subword-units -->
+  <path class="leadsTo" d="M624,272 C680,240 720,160 760,120" marker-end="url(#aho)"/>
+
+  <!-- pretraining-objectives → optimization-and-training-dynamics -->
+  <line class="leadsTo" x1="804" y1="244" x2="804" y2="356" marker-end="url(#aho)"/>
+
+  <!-- optimization-and-training-dynamics → data-and-compute -->
+  <path class="leadsTo" d="M848,370 C882,320 930,220 961,165" marker-end="url(#aho)"/>
+
+  <!-- data-and-compute → scaling-laws -->
+  <line class="leadsTo" x1="1005" y1="179" x2="1005" y2="266" marker-end="url(#aho)"/>
+
+  <!-- ══════════════════════════════════════
+       CONTRAST EDGES (dashed grey, double-headed)
+       ══════════════════════════════════════ -->
+
+  <!-- autoregressive-lm ↔ masked-lm -->
+  <line class="contrast" x1="580" y1="199" x2="580" y2="351" marker-end="url(#ahg)" marker-start="url(#ahg)"/>
+
+  <!-- autoregressive-lm ↔ encoder-decoder-contrast -->
+  <line class="contrast" x1="565" y1="199" x2="559" y2="261" marker-end="url(#ahg)" marker-start="url(#ahg)"/>
+
+  <!-- encoder-decoder-contrast ↔ masked-lm -->
+  <line class="contrast" x1="594" y1="289" x2="594" y2="351" marker-end="url(#ahg)" marker-start="url(#ahg)"/>
+
+  <!-- encoder-decoder-contrast ↔ the-full-transformer (cross-phase) -->
+  <path class="contrast" d="M536,274 C490,290 440,340 400,575" marker-end="url(#ahg)" marker-start="url(#ahg)" opacity="0.6"/>
+
+  <!-- ══════════════════════════════════════
+       LEGEND
+       ══════════════════════════════════════ -->
+  <rect fill="#FDFCF8" stroke="#CCCCCC" stroke-width="1" x="28" y="664" width="470" height="118" rx="6"/>
+  <text style="font-size:11px;fill:#666666;font-family:&quot;Comic Sans MS&quot;,&quot;Comic Neue&quot;,&quot;Patrick Hand&quot;,&quot;Segoe Print&quot;,system-ui,sans-serif;" x="42" y="682">Edge types</text>
+
+  <line class="prereq"  x1="52" y1="704" x2="116" y2="704" marker-end="url(#ahb)"/>
+  <text class="llbl"    x="124" y="708">prerequisite — understand A before B</text>
+
+  <line class="leadsTo" x1="52" y1="728" x2="116" y2="728" marker-end="url(#aho)"/>
+  <text class="llbl"    x="124" y="732">leads-to — A sets up B (narrative arc)</text>
+
+  <line class="contrast" x1="52" y1="752" x2="116" y2="752" marker-end="url(#ahg)" marker-start="url(#ahg)"/>
+  <text class="llbl"    x="124" y="756">contrast — siblings worth comparing</text>
+
+  <rect class="nentry"  x="276" y="694" width="72" height="20" rx="3"/>
+  <text style="font-size:9px;fill:#2F6FED;text-anchor:middle;font-family:&quot;Comic Sans MS&quot;,&quot;Comic Neue&quot;,&quot;Patrick Hand&quot;,&quot;Segoe Print&quot;,system-ui,sans-serif;" x="312" y="708">node name</text>
+  <text class="llbl"    x="356" y="708">= entry point</text>
+</svg>

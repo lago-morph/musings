@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 440" role="img" aria-label="Data flow of scaled dot-product attention for a single head, with every tensor shape labeled.">
+  <title>Scaled dot-product attention — single-head data flow</title>
+  <desc>Input X projects into Q, K, V. Q and K multiply into the score matrix Q-K-transpose (n by n), scaled by one over the square root of d_k and passed through a row-wise softmax to give attention weights A, which combine with V to produce the output (n by d_v). A causal mask sets above-diagonal scores to minus infinity before the softmax.</desc>
+  <style>
+    .board { fill: #FDFCF8; }
+    text { font-family: "Comic Sans MS","Comic Neue","Patrick Hand","Segoe Print",system-ui,sans-serif; fill: #222222; }
+    .ink   { stroke: #222222; }
+    .blue  { stroke: #2F6FED; }
+    .red   { stroke: #E5484D; }
+    .green { stroke: #2E9E5B; }
+    .muted { stroke: #8A8A85; }
+    .box   { fill: #FDFCF8; stroke-width: 2; stroke-linejoin: round; }
+    .flow  { fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .lbl   { font-size: 22px; text-anchor: middle; }
+    .lblc  { font-size: 22px; text-anchor: middle; }
+    .dim   { font-size: 14px; text-anchor: middle; fill: #8A8A85; }
+    .tag   { font-size: 14px; text-anchor: middle; fill: #8A8A85; }
+    .note  { font-size: 13px; fill: #8A8A85; }
+    .title { font-size: 15px; fill: #8A8A85; }
+    .blueT  { fill: #2F6FED; }
+    .redT   { fill: #E5484D; }
+    .greenT { fill: #2E9E5B; }
+  </style>
+  <rect class="board" x="0" y="0" width="1060" height="440"/>
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#222222" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <text class="title" x="24" y="28">scaled dot-product attention — one head</text>
+
+  <!-- X: input, stack of rows -->
+  <g transform="rotate(-0.6 66 220)">
+    <rect class="box ink" x="24" y="160" width="84" height="120" rx="4"/>
+    <line class="ink" x1="24" y1="190" x2="108" y2="190" stroke-width="1"/>
+    <line class="ink" x1="24" y1="216" x2="108" y2="216" stroke-width="1"/>
+    <line class="ink" x1="24" y1="242" x2="108" y2="242" stroke-width="1"/>
+    <text class="lbl" x="66" y="155" font-size="18">X</text>
+  </g>
+  <text class="dim" x="66" y="300">n × d_model</text>
+
+  <!-- projections -->
+  <path class="flow ink" d="M110,196 C150,180 165,110 194,84" marker-end="url(#ah)"/>
+  <path class="flow ink" d="M110,220 C150,216 165,216 194,212" marker-end="url(#ah)"/>
+  <path class="flow ink" d="M110,244 C150,280 165,330 194,352" marker-end="url(#ah)"/>
+  <text class="note" x="118" y="150">× W_Q</text>
+  <text class="note" x="120" y="208">× W_K</text>
+  <text class="note" x="118" y="300">× W_V</text>
+
+  <!-- Q K V -->
+  <g transform="rotate(0.8 244 76)"><rect class="box blue" x="196" y="40" width="96" height="72" rx="4"/></g>
+  <text class="lbl blueT" x="244" y="84">Q</text>
+  <text class="dim" x="244" y="128">n × d_k</text>
+
+  <g transform="rotate(-0.5 244 212)"><rect class="box red" x="196" y="176" width="96" height="72" rx="4"/></g>
+  <text class="lbl redT" x="244" y="220">K</text>
+  <text class="dim" x="244" y="264">n × d_k</text>
+
+  <g transform="rotate(0.6 244 356)"><rect class="box green" x="196" y="320" width="96" height="72" rx="4"/></g>
+  <text class="lbl greenT" x="244" y="364">V</text>
+  <text class="dim" x="244" y="408">n × d_v</text>
+
+  <!-- matmul 1 -->
+  <circle class="box ink" cx="350" cy="144" r="18"/>
+  <text class="lbl" x="350" y="152" font-size="20">×</text>
+  <path class="flow ink" d="M292,80 C318,100 326,120 334,134" marker-end="url(#ah)"/>
+  <path class="flow ink" d="M292,210 C312,190 322,170 334,156" marker-end="url(#ah)"/>
+
+  <!-- scores QKᵀ (emphasized) -->
+  <text class="tag" x="452" y="92">scores</text>
+  <g transform="rotate(-0.7 452 144)"><rect class="box red" x="392" y="104" width="120" height="80" rx="4" stroke-width="3"/></g>
+  <text class="lblc redT" x="452" y="142">Q Kᵀ</text>
+  <text class="dim" x="452" y="168">n × n</text>
+  <path class="flow ink" d="M368,144 L392,144" marker-end="url(#ah)"/>
+
+  <!-- scale + softmax -->
+  <path class="flow ink" d="M512,144 L558,144" marker-end="url(#ah)"/>
+  <text class="note" x="535" y="132" text-anchor="middle">÷ √d_k</text>
+  <rect class="box ink" x="560" y="104" width="132" height="80" rx="4"/>
+  <text class="lblc" x="626" y="140" font-size="20">softmax</text>
+  <text class="dim" x="626" y="164">row-wise</text>
+  <path class="flow muted" d="M626,184 L626,214" marker-end="url(#ah)" stroke-dasharray="3 3"/>
+  <text class="note" x="626" y="232" text-anchor="middle">each row sums to 1</text>
+
+  <!-- A weights -->
+  <path class="flow ink" d="M692,144 L738,144" marker-end="url(#ah)"/>
+  <text class="tag" x="788" y="92">weights</text>
+  <g transform="rotate(0.7 788 144)"><rect class="box red" x="740" y="104" width="96" height="80" rx="4"/></g>
+  <text class="lblc redT" x="788" y="142">A</text>
+  <text class="dim" x="788" y="168">n × n</text>
+
+  <!-- matmul 2 -->
+  <circle class="box ink" cx="906" cy="250" r="18"/>
+  <text class="lbl" x="906" y="258" font-size="20">×</text>
+  <path class="flow ink" d="M812,184 C850,210 875,228 890,240" marker-end="url(#ah)"/>
+  <!-- V routed along the bottom into matmul2 -->
+  <path class="flow green" d="M292,356 C520,356 760,300 890,262" marker-end="url(#ah)"/>
+
+  <!-- output -->
+  <path class="flow ink" d="M924,250 L948,250" marker-end="url(#ah)"/>
+  <g transform="rotate(-0.6 996 250)"><rect class="box green" x="948" y="210" width="92" height="80" rx="4"/></g>
+  <text class="lblc greenT" x="994" y="246">output</text>
+  <text class="dim" x="994" y="274">n × d_v</text>
+
+  <!-- causal mask margin note -->
+  <text class="note" x="392" y="312">causal mask:</text>
+  <text class="note" x="392" y="328">set entries above the diagonal</text>
+  <text class="note" x="392" y="344">to −∞ before softmax</text>
+  <path class="flow muted" d="M452,300 C452,260 452,220 452,188" marker-end="url(#ah)" stroke-dasharray="3 3"/>
+</svg>

@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 460" role="img" aria-label="One decoder step of Bahdanau attention: alignment scores over all encoder hidden states are normalized by softmax into weights, then form the context vector as a weighted sum.">
+  <title>Bahdanau attention — one decoder step</title>
+  <desc>The previous decoder state s_(i-1) is scored against every encoder hidden state h_1 through h_T by a small alignment network a, giving scores e_(ij). A row-wise softmax turns the scores into alignment weights alpha_(ij) that sum to one. The context vector c_i is the weighted sum of the encoder states, weighted by alpha, and is fed to the decoder.</desc>
+  <style>
+    .board { fill: #FDFCF8; }
+    text { font-family: "Comic Sans MS","Comic Neue","Patrick Hand","Segoe Print",system-ui,sans-serif; fill: #222222; }
+    .ink   { stroke: #222222; }
+    .blue  { stroke: #2F6FED; }
+    .red   { stroke: #E5484D; }
+    .green { stroke: #2E9E5B; }
+    .muted { stroke: #8A8A85; }
+    .box   { fill: #FDFCF8; stroke-width: 2; stroke-linejoin: round; }
+    .flow  { fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .lbl   { font-size: 21px; text-anchor: middle; }
+    .dim   { font-size: 13px; text-anchor: middle; fill: #8A8A85; }
+    .tag   { font-size: 14px; text-anchor: middle; fill: #8A8A85; }
+    .note  { font-size: 13px; fill: #8A8A85; }
+    .title { font-size: 15px; fill: #8A8A85; }
+    .blueT  { fill: #2F6FED; }
+    .redT   { fill: #E5484D; }
+    .greenT { fill: #2E9E5B; }
+  </style>
+  <rect class="board" x="0" y="0" width="1060" height="460"/>
+  <defs>
+    <marker id="ah1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#222222" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ah1g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#2E9E5B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <text class="title" x="24" y="28">Bahdanau attention — decoder step i</text>
+
+  <!-- encoder hidden states h_1..h_T -->
+  <text class="tag" x="86" y="62">encoder states</text>
+  <g transform="rotate(-0.6 86 96)"><rect class="box blue" x="40" y="78" width="92" height="40" rx="4"/></g>
+  <text class="lbl blueT" x="86" y="105">h_1</text>
+  <g transform="rotate(0.5 86 156)"><rect class="box blue" x="40" y="138" width="92" height="40" rx="4"/></g>
+  <text class="lbl blueT" x="86" y="165">h_2</text>
+  <g transform="rotate(-0.4 86 216)"><rect class="box blue" x="40" y="198" width="92" height="40" rx="4"/></g>
+  <text class="lbl blueT" x="86" y="225">h_3</text>
+  <text class="lbl" x="86" y="276">⋮</text>
+  <g transform="rotate(0.5 86 326)"><rect class="box blue" x="40" y="308" width="92" height="40" rx="4"/></g>
+  <text class="lbl blueT" x="86" y="335">h_T</text>
+  <text class="dim" x="86" y="372">each h_j ∈ ℝ^d</text>
+
+  <!-- alignment net a -->
+  <rect class="box ink" x="248" y="160" width="120" height="96" rx="4"/>
+  <text class="lbl" x="308" y="196" font-size="20">a</text>
+  <text class="dim" x="308" y="218">alignment net</text>
+  <text class="dim" x="308" y="236">e = vᵀtanh(W h</text>
+  <text class="dim" x="308" y="252">+ U s)</text>
+
+  <!-- prev decoder state s_(i-1) -->
+  <g transform="rotate(0.6 308 386)"><rect class="box red" x="248" y="362" width="120" height="48" rx="4"/></g>
+  <text class="lbl redT" x="308" y="392">s_(i−1)</text>
+
+  <!-- arrows from each h into a -->
+  <path class="flow blue" d="M132,98  C190,120 200,170 246,182" marker-end="url(#ah1)"/>
+  <path class="flow blue" d="M132,158 C190,170 200,190 246,196" marker-end="url(#ah1)"/>
+  <path class="flow blue" d="M132,218 C190,212 200,206 246,206" marker-end="url(#ah1)"/>
+  <path class="flow blue" d="M132,328 C190,300 200,250 246,228" marker-end="url(#ah1)"/>
+  <!-- s into a -->
+  <path class="flow red" d="M308,362 L308,258" marker-end="url(#ah1)"/>
+
+  <!-- scores e_ij -->
+  <path class="flow ink" d="M368,208 L412,208" marker-end="url(#ah1)"/>
+  <text class="tag" x="470" y="160">scores</text>
+  <g transform="rotate(-0.7 470 208)"><rect class="box red" x="414" y="172" width="112" height="72" rx="4"/></g>
+  <text class="lbl redT" x="470" y="206">e_ij</text>
+  <text class="dim" x="470" y="230">T scalars</text>
+
+  <!-- softmax -->
+  <path class="flow ink" d="M526,208 L566,208" marker-end="url(#ah1)"/>
+  <rect class="box ink" x="568" y="172" width="132" height="72" rx="4"/>
+  <text class="lbl" x="634" y="204" font-size="19">softmax</text>
+  <text class="dim" x="634" y="228">over j = 1..T</text>
+  <text class="note" x="634" y="266" text-anchor="middle">Σ_j α_ij = 1</text>
+  <path class="flow muted" d="M634,244 L634,258" marker-end="url(#ah1)" stroke-dasharray="3 3"/>
+
+  <!-- weights alpha -->
+  <path class="flow ink" d="M700,208 L744,208" marker-end="url(#ah1)"/>
+  <text class="tag" x="800" y="160">weights</text>
+  <g transform="rotate(0.6 800 208)"><rect class="box red" x="746" y="172" width="108" height="72" rx="4"/></g>
+  <text class="lbl redT" x="800" y="206">α_ij</text>
+  <text class="dim" x="800" y="230">T weights</text>
+
+  <!-- context = weighted sum -->
+  <circle class="box green" cx="800" cy="330" r="20" stroke-width="2"/>
+  <text class="lbl greenT" x="800" y="338" font-size="20">Σ</text>
+  <path class="flow ink" d="M800,244 L800,308" marker-end="url(#ah1)"/>
+  <text class="note" x="816" y="290">weighted</text>
+  <text class="note" x="816" y="305">sum of h_j</text>
+  <!-- h states routed in along the bottom -->
+  <path class="flow blue" d="M132,338 C400,418 620,400 778,342" marker-end="url(#ah1)" opacity="0.85"/>
+  <text class="note" x="430" y="436" text-anchor="middle">the same encoder states h_1..h_T are the values being mixed</text>
+
+  <!-- context vector c_i -->
+  <path class="flow green" d="M820,330 L862,330" marker-end="url(#ah1g)"/>
+  <g transform="rotate(-0.6 956 330)"><rect class="box green" x="864" y="306" width="128" height="48" rx="4" stroke-width="3"/></g>
+  <text class="lbl greenT" x="928" y="336">c_i</text>
+  <text class="dim" x="928" y="372">context, ∈ ℝ^d</text>
+  <text class="note" x="928" y="392" text-anchor="middle">→ fed to decoder step i</text>
+</svg>

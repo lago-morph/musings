@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 400" role="img" aria-label="Bidirectional fill-in-the-blank versus left-to-right prediction: the contrast in context regimes between masked LM and autoregressive LM.">
+  <title>Masked LM vs. Autoregressive LM — context regimes</title>
+  <desc>Two panels side by side. Left panel labeled 'Masked LM (encoder-only)': a sentence with one token blanked as [MASK], arrows arriving from both left and right neighbors, labeled 'full bidirectional context'. Right panel labeled 'Autoregressive LM (decoder-only)': the same sentence without masking, each token with an arrow arriving only from the left in a chain, the rightmost position labeled 'predict next token', with the note 'left context only'.</desc>
+  <style>
+    .board { fill: #FDFCF8; }
+    text { font-family: "Comic Sans MS","Comic Neue","Patrick Hand","Segoe Print",system-ui,sans-serif; fill: #222222; }
+    .ink   { stroke: #222222; fill: none; }
+    .blue  { stroke: #2F6FED; fill: none; }
+    .green { stroke: #2E9E5B; fill: none; }
+    .red   { stroke: #E5484D; fill: none; }
+    .muted { stroke: #8A8A85; fill: none; }
+    .boxfill { fill: #FDFCF8; }
+    .flow  { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .lbl   { font-size: 18px; text-anchor: middle; }
+    .lbls  { font-size: 14px; text-anchor: middle; }
+    .dim   { font-size: 12px; text-anchor: middle; fill: #8A8A85; }
+    .note  { font-size: 12px; fill: #8A8A85; }
+    .notem { font-size: 12px; fill: #8A8A85; text-anchor: middle; }
+    .title { font-size: 14px; fill: #8A8A85; }
+    .blueT  { fill: #2F6FED; }
+    .greenT { fill: #2E9E5B; }
+    .redT   { fill: #E5484D; }
+  </style>
+  <rect class="board" x="0" y="0" width="880" height="400"/>
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#222222" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#2F6FED" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#E5484D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#2E9E5B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <text class="title" x="24" y="24">context regimes: masked LM vs. autoregressive LM</text>
+
+  <!-- Divider line -->
+  <line class="muted" x1="440" y1="40" x2="440" y2="380" stroke-width="1" stroke-dasharray="6 4"/>
+
+  <!-- ===== LEFT PANEL: Masked LM ===== -->
+  <text class="lbl blueT" x="220" y="60" font-size="17">Masked LM (encoder-only)</text>
+
+  <!-- Token row: "The" [MASK] "sat" centered at y=160 -->
+  <!-- 4 tokens: "The" at x=60, [MASK] at x=170, "on" at x=280, "mat" at x=390... but let's use 3 + mask -->
+  <!-- Tokens at x=60, 150, 260, 370, centered, y=160 -->
+
+  <!-- Token: The -->
+  <g transform="rotate(-0.3 72 160)">
+    <rect class="boxfill ink" x="32" y="140" width="80" height="40" rx="4" stroke-width="1.6"/>
+  </g>
+  <text class="lbls" x="72" y="165">The</text>
+
+  <!-- Token: cat -->
+  <g transform="rotate(0.2 168 160)">
+    <rect class="boxfill ink" x="128" y="140" width="80" height="40" rx="4" stroke-width="1.6"/>
+  </g>
+  <text class="lbls" x="168" y="165">cat</text>
+
+  <!-- Token: [MASK] -->
+  <g transform="rotate(-0.4 272 160)">
+    <rect class="boxfill red" x="232" y="140" width="80" height="40" rx="4" stroke-width="2.5"/>
+  </g>
+  <text class="lbls redT" x="272" y="165">[MASK]</text>
+
+  <!-- Token: down -->
+  <g transform="rotate(0.3 376 160)">
+    <rect class="boxfill ink" x="336" y="140" width="80" height="40" rx="4" stroke-width="1.6"/>
+  </g>
+  <text class="lbls" x="376" y="165">down</text>
+
+  <!-- Arrows from left tokens toward [MASK] -->
+  <path class="flow blue" d="M112,158 L230,158" stroke-width="1.8" marker-end="url(#ahb)"/>
+  <text class="notem blueT" x="171" y="150" font-size="11">left context</text>
+
+  <!-- Arrow from right token toward [MASK] -->
+  <path class="flow blue" d="M336,162 L354,162" stroke-width="1" marker-end="url(#ahb)" opacity="0"/>
+  <!-- Visible left-pointing arrow from "down" to [MASK] -->
+  <path class="flow blue" d="M336,162 L354,162 L354,162" stroke-width="1" fill="none" stroke="#2F6FED" stroke-linecap="round" opacity="0"/>
+  <path d="M334,162 L314,162" fill="none" stroke="#2F6FED" stroke-width="1.8" stroke-linecap="round" marker-end="url(#ahb)"/>
+  <text class="notem blueT" x="376" y="150" font-size="11">right context</text>
+
+  <!-- Convergence arrows up to [MASK] prediction -->
+  <path class="flow red" d="M272,140 L272,110" stroke-width="1.6" marker-end="url(#ahr)"/>
+
+  <!-- Predicted token box -->
+  <g transform="rotate(0.3 272 84)">
+    <rect class="boxfill green" x="210" y="66" width="124" height="40" rx="4" stroke-width="2"/>
+  </g>
+  <text class="lbls greenT" x="272" y="92">predict: "sat"</text>
+
+  <!-- Caption -->
+  <text class="notem" x="220" y="240" font-size="13">every position sees every other</text>
+  <text class="lbl blueT" x="220" y="268" font-size="14">full bidirectional context</text>
+
+  <!-- small note about use -->
+  <text class="notem" x="220" y="300" font-size="12">good for: classification, NER, extractive QA</text>
+  <text class="notem" x="220" y="318" font-size="12">not naturally generative</text>
+
+  <!-- ===== RIGHT PANEL: Autoregressive LM ===== -->
+  <text class="lbl" x="660" y="60" font-size="17">Autoregressive LM (decoder-only)</text>
+
+  <!-- Token row at y=160 (same height) -->
+  <!-- Tokens: The cat sat [next?] -->
+  <!-- x=480,570,660,750,840 centers, y=160 -->
+
+  <!-- Token: The -->
+  <g transform="rotate(0.2 494 160)">
+    <rect class="boxfill ink" x="454" y="140" width="80" height="40" rx="4" stroke-width="1.6"/>
+  </g>
+  <text class="lbls" x="494" y="165">The</text>
+
+  <!-- Token: cat -->
+  <g transform="rotate(-0.2 590 160)">
+    <rect class="boxfill ink" x="550" y="140" width="80" height="40" rx="4" stroke-width="1.6"/>
+  </g>
+  <text class="lbls" x="590" y="165">cat</text>
+
+  <!-- Token: sat -->
+  <g transform="rotate(0.3 686 160)">
+    <rect class="boxfill ink" x="646" y="140" width="80" height="40" rx="4" stroke-width="1.6"/>
+  </g>
+  <text class="lbls" x="686" y="165">sat</text>
+
+  <!-- Predict box -->
+  <g transform="rotate(-0.3 790 160)">
+    <rect class="boxfill green" x="750" y="140" width="90" height="40" rx="4" stroke-width="2"/>
+  </g>
+  <text class="lbls greenT" x="795" y="160">predict</text>
+  <text class="lbls greenT" x="795" y="176">next →</text>
+
+  <!-- Left-to-right arrows (causal chain) -->
+  <path class="flow ink" d="M534,160 L550,160" stroke-width="1.8" marker-end="url(#ah)"/>
+  <path class="flow ink" d="M630,160 L646,160" stroke-width="1.8" marker-end="url(#ah)"/>
+  <path class="flow ink" d="M726,160 L750,160" stroke-width="1.8" marker-end="url(#ah)"/>
+
+  <!-- Caption -->
+  <text class="notem" x="660" y="240" font-size="13">each position sees only x₁ … xₜ₋₁</text>
+  <text class="lbl" x="660" y="268" font-size="14">left context only</text>
+
+  <!-- small note about use -->
+  <text class="notem" x="660" y="300" font-size="12">good for: generation, completion,</text>
+  <text class="notem" x="660" y="318" font-size="12">in-context learning</text>
+
+  <!-- Bottom summary annotation -->
+  <text class="notem" x="440" y="362" font-size="12" fill="#8A8A85">same transformer blocks — different masking of the attention score matrix</text>
+
+</svg>

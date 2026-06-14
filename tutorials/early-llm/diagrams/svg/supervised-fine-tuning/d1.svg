@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 420" role="img" aria-label="Supervised fine-tuning pipeline: a pretrained base language model and an instruction-response dataset both feed into a supervised fine-tuning step (cross-entropy loss on demonstrations), producing an instruction-following model. A muted downstream box labeled 'next: RLHF' is shown in grey as the subsequent step, explicitly out of scope.">
+  <title>Supervised fine-tuning — pipeline overview</title>
+  <desc>Two inputs (a pretrained base LM and an instruction-response dataset) flow into a supervised fine-tuning box that applies ordinary cross-entropy loss. The output is an instruction-following model. A grey dashed arrow leads onward to a muted box labeled 'next: RLHF (out of scope here)', indicating the downstream step without explaining it.</desc>
+  <style>
+    .board { fill: #FDFCF8; }
+    text { font-family: "Comic Sans MS","Comic Neue","Patrick Hand","Segoe Print",system-ui,sans-serif; fill: #222222; }
+    .ink   { stroke: #222222; }
+    .blue  { stroke: #2F6FED; }
+    .red   { stroke: #E5484D; }
+    .green { stroke: #2E9E5B; }
+    .muted { stroke: #8A8A85; }
+    .box   { fill: #FDFCF8; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+    .boxmuted { fill: #F3F3F0; stroke: #8A8A85; stroke-width: 1.5; stroke-linejoin: round; stroke-linecap: round; stroke-dasharray: 6 3; }
+    .flow  { fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .lbl   { font-size: 19px; text-anchor: middle; }
+    .lsm   { font-size: 14px; text-anchor: middle; }
+    .dim   { font-size: 13px; text-anchor: middle; fill: #8A8A85; }
+    .note  { font-size: 13px; fill: #8A8A85; }
+    .hdr   { font-size: 16px; font-weight: bold; text-anchor: middle; }
+    .blueT  { fill: #2F6FED; }
+    .redT   { fill: #E5484D; }
+    .greenT { fill: #2E9E5B; }
+    .mutedT { fill: #8A8A85; }
+  </style>
+  <rect class="board" x="0" y="0" width="1000" height="420"/>
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#222222" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#2F6FED" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#2E9E5B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahm" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#8A8A85" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- title -->
+  <text class="hdr" x="500" y="32">Supervised fine-tuning — pipeline</text>
+
+  <!-- ── INPUT 1: pretrained base LM ── -->
+  <g transform="rotate(-0.6 120 165)">
+    <rect class="box blue" x="28" y="110" width="184" height="110" rx="6"/>
+  </g>
+  <text class="lbl blueT" x="120" y="154">Pretrained</text>
+  <text class="lbl blueT" x="120" y="176">base LM</text>
+  <text class="dim" x="120" y="200">(weights θ₀)</text>
+
+  <!-- ── INPUT 2: instruction–response dataset ── -->
+  <g transform="rotate(0.5 120 315)">
+    <rect class="box ink" x="28" y="262" width="184" height="110" rx="6"/>
+  </g>
+  <text class="hdr" x="120" y="302">Dataset</text>
+  <!-- dataset rows suggesting pairs -->
+  <rect class="box ink" x="42" y="314" width="62" height="22" rx="3"/>
+  <text class="lsm" x="73" y="330">instruction</text>
+  <text class="lbl" x="118" y="331">→</text>
+  <rect class="box green" x="130" y="314" width="68" height="22" rx="3"/>
+  <text class="lsm greenT" x="164" y="330">response</text>
+
+  <rect class="box ink" x="42" y="344" width="62" height="22" rx="3"/>
+  <text class="lsm" x="73" y="360">instruction</text>
+  <text class="lbl" x="118" y="361">→</text>
+  <rect class="box green" x="130" y="344" width="68" height="22" rx="3"/>
+  <text class="lsm greenT" x="164" y="360">response</text>
+
+  <text class="dim" x="120" y="392">demonstrations of desired behavior</text>
+
+  <!-- ── arrows into SFT box ── -->
+  <path class="flow blue" d="M214,165 C268,165 280,220 300,232" marker-end="url(#ahb)"/>
+  <path class="flow ink" d="M214,315 C268,315 280,270 300,256" marker-end="url(#ah)"/>
+
+  <!-- ── SFT box (the operation) ── -->
+  <g transform="rotate(-0.4 402 245)">
+    <rect class="box red" x="302" y="190" width="200" height="110" rx="6" stroke-width="2.5"/>
+  </g>
+  <text class="lbl redT" x="402" y="236">Supervised</text>
+  <text class="lbl redT" x="402" y="258">fine-tuning</text>
+  <text class="dim" x="402" y="282">cross-entropy loss on</text>
+  <text class="dim" x="402" y="296">instruction–response pairs</text>
+
+  <!-- loss equation note -->
+  <text class="note" x="402" y="330" text-anchor="middle">ℒ(θ) = −∑ log P_θ(response | instruction)</text>
+
+  <!-- ── arrow: SFT → instruction-following model ── -->
+  <path class="flow green" d="M504,245 L556,245" marker-end="url(#ahg)"/>
+
+  <!-- ── output: instruction-following model ── -->
+  <g transform="rotate(0.5 648 245)">
+    <rect class="box green" x="558" y="190" width="180" height="110" rx="6" stroke-width="2.8"/>
+  </g>
+  <text class="lbl greenT" x="648" y="230">Instruction-</text>
+  <text class="lbl greenT" x="648" y="252">following</text>
+  <text class="lbl greenT" x="648" y="274">model (θ′)</text>
+
+  <!-- examples below output -->
+  <text class="note" x="648" y="320" text-anchor="middle">e.g. FLAN (Wei et al. 2021)</text>
+  <text class="note" x="648" y="336" text-anchor="middle">InstructGPT SFT stage (Ouyang et al. 2022)</text>
+
+  <!-- ── dashed arrow to RLHF ── -->
+  <path class="flow muted" d="M740,245 L800,245" stroke-dasharray="6 4" marker-end="url(#ahm)"/>
+
+  <!-- ── RLHF muted box ── -->
+  <rect class="boxmuted" x="802" y="206" width="170" height="78" rx="6"/>
+  <text class="lbl mutedT" x="887" y="238">next: RLHF</text>
+  <text class="dim" x="887" y="260">(out of scope here)</text>
+  <text class="note" x="887" y="278" text-anchor="middle">human feedback + RL</text>
+</svg>

@@ -1,0 +1,229 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 500" role="img" aria-label="Three side-by-side mini-architectures showing the characteristic attention pattern of each transformer family: encoder-only with bidirectional attention, decoder-only with causal attention, and encoder-decoder with both patterns connected by cross-attention.">
+  <title>Transformer families — encoder-only, decoder-only, encoder-decoder</title>
+  <desc>Three columns. Left: encoder-only (BERT) with a full bidirectional attention grid, leading to a classification vector. Middle: decoder-only (GPT) with a lower-triangular causal attention grid, leading to next-token generation. Right: encoder-decoder (T5, original Transformer) showing an encoder section with bidirectional grid on top connected via cross-attention arrows to a decoder section with lower-triangular causal grid below, leading to sequence output.</desc>
+  <style>
+    .board { fill: #FDFCF8; }
+    text { font-family: "Comic Sans MS","Comic Neue","Patrick Hand","Segoe Print",system-ui,sans-serif; fill: #222222; }
+    .ink   { stroke: #222222; fill: none; }
+    .blue  { stroke: #2F6FED; fill: none; }
+    .green { stroke: #2E9E5B; fill: none; }
+    .red   { stroke: #E5484D; fill: none; }
+    .muted { stroke: #8A8A85; fill: none; }
+    .boxfill { fill: #FDFCF8; }
+    .cellfill { fill: #FDFCF8; }
+    .maskfill { fill: #EAEAE6; }
+    .flow  { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .lbl   { font-size: 17px; text-anchor: middle; }
+    .lbls  { font-size: 13px; text-anchor: middle; }
+    .dim   { font-size: 11px; text-anchor: middle; fill: #8A8A85; }
+    .note  { font-size: 11px; fill: #8A8A85; }
+    .notem { font-size: 11px; fill: #8A8A85; text-anchor: middle; }
+    .title { font-size: 13px; fill: #8A8A85; }
+    .blueT  { fill: #2F6FED; }
+    .greenT { fill: #2E9E5B; }
+    .redT   { fill: #E5484D; }
+  </style>
+  <rect class="board" x="0" y="0" width="1020" height="500"/>
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#2F6FED" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#2E9E5B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#E5484D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <text class="title" x="24" y="22">transformer families — structural comparison</text>
+
+  <!-- Column dividers -->
+  <line class="muted" x1="340" y1="36" x2="340" y2="480" stroke-width="1" stroke-dasharray="5 4"/>
+  <line class="muted" x1="680" y1="36" x2="680" y2="480" stroke-width="5 4"/>
+  <line class="muted" x1="680" y1="36" x2="680" y2="480" stroke-width="1" stroke-dasharray="5 4"/>
+
+  <!-- ============================================================ -->
+  <!-- COLUMN 1: Encoder-only (BERT)                                -->
+  <!-- ============================================================ -->
+  <text class="lbl blueT" x="170" y="52">Encoder-only</text>
+  <text class="dim" x="170" y="68">(BERT, RoBERTa)</text>
+
+  <!-- 4x4 full attention grid, top-left (50,82), cell=38 -->
+  <!-- All 16 cells filled = bidirectional -->
+  <!-- Row 0 -->
+  <rect class="cellfill blue" x="50" y="82" width="36" height="36" rx="2" stroke-width="1.2"/>
+  <rect class="cellfill blue" x="90" y="82" width="36" height="36" rx="2" stroke-width="1.2"/>
+  <rect class="cellfill blue" x="130" y="82" width="36" height="36" rx="2" stroke-width="1.2"/>
+  <rect class="cellfill blue" x="170" y="82" width="36" height="36" rx="2" stroke-width="1.2"/>
+  <!-- Row 1 -->
+  <rect class="cellfill blue" x="50" y="122" width="36" height="36" rx="2" stroke-width="1.2"/>
+  <rect class="cellfill blue" x="90" y="122" width="36" height="36" rx="2" stroke-width="1.2"/>
+  <rect class="cellfill blue" x="130" y="122" width="36" height="36" rx="2" stroke-width="1.2"/>
+  <rect class="cellfill blue" x="170" y="122" width="36" height="36" rx="2" stroke-width="1.2"/>
+  <!-- Row 2 -->
+  <rect class="cellfill blue" x="50" y="162" width="36" height="36" rx="2" stroke-width="1.2"/>
+  <rect class="cellfill blue" x="90" y="162" width="36" height="36" rx="2" stroke-width="1.2"/>
+  <rect class="cellfill blue" x="130" y="162" width="36" height="36" rx="2" stroke-width="1.2"/>
+  <rect class="cellfill blue" x="170" y="162" width="36" height="36" rx="2" stroke-width="1.2"/>
+  <!-- Row 3 -->
+  <rect class="cellfill blue" x="50" y="202" width="36" height="36" rx="2" stroke-width="1.2"/>
+  <rect class="cellfill blue" x="90" y="202" width="36" height="36" rx="2" stroke-width="1.2"/>
+  <rect class="cellfill blue" x="130" y="202" width="36" height="36" rx="2" stroke-width="1.2"/>
+  <rect class="cellfill blue" x="170" y="202" width="36" height="36" rx="2" stroke-width="1.2"/>
+
+  <!-- dots in all cells -->
+  <text class="notem blueT" x="68" y="106" font-size="14">•</text><text class="notem blueT" x="108" y="106" font-size="14">•</text>
+  <text class="notem blueT" x="148" y="106" font-size="14">•</text><text class="notem blueT" x="188" y="106" font-size="14">•</text>
+  <text class="notem blueT" x="68" y="146" font-size="14">•</text><text class="notem blueT" x="108" y="146" font-size="14">•</text>
+  <text class="notem blueT" x="148" y="146" font-size="14">•</text><text class="notem blueT" x="188" y="146" font-size="14">•</text>
+  <text class="notem blueT" x="68" y="186" font-size="14">•</text><text class="notem blueT" x="108" y="186" font-size="14">•</text>
+  <text class="notem blueT" x="148" y="186" font-size="14">•</text><text class="notem blueT" x="188" y="186" font-size="14">•</text>
+  <text class="notem blueT" x="68" y="226" font-size="14">•</text><text class="notem blueT" x="108" y="226" font-size="14">•</text>
+  <text class="notem blueT" x="148" y="226" font-size="14">•</text><text class="notem blueT" x="188" y="226" font-size="14">•</text>
+
+  <text class="notem blueT" x="128" y="254" font-size="11">bidirectional: all attend to all</text>
+
+  <!-- output arrow + label -->
+  <path class="flow blue" d="M128,80 L128,64" stroke-width="1.4" marker-end="url(#ahb)"/>
+  <text class="notem blueT" x="128" y="80" font-size="11">↑ to output</text>
+
+  <!-- classification box -->
+  <g transform="rotate(-0.3 170 288)">
+    <rect class="boxfill blue" x="70" y="270" width="200" height="40" rx="4" stroke-width="2"/>
+  </g>
+  <text class="lbls blueT" x="170" y="296">[CLS] → classification</text>
+
+  <path class="flow blue" d="M128,238 L128,270" stroke-width="1.4" marker-end="url(#ahb)"/>
+
+  <!-- task fit -->
+  <text class="notem" x="170" y="340">NLU, NER, extractive QA</text>
+  <text class="notem" x="170" y="356">classification, embedding</text>
+
+  <!-- ============================================================ -->
+  <!-- COLUMN 2: Decoder-only (GPT)                                 -->
+  <!-- ============================================================ -->
+  <text class="lbl" x="510" y="52">Decoder-only</text>
+  <text class="dim" x="510" y="68">(GPT, GPT-2)</text>
+
+  <!-- 4x4 causal (lower-triangular) grid, top-left (358,82) -->
+  <!-- Row 0: only (0,0) allowed -->
+  <rect class="cellfill ink" x="358" y="82" width="36" height="36" rx="2" stroke-width="1.2"/>
+  <rect class="maskfill muted" x="398" y="82" width="36" height="36" rx="2" stroke-width="1"/>
+  <rect class="maskfill muted" x="438" y="82" width="36" height="36" rx="2" stroke-width="1"/>
+  <rect class="maskfill muted" x="478" y="82" width="36" height="36" rx="2" stroke-width="1"/>
+  <!-- Row 1 -->
+  <rect class="cellfill ink" x="358" y="122" width="36" height="36" rx="2" stroke-width="1.2"/>
+  <rect class="cellfill ink" x="398" y="122" width="36" height="36" rx="2" stroke-width="1.2"/>
+  <rect class="maskfill muted" x="438" y="122" width="36" height="36" rx="2" stroke-width="1"/>
+  <rect class="maskfill muted" x="478" y="122" width="36" height="36" rx="2" stroke-width="1"/>
+  <!-- Row 2 -->
+  <rect class="cellfill ink" x="358" y="162" width="36" height="36" rx="2" stroke-width="1.2"/>
+  <rect class="cellfill ink" x="398" y="162" width="36" height="36" rx="2" stroke-width="1.2"/>
+  <rect class="cellfill ink" x="438" y="162" width="36" height="36" rx="2" stroke-width="1.2"/>
+  <rect class="maskfill muted" x="478" y="162" width="36" height="36" rx="2" stroke-width="1"/>
+  <!-- Row 3 -->
+  <rect class="cellfill ink" x="358" y="202" width="36" height="36" rx="2" stroke-width="1.2"/>
+  <rect class="cellfill ink" x="398" y="202" width="36" height="36" rx="2" stroke-width="1.2"/>
+  <rect class="cellfill ink" x="438" y="202" width="36" height="36" rx="2" stroke-width="1.2"/>
+  <rect class="cellfill ink" x="478" y="202" width="36" height="36" rx="2" stroke-width="1.2"/>
+
+  <!-- dots in allowed cells -->
+  <text class="notem" x="376" y="106" font-size="14">•</text>
+  <text class="notem" x="376" y="146" font-size="14">•</text><text class="notem" x="416" y="146" font-size="14">•</text>
+  <text class="notem" x="376" y="186" font-size="14">•</text><text class="notem" x="416" y="186" font-size="14">•</text><text class="notem" x="456" y="186" font-size="14">•</text>
+  <text class="notem" x="376" y="226" font-size="14">•</text><text class="notem" x="416" y="226" font-size="14">•</text><text class="notem" x="456" y="226" font-size="14">•</text><text class="notem" x="496" y="226" font-size="14">•</text>
+
+  <!-- −∞ in masked cells -->
+  <text class="notem" style="fill:#8A8A85;" x="416" y="104" font-size="10">−∞</text>
+  <text class="notem" style="fill:#8A8A85;" x="456" y="104" font-size="10">−∞</text>
+  <text class="notem" style="fill:#8A8A85;" x="496" y="104" font-size="10">−∞</text>
+  <text class="notem" style="fill:#8A8A85;" x="456" y="144" font-size="10">−∞</text>
+  <text class="notem" style="fill:#8A8A85;" x="496" y="144" font-size="10">−∞</text>
+  <text class="notem" style="fill:#8A8A85;" x="496" y="184" font-size="10">−∞</text>
+
+  <text class="notem" x="428" y="254" font-size="11">causal: left context only (lower triangle)</text>
+
+  <!-- generation box -->
+  <g transform="rotate(0.3 510 288)">
+    <rect class="boxfill green" x="386" y="270" width="248" height="40" rx="4" stroke-width="2"/>
+  </g>
+  <text class="lbls greenT" x="510" y="296">next-token generation</text>
+
+  <path class="flow ink" d="M428,238 L428,258 C428,265 432,270 438,270" stroke-width="1.4" marker-end="url(#ah)"/>
+
+  <!-- task fit -->
+  <text class="notem" x="510" y="340">text generation, completion,</text>
+  <text class="notem" x="510" y="356">in-context learning</text>
+
+  <!-- ============================================================ -->
+  <!-- COLUMN 3: Encoder-decoder (T5, original Transformer)         -->
+  <!-- ============================================================ -->
+  <text class="lbl" x="850" y="52">Encoder-decoder</text>
+  <text class="dim" x="850" y="68">(T5, original Transformer)</text>
+
+  <!-- Encoder part: 3x3 full grid top-left (700,82) -->
+  <text class="notem blueT" x="755" y="78" font-size="11">encoder (bidirectional)</text>
+  <!-- Row 0 -->
+  <rect class="cellfill blue" x="700" y="84" width="30" height="30" rx="2" stroke-width="1.1"/>
+  <rect class="cellfill blue" x="734" y="84" width="30" height="30" rx="2" stroke-width="1.1"/>
+  <rect class="cellfill blue" x="768" y="84" width="30" height="30" rx="2" stroke-width="1.1"/>
+  <!-- Row 1 -->
+  <rect class="cellfill blue" x="700" y="118" width="30" height="30" rx="2" stroke-width="1.1"/>
+  <rect class="cellfill blue" x="734" y="118" width="30" height="30" rx="2" stroke-width="1.1"/>
+  <rect class="cellfill blue" x="768" y="118" width="30" height="30" rx="2" stroke-width="1.1"/>
+  <!-- Row 2 -->
+  <rect class="cellfill blue" x="700" y="152" width="30" height="30" rx="2" stroke-width="1.1"/>
+  <rect class="cellfill blue" x="734" y="152" width="30" height="30" rx="2" stroke-width="1.1"/>
+  <rect class="cellfill blue" x="768" y="152" width="30" height="30" rx="2" stroke-width="1.1"/>
+  <!-- dots -->
+  <text class="notem blueT" x="715" y="104" font-size="12">•</text><text class="notem blueT" x="749" y="104" font-size="12">•</text><text class="notem blueT" x="783" y="104" font-size="12">•</text>
+  <text class="notem blueT" x="715" y="138" font-size="12">•</text><text class="notem blueT" x="749" y="138" font-size="12">•</text><text class="notem blueT" x="783" y="138" font-size="12">•</text>
+  <text class="notem blueT" x="715" y="172" font-size="12">•</text><text class="notem blueT" x="749" y="172" font-size="12">•</text><text class="notem blueT" x="783" y="172" font-size="12">•</text>
+
+  <!-- Cross-attention: arrows from encoder output to decoder -->
+  <path class="flow red" d="M715,182 C715,212 810,230 840,248" stroke-width="1.4" marker-end="url(#ahr)"/>
+  <path class="flow red" d="M749,182 C749,210 835,232 840,248" stroke-width="1.4" marker-end="url(#ahr)"/>
+  <path class="flow red" d="M783,182 C800,210 845,232 845,248" stroke-width="1.4" marker-end="url(#ahr)"/>
+  <text class="notem redT" x="800" y="224" font-size="11">cross-attention</text>
+
+  <!-- Decoder part: 3x3 causal grid top-left (810,252) -->
+  <text class="notem" x="865" y="248" font-size="11">decoder (causal)</text>
+  <!-- Row 0 -->
+  <rect class="cellfill ink" x="808" y="254" width="30" height="30" rx="2" stroke-width="1.1"/>
+  <rect class="maskfill muted" x="842" y="254" width="30" height="30" rx="2" stroke-width="1"/>
+  <rect class="maskfill muted" x="876" y="254" width="30" height="30" rx="2" stroke-width="1"/>
+  <!-- Row 1 -->
+  <rect class="cellfill ink" x="808" y="288" width="30" height="30" rx="2" stroke-width="1.1"/>
+  <rect class="cellfill ink" x="842" y="288" width="30" height="30" rx="2" stroke-width="1.1"/>
+  <rect class="maskfill muted" x="876" y="288" width="30" height="30" rx="2" stroke-width="1"/>
+  <!-- Row 2 -->
+  <rect class="cellfill ink" x="808" y="322" width="30" height="30" rx="2" stroke-width="1.1"/>
+  <rect class="cellfill ink" x="842" y="322" width="30" height="30" rx="2" stroke-width="1.1"/>
+  <rect class="cellfill ink" x="876" y="322" width="30" height="30" rx="2" stroke-width="1.1"/>
+  <!-- dots -->
+  <text class="notem" x="823" y="274" font-size="12">•</text>
+  <text class="notem" x="823" y="308" font-size="12">•</text><text class="notem" x="857" y="308" font-size="12">•</text>
+  <text class="notem" x="823" y="342" font-size="12">•</text><text class="notem" x="857" y="342" font-size="12">•</text><text class="notem" x="891" y="342" font-size="12">•</text>
+  <!-- −∞ in masked cells -->
+  <text class="notem" style="fill:#8A8A85;" x="857" y="272" font-size="9">−∞</text><text class="notem" style="fill:#8A8A85;" x="891" y="272" font-size="9">−∞</text>
+  <text class="notem" style="fill:#8A8A85;" x="891" y="306" font-size="9">−∞</text>
+
+  <!-- seq2seq output -->
+  <g transform="rotate(-0.3 850 388)">
+    <rect class="boxfill green" x="718" y="370" width="264" height="40" rx="4" stroke-width="2"/>
+  </g>
+  <text class="lbls greenT" x="850" y="396">seq2seq output</text>
+  <path class="flow ink" d="M849,352 L849,370" stroke-width="1.4" marker-end="url(#ah)"/>
+
+  <!-- task fit -->
+  <text class="notem" x="850" y="434">translation, summarization,</text>
+  <text class="notem" x="850" y="450">conditioned generation</text>
+
+  <!-- Bottom row: shared note -->
+  <text class="notem" x="510" y="480" font-size="11" fill="#8A8A85">all three families share the same scaled dot-product attention operation — differences are in masking and connectivity</text>
+
+</svg>

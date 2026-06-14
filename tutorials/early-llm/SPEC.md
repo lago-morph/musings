@@ -1,8 +1,24 @@
 # Early-LLM Tutorial — Project Specification
 
-**Status:** Draft v0.1 (design-complete, pre-build)
+**Status:** Draft v0.2 (in build)
 **Artifact:** `tutorials/early-llm/` in `lago-morph/musings`
-**Last updated:** 2026-06-12
+**Last updated:** 2026-06-13
+
+> **Revision note (2026-06-13).** Decisions locked this round, overriding the corresponding text
+> below; see `PLAN.md` for the build status and `authoring/node-graph.md` for the canonical graph:
+> - **Word budget ≈ 20,000 words** (double the original 8–10k), across the same ~20-node graph
+>   **deepened in place**. Concept nodes ~1,200–1,500 words; intro/contrast/SFT-bridge ~600–900.
+> - **Diagram-to-word ratio ~1 per ~800 words**, held roughly constant where it makes sense.
+> - **Authoring format is now one JSON file per node** (`nodes/NN-<id>.json`), validated against
+>   `schema/node.schema.json`. This supersedes the "inline JS object literals" of §6/§11 and adopts
+>   the "structured repo" path foreshadowed in §10 as the primary delivery.
+> - **Edges are declared on both endpoint files** and cross-checked by a CI linter
+>   (`ci/lint_nodes.mjs`, Node 22 + ajv) along with schema compliance.
+> - **Diagram prompts live in the node JSON**; the whiteboard **style is defined once** in
+>   `authoring/diagram-style.md`. SVGs are hand-built; image generation is a later, separate pass
+>   driven by `authoring/image-generation-agent.md`.
+> - **UI choices** for the intro and iPad will be explored via a single interactive prototype
+>   (`prototypes/ui-prototype.html`) with live-toggleable options, iterated on the reviewer's iPad.
 
 ---
 

@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 460" role="img" aria-label="Conceptual chart showing that in-context accuracy rises with the number of in-context examples and that larger models benefit more strongly. Small models show little improvement with more examples; large models show a steep gain.">
+  <title>In-context accuracy vs. number of examples and model scale</title>
+  <desc>A schematic line chart. The horizontal axis is labeled 'number of in-context examples (K)' ranging from 0 to a few. The vertical axis is labeled 'task accuracy'. Three curves rise left to right: a flat grey curve labeled 'small model', a moderately rising blue curve labeled 'medium model', and a steeply rising green curve labeled 'large model (e.g. GPT-3 175B)'. A vertical dashed line at K=0 is labeled 'zero-shot'. A note reads: 'few-shot gap widens with scale — a pattern that emerged around 100B+ parameters'.</desc>
+  <style>
+    .board { fill: #FDFCF8; }
+    text { font-family: "Comic Sans MS","Comic Neue","Patrick Hand","Segoe Print",system-ui,sans-serif; fill: #222222; }
+    .ink   { stroke: #222222; }
+    .blue  { stroke: #2F6FED; }
+    .green { stroke: #2E9E5B; }
+    .muted { stroke: #8A8A85; }
+    .flow  { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .axis  { fill: none; stroke: #222222; stroke-width: 1.8; stroke-linecap: round; }
+    .lbl   { font-size: 18px; text-anchor: middle; }
+    .lsm   { font-size: 14px; text-anchor: middle; }
+    .axlbl { font-size: 15px; text-anchor: middle; fill: #222222; }
+    .note  { font-size: 13px; fill: #8A8A85; }
+    .hdr   { font-size: 17px; font-weight: bold; text-anchor: middle; }
+    .blueT  { fill: #2F6FED; }
+    .greenT { fill: #2E9E5B; }
+    .mutedT { fill: #8A8A85; }
+  </style>
+  <rect class="board" x="0" y="0" width="860" height="460"/>
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#222222" stroke-width="1.8" stroke-linecap="round"/>
+    </marker>
+  </defs>
+
+  <!-- title -->
+  <text class="hdr" x="460" y="36">In-context accuracy vs. examples and model scale</text>
+
+  <!-- axis region: origin at (100, 380), width=640, height=280 -->
+
+  <!-- y axis -->
+  <path class="axis" d="M100,380 L100,80" marker-end="url(#ah)"/>
+  <!-- x axis -->
+  <path class="axis" d="M100,380 L760,380" marker-end="url(#ah)"/>
+
+  <!-- axis labels -->
+  <text class="axlbl" x="430" y="420">number of in-context examples (K)</text>
+  <!-- rotated y label -->
+  <text class="axlbl" x="-220" y="50" transform="rotate(-90)">task accuracy</text>
+
+  <!-- x tick marks and labels -->
+  <line x1="100" y1="380" x2="100" y2="388" stroke="#222222" stroke-width="1.5"/>
+  <text class="lsm" x="100" y="402">0</text>
+
+  <line x1="220" y1="380" x2="220" y2="388" stroke="#222222" stroke-width="1.5"/>
+  <text class="lsm" x="220" y="402">1</text>
+
+  <line x1="380" y1="380" x2="380" y2="388" stroke="#222222" stroke-width="1.5"/>
+  <text class="lsm" x="380" y="402">few (3–5)</text>
+
+  <line x1="600" y1="380" x2="600" y2="388" stroke="#222222" stroke-width="1.5"/>
+  <text class="lsm" x="600" y="402">many (10+)</text>
+
+  <!-- zero-shot dashed marker -->
+  <line x1="100" y1="90" x2="100" y2="380" stroke="#8A8A85" stroke-width="1.2" stroke-dasharray="5 4"/>
+  <text class="note" x="106" y="100" text-anchor="start">zero-shot</text>
+
+  <!-- SMALL model curve: barely rises, flat grey -->
+  <!-- starts ~y=310 at x=100, ends ~y=295 at x=700 -->
+  <path class="flow muted" d="M100,310 C200,308 350,305 500,302 C600,300 650,298 700,296" stroke-width="2.5"/>
+  <text class="note" x="712" y="299" text-anchor="start">small model</text>
+  <text class="note" x="712" y="313" text-anchor="start">(little benefit)</text>
+
+  <!-- MEDIUM model curve: moderate rise, blue -->
+  <!-- starts ~y=260 at x=100, ends ~y=190 at x=700 -->
+  <path class="flow blue" d="M100,260 C200,250 300,235 420,215 C520,198 630,192 700,190" stroke-width="2.8"/>
+  <text class="lsm blueT" x="712" y="193" text-anchor="start">medium model</text>
+
+  <!-- LARGE model curve: steep rise, green -->
+  <!-- starts ~y=220 at x=100, ends ~y=118 at x=700 -->
+  <path class="flow green" d="M100,220 C180,200 280,168 400,148 C510,130 630,122 700,118" stroke-width="3.2"/>
+  <text class="lsm greenT" x="712" y="118" text-anchor="start">large model</text>
+  <text class="note" x="712" y="134" text-anchor="start">(e.g. GPT-3 175B)</text>
+
+  <!-- annotation note -->
+  <rect fill="#FDFCF8" stroke="#8A8A85" stroke-width="1" x="116" y="100" width="360" height="52" rx="5"/>
+  <text class="note" x="128" y="120" text-anchor="start">Few-shot gap widens with scale —</text>
+  <text class="note" x="128" y="136" text-anchor="start">a pattern that emerged sharply around 100B+ parameters</text>
+  <text class="note" x="128" y="150" text-anchor="start">(Brown et al. 2020, §3.3; "emergent" is debated — see prose)</text>
+
+  <!-- bracket on x axis indicating "in-context" zone -->
+  <path class="flow ink" d="M130,392 L590,392" stroke-width="1.2"/>
+  <path class="flow ink" d="M130,388 L130,396" stroke-width="1.2"/>
+  <path class="flow ink" d="M590,388 L590,396" stroke-width="1.2"/>
+  <text class="note" x="360" y="410" text-anchor="middle">← in-context "learning" (weights frozen throughout)</text>
+</svg>

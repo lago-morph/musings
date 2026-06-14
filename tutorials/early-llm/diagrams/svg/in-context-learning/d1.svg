@@ -1,0 +1,167 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 500" role="img" aria-label="Few-shot prompting feeds a frozen model a natural-language instruction plus K example input-output pairs then a query; the model produces the completion without any weight update. Contrasted on the right with fine-tuning, where a smaller dataset drives a gradient update that modifies the weights.">
+  <title>In-context learning vs. fine-tuning — structural overview</title>
+  <desc>Left side: a prompt block containing an instruction, three input-output example pairs, and a query arrow feeds into a locked (frozen) model box, which outputs a completion. Right side: a task-specific dataset feeds into a model box through a gradient-update arrow, and the weights change (indicated by an unlock icon). The two paths are separated by a vertical divider with a label 'vs.'</desc>
+  <style>
+    .board { fill: #FDFCF8; }
+    text { font-family: "Comic Sans MS","Comic Neue","Patrick Hand","Segoe Print",system-ui,sans-serif; fill: #222222; }
+    .ink   { stroke: #222222; }
+    .blue  { stroke: #2F6FED; }
+    .red   { stroke: #E5484D; }
+    .green { stroke: #2E9E5B; }
+    .muted { stroke: #8A8A85; fill: none; }
+    .box   { fill: #FDFCF8; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+    .flow  { fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .lbl   { font-size: 20px; text-anchor: middle; }
+    .lsm   { font-size: 15px; text-anchor: middle; }
+    .dim   { font-size: 13px; text-anchor: middle; fill: #8A8A85; }
+    .note  { font-size: 13px; fill: #8A8A85; }
+    .hdr   { font-size: 16px; font-weight: bold; text-anchor: middle; }
+    .blueT  { fill: #2F6FED; }
+    .redT   { fill: #E5484D; }
+    .greenT { fill: #2E9E5B; }
+    .mutedT { fill: #8A8A85; }
+  </style>
+  <rect class="board" x="0" y="0" width="1080" height="500"/>
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#222222" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#2F6FED" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#E5484D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#2E9E5B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- column headers -->
+  <text class="hdr blueT" x="255" y="38">In-context / few-shot learning</text>
+  <text class="hdr mutedT" x="815" y="38">Fine-tuning (for contrast)</text>
+
+  <!-- vertical divider -->
+  <line x1="540" y1="50" x2="540" y2="480" stroke="#8A8A85" stroke-width="1.2" stroke-dasharray="6 4"/>
+  <text class="lbl mutedT" x="540" y="280">vs.</text>
+
+  <!-- ====== LEFT: FEW-SHOT SIDE ====== -->
+
+  <!-- prompt box -->
+  <g transform="rotate(-0.5 118 260)">
+    <rect class="box blue" x="28" y="70" width="182" height="320" rx="6"/>
+  </g>
+  <text class="hdr blueT" x="119" y="100">Prompt</text>
+
+  <!-- instruction row -->
+  <rect class="box ink" x="44" y="110" width="148" height="30" rx="3"/>
+  <text class="lsm" x="118" y="131">instruction</text>
+
+  <!-- example 1 -->
+  <rect class="box ink" x="44" y="152" width="68" height="26" rx="3"/>
+  <text class="lsm" x="78" y="170">input 1</text>
+  <text class="lbl" x="118" y="171">→</text>
+  <rect class="box green" x="128" y="152" width="64" height="26" rx="3"/>
+  <text class="lsm greenT" x="160" y="170">output 1</text>
+
+  <!-- example 2 -->
+  <rect class="box ink" x="44" y="190" width="68" height="26" rx="3"/>
+  <text class="lsm" x="78" y="208">input 2</text>
+  <text class="lbl" x="118" y="209">→</text>
+  <rect class="box green" x="128" y="190" width="64" height="26" rx="3"/>
+  <text class="lsm greenT" x="160" y="208">output 2</text>
+
+  <!-- example 3 -->
+  <rect class="box ink" x="44" y="228" width="68" height="26" rx="3"/>
+  <text class="lsm" x="78" y="246">input 3</text>
+  <text class="lbl" x="118" y="247">→</text>
+  <rect class="box green" x="128" y="228" width="64" height="26" rx="3"/>
+  <text class="lsm greenT" x="160" y="246">output 3</text>
+
+  <!-- brace / ellipsis label -->
+  <text class="dim" x="118" y="274">K = 3 examples</text>
+
+  <!-- query row -->
+  <rect class="box blue" x="44" y="288" width="68" height="28" rx="3" stroke-width="2.5"/>
+  <text class="lsm blueT" x="78" y="307">query</text>
+  <text class="lbl mutedT" x="118" y="308">→</text>
+  <rect class="box ink" x="128" y="288" width="64" height="28" rx="3" stroke-dasharray="4 2"/>
+  <text class="lsm mutedT" x="160" y="307">?</text>
+
+  <!-- prompt label note -->
+  <text class="note" x="30" y="348">← K in-context examples</text>
+  <text class="note" x="30" y="364">   (no gradient update)</text>
+
+  <!-- arrow: prompt → frozen model -->
+  <path class="flow blue" d="M212,260 L270,260" marker-end="url(#ahb)"/>
+
+  <!-- frozen model box -->
+  <g transform="rotate(0.6 340 260)">
+    <rect class="box blue" x="272" y="210" width="136" height="100" rx="6"/>
+  </g>
+  <text class="lbl blueT" x="340" y="252">model</text>
+  <text class="lsm blueT" x="340" y="274">(frozen)</text>
+  <!-- lock icon suggestion -->
+  <text style="font-size:22px;" text-anchor="middle" x="340" y="300">🔒</text>
+  <!-- note: weights unchanged -->
+  <text class="note" x="340" y="330" text-anchor="middle">weights θ unchanged</text>
+
+  <!-- arrow: model → completion -->
+  <path class="flow green" d="M410,260 L456,260" marker-end="url(#ahg)"/>
+
+  <!-- completion box -->
+  <g transform="rotate(-0.4 494 260)">
+    <rect class="box green" x="458" y="228" width="68" height="64" rx="6"/>
+  </g>
+  <text class="lsm greenT" x="492" y="254">com-</text>
+  <text class="lsm greenT" x="492" y="272">pletion</text>
+
+  <!-- ====== RIGHT: FINE-TUNING SIDE ====== -->
+
+  <!-- task dataset box -->
+  <g transform="rotate(-0.7 660 180)">
+    <rect class="box ink" x="578" y="120" width="164" height="120" rx="6"/>
+  </g>
+  <text class="hdr" x="660" y="152">Task dataset</text>
+  <!-- rows suggesting pairs -->
+  <rect class="box ink" x="592" y="160" width="64" height="22" rx="3"/>
+  <text class="lsm" x="624" y="176">instr.</text>
+  <text class="lbl" x="660" y="177">→</text>
+  <rect class="box green" x="676" y="160" width="52" height="22" rx="3"/>
+  <text class="lsm greenT" x="702" y="176">resp.</text>
+
+  <rect class="box ink" x="592" y="192" width="64" height="22" rx="3"/>
+  <text class="lsm" x="624" y="208">instr.</text>
+  <text class="lbl" x="660" y="209">→</text>
+  <rect class="box green" x="676" y="192" width="52" height="22" rx="3"/>
+  <text class="lsm greenT" x="702" y="208">resp.</text>
+
+  <text class="dim" x="660" y="234">instruction–response pairs</text>
+
+  <!-- arrow: dataset → model (gradient update) -->
+  <path class="flow red" d="M660,242 L660,298" marker-end="url(#ahr)"/>
+  <text class="note" x="680" y="278" text-anchor="start">gradient update</text>
+  <text class="note" x="680" y="292" text-anchor="start">(∂𝓛/∂θ)</text>
+
+  <!-- fine-tuning model box -->
+  <g transform="rotate(0.8 740 340)">
+    <rect class="box red" x="668" y="300" width="144" height="80" rx="6"/>
+  </g>
+  <text class="lbl" x="740" y="334">base model</text>
+  <text class="lsm" x="740" y="356">+ training step</text>
+
+  <!-- arrow: fine-tuned model → tuned model output -->
+  <path class="flow green" d="M812,340 L858,340" marker-end="url(#ahg)"/>
+
+  <!-- tuned model box -->
+  <g transform="rotate(-0.5 910 340)">
+    <rect class="box green" x="860" y="300" width="164" height="80" rx="6" stroke-width="2.5"/>
+  </g>
+  <text class="lbl greenT" x="942" y="332">fine-tuned</text>
+  <text class="lsm greenT" x="942" y="354">model (θ′)</text>
+  <text class="note" x="942" y="400" text-anchor="middle">weights θ modified</text>
+
+  <!-- bottom annotation: key contrast -->
+  <text class="note" x="255" y="450" text-anchor="middle">Forward pass only — no weight changes</text>
+  <text class="note" x="815" y="450" text-anchor="middle">Weights updated by cross-entropy loss</text>
+</svg>

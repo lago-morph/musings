@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 440" role="img" aria-label="Token embeddings and positional encodings, the same shape, added element-wise to form the block input.">
+  <title>Position injected at the input: X = E + PE</title>
+  <desc>The token-embedding matrix E (n by d_model), a stack of rows tagged with tokens, is added element-wise to the positional-encoding matrix PE (n by d_model), a stack of rows tagged with position indices that depend only on position. Their sum is the block input X (n by d_model). Addition keeps the width at d_model; PE depends only on position, not the token.</desc>
+  <style>
+    .board { fill: #FDFCF8; }
+    text { font-family: "Comic Sans MS","Comic Neue","Patrick Hand","Segoe Print",system-ui,sans-serif; fill: #222222; }
+    .ink   { stroke: #222222; }
+    .blue  { stroke: #2F6FED; }
+    .green { stroke: #2E9E5B; }
+    .muted { stroke: #8A8A85; }
+    .box   { fill: #FDFCF8; stroke-width: 2; stroke-linejoin: round; }
+    .flow  { fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .lbl   { font-size: 20px; text-anchor: middle; }
+    .dim   { font-size: 13px; text-anchor: middle; fill: #8A8A85; }
+    .row   { font-size: 13px; text-anchor: middle; fill: #8A8A85; }
+    .note  { font-size: 13px; fill: #8A8A85; }
+    .title { font-size: 15px; fill: #8A8A85; }
+    .blueT { fill: #2F6FED; }
+    .greenT { fill: #2E9E5B; }
+  </style>
+  <rect class="board" x="0" y="0" width="980" height="440"/>
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#222222" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <text class="title" x="24" y="28">injecting order: X = E + PE</text>
+
+  <!-- ===== E : token embeddings (blue, the subject) ===== -->
+  <g transform="rotate(-0.5 110 215)">
+    <rect class="box blue" x="40" y="120" width="140" height="190" rx="5"/>
+    <line class="muted" x1="40" y1="158" x2="180" y2="158" stroke-width="1"/>
+    <line class="muted" x1="40" y1="196" x2="180" y2="196" stroke-width="1"/>
+    <line class="muted" x1="40" y1="234" x2="180" y2="234" stroke-width="1"/>
+    <line class="muted" x1="40" y1="272" x2="180" y2="272" stroke-width="1"/>
+  </g>
+  <text class="row" x="110" y="144">"the"</text>
+  <text class="row" x="110" y="182">"bank"</text>
+  <text class="row" x="110" y="220">"by"</text>
+  <text class="row" x="110" y="258">"river"</text>
+  <text class="row" x="110" y="296">&#8942;</text>
+  <text class="lbl blueT" x="110" y="106">E</text>
+  <text class="dim" x="110" y="332">token embeddings</text>
+  <text class="dim" x="110" y="350">n &#215; d_model</text>
+
+  <!-- plus -->
+  <circle class="box ink" cx="270" cy="215" r="22"/>
+  <text class="lbl" x="270" y="223" font-size="24">+</text>
+  <text class="note" x="270" y="270" text-anchor="middle">element-wise</text>
+  <path class="flow ink" d="M182,215 L246,215" marker-end="url(#ah)"/>
+
+  <!-- ===== PE : positional encodings ===== -->
+  <g transform="rotate(0.5 430 215)">
+    <rect class="box ink" x="360" y="120" width="140" height="190" rx="5"/>
+    <line class="muted" x1="360" y1="158" x2="500" y2="158" stroke-width="1"/>
+    <line class="muted" x1="360" y1="196" x2="500" y2="196" stroke-width="1"/>
+    <line class="muted" x1="360" y1="234" x2="500" y2="234" stroke-width="1"/>
+    <line class="muted" x1="360" y1="272" x2="500" y2="272" stroke-width="1"/>
+  </g>
+  <text class="row" x="430" y="144">pos 0</text>
+  <text class="row" x="430" y="182">pos 1</text>
+  <text class="row" x="430" y="220">pos 2</text>
+  <text class="row" x="430" y="258">pos 3</text>
+  <text class="row" x="430" y="296">&#8942;</text>
+  <text class="lbl" x="430" y="106">PE</text>
+  <text class="dim" x="430" y="332">positional encodings</text>
+  <text class="dim" x="430" y="350">n &#215; d_model</text>
+  <text class="note" x="430" y="382" text-anchor="middle">depends only on position,</text>
+  <text class="note" x="430" y="398" text-anchor="middle">not on the token</text>
+
+  <!-- arrow PE -> sum (curving back to plus) -->
+  <path class="flow ink" d="M358,215 L296,215" marker-end="url(#ah)"/>
+
+  <!-- equals arrow to X -->
+  <path class="flow ink" d="M502,215 L600,215" marker-end="url(#ah)"/>
+  <text class="note" x="551" y="202" text-anchor="middle">=</text>
+
+  <!-- ===== X : block input (green, the result) ===== -->
+  <g transform="rotate(-0.5 672 215)">
+    <rect class="box green" x="602" y="120" width="140" height="190" rx="5" stroke-width="3"/>
+    <line class="muted" x1="602" y1="158" x2="742" y2="158" stroke-width="1"/>
+    <line class="muted" x1="602" y1="196" x2="742" y2="196" stroke-width="1"/>
+    <line class="muted" x1="602" y1="234" x2="742" y2="234" stroke-width="1"/>
+    <line class="muted" x1="602" y1="272" x2="742" y2="272" stroke-width="1"/>
+  </g>
+  <text class="lbl greenT" x="672" y="106">X = E + PE</text>
+  <text class="dim" x="672" y="332">block input</text>
+  <text class="dim" x="672" y="350">n &#215; d_model</text>
+
+  <!-- margin note -->
+  <text class="note" x="772" y="170">same shape &#8594;</text>
+  <text class="note" x="772" y="188">add, do not</text>
+  <text class="note" x="772" y="206">concatenate;</text>
+  <text class="note" x="772" y="224">width stays</text>
+  <text class="note" x="772" y="242">d_model</text>
+  <path class="flow muted" d="M766,200 L744,210" marker-end="url(#ah)" stroke-dasharray="3 3"/>
+</svg>

@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-label="More parameters plus more data plus more compute drive the loss down predictably along the curve, with Chinchilla's later correction that model size and tokens should scale together.">
+  <title>Scaling: more N, D, and C drive loss down predictably — with the Chinchilla balance correction</title>
+  <desc>Three stacked inputs on the left labeled more parameters N, more data D, and more compute C converge into a single broad downhill arrow flowing to the right toward a label reading lower loss and predictable, drawn as a ball partway down a smooth descending slope. A separate boxed note below states the Chinchilla 2022 correction: for a fixed compute budget, scale model size N and training tokens D together, roughly one to one, because earlier large models had too many parameters for too little data and were under-trained.</desc>
+  <style>
+    .board { fill: #FDFCF8; }
+    text { font-family: "Comic Sans MS","Comic Neue","Patrick Hand","Segoe Print",system-ui,sans-serif; fill: #222222; }
+    .ink   { stroke: #222222; }
+    .blue  { stroke: #2F6FED; }
+    .green { stroke: #2E9E5B; }
+    .muted { stroke: #8A8A85; }
+    .box   { fill: #FDFCF8; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+    .flow  { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .h     { font-size: 22px; text-anchor: middle; fill: #222222; }
+    .in    { font-size: 19px; text-anchor: middle; fill: #2F6FED; }
+    .lbl   { font-size: 18px; text-anchor: middle; fill: #222222; }
+    .note  { font-size: 14px; fill: #8A8A85; }
+    .greenT { fill: #2E9E5B; }
+    .blueT  { fill: #2F6FED; }
+  </style>
+  <rect class="board" x="0" y="0" width="960" height="540"/>
+  <defs>
+    <marker id="ahd" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#222222" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#2E9E5B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- ===================== three inputs ===================== -->
+  <g transform="rotate(-0.7 130 96)">
+    <rect class="box blue" x="36" y="64" width="188" height="64" rx="6"/>
+  </g>
+  <text class="in" x="130" y="102">more parameters (N)</text>
+
+  <g transform="rotate(0.6 130 206)">
+    <rect class="box blue" x="36" y="174" width="188" height="64" rx="6"/>
+  </g>
+  <text class="in" x="130" y="212">more data (D)</text>
+
+  <g transform="rotate(-0.5 130 316)">
+    <rect class="box blue" x="36" y="284" width="188" height="64" rx="6"/>
+  </g>
+  <text class="in" x="130" y="322">more compute (C)</text>
+
+  <!-- converging feeders into the broad downhill arrow -->
+  <path class="flow ink" d="M224,96  C300,120 330,170 372,196" stroke-width="1.8" marker-end="url(#ahd)"/>
+  <path class="flow ink" d="M224,206 C300,206 330,206 372,206" stroke-width="1.8" marker-end="url(#ahd)"/>
+  <path class="flow ink" d="M224,316 C300,292 330,242 372,216" stroke-width="1.8" marker-end="url(#ahd)"/>
+
+  <!-- broad downhill arrow (the descent) -->
+  <path class="flow green" d="M384,196 C470,210 540,260 612,330" stroke-width="9" opacity="0.85" marker-end="url(#ahg)"/>
+  <text class="note" x="470" y="250">scale everything up</text>
+
+  <!-- smooth slope with a ball partway down it (predictability) -->
+  <path class="flow muted" d="M640,300 C700,300 760,360 880,402" stroke-width="2.5"/>
+  <circle cx="724" cy="334" r="13" fill="#FDFCF8" stroke="#2E9E5B" stroke-width="3"/>
+  <text class="note" x="724" y="306" text-anchor="middle">you can see where it's heading</text>
+
+  <!-- result label -->
+  <g transform="rotate(0.8 800 430)">
+    <rect class="box green" x="690" y="396" width="220" height="74" rx="8" stroke-width="3"/>
+  </g>
+  <text class="h greenT" x="800" y="428">lower loss</text>
+  <text class="lbl greenT" x="800" y="454">— and predictable</text>
+
+  <!-- ===================== Chinchilla correction note ===================== -->
+  <rect class="box muted" x="40" y="404" width="600" height="112" rx="8" stroke-dasharray="5 4"/>
+  <text class="lbl" x="60" y="432" text-anchor="start" font-size="17">Chinchilla (2022) correction:</text>
+  <text class="note" x="60" y="458" font-size="15">For a fixed compute budget, scale model size N and</text>
+  <text class="note" x="60" y="478" font-size="15">training tokens D together — roughly 1 : 1.</text>
+  <text class="note" x="60" y="502" font-size="15">Earlier large models: too many params for too little data (under-trained).</text>
+</svg>

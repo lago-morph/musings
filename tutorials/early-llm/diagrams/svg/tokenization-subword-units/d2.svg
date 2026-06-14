@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 420" role="img" aria-label="Subword tokenization of two words: a common word 'low' kept as a single token with one vocabulary ID, and a rare word 'unhappiness' split into subword pieces 'un', 'happi', 'ness' each with their own vocabulary ID.">
+  <title>Subword tokenization — common word whole, rare word split</title>
+  <desc>Two examples side by side. Left: the common word 'low' is assigned a single vocabulary ID (e.g. 3482), kept whole. Right: the rare word 'unhappiness' is split into three subword pieces: 'un' (ID 291), 'happi' (ID 7104), 'ness' (ID 512), each carrying its own embedding row. A note below explains that subwords like 'un-' and '-ness' approximate morphemes but were learned from frequency, not grammar.</desc>
+  <style>
+    .board  { fill: #FDFCF8; }
+    text    { font-family: "Comic Sans MS","Comic Neue","Patrick Hand","Segoe Print",system-ui,sans-serif; fill: #222222; }
+    .ink    { stroke: #222222; }
+    .blue   { stroke: #2F6FED; }
+    .red    { stroke: #E5484D; }
+    .green  { stroke: #2E9E5B; }
+    .muted  { stroke: #8A8A85; }
+    .box    { fill: #FDFCF8; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .boxhi  { fill: #FDFCF8; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .flow   { fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .lbl    { font-size: 22px; text-anchor: middle; }
+    .med    { font-size: 16px; text-anchor: middle; }
+    .sm     { font-size: 13px; text-anchor: middle; }
+    .smL    { font-size: 13px; text-anchor: start; }
+    .dim    { font-size: 13px; text-anchor: middle; fill: #8A8A85; }
+    .hdr    { font-size: 15px; text-anchor: middle; fill: #8A8A85; }
+    .blueT  { fill: #2F6FED; }
+    .redT   { fill: #E5484D; }
+    .greenT { fill: #2E9E5B; }
+    .idbox  { fill: #FDFCF8; stroke-width: 1.5; stroke-linecap: round; }
+  </style>
+  <rect class="board" x="0" y="0" width="1000" height="420"/>
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#222222" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#2F6FED" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- Dividing line -->
+  <line class="muted" x1="490" y1="40" x2="490" y2="390" stroke-width="1" stroke-dasharray="5 4"/>
+
+  <!-- ====== LEFT: common word ====== -->
+  <text class="hdr" x="245" y="35">Common word — kept whole</text>
+
+  <!-- Input word -->
+  <rect class="box ink" x="110" y="55" width="120" height="50" rx="6"/>
+  <text class="lbl" x="170" y="90">low</text>
+
+  <!-- Arrow down to token box -->
+  <path class="flow blue" d="M170,105 L170,155" marker-end="url(#ahb)"/>
+  <text class="dim" x="215" y="135">tokenize</text>
+
+  <!-- Token box (one token) -->
+  <rect class="boxhi blue" x="110" y="160" width="120" height="54" rx="6"/>
+  <text class="lbl blueT" x="170" y="196">low</text>
+
+  <!-- Arrow down to vocab ID -->
+  <path class="flow ink" d="M170,214 L170,264" marker-end="url(#ah)"/>
+  <text class="dim" x="215" y="245">vocab lookup</text>
+
+  <!-- ID box -->
+  <rect class="idbox muted" x="130" y="268" width="80" height="36" rx="4"/>
+  <text class="med" x="170" y="292">ID 3482</text>
+
+  <!-- Arrow down to embedding row -->
+  <path class="flow green" d="M170,304 L170,340" marker-end="url(#ah)"/>
+
+  <!-- Embedding rectangle -->
+  <rect class="box green" x="90" y="344" width="160" height="28" rx="4"/>
+  <text class="sm greenT" x="170" y="364">embedding row 3482</text>
+
+  <!-- Annotation: 1 token, 1 embedding -->
+  <text class="dim" x="245" y="400">1 token → 1 embedding lookup</text>
+
+  <!-- ====== RIGHT: rare word ====== -->
+  <text class="hdr" x="745" y="35">Rare / novel word — split into subwords</text>
+
+  <!-- Input word -->
+  <rect class="box ink" x="580" y="55" width="340" height="50" rx="6"/>
+  <text class="lbl" x="750" y="90">unhappiness</text>
+
+  <!-- Arrow down -->
+  <path class="flow blue" d="M750,105 L750,155" marker-end="url(#ahb)"/>
+  <text class="dim" x="820" y="135">tokenize</text>
+
+  <!-- Three subword tokens -->
+  <rect class="boxhi red" x="572" y="160" width="90" height="54" rx="6"/>
+  <text class="lbl redT" x="617" y="190">un</text>
+  <text class="dim" x="617" y="210" font-size="12">prefix</text>
+
+  <rect class="boxhi blue" x="682" y="160" width="110" height="54" rx="6"/>
+  <text class="lbl blueT" x="737" y="190">happi</text>
+  <text class="dim" x="737" y="210" font-size="12">stem</text>
+
+  <rect class="boxhi green" x="812" y="160" width="100" height="54" rx="6"/>
+  <text class="lbl greenT" x="862" y="190">ness</text>
+  <text class="dim" x="862" y="210" font-size="12">suffix</text>
+
+  <!-- Arrows to IDs -->
+  <path class="flow ink" d="M617,214 L617,264" marker-end="url(#ah)"/>
+  <path class="flow ink" d="M737,214 L737,264" marker-end="url(#ah)"/>
+  <path class="flow ink" d="M862,214 L862,264" marker-end="url(#ah)"/>
+
+  <!-- ID boxes -->
+  <rect class="idbox muted" x="580" y="268" width="76" height="36" rx="4"/>
+  <text class="med" x="618" y="292">ID 291</text>
+
+  <rect class="idbox muted" x="693" y="268" width="88" height="36" rx="4"/>
+  <text class="med" x="737" y="292">ID 7104</text>
+
+  <rect class="idbox muted" x="823" y="268" width="78" height="36" rx="4"/>
+  <text class="med" x="862" y="292">ID 512</text>
+
+  <!-- Arrows to embeddings -->
+  <path class="flow green" d="M618,304 L618,340" marker-end="url(#ah)"/>
+  <path class="flow green" d="M737,304 L737,340" marker-end="url(#ah)"/>
+  <path class="flow green" d="M862,304 L862,340" marker-end="url(#ah)"/>
+
+  <!-- Embedding rectangles -->
+  <rect class="box green" x="567" y="344" width="100" height="28" rx="4"/>
+  <text class="sm greenT" x="617" y="364">row 291</text>
+
+  <rect class="box green" x="682" y="344" width="110" height="28" rx="4"/>
+  <text class="sm greenT" x="737" y="364">row 7104</text>
+
+  <rect class="box green" x="815" y="344" width="96" height="28" rx="4"/>
+  <text class="sm greenT" x="863" y="364">row 512</text>
+
+  <text class="dim" x="745" y="400">3 tokens → 3 embedding lookups</text>
+
+  <!-- Bottom note -->
+  <rect class="box muted" x="30" y="408" width="940" height="0" rx="4" stroke-dasharray="3 3"/>
+  <!-- note is inside the viewbox via the dim text above; additional note: -->
+</svg>
